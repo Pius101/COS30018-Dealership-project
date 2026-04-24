@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JADE RMA — Manual Agent Walkthrough</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; padding: 24px; }
+  h1  { color: #fff; font-size: 20px; margin-bottom: 4px; }
+  .subtitle { color: #888; font-size: 13px; margin-bottom: 28px; }
+
+  /* Step navigator */
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .nav-btn {
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid #333;
+    background: #1a1d26; color: #aaa; cursor: pointer; font-size: 12px;
+    transition: all .15s;
+  }
+  .nav-btn:hover { border-color: #555; color: #fff; }
+  .nav-btn.active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 600; }
+  .nav-btn.done  { background: #14532d; border-color: #16a34a; color: #86efac; }
+
+  /* Step card */
+  .step-card {
+    background: #1a1d26; border: 1px solid #2a2d3a; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .step-title { font-size: 16px; font-weight: 700; color: #fff; }
+  .step-window { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 10px; margin-top: 2px; display: inline-block; }
+
+  /* Window colour coding */
+  .win-rma     { background: #1e3a5f; color: #93c5fd; border: 1px solid #2563eb; }
+  .win-broker  { background: #3b1f5e; color: #d8b4fe; border: 1px solid #7c3aed; }
+  .win-dealer  { background: #1c3a2a; color: #86efac; border: 1px solid #16a34a; }
+  .win-buyer   { background: #3b2a14; color: #fcd34d; border: 1px solid #d97706; }
+
+  .step-num.rma    { background: #1e3a5f; color: #93c5fd; }
+  .step-num.broker { background: #3b1f5e; color: #d8b4fe; }
+  .step-num.dealer { background: #1c3a2a; color: #86efac; }
+  .step-num.buyer  { background: #3b2a14; color: #fcd34d; }
+  .step-num.multi  { background: #2a2a2a; color: #e0e0e0; }
+
+  /* Click sequence */
+  .clicks { display: flex; flex-direction: column; gap: 8px; }
+  .click {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #0f1117; border: 1px solid #2a2d3a;
+    border-radius: 8px; padding: 10px 14px;
+  }
+  .click-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .click-text { flex: 1; }
+  .click-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: .5px; }
+  .click-action { color: #e0e0e0; }
+  .click-action code {
+    background: #252830; border: 1px solid #3a3d4a;
+    border-radius: 4px; padding: 1px 6px; font-family: 'Consolas', monospace;
+    font-size: 12px; color: #a5f3fc;
+  }
+  .warn { background: #2a1f0a; border-color: #92400e; }
+  .warn .click-action { color: #fcd34d; }
+  .tip  { background: #0c1f2e; border-color: #0369a1; }
+  .tip  .click-action { color: #93c5fd; }
+
+  /* Field form mockup */
+  .form-mockup {
+    background: #0f1117; border: 1px solid #2a2d3a; border-radius: 8px;
+    padding: 14px 18px; margin-top: 12px;
+  }
+  .form-mockup table { border-collapse: collapse; width: 100%; }
+  .form-mockup td { padding: 4px 8px; }
+  .form-mockup td:first-child { color: #888; font-size: 12px; width: 130px; }
+  .form-mockup td:last-child {
+    font-family: 'Consolas', monospace; color: #a5f3fc; font-size: 13px;
+  }
+
+  /* Sequence diagram */
+  .seq-wrap { overflow-x: auto; }
+  .seq-diagram { min-width: 640px; }
+
+  /* Message log preview */
+  .log-preview {
+    background: #0a0c10; border: 1px solid #1e2130;
+    border-radius: 6px; padding: 10px 14px; font-family: 'Consolas', monospace;
+    font-size: 11px; margin-top: 10px; line-height: 1.7;
+  }
+  .log-send  { color: #60a5fa; }
+  .log-recv  { color: #4ade80; }
+  .log-event { color: #f59e0b; }
+  .log-info  { color: #94a3b8; }
+  .log-time  { color: #475569; }
+
+  /* Result banners */
+  .result {
+    margin-top: 14px; border-radius: 8px; padding: 12px 16px;
+    border: 1px solid; font-size: 13px;
+  }
+  .result.success { background: #052e16; border-color: #16a34a; color: #86efac; }
+  .result.info    { background: #0c1f2e; border-color: #0369a1; color: #93c5fd; }
+
+  /* Progress bar */
+  .progress-bar {
+    height: 4px; background: #1a1d26; border-radius: 2px;
+    margin-bottom: 24px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #2563eb, #7c3aed);
+    border-radius: 2px; transition: width .3s ease;
+  }
+
+  /* Hidden */
+  .step-panel { display: none; }
+  .step-panel.visible { display: block; }
+
+  /* Summary */
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .summary-card { background: #0f1117; border: 1px solid #2a2d3a; border-radius: 8px; padding: 14px; }
+  .summary-card h4 { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .summary-card p  { font-size: 13px; }
+
+  button.big-btn {
+    background: #2563eb; color: #fff; border: none; border-radius: 8px;
+    padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background .15s;
+  }
+  button.big-btn:hover { background: #1d4ed8; }
+  button.big-btn.secondary {
+    background: #1a1d26; border: 1px solid #333; color: #aaa;
+  }
+  button.big-btn.secondary:hover { border-color: #555; color: #fff; }
+
+  .nav-row { display: flex; gap: 10px; margin-top: 20px; }
+  .seq-label { font-size: 11px; fill: #888; }
+</style>
+</head>
+<body>
+
+<h1>🚗 JADE RMA — Manual Agent Walkthrough</h1>
+<p class="subtitle">How to add Dealer + Buyer agents from the JADE GUI and run a complete negotiation</p>
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width:12%"></div>
+</div>
+
+<!-- Step nav -->
+<div class="nav" id="navBar">
+  <button class="nav-btn active" onclick="goTo(0)">1 · Launch Host</button>
+  <button class="nav-btn" onclick="goTo(1)">2 · Open RMA</button>
+  <button class="nav-btn" onclick="goTo(2)">3 · Add Dealer</button>
+  <button class="nav-btn" onclick="goTo(3)">4 · Add Buyer</button>
+  <button class="nav-btn" onclick="goTo(4)">5 · List a Car</button>
+  <button class="nav-btn" onclick="goTo(5)">6 · Submit Requirements</button>
+  <button class="nav-btn" onclick="goTo(6)">7 · Broker Assigns</button>
+  <button class="nav-btn" onclick="goTo(7)">8 · Negotiate</button>
+  <button class="nav-btn" onclick="goTo(8)">9 · Close Deal</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 0 ═══ -->
+<div class="step-panel visible" id="panel-0">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num rma">1</div>
+      <div>
+        <div class="step-title">Launch the HOST (with JADE RMA)</div>
+        <span class="step-window win-rma">Launcher Dialog</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">▶</div>
+        <div class="click-text">
+          <div class="click-label">Run</div>
+          <div class="click-action">Start the application — <code>negotiation.Launcher</code> in IntelliJ, or double-click the fat JAR</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🔘</div>
+        <div class="click-text">
+          <div class="click-label">Select role</div>
+          <div class="click-action">Choose <code>HOST — start the platform</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">☑</div>
+        <div class="click-text">
+          <div class="click-label">Important — check this box</div>
+          <div class="click-action"><strong>Tick "Show JADE RMA GUI"</strong> — this opens the agent monitor window alongside the Broker GUI</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🚀</div>
+        <div class="click-text">
+          <div class="click-label">Launch</div>
+          <div class="click-action">Click <code>LAUNCH</code></div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ Two windows open: the <strong>Broker GUI</strong> (purple header) and the <strong>JADE RMA</strong> (JADE's own agent monitor). The RMA tree shows <code>Main-Container</code> containing <code>ams</code>, <code>df</code>, <code>rma</code>, and <code>broker</code>.
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn" onclick="goTo(1)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 1 ═══ -->
+<div class="step-panel" id="panel-1">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num rma">2</div>
+      <div>
+        <div class="step-title">Understand the JADE RMA layout</div>
+        <span class="step-window win-rma">JADE RMA Window</span>
+      </div>
+    </div>
+
+    <!-- Ascii-style RMA mockup -->
+    <div class="form-mockup" style="font-family: monospace; line-height: 2;">
+      <div style="color:#93c5fd; font-weight:700; margin-bottom:6px;">Agent Platforms</div>
+      <div style="color:#e0e0e0;">└── 192.168.x.x:1099/JADE</div>
+      <div style="color:#e0e0e0;">&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:#4ade80; font-weight:700;">Main-Container</span> ← right-click here to add agents</div>
+      <div style="color:#94a3b8;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ams &nbsp;&nbsp;&nbsp; (Agent Management System)</div>
+      <div style="color:#94a3b8;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── df &nbsp;&nbsp;&nbsp;&nbsp; (Directory Facilitator — yellow pages)</div>
+      <div style="color:#94a3b8;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── rma &nbsp;&nbsp;&nbsp; (this GUI itself)</div>
+      <div style="color:#d8b4fe; font-weight:700;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── broker &nbsp;(our BrokerAgent — registered in DF)</div>
+    </div>
+
+    <div class="clicks" style="margin-top:14px;">
+      <div class="click tip">
+        <div class="click-icon">💡</div>
+        <div class="click-text">
+          <div class="click-action">You can double-click <code>broker</code> to inspect its AID and current state. The Broker GUI is separate — the RMA just shows the JADE-level view of the agent.</div>
+        </div>
+      </div>
+      <div class="click tip">
+        <div class="click-icon">📡</div>
+        <div class="click-text">
+          <div class="click-action">The Broker GUI has a <code>📡 Sniffer</code> button. Click it now — a Sniffer window opens. You can drag <code>broker</code> into the sniff area later to capture all messages as a sequence diagram.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(0)">← Back</button>
+    <button class="big-btn" onclick="goTo(2)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 2 ═══ -->
+<div class="step-panel" id="panel-2">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num dealer">3</div>
+      <div>
+        <div class="step-title">Add a Dealer Agent from the RMA</div>
+        <span class="step-window win-rma">JADE RMA Window</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">🖱</div>
+        <div class="click-text">
+          <div class="click-label">Right-click</div>
+          <div class="click-action">In the RMA tree, right-click <code>Main-Container</code> → select <strong>"Start New Agent"</strong></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✏</div>
+        <div class="click-text">
+          <div class="click-label">Fill in the dialog</div>
+          <div class="click-action">
+            <strong>Agent Name:</strong> <code>Dealer1</code><br>
+            <strong>Class Name:</strong> <code>negotiation.agents.DealerAgent</code>
+          </div>
+        </div>
+      </div>
+      <div class="click warn">
+        <div class="click-icon">⚠</div>
+        <div class="click-text">
+          <div class="click-action"><strong>JADE quirk:</strong> After typing in the Class Name field, click into the Agent Name field (or any other field) before clicking OK. The OK button only activates after you leave the text field.</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✓</div>
+        <div class="click-text">
+          <div class="click-label">Confirm</div>
+          <div class="click-action">Click <code>OK</code></div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ <code>Dealer1</code> appears under <code>Main-Container</code> in the RMA tree. The <strong>Dealer GUI</strong> window opens automatically — it finds the broker via the DF and is ready for use.
+    </div>
+    <div class="log-preview">
+      <span class="log-time">[10:23:52]</span>  <span class="log-info">   Dealer Agent 'Dealer1' started. AID: Dealer1@192.168.x.x:1099/JADE</span><br>
+      <span class="log-time">[10:23:52]</span>  <span class="log-info">   Broker found in DF: broker@192.168.x.x:1099/JADE</span><br>
+      <span class="log-time">[10:23:52]</span>  <span class="log-info">   Connected to Broker: broker@192.168.x.x:1099/JADE</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(1)">← Back</button>
+    <button class="big-btn" onclick="goTo(3)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 3 ═══ -->
+<div class="step-panel" id="panel-3">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num buyer">4</div>
+      <div>
+        <div class="step-title">Add a Buyer Agent from the RMA</div>
+        <span class="step-window win-rma">JADE RMA Window</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">🖱</div>
+        <div class="click-text">
+          <div class="click-label">Right-click again</div>
+          <div class="click-action">Right-click <code>Main-Container</code> → <strong>"Start New Agent"</strong></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✏</div>
+        <div class="click-text">
+          <div class="click-label">Fill in the dialog</div>
+          <div class="click-action">
+            <strong>Agent Name:</strong> <code>Buyer1</code><br>
+            <strong>Class Name:</strong> <code>negotiation.agents.BuyerAgent</code>
+          </div>
+        </div>
+      </div>
+      <div class="click warn">
+        <div class="click-icon">⚠</div>
+        <div class="click-text">
+          <div class="click-action">Same JADE quirk — click into another field after typing Class Name, then click OK.</div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ <code>Buyer1</code> appears in the RMA tree. The <strong>Buyer GUI</strong> window opens. RMA tree now shows: <code>ams · df · rma · broker · Dealer1 · Buyer1</code>
+    </div>
+    <div class="log-preview">
+      <span class="log-time">[10:24:01]</span>  <span class="log-info">   Buyer Agent 'Buyer1' started. AID: Buyer1@192.168.x.x:1099/JADE</span><br>
+      <span class="log-time">[10:24:01]</span>  <span class="log-info">   Broker found in DF: broker@192.168.x.x:1099/JADE</span><br>
+      <span class="log-time">[10:24:01]</span>  <span class="log-info">   Connected to Broker: broker@192.168.x.x:1099/JADE</span>
+    </div>
+    <div class="result info" style="margin-top:10px;">
+      💡 At this point you have 3 custom agents running on the same JADE platform, all communicating via ACL messages. You can add more — repeat for <code>Dealer2</code>, <code>Buyer2</code>, etc.
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(2)">← Back</button>
+    <button class="big-btn" onclick="goTo(4)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 4 ═══ -->
+<div class="step-panel" id="panel-4">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num dealer">5</div>
+      <div>
+        <div class="step-title">Dealer submits a car listing</div>
+        <span class="step-window win-dealer">Dealer1 GUI Window</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">📑</div>
+        <div class="click-text">
+          <div class="click-label">Navigate</div>
+          <div class="click-action">In the Dealer1 window, click the <code>📦 My Listings</code> tab</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✏</div>
+        <div class="click-text">
+          <div class="click-label">Fill the form</div>
+          <div class="click-action">Enter these values:</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-mockup">
+      <table>
+        <tr><td>Make *</td><td>Toyota</td></tr>
+        <tr><td>Model *</td><td>Camry</td></tr>
+        <tr><td>Year *</td><td>2022</td></tr>
+        <tr><td>Mileage (km)</td><td>15000</td></tr>
+        <tr><td>Color</td><td>Pearl White</td></tr>
+        <tr><td>Retail Price (RM) *</td><td>85000</td></tr>
+        <tr><td>Condition</td><td>Used</td></tr>
+        <tr><td>Description</td><td>One owner, full service history, excellent condition</td></tr>
+      </table>
+    </div>
+    <div class="clicks" style="margin-top:12px;">
+      <div class="click">
+        <div class="click-icon">📤</div>
+        <div class="click-text">
+          <div class="click-label">Submit</div>
+          <div class="click-action">Click <code>Submit Listing to Broker</code></div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ Listing appears in Dealer1's table. Broker GUI "📋 Listings" tab updates with the Toyota Camry row.
+    </div>
+    <div class="log-preview">
+      <span class="log-time">[10:24:15]</span>  <span class="log-send">→  to Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [LISTING_REGISTER] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2022 Toyota Camry  RM 85000  [A3F9B2C1]</span><br>
+      <span class="log-time">[10:24:15]</span>  <span class="log-recv">←  from Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [LISTING_ACK] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Listing A3F9B2C1 confirmed stored</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(3)">← Back</button>
+    <button class="big-btn" onclick="goTo(5)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 5 ═══ -->
+<div class="step-panel" id="panel-5">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num buyer">6</div>
+      <div>
+        <div class="step-title">Buyer submits requirements</div>
+        <span class="step-window win-buyer">Buyer1 GUI Window</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">📑</div>
+        <div class="click-text">
+          <div class="click-label">Navigate</div>
+          <div class="click-action">In the Buyer1 window, click the <code>🔍 My Requirements</code> tab</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✏</div>
+        <div class="click-text">
+          <div class="click-label">Fill the form (blank = any)</div>
+          <div class="click-action">Enter requirements:</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-mockup">
+      <table>
+        <tr><td>Preferred Make</td><td>Toyota</td></tr>
+        <tr><td>Preferred Model</td><td><em style="color:#666">(leave blank — any Toyota)</em></td></tr>
+        <tr><td>Year (from)</td><td>2020</td></tr>
+        <tr><td>Year (to)</td><td><em style="color:#666">(leave blank)</em></td></tr>
+        <tr><td>Max Price (RM)</td><td>80000</td></tr>
+        <tr><td>Max Mileage (km)</td><td>50000</td></tr>
+        <tr><td>Condition</td><td>Any</td></tr>
+        <tr><td>Notes to Broker</td><td>Looking for a reliable daily driver, flexible on model</td></tr>
+      </table>
+    </div>
+    <div class="clicks" style="margin-top:12px;">
+      <div class="click">
+        <div class="click-icon">📤</div>
+        <div class="click-text">
+          <div class="click-label">Submit</div>
+          <div class="click-action">Click <code>Submit Requirements to Broker</code></div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ Requirement row appears in Buyer1's table with status "⏳ Waiting for broker". Broker GUI "👤 Buyers" tab updates with Buyer1's row.
+    </div>
+    <div class="log-preview">
+      <span class="log-time">[10:24:28]</span>  <span class="log-send">→  to Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [BUYER_REQUIREMENTS] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Toyota Any 2020– ≤ RM 80000  [REQ001]</span><br>
+      <span class="log-time">[10:24:28]</span>  <span class="log-recv">←  from Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [REQUIREMENTS_ACK] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Requirement REQ001 confirmed stored — waiting for assignment</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(4)">← Back</button>
+    <button class="big-btn" onclick="goTo(6)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 6 ═══ -->
+<div class="step-panel" id="panel-6">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num broker">7</div>
+      <div>
+        <div class="step-title">Broker manually creates the assignment</div>
+        <span class="step-window win-broker">Broker GUI Window</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">📑</div>
+        <div class="click-text">
+          <div class="click-label">Navigate</div>
+          <div class="click-action">In the Broker GUI, click the <code>🔗 Assign</code> tab</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🖱</div>
+        <div class="click-text">
+          <div class="click-label">Select listing (top table)</div>
+          <div class="click-action">Click the row showing: <code>A3F9B2C1 · Dealer1 · Toyota · Camry · 2022 · 85000 · Used</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🖱</div>
+        <div class="click-text">
+          <div class="click-label">Select buyer (bottom table)</div>
+          <div class="click-action">Click the row showing: <code>REQ001 · Buyer1 · Toyota · Any · 2020 · — · 80000 · Any</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">📝</div>
+        <div class="click-text">
+          <div class="click-label">Optional broker note</div>
+          <div class="click-action">Type in the note box: <code>Good match — car is within mileage limit, price is negotiable</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🔗</div>
+        <div class="click-text">
+          <div class="click-label">Assign</div>
+          <div class="click-action">Click <code>🔗 Assign Selected</code> → confirm the dialog → YES</div>
+        </div>
+      </div>
+    </div>
+    <div class="result success">
+      ✓ <strong>Both agents are notified simultaneously.</strong> Dealer1's GUI gets a new <code>💬 Buyer1</code> tab. Buyer1's GUI gets a new <code>💬 Dealer1</code> tab. Both tabs switch into focus automatically.
+    </div>
+    <div class="log-preview">
+      <span class="log-time">[10:24:45]</span>  <span class="log-event">★  Assignment created  [NEG8F2A]  Dealer: Dealer1  ↔  Buyer: Buyer1  Listing: A3F9B2C1</span><br>
+      <span class="log-time">[10:24:45]</span>  <span class="log-send">→  to Dealer1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ASSIGNMENT_NOTIFY] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Buyer: Buyer1  Listing: A3F9B2C1</span><br>
+      <span class="log-time">[10:24:45]</span>  <span class="log-send">→  to Buyer1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ASSIGNMENT_NOTIFY] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dealer: Dealer1  Listing: A3F9B2C1</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(5)">← Back</button>
+    <button class="big-btn" onclick="goTo(7)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 7 ═══ -->
+<div class="step-panel" id="panel-7">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num multi">8</div>
+      <div>
+        <div class="step-title">Manual negotiation — back and forth</div>
+        <span class="step-window win-dealer">Dealer1 GUI</span>
+        &nbsp;
+        <span class="step-window win-buyer">Buyer1 GUI</span>
+      </div>
+    </div>
+
+    <!-- Turn 1 -->
+    <p style="color:#888; font-size:12px; margin-bottom:8px; margin-top:4px;">TURN 1 — Dealer opens</p>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">💬</div>
+        <div class="click-text">
+          <div class="click-label">Dealer1 GUI — 💬 Buyer1 tab</div>
+          <div class="click-action">The info banner shows: <em>Car: [A3F9B2C1] 2022 Toyota Camry RM 85,000 | Buyer: Buyer1 | Budget: RM 80,000</em></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">💰</div>
+        <div class="click-text">
+          <div class="click-label">Dealer sets opening offer</div>
+          <div class="click-action">Price field: <code>85000</code> &nbsp;|&nbsp; Message: <code>Hello! Great car, full service history. Starting price RM 85,000.</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">📤</div>
+        <div class="click-text">
+          <div class="click-label">Send</div>
+          <div class="click-action">Click <code>📤 Send Offer</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Turn 2 -->
+    <p style="color:#888; font-size:12px; margin:14px 0 8px;">TURN 2 — Buyer counters</p>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">💬</div>
+        <div class="click-text">
+          <div class="click-label">Buyer1 GUI — 💬 Dealer1 tab auto-focuses</div>
+          <div class="click-action">Chat shows: <code>[10:25:01] Dealer1 (DEALER)  OFFER  RM 85,000</code><br>Price field auto-fills to <code>85000</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">💰</div>
+        <div class="click-text">
+          <div class="click-label">Buyer changes the price</div>
+          <div class="click-action">Price field: <code>77000</code> &nbsp;|&nbsp; Message: <code>That's above my budget. Best I can do is RM 77,000.</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">📤</div>
+        <div class="click-text">
+          <div class="click-label">Send counter</div>
+          <div class="click-action">Click <code>📤 Counter Offer</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Turn 3 -->
+    <p style="color:#888; font-size:12px; margin:14px 0 8px;">TURN 3 — Dealer meets in the middle</p>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">💰</div>
+        <div class="click-text">
+          <div class="click-label">Dealer1 GUI — sees counter RM 77,000</div>
+          <div class="click-action">Price field: <code>81000</code> &nbsp;|&nbsp; Message: <code>I can come down to RM 81,000 — that's my final offer.</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">📤</div>
+        <div class="click-text">
+          <div class="click-action">Click <code>📤 Send Offer</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-preview">
+      <span class="log-time">[10:25:01]</span>  <span class="log-send">→  SEND to Broker→Buyer1 &nbsp;[NEG_OFFER]  RM 85000  "Hello! Great car..."</span><br>
+      <span class="log-time">[10:25:14]</span>  <span class="log-recv">←  RECV from Broker←Buyer1 [NEG_OFFER]  RM 77000  "That's above my budget..."</span><br>
+      <span class="log-time">[10:25:28]</span>  <span class="log-send">→  SEND to Broker→Buyer1 &nbsp;[NEG_OFFER]  RM 81000  "I can come down to RM 81,000..."</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(6)">← Back</button>
+    <button class="big-btn" onclick="goTo(8)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ STEP 8 ═══ -->
+<div class="step-panel" id="panel-8">
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num multi">9</div>
+      <div>
+        <div class="step-title">Buyer accepts — deal closes</div>
+        <span class="step-window win-buyer">Buyer1 GUI</span>
+        &nbsp;
+        <span class="step-window win-broker">Broker GUI</span>
+      </div>
+    </div>
+    <div class="clicks">
+      <div class="click">
+        <div class="click-icon">💬</div>
+        <div class="click-text">
+          <div class="click-label">Buyer1 GUI — sees RM 81,000 offer</div>
+          <div class="click-action">Price field shows <code>81000</code> (auto-filled from dealer's offer)</div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">✅</div>
+        <div class="click-text">
+          <div class="click-label">Accept</div>
+          <div class="click-action">Optionally type a message: <code>Deal! RM 81,000 works for me.</code> &nbsp; Then click <code>✅ Accept Deal</code></div>
+        </div>
+      </div>
+      <div class="click">
+        <div class="click-icon">🔔</div>
+        <div class="click-text">
+          <div class="click-label">Confirm dialog</div>
+          <div class="click-action">Dialog asks: <em>"Accept deal at RM 81,000?"</em> → click <strong>YES</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result success" style="margin-top:14px;">
+      ✓ <strong>Deal complete.</strong> Three things happen simultaneously:<br><br>
+      &nbsp;&nbsp;• <strong>Buyer1 GUI</strong> chat shows: <code>─── ✅ DEAL COMPLETE — Final price: RM 81,000 ───</code> — input disabled<br>
+      &nbsp;&nbsp;• <strong>Dealer1 GUI</strong> chat shows the same banner — input disabled<br>
+      &nbsp;&nbsp;• <strong>Broker GUI</strong> "💬 Negotiations" tab → completed deals table gains a new row
+    </div>
+
+    <div class="log-preview">
+      <span class="log-time">[10:25:44]</span>  <span class="log-send">→  to Broker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [NEG_ACCEPT] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ACCEPTED at RM 81000</span><br>
+      <span class="log-time">[10:25:44]</span>  <span class="log-event">★  DEAL COMPLETE  [NEG8F2A]  Final price: RM 81,000</span><br>
+      <span class="log-time">[10:25:44]</span>  <span class="log-send">→  to Dealer1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DEAL_COMPLETE] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Final price: RM 81,000</span><br>
+      <span class="log-time">[10:25:44]</span>  <span class="log-send">→  to Buyer1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DEAL_COMPLETE] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Final price: RM 81,000</span>
+    </div>
+
+    <!-- Summary -->
+    <div style="margin-top:20px; border-top: 1px solid #2a2d3a; padding-top:16px;">
+      <p style="font-weight:700; color:#fff; margin-bottom:12px;">Complete interaction summary</p>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Messages exchanged</h4>
+          <p style="color:#a5f3fc;">8 ACL messages<br>INFORM · CONFIRM · PROPOSE · ACCEPT_PROPOSAL</p>
+        </div>
+        <div class="summary-card">
+          <h4>Final price</h4>
+          <p style="color:#4ade80; font-size:18px; font-weight:700;">RM 81,000</p>
+          <p style="color:#888; font-size:11px;">vs asking RM 85,000 (−4.7%)</p>
+        </div>
+        <div class="summary-card">
+          <h4>Agents involved</h4>
+          <p style="color:#d8b4fe;">broker · Dealer1 · Buyer1<br>All on same JADE platform</p>
+        </div>
+        <div class="summary-card">
+          <h4>For your report</h4>
+          <p style="color:#fcd34d;">Open the Sniffer and drag all 3 agents in — it captures this as a sequence diagram automatically</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="big-btn secondary" onclick="goTo(7)">← Back</button>
+    <button class="big-btn" onclick="goTo(0)" style="background:#16a34a;">↩ Start Over</button>
+  </div>
+</div>
+
+<script>
+  const TOTAL = 9;
+  let current = 0;
+
+  function goTo(n) {
+    document.getElementById('panel-' + current).classList.remove('visible');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    if (n > current) document.querySelectorAll('.nav-btn')[current].classList.add('done');
+
+    current = n;
+    document.getElementById('panel-' + current).classList.add('visible');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('done');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.getElementById('progressFill').style.width = (((n + 1) / TOTAL) * 100) + '%';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+</body>
+</html>
