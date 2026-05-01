@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -180,13 +181,47 @@ public class DealerGui extends JFrame {
 
     // Tab: Assignments
     private JPanel buildAssignmentsTab() {
-        JPanel p = new JPanel(new BorderLayout());
+        JPanel p = new JPanel(new BorderLayout(8, 8));
         p.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel info = new JLabel(
-                "<html>These are negotiations the Broker has assigned to you. " +
-                        "Open each negotiation tab to respond.</html>");
-        p.add(info, BorderLayout.NORTH);
+        // ── Auto-negotiate toggle ─────────────────────────────────────────────
+        JPanel autoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 4));
+        autoPanel.setBorder(BorderFactory.createTitledBorder("Auto-Negotiate Mode"));
+
+        JToggleButton autoToggle = new JToggleButton("🤖  Auto-Negotiate: OFF");
+        autoToggle.setToolTipText("When ON, all new assignments are handled automatically by the strategy");
+
+        String[] strategyNames = negotiation.strategy.StrategyRegistry.getDisplayNames();
+        String[] strategyKeys  = negotiation.strategy.StrategyRegistry.getKeys().toArray(new String[0]);
+        JComboBox<String> strategyBox = new JComboBox<>(strategyNames);
+        strategyBox.setSelectedIndex(0);
+
+        JLabel marginLabel = new JLabel("Min margin (%):");
+        JSpinner marginSpinner = new JSpinner(new SpinnerNumberModel(10, 1, 30, 1));
+        marginSpinner.setPreferredSize(new Dimension(60, 26));
+        marginSpinner.setToolTipText("Dealer won't go below (100 - margin)% of retail price");
+
+        autoPanel.add(autoToggle);
+        autoPanel.add(new JLabel("Strategy:"));
+        autoPanel.add(strategyBox);
+        autoPanel.add(marginLabel);
+        autoPanel.add(marginSpinner);
+
+        autoToggle.addActionListener(e -> {
+            boolean on = autoToggle.isSelected();
+            autoToggle.setText(on ? "🤖  Auto-Negotiate: ON" : "🤖  Auto-Negotiate: OFF");
+            String key       = strategyKeys[strategyBox.getSelectedIndex()];
+            double marginPct = ((Integer) marginSpinner.getValue()) / 100.0;
+            dealer.setAutoMode(on, key, marginPct);
+        });
+
+        JLabel infoLabel = new JLabel(
+                "<html>Negotiations the Broker has assigned to you.</html>");
+
+        JPanel north = new JPanel(new BorderLayout(0, 6));
+        north.add(autoPanel, BorderLayout.NORTH);
+        north.add(infoLabel, BorderLayout.SOUTH);
+        p.add(north, BorderLayout.NORTH);
 
         JTable table = new JTable(assignmentsModel);
         p.add(new JScrollPane(table), BorderLayout.CENTER);
@@ -239,6 +274,30 @@ public class DealerGui extends JFrame {
         }
         // Update Assignments table status
         updateAssignmentStatus(finalMsg.getNegotiationId(), "  Complete");
+    }
+
+    /**
+     * Shows auto-negotiate banner and locks manual input.
+     * Called by DealerNegotiationBehaviour on start.
+     */
+    public void showAutoModeBanner(String negotiationId, String strategyName,
+                                   double startingPrice, double minPrice, int maxRounds) {
+        NegotiationPanel panel = negPanels.get(negotiationId);
+        if (panel == null) return;
+        panel.appendSystem(String.format(
+                "🤖 AUTO-NEGOTIATE ON  |  Strategy: %s  |  Starting: RM %.0f"
+                        + "  |  Minimum: RM %.0f  |  Max rounds: %d",
+                strategyName, startingPrice, minPrice, maxRounds));
+        panel.disableInput();
+    }
+
+    /**
+     * Appends a strategy reasoning line (🧠) to the negotiation chat tab.
+     * Called by DealerNegotiationBehaviour after each decision.
+     */
+    public void appendAutoReasoning(String negotiationId, String reasoning) {
+        NegotiationPanel panel = negPanels.get(negotiationId);
+        if (panel != null) panel.appendReasoning(reasoning);
     }
 
     // Refresh methods
@@ -422,6 +481,12 @@ public class DealerGui extends JFrame {
 
         void appendSystem(String text) {
             historyArea.append("--- " + text + " ---\n");
+        }
+
+        /** Strategy reasoning line — shown with 🧠 prefix in auto mode. */
+        void appendReasoning(String text) {
+            historyArea.append("🧠 " + text + "\n");
+            historyArea.setCaretPosition(historyArea.getDocument().getLength());
         }
 
         void disableInput() {

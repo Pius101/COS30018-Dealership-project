@@ -9,10 +9,11 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
-import negotiation.behaviours.broker.BrokerMessageBehaviour;
+import negotiation.behaviours.BrokerMessageBehaviour;
 import negotiation.gui.BrokerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.*;
+import negotiation.report.NegotiationReportGenerator;
 import negotiation.util.AppLogger;
 import negotiation.util.ConversationLogger;
 
@@ -97,8 +98,8 @@ public class BrokerAgent extends Agent {
         listings.put(listing.getListingId(), listing);
         log.recv(listing.getDealerName(), Ontology.TYPE_LISTING_REGISTER,
                 listing.getYear() + " " + listing.getMake() + " " + listing.getModel()
-                + "  RM " + String.format("%.0f", listing.getRetailPrice())
-                + "  [ID: " + listing.getListingId() + "]");
+                        + "  RM " + String.format("%.0f", listing.getRetailPrice())
+                        + "  [ID: " + listing.getListingId() + "]");
         if (gui != null) SwingUtilities.invokeLater(() -> gui.refreshListings(getListings()));
     }
 
@@ -113,15 +114,23 @@ public class BrokerAgent extends Agent {
         history.computeIfAbsent(msg.getNegotiationId(), k -> new ArrayList<>()).add(msg);
         String detail = msg.getType() + "  RM " + String.format("%.0f", msg.getPrice())
                 + (msg.getMessage() != null && !msg.getMessage().isBlank()
-                   ? "  \"" + msg.getMessage() + "\"" : "");
+                ? "  \"" + msg.getMessage() + "\"" : "");
         log.info("NEG [" + msg.getNegotiationId() + "]  "
                 + msg.getFromName() + " → " + msg.getToName() + "  " + detail);
+
+        // Bug fix #4: actually write each message to the conversation file.
+        // Previously logMessage() was defined but never called here.
+        Assignment assignment = assignments.get(msg.getNegotiationId());
+        if (assignment != null) {
+            ConversationLogger.logMessage(msg, assignment);
+        }
+
         if (gui != null) SwingUtilities.invokeLater(() -> gui.onNegotiationMessage(msg));
     }
 
     public void onDealComplete(NegotiationMessage finalMsg) {
         completedDeals.put(finalMsg.getNegotiationId(), finalMsg);
-        
+
         // Remove the sold listing from available listings
         Assignment assignment = assignments.get(finalMsg.getNegotiationId());
         if (assignment != null) {
@@ -134,10 +143,54 @@ public class BrokerAgent extends Agent {
                         + "  Price: RM " + String.format("%.0f", finalMsg.getPrice()));
             }
         }
-        
+
         log.event("DEAL COMPLETE  [" + finalMsg.getNegotiationId() + "]"
                 + "  Final price: RM " + String.format("%.0f", finalMsg.getPrice()));
         if (gui != null) SwingUtilities.invokeLater(() -> gui.onDealComplete(finalMsg));
+
+        // Generate HTML report
+        generateReport(finalMsg, assignment);
+    }
+
+    private void generateReport(NegotiationMessage finalMsg, Assignment assignment) {
+        if (assignment == null) return;
+
+        NegotiationReportGenerator.NegotiationReport report =
+                new NegotiationReportGenerator.NegotiationReport();
+        report.negotiationId = finalMsg.getNegotiationId();
+        report.buyerName = assignment.getBuyerName();
+        report.dealerName = assignment.getDealerName();
+        report.carDescription = assignment.getListing().getMake() + " "
+                + assignment.getListing().getModel() + " " + assignment.getListing().getYear();
+        report.askingPrice = assignment.getListing().getRetailPrice();
+        report.buyerFirstOffer = assignment.getRequirement().getMaxPrice() * 0.8; // approximate
+        report.buyerReservationPrice = assignment.getRequirement().getMaxPrice();
+        report.maxRounds = 10;
+        report.startTime = new java.text.SimpleDateFormat("HH:mm:ss dd MMM yyyy")
+                .format(new Date(finalMsg.getTimestamp() - 300000)); // approximate start
+        report.strategyName = "Auto-negotiation";
+        report.autoNegotiated = true;
+
+        // Add round entries from history
+        List<NegotiationMessage> msgs = history.get(finalMsg.getNegotiationId());
+        if (msgs != null) {
+            int round = 1;
+            for (NegotiationMessage msg : msgs) {
+                if (msg.getType() == NegotiationMessage.Type.OFFER) {
+                    double dealerPrice = msg.getFromName().equals(assignment.getDealerName())
+                            ? msg.getPrice() : 0;
+                    double buyerPrice = msg.getFromName().equals(assignment.getBuyerName())
+                            ? msg.getPrice() : 0;
+                    if (dealerPrice > 0 || buyerPrice > 0) {
+                        report.addRound(round++, dealerPrice, buyerPrice,
+                                msg.getMessage() != null ? msg.getMessage() : "");
+                    }
+                }
+            }
+        }
+
+        report.finalise("DEAL", finalMsg.getPrice());
+        NegotiationReportGenerator.save(report);
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -146,15 +199,15 @@ public class BrokerAgent extends Agent {
 
     public void createAssignment(CarListing listing, CarRequirement requirement, String brokerNote) {
         Assignment a = new Assignment();
-        
+
         // Generate unique negotiation ID to handle re-negotiations
         String uniqueNegotiationId = ConversationLogger.generateNegotiationId(
-            requirement.getBuyerAID(), 
-            listing.getDealerAID(), 
-            listing.getListingId()
+                requirement.getBuyerAID(),
+                listing.getDealerAID(),
+                listing.getListingId()
         );
         a.setNegotiationId(uniqueNegotiationId);
-        
+
         a.setDealerAID(listing.getDealerAID());
         a.setDealerName(listing.getDealerName());
         a.setListing(listing);
@@ -173,7 +226,7 @@ public class BrokerAgent extends Agent {
 
         // Notify dealer
         ACLMessage toDealer = new ACLMessage(ACLMessage.INFORM);
-        toDealer.addReceiver(new AID(listing.getDealerAID(), AID.ISGUID));
+        toDealer.addReceiver(new AID(listing.getDealerAID(), true));
         toDealer.setOntology(Ontology.TYPE_ASSIGNMENT_NOTIFY);
         toDealer.setConversationId(Ontology.CONV_ASSIGNMENT);
         toDealer.setContent(gson.toJson(a));
@@ -183,7 +236,7 @@ public class BrokerAgent extends Agent {
 
         // Notify buyer
         ACLMessage toBuyer = new ACLMessage(ACLMessage.INFORM);
-        toBuyer.addReceiver(new AID(requirement.getBuyerAID(), AID.ISGUID));
+        toBuyer.addReceiver(new AID(requirement.getBuyerAID(), true));
         toBuyer.setOntology(Ontology.TYPE_ASSIGNMENT_NOTIFY);
         toBuyer.setConversationId(Ontology.CONV_ASSIGNMENT);
         toBuyer.setContent(gson.toJson(a));
@@ -209,7 +262,7 @@ public class BrokerAgent extends Agent {
         };
 
         ACLMessage fwd = new ACLMessage(performative);
-        fwd.addReceiver(new AID(recipientAID, AID.ISGUID));
+        fwd.addReceiver(new AID(recipientAID, true));
         fwd.setOntology(ontology);
         fwd.setConversationId(Ontology.CONV_NEGOTIATION + "-" + msg.getNegotiationId());
         fwd.setContent(gson.toJson(msg));
@@ -237,7 +290,7 @@ public class BrokerAgent extends Agent {
 
         for (String[] party : new String[][]{{dealerAID, dealerName}, {buyerAID, buyerName}}) {
             ACLMessage notif = new ACLMessage(ACLMessage.INFORM);
-            notif.addReceiver(new AID(party[0], AID.ISGUID));
+            notif.addReceiver(new AID(party[0], true));
             notif.setOntology(Ontology.TYPE_DEAL_COMPLETE);
             notif.setConversationId(Ontology.CONV_NEGOTIATION + "-" + acceptMsg.getNegotiationId());
             notif.setContent(gson.toJson(acceptMsg));

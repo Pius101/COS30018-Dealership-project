@@ -9,7 +9,9 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
-import negotiation.behaviours.dealer.DealerMessageBehaviour;
+import negotiation.behaviours.DealerMessageBehaviour;
+import negotiation.behaviours.DealerNegotiationBehaviour;
+import negotiation.behaviours.DealerNegotiationBehaviour.AutoDealerParams;
 import negotiation.gui.DealerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
@@ -20,29 +22,40 @@ import negotiation.util.AppLogger;
 import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Dealer Agent (DA) — represents a car dealer on the platform.
  *
- * Workflow (V1):
- *   1. Opens Dealer GUI on startup
- *   2. Dealer fills in car listings → submitted to Broker Agent (KA) via ACL INFORM
- *   3. Waits for broker assignment notification
- *   4. Receives assignment → new negotiation chat tab opens
- *   5. Types offers in the chat → sent to KA → KA routes to buyer
- *   6. Accepts or rejects buyer's counter-offers
+ * Supports both manual negotiation (via GUI) and automated negotiation
+ * (via DealerNegotiationBehaviour driven by the strategy layer).
  */
 public class DealerAgent extends Agent {
 
     public final Gson      gson = new GsonBuilder().create();
-    public final AppLogger log  = new AppLogger("Dealer:" + hashCode()); // temp name
+    public       AppLogger log  = new AppLogger("Dealer");
 
-    private final Map<String, CarListing>              myListings   = new ConcurrentHashMap<>();
-    private final Map<String, Assignment>              assignments  = new ConcurrentHashMap<>();
+    private final Map<String, CarListing>               myListings  = new ConcurrentHashMap<>();
+    private final Map<String, Assignment>               assignments = new ConcurrentHashMap<>();
     private final Map<String, List<NegotiationMessage>> history     = new ConcurrentHashMap<>();
+
+    // ── Auto-negotiation state ────────────────────────────────────────────────
+    private final Map<String, ConcurrentLinkedQueue<NegotiationMessage>> autoQueues
+            = new ConcurrentHashMap<>();
+    private boolean autoDealerMode        = false;
+    private String  autoDealerStrategyKey = "TIME_DEPENDENT_BOULWARE";
+    private double  autoDealerMarginPct   = 0.10;
 
     private AID       brokerAID;
     private DealerGui gui;
+
+    // Bug fix #3: proper POJO for Gson
+    private static class EmergencyPayload {
+        String   agentAID;
+        String   agentName;
+        String   reason;
+        String[] ongoingNegotiations;
+    }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Lifecycle
@@ -50,12 +63,10 @@ public class DealerAgent extends Agent {
 
     @Override
     protected void setup() {
-        // Update logger name now that we know our agent name
-        AppLogger namedLog = new AppLogger("Dealer:" + getLocalName());
-        // we can't reassign final, so just use the field directly after setup
-        // (AppLogger is not final, reassignment is fine — see field declaration)
+        log = new AppLogger("Dealer:" + getLocalName());
         brokerAID = findBroker();
         addBehaviour(new DealerMessageBehaviour(this));
+
         SwingUtilities.invokeLater(() -> {
             gui = new DealerGui(this);
             log.setLogArea(gui.getLogArea());
@@ -67,32 +78,96 @@ public class DealerAgent extends Agent {
                 log.error("Broker not found in DF — check the HOST is running!");
             }
         });
+
+        Object[] args = getArguments();
+        if (args != null && args.length > 0 && args[0] instanceof String configPath) {
+            loadConfigAndSubmitListings(configPath);
+        }
     }
 
     @Override
     protected void takeDown() {
         log.info("Dealer '" + getLocalName() + "' shutting down.");
-        
-        // Emergency save any ongoing negotiations
-        if (brokerAID != null) {
+        if (brokerAID != null && !assignments.isEmpty()) {
             try {
+                EmergencyPayload payload = new EmergencyPayload();
+                payload.agentAID            = getAID().getName();
+                payload.agentName           = getLocalName();
+                payload.reason              = "shutdown";
+                payload.ongoingNegotiations = assignments.keySet().toArray(new String[0]);
+
                 ACLMessage emergencySave = new ACLMessage(ACLMessage.INFORM);
                 emergencySave.addReceiver(brokerAID);
                 emergencySave.setOntology("EMERGENCY_SAVE");
-                emergencySave.setContent(gson.toJson(new Object(){
-                    public final String agentAID = getAID().getName();
-                    public final String agentName = getLocalName();
-                    public final String reason = "shutdown";
-                    public final String[] ongoingNegotiations = assignments.keySet().toArray(new String[0]);
-                }));
+                emergencySave.setContent(gson.toJson(payload));
                 send(emergencySave);
-                log.info("Emergency save request sent for ongoing negotiations");
+                log.info("Emergency save sent — " + payload.ongoingNegotiations.length
+                        + " ongoing negotiations");
             } catch (Exception e) {
-                log.error("Failed to send emergency save request: " + e.getMessage());
+                log.error("Failed to send emergency save: " + e.getMessage());
             }
         }
-        
         if (gui != null) SwingUtilities.invokeLater(gui::dispose);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Config loading (used by spawn script)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    private void loadConfigAndSubmitListings(String configPath) {
+        try {
+            String json = java.nio.file.Files.readString(java.nio.file.Path.of(configPath));
+            DealerConfig config = gson.fromJson(json, DealerConfig.class);
+            if (config == null || config.listings == null) {
+                log.error("Config file empty or invalid: " + configPath);
+                return;
+            }
+            log.info("Loading config from " + configPath
+                    + " — " + config.listings.size() + " listings");
+
+            // Set auto mode BEFORE submitting listings so it's ready when assignments arrive
+            if (config.autoNegotiate) {
+                String stratKey = config.strategy != null
+                        ? config.strategy : "TIME_DEPENDENT_BOULWARE";
+                double margin   = config.marginPct > 0 ? config.marginPct : 0.10;
+                setAutoMode(true, stratKey, margin);
+                log.info("[AUTO-DEALER] Auto mode armed: strategy=" + stratKey
+                        + " margin=" + String.format("%.0f%%", margin * 100));
+            }
+
+            doWait(1500);
+
+            for (DealerConfig.ListingSpec spec : config.listings) {
+                CarListing listing = new CarListing(
+                        spec.make, spec.model, spec.year, spec.mileage,
+                        spec.color, spec.retailPrice, spec.condition, spec.description);
+                submitListing(listing);
+                doWait(200);
+            }
+            log.info("All listings submitted from config.");
+
+        } catch (java.io.IOException e) {
+            log.error("Cannot read config file: " + configPath + " — " + e.getMessage());
+        } catch (Exception e) {
+            log.error("Config parse error: " + e.getMessage());
+        }
+    }
+
+    private static class DealerConfig {
+        String  dealerName;
+        String  brand;
+        boolean autoSubmit;
+        boolean autoNegotiate;
+        String  strategy;
+        double  marginPct;
+        int     maxRounds;
+        java.util.List<ListingSpec> listings;
+
+        static class ListingSpec {
+            String make, model, color, condition, description;
+            int    year, mileage;
+            double retailPrice, marketPrice;
+        }
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -119,7 +194,6 @@ public class DealerAgent extends Agent {
     // GUI-initiated actions
     // ─────────────────────────────────────────────────────────────────────────
 
-    /** Called by DealerGui when dealer clicks "Submit Listing to Broker". */
     public void submitListing(CarListing listing) {
         if (!ensureBroker()) return;
         listing.setDealerAID(getAID().getName());
@@ -135,34 +209,34 @@ public class DealerAgent extends Agent {
 
         log.send("Broker", Ontology.TYPE_LISTING_REGISTER,
                 listing.getYear() + " " + listing.getMake() + " " + listing.getModel()
-                + "  RM " + String.format("%.0f", listing.getRetailPrice())
-                + "  [" + listing.getListingId() + "]");
+                        + "  RM " + String.format("%.0f", listing.getRetailPrice())
+                        + "  [" + listing.getListingId() + "]");
 
         SwingUtilities.invokeLater(() -> gui.refreshMyListings(new ArrayList<>(myListings.values())));
     }
 
-    /** Called by the negotiation chat panel when dealer sends a price offer. */
     public void sendOffer(String negotiationId, double price, String messageText) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
 
-        NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText, NegotiationMessage.Type.OFFER);
+        NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText,
+                NegotiationMessage.Type.OFFER);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
         recordAndSend(nm, ACLMessage.PROPOSE, Ontology.TYPE_NEG_OFFER);
         log.send("Broker→" + a.getBuyerName(), Ontology.TYPE_NEG_OFFER,
                 "RM " + String.format("%.0f", price)
-                + (messageText.isBlank() ? "" : "  \"" + messageText + "\""));
+                        + (messageText.isBlank() ? "" : "  \"" + messageText + "\""));
     }
 
-    /** Called when dealer accepts the buyer's last offer. */
     public void acceptOffer(String negotiationId, double price, String messageText) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
 
-        NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText, NegotiationMessage.Type.ACCEPT);
+        NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText,
+                NegotiationMessage.Type.ACCEPT);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
         recordLocal(nm);
@@ -177,13 +251,13 @@ public class DealerAgent extends Agent {
                 "ACCEPTED at RM " + String.format("%.0f", price));
     }
 
-    /** Called when dealer rejects (ends the negotiation). */
     public void rejectOffer(String negotiationId, String messageText) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
 
-        NegotiationMessage nm = buildMsg(negotiationId, a, 0, messageText, NegotiationMessage.Type.REJECT);
+        NegotiationMessage nm = buildMsg(negotiationId, a, 0, messageText,
+                NegotiationMessage.Type.REJECT);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
         recordAndSend(nm, ACLMessage.REFUSE, Ontology.TYPE_NEG_REJECT);
@@ -199,17 +273,28 @@ public class DealerAgent extends Agent {
         history.put(assignment.getNegotiationId(), new ArrayList<>());
         log.recv("Broker", Ontology.TYPE_ASSIGNMENT_NOTIFY,
                 "Negotiation [" + assignment.getNegotiationId() + "]"
-                + "  Buyer: " + assignment.getBuyerName()
-                + "  Listing: " + assignment.getListing().getListingId());
+                        + "  Buyer: " + assignment.getBuyerName()
+                        + "  Listing: " + assignment.getListing().getListingId());
+
         if (gui != null) SwingUtilities.invokeLater(() -> gui.openNegotiationTab(assignment));
+
+        if (autoDealerMode) {
+            startAutoNegotiation(assignment);
+        }
     }
 
     public void onNegotiationMessage(NegotiationMessage msg) {
         recordLocal(msg);
         log.recv("Broker←" + msg.getFromName(), msg.getType().name(),
                 "RM " + String.format("%.0f", msg.getPrice())
-                + (msg.getMessage() != null && !msg.getMessage().isBlank()
-                   ? "  \"" + msg.getMessage() + "\"" : ""));
+                        + (msg.getMessage() != null && !msg.getMessage().isBlank()
+                        ? "  \"" + msg.getMessage() + "\"" : ""));
+
+        ConcurrentLinkedQueue<NegotiationMessage> q = autoQueues.get(msg.getNegotiationId());
+        if (q != null) {
+            q.add(msg);
+        }
+        // Always show in GUI regardless of auto/manual
         if (gui != null) SwingUtilities.invokeLater(() -> gui.appendNegotiationMessage(msg));
     }
 
@@ -221,7 +306,8 @@ public class DealerAgent extends Agent {
     }
 
     public void onListingAck(String listingId) {
-        log.recv("Broker", Ontology.TYPE_LISTING_ACK, "Listing " + listingId + " confirmed stored");
+        log.recv("Broker", Ontology.TYPE_LISTING_ACK,
+                "Listing " + listingId + " confirmed stored");
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -229,7 +315,8 @@ public class DealerAgent extends Agent {
     // ─────────────────────────────────────────────────────────────────────────
 
     private NegotiationMessage buildMsg(String negotiationId, Assignment a,
-                                        double price, String text, NegotiationMessage.Type type) {
+                                        double price, String text,
+                                        NegotiationMessage.Type type) {
         NegotiationMessage nm = new NegotiationMessage();
         nm.setNegotiationId(negotiationId);
         nm.setListingId(a.getListing().getListingId());
@@ -263,16 +350,48 @@ public class DealerAgent extends Agent {
         if (brokerAID == null) {
             log.error("Cannot find Broker Agent — is the HOST running?");
             SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(gui,
-                    "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
-                    "Connection Error", JOptionPane.ERROR_MESSAGE));
+                    JOptionPane.showMessageDialog(gui,
+                            "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
+                            "Connection Error", JOptionPane.ERROR_MESSAGE));
             return false;
         }
         return true;
     }
 
-    // ── Accessors ────────────────────────────────────────────────────────────
-    public List<CarListing>         getMyListings()               { return new ArrayList<>(myListings.values()); }
-    public Map<String, Assignment>  getAssignments()              { return Collections.unmodifiableMap(assignments); }
-    public List<NegotiationMessage> getHistory(String id)         { return history.getOrDefault(id, Collections.emptyList()); }
-}
+    // ── Auto-negotiation ──────────────────────────────────────────────────────
+
+    public void startAutoNegotiation(Assignment assignment) {
+        String negId = assignment.getNegotiationId();
+        ConcurrentLinkedQueue<NegotiationMessage> queue = new ConcurrentLinkedQueue<>();
+        autoQueues.put(negId, queue);
+
+        AutoDealerParams params = AutoDealerParams.withMargin(
+                autoDealerStrategyKey,
+                assignment.getListing().getRetailPrice(),
+                autoDealerMarginPct,
+                10);
+
+        DealerNegotiationBehaviour behaviour =
+                new DealerNegotiationBehaviour(this, assignment, params, queue);
+        addBehaviour(behaviour);
+        log.info("[AUTO-DEALER] DealerNegotiationBehaviour started for [" + negId + "]");
+    }
+
+    public void setAutoMode(boolean enabled, String strategyKey, double marginPct) {
+        this.autoDealerMode        = enabled;
+        this.autoDealerStrategyKey = strategyKey;
+        this.autoDealerMarginPct   = marginPct;
+        log.info("[AUTO-DEALER] Auto mode " + (enabled ? "ENABLED" : "DISABLED")
+                + " | Strategy: " + strategyKey
+                + " | Margin: " + String.format("%.0f%%", marginPct * 100));
+    }
+
+    public boolean isAutoMode() { return autoDealerMode; }
+
+    // ── Accessors ─────────────────────────────────────────────────────────────
+    public List<CarListing>         getMyListings()          { return new ArrayList<>(myListings.values()); }
+    public Map<String, Assignment>  getAssignments()         { return Collections.unmodifiableMap(assignments); }
+    public List<NegotiationMessage> getHistory(String id)    { return history.getOrDefault(id, Collections.emptyList()); }
+    public DealerGui                getGui()                 { return gui; }
+
+} // ← only ONE closing brace for the class, here at the very end

@@ -136,7 +136,7 @@ public class BuyerGui extends JFrame {
 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(p, "Year, price and mileage must be numbers.",
-                    "Input Error", JOptionPane.WARNING_MESSAGE);
+                        "Input Error", JOptionPane.WARNING_MESSAGE);
             }
         });
 
@@ -164,8 +164,8 @@ public class BuyerGui extends JFrame {
         JPanel p = new JPanel(new BorderLayout(8, 8));
         p.setBorder(new EmptyBorder(10, 10, 10, 10));
         JLabel info = new JLabel(
-            "<html>These are negotiations the Broker has assigned to you. " +
-            "Open each negotiation tab to respond.</html>");
+                "<html>These are negotiations the Broker has assigned to you. " +
+                        "Open each negotiation tab to respond.</html>");
         p.add(info, BorderLayout.NORTH);
         JTable table = new JTable(assignmentsModel);
         styleTable(table);
@@ -205,7 +205,7 @@ public class BuyerGui extends JFrame {
             if (a.getRequirement() != null
                     && a.getRequirement().getRequirementId() != null
                     && a.getRequirement().getRequirementId()
-                        .equals(requirementsModel.getValueAt(i, 0))) {
+                    .equals(requirementsModel.getValueAt(i, 0))) {
                 requirementsModel.setValueAt("✅ Matched", i, 7);
             }
         }
@@ -228,6 +228,30 @@ public class BuyerGui extends JFrame {
         // Switch to that tab so buyer sees incoming offer
         int idx = indexOfTab("💬 " + msg.getFromName());
         if (idx >= 0) tabs.setSelectedIndex(idx);
+    }
+
+    /**
+     * Called when auto-negotiation starts for a given negotiation.
+     * Shows a banner at the top of the chat tab and disables the manual input.
+     */
+    public void showAutoModeBanner(String negotiationId, String strategyName,
+                                   double firstOffer, double budget, int maxRounds) {
+        NegotiationPanel panel = negPanels.get(negotiationId);
+        if (panel == null) return;
+        panel.appendSystem(String.format(
+                "🤖 AUTO-NEGOTIATE ON  |  Strategy: %s  |  Opening: RM %.0f"
+                        + "  |  Budget: RM %.0f  |  Max rounds: %d",
+                strategyName, firstOffer, budget, maxRounds));
+        panel.disableInput(); // lock manual buttons — auto behaviour is in control
+    }
+
+    /**
+     * Appends a strategy reasoning line to the negotiation chat tab.
+     * Called by AutoNegotiationBehaviour after each decision.
+     */
+    public void appendAutoReasoning(String negotiationId, String reasoning) {
+        NegotiationPanel panel = negPanels.get(negotiationId);
+        if (panel != null) panel.appendReasoning(reasoning);
     }
 
     /** Called when a deal is completed. */
@@ -301,14 +325,14 @@ public class BuyerGui extends JFrame {
 
             // ── Info banner ───────────────────────────────────────────────────
             JLabel info = new JLabel(
-                "<html><b>Car:</b>  " + a.getListing() + "<br>" +
-                "<b>Dealer:</b>  " + a.getDealerName() +
-                "   <b>Asking Price:</b>  RM " +
-                String.format("%.0f", a.getListing().getRetailPrice()) +
-                (a.getRequirement().getMaxPrice() > 0
-                    ? "   <b>Your Budget:</b>  RM " + String.format("%.0f", a.getRequirement().getMaxPrice())
-                    : "") +
-                "</html>");
+                    "<html><b>Car:</b>  " + a.getListing() + "<br>" +
+                            "<b>Dealer:</b>  " + a.getDealerName() +
+                            "   <b>Asking Price:</b>  RM " +
+                            String.format("%.0f", a.getListing().getRetailPrice()) +
+                            (a.getRequirement().getMaxPrice() > 0
+                                    ? "   <b>Your Budget:</b>  RM " + String.format("%.0f", a.getRequirement().getMaxPrice())
+                                    : "") +
+                            "</html>");
             info.setBorder(new EmptyBorder(0, 0, 6, 0));
             add(info, BorderLayout.NORTH);
 
@@ -373,8 +397,8 @@ public class BuyerGui extends JFrame {
                 try {
                     double price = Double.parseDouble(priceField.getText().trim());
                     int confirm  = JOptionPane.showConfirmDialog(this,
-                        String.format("Accept deal at RM %.0f?", price),
-                        "Confirm Accept", JOptionPane.YES_NO_OPTION);
+                            String.format("Accept deal at RM %.0f?", price),
+                            "Confirm Accept", JOptionPane.YES_NO_OPTION);
                     if (confirm == JOptionPane.YES_OPTION) {
                         String note = messageField.getText().trim();
                         buyer.acceptOffer(assignment.getNegotiationId(), price, note);
@@ -388,8 +412,8 @@ public class BuyerGui extends JFrame {
 
             rejectBtn.addActionListener(e -> {
                 int confirm = JOptionPane.showConfirmDialog(this,
-                    "Reject this negotiation? This ends the session.",
-                    "Confirm Reject", JOptionPane.YES_NO_OPTION);
+                        "Reject this negotiation? This ends the session.",
+                        "Confirm Reject", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     String note = messageField.getText().trim();
                     buyer.rejectOffer(assignment.getNegotiationId(), note);
@@ -430,6 +454,15 @@ public class BuyerGui extends JFrame {
 
         void appendSystem(String text) {
             historyArea.append("─── " + text + " ───\n");
+            historyArea.setCaretPosition(historyArea.getDocument().getLength());
+        }
+
+        /**
+         * Appends a strategy reasoning line in a distinct style.
+         * Called by AutoNegotiationBehaviour after each decision.
+         */
+        void appendReasoning(String text) {
+            historyArea.append("🧠 " + text + "\n");
             historyArea.setCaretPosition(historyArea.getDocument().getLength());
         }
 

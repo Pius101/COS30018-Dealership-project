@@ -1,4 +1,4 @@
-package negotiation.behaviours.dealer;
+package negotiation.behaviours;
 
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;

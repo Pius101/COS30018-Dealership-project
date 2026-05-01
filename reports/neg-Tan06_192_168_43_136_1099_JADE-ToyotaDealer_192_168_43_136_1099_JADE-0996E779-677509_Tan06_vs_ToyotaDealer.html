@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Negotiation Report — Toyota Vios 2021</title>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; padding: 24px 32px; }
+h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+h2 { color: #93c5fd; font-size: 15px; margin: 28px 0 12px; border-bottom: 1px solid #2a2d3a; padding-bottom: 6px; }
+.card { background: #1a1d26; border: 1px solid #2a2d3a; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-bottom: 20px; }
+.stat .label { font-size: 11px; color: #888; text-transform: uppercase; }
+.stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; background: #1a1d26; border: 1px solid #2a2d3a; border-radius: 8px; overflow: hidden; }
+th { background: #252830; color: #93c5fd; font-size: 12px; padding: 10px 14px; text-align: left; }
+td { padding: 9px 14px; border-bottom: 1px solid #1e2130; }
+tr:last-child td { border-bottom: none; }
+.log { background: #0a0c10; border: 1px solid #1e2130; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 11px; line-height: 1.8; white-space: pre-wrap; color: #94a3b8; max-height: 400px; overflow-y: auto; }
+</style>
+</head>
+<body>
+<h1>&#x1F697; Negotiation Report</h1>
+<p style='color:#888;margin-bottom:20px'>Toyota Vios 2021 &nbsp;|&nbsp; Tan06 vs ToyotaDealer &nbsp;|&nbsp; 11:39:39 30 Apr 2026</p>
+<div style='background:#052e16;border:1px solid #16a34a;border-radius:10px;padding:14px 20px;margin-bottom:20px;font-size:16px;font-weight:700'>&#x2705; DEAL — Final price: RM 83,000 &nbsp;|&nbsp; Saved: RM 0 (0.0%)</div>
+<div class='grid'>
+<div class='card stat'><div class='label'>Asking Price</div><div class='value' style='color:#f97316'>RM 83,000</div></div>
+<div class='card stat'><div class='label'>Buyer First Offer</div><div class='value' style='color:#60a5fa'>RM 87,200</div></div>
+<div class='card stat'><div class='label'>Buyer Budget</div><div class='value' style='color:#a5b4fc'>RM 109,000</div></div>
+<div class='card stat'><div class='label'>Rounds</div><div class='value' style='color:#fff'>4 / 10</div></div>
+<div class='card stat'><div class='label'>Strategy</div><div class='value' style='color:#fbbf24'>Auto-negotiation</div></div>
+<div class='card stat'><div class='label'>Final Price</div><div class='value' style='color:#4ade80'>RM 83,000</div></div>
+</div>
+<h2>&#x1F4C8; Price Negotiation Chart</h2>
+<div class='card'><canvas id='negChart'></canvas></div>
+<h2>&#x1F4CB; Round-by-Round Breakdown</h2>
+<table><thead><tr><th>Round</th><th>Dealer Offer</th><th>Buyer Offer</th><th>Gap</th><th>Strategy Reasoning</th></tr></thead><tbody>
+<tr><td>1</td><td style='color:#f97316'>RM 0</td><td style='color:#60a5fa'>RM 82,000</td><td>RM 82,000</td><td style='font-family:monospace;font-size:11px;color:#94a3b8'>Auto-negotiation started. My opening offer: RM 82000</td></tr>
+<tr><td>2</td><td style='color:#f97316'>RM 83,000</td><td style='color:#60a5fa'>RM 0</td><td>RM 83,000</td><td style='font-family:monospace;font-size:11px;color:#94a3b8'></td></tr>
+<tr><td>3</td><td style='color:#f97316'>RM 0</td><td style='color:#60a5fa'>RM 82,900</td><td>RM 82,900</td><td style='font-family:monospace;font-size:11px;color:#94a3b8'></td></tr>
+<tr><td>4</td><td style='color:#f97316'>RM 83,000</td><td style='color:#60a5fa'>RM 0</td><td>RM 83,000</td><td style='font-family:monospace;font-size:11px;color:#94a3b8'></td></tr>
+</tbody></table>
+<h2>&#x1F9E0; Full Thinking Log</h2>
+<div class='log'>[Round 1]  Auto-negotiation started. My opening offer: RM 82000
+[Round 2]  
+[Round 3]  
+[Round 4]  
+[DEAL]  Final price: RM 83,000
+</div>
+<p style='color:#555;font-size:11px;margin-top:24px'>Report generated: 11:44:39 30 Apr 2026 &nbsp;|&nbsp; ID: neg-Tan06_192_168_43_136_1099_JADE-ToyotaDealer_192_168_43_136_1099_JADE-0996E779-677509 &nbsp;|&nbsp; Mode: Automated</p>
+<script>
+new Chart(document.getElementById('negChart').getContext('2d'), {
+  type: 'line',
+  data: { labels: ["Start", "R1", "R2", "R3", "R4", "Deal"],
+    datasets: [
+      { label: 'Dealer Offer (RM)', data: [83000, 0, 83000, 0, 83000, 83000], borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true },
+      { label: 'Buyer Offer (RM)', data: [87200, 82000, 0, 82900, 0, 83000], borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true }
+    ]
+  },
+  options: { responsive: true,
+    plugins: { legend: { labels: { color: '#e0e0e0' } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': RM ' + c.parsed.y.toLocaleString() } }
+    },
+    scales: {
+      x: { ticks: { color: '#888' }, grid: { color: '#1e2130' } },
+      y: { ticks: { color: '#888', callback: v => 'RM ' + v.toLocaleString() }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+</script>
+</body>
+</html>

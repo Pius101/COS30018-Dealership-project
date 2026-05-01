@@ -1,4 +1,4 @@
-package negotiation.behaviours.broker;
+package negotiation.behaviours;
 
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -7,6 +7,7 @@ import negotiation.messages.Ontology;
 import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
 import negotiation.models.NegotiationMessage;
+import negotiation.util.ConversationLogger;
 
 /**
  * The Broker Agent's single cyclic behaviour.
@@ -125,7 +126,7 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                 .filter(assignment -> assignment.getBuyerAID().equals(msg.getSender().getName()) || 
                                    assignment.getDealerAID().equals(msg.getSender().getName()))
                 .forEach(assignment -> {
-                    negotiation.util.ConversationLogger.markInterrupted(
+                    ConversationLogger.markInterrupted(
                         assignment.getNegotiationId(), 
                         agentName, 
                         reason

@@ -54,9 +54,63 @@ public class Launcher {
     private static final String SELLERS_CONTAINER_NAME = "sellers-market";
 
     public static void main(String[] args) {
+        // ── Headless / CLI mode — used by spawn_agents.py ─────────────────────
+        // If --headless is in args, skip the dialog entirely and launch directly.
+        // Usage:
+        //   --headless --role HOST [--gui]
+        //   --headless --role DEALER --host IP --name AgentName --config path.json
+        //   --headless --role BUYER  --host IP --name AgentName --config path.json
+        if (contains(args, "--headless")) {
+            runHeadless(args);
+            return;
+        }
+
+        // ── Interactive mode — show startup dialog ─────────────────────────────
         FlatLightLaf.setup();
         UIManager.put("defaultFont", new Font("Segoe UI", Font.PLAIN, 13));
         SwingUtilities.invokeLater(Launcher::showDialog);
+    }
+
+    /** Parse args array and launch the appropriate role without showing any dialog. */
+    private static void runHeadless(String[] args) {
+        String role   = arg(args, "--role",   "HOST").toUpperCase();
+        String host   = arg(args, "--host",   "127.0.0.1");
+        String name   = arg(args, "--name",   "agent");
+        String config = arg(args, "--config", null);
+        boolean gui   = contains(args, "--gui");
+
+        try {
+            switch (role) {
+                case "HOST"   -> launchHost(gui);
+                case "DEALER" -> launchDealer(host, name, config);
+                case "BUYER"  -> launchBuyer(host, name, config);
+                default -> {
+                    System.err.println("[Launcher] Unknown --role: " + role
+                            + ". Use HOST, DEALER, or BUYER.");
+                    System.exit(1);
+                }
+            }
+            // Keep JVM alive — agents run on JADE threads
+            System.out.println("[Launcher] " + role + " '" + name + "' running. Press Ctrl+C to stop.");
+        } catch (Exception e) {
+            System.err.println("[Launcher] Failed to start: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    /** Get the value of a named CLI argument, e.g. --host 192.168.1.10 → "192.168.1.10" */
+    private static String arg(String[] args, String flag, String defaultValue) {
+        for (int i = 0; i < args.length - 1; i++) {
+            if (args[i].equalsIgnoreCase(flag)) return args[i + 1];
+        }
+        return defaultValue;
+    }
+
+    /** Returns true if a flag is present anywhere in args. */
+    private static boolean contains(String[] args, String flag) {
+        for (String a : args) if (a.equalsIgnoreCase(flag)) return true;
+        return false;
     }
 
     private static void showDialog() {
@@ -99,15 +153,18 @@ public class Launcher {
         g.gridy = 3;                                 form.add(new JSeparator(), g);
 
         // Host IP row
+        // Bug fix #6: weightx must be set on column 1 so GridBagConstraints.HORIZONTAL
+        // has space to expand into — without it the field collapses to minimum width
+        // and the IP text appears invisible even though it IS set correctly.
         g.gridwidth = 1;
         JLabel    ipLbl      = new JLabel("Host IP:");
-        JTextField ipFld     = new JTextField("", 14);
+        JTextField ipFld     = new JTextField("", 20);   // wider default
         JButton   discoverBtn = new JButton("🔍 Search");
         ipFld.setToolTipText("The HOST machine's IPv4 address — or use Search");
         discoverBtn.setToolTipText("Broadcast on WiFi to find the host automatically");
-        g.gridx = 0; g.gridy = 4; g.fill = GridBagConstraints.NONE;       form.add(ipLbl,       g);
-        g.gridx = 1;              g.fill = GridBagConstraints.HORIZONTAL;  form.add(ipFld,       g);
-        g.gridx = 2;              g.fill = GridBagConstraints.NONE;        form.add(discoverBtn, g);
+        g.gridx = 0; g.gridy = 4; g.weightx = 0; g.fill = GridBagConstraints.NONE;      form.add(ipLbl, g);
+        g.gridx = 1;              g.weightx = 1; g.fill = GridBagConstraints.HORIZONTAL; form.add(ipFld, g);
+        g.gridx = 2;              g.weightx = 0; g.fill = GridBagConstraints.NONE;       form.add(discoverBtn, g);
 
         // Agent name row
         JLabel    nameLbl = new JLabel("Agent Name:");
@@ -156,17 +213,20 @@ public class Launcher {
                     discoverBtn.setEnabled(true);
                     if (found != null) {
                         ipFld.setText(found);
-                        ipFld.setForeground(new Color(80, 200, 80));
+                        ipFld.setForeground(new Color(40, 167, 69)); // visible green on both themes
+                        // Force repaint — without this the field may not refresh visually
+                        ipFld.revalidate();
+                        ipFld.repaint();
                     } else {
                         JOptionPane.showMessageDialog(dlg,
-                            "<html>No host found on the network.<br><br>"
-                            + "Check that:<br>"
-                            + "• The HOST has already launched the platform<br>"
-                            + "• You are on the same WiFi network as the host<br>"
-                            + "• Windows firewall allows UDP on port 45678<br><br>"
-                            + "You can also type the host IP manually.<br>"
-                            + "Host IP hint: run <b>ipconfig</b> on the host machine.</html>",
-                            "Host Not Found", JOptionPane.WARNING_MESSAGE);
+                                "<html>No host found on the network.<br><br>"
+                                        + "Check that:<br>"
+                                        + "• The HOST has already launched the platform<br>"
+                                        + "• You are on the same WiFi network as the host<br>"
+                                        + "• Windows firewall allows UDP on port 45678<br><br>"
+                                        + "You can also type the host IP manually.<br>"
+                                        + "Host IP hint: run <b>ipconfig</b> on the host machine.</html>",
+                                "Host Not Found", JOptionPane.WARNING_MESSAGE);
                         ipFld.setForeground(UIManager.getColor("TextField.foreground"));
                     }
                 });
@@ -201,7 +261,7 @@ public class Launcher {
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(dlg,
-                    "Launch failed:\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        "Launch failed:\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         });
@@ -247,7 +307,7 @@ public class Launcher {
 
         // UDP listener so groupmates can Search this machine
         NetworkDiscovery.startHostListener(clientIp ->
-            System.out.println("[Discovery] Peer connected from " + clientIp));
+                System.out.println("[Discovery] Peer connected from " + clientIp));
 
         System.out.println();
         System.out.println("════════════════════════════════════════════════");
@@ -262,33 +322,47 @@ public class Launcher {
     /**
      * DEALER: joins or creates the shared sellers container + DealerAgent at hostIp:1099.
      * DealerAgent.setup() searches the DF for "car-negotiation-broker" to find KA.
+     * If configPath is not null, the agent auto-loads and submits listings from that file.
      */
     private static void launchDealer(String hostIp, String name) throws Exception {
+        launchDealer(hostIp, name, null);
+    }
+
+    private static void launchDealer(String hostIp, String name, String configPath) throws Exception {
         if (sellersContainer == null) {
             System.out.println("[Launcher] Creating sellers container...");
             sellersContainer = joinPlatform(hostIp, SELLERS_CONTAINER_NAME);
             if (sellersContainer == null) {
-                throw new Exception("Failed to create sellers container - check host IP and network connection");
+                throw new Exception("Failed to create sellers container — check host IP and network");
             }
             System.out.println("[Launcher] Sellers container '" + SELLERS_CONTAINER_NAME + "' created at " + hostIp);
         }
-        sellersContainer.createNewAgent(name, "negotiation.agents.DealerAgent", new Object[0]).start();
+        // Pass configPath as agent argument[0] — DealerAgent.setup() reads getArguments()[0]
+        Object[] agentArgs = configPath != null ? new Object[]{ configPath } : new Object[0];
+        sellersContainer.createNewAgent(name, "negotiation.agents.DealerAgent", agentArgs).start();
         System.out.println("[Launcher] Dealer agent '" + name + "' joined sellers container at " + hostIp);
     }
 
     /**
      * BUYER: joins or creates the shared buyers container + BuyerAgent at hostIp:1099.
+     * If configPath is not null, the agent auto-loads requirements from that file.
      */
     private static void launchBuyer(String hostIp, String name) throws Exception {
+        launchBuyer(hostIp, name, null);
+    }
+
+    private static void launchBuyer(String hostIp, String name, String configPath) throws Exception {
         if (buyersContainer == null) {
             System.out.println("[Launcher] Creating buyers container...");
             buyersContainer = joinPlatform(hostIp, BUYERS_CONTAINER_NAME);
             if (buyersContainer == null) {
-                throw new Exception("Failed to create buyers container - check host IP and network connection");
+                throw new Exception("Failed to create buyers container — check host IP and network");
             }
             System.out.println("[Launcher] Buyers container '" + BUYERS_CONTAINER_NAME + "' created at " + hostIp);
         }
-        buyersContainer.createNewAgent(name, "negotiation.agents.BuyerAgent", new Object[0]).start();
+        // Pass configPath as agent argument[0] — BuyerAgent.setup() reads getArguments()[0]
+        Object[] agentArgs = configPath != null ? new Object[]{ configPath } : new Object[0];
+        buyersContainer.createNewAgent(name, "negotiation.agents.BuyerAgent", agentArgs).start();
         System.out.println("[Launcher] Buyer agent '" + name + "' joined buyers container at " + hostIp);
     }
 
