@@ -165,27 +165,52 @@ public class BrokerAgent extends Agent {
         report.askingPrice = assignment.getListing().getRetailPrice();
         report.buyerFirstOffer = assignment.getRequirement().getMaxPrice() * 0.8; // approximate
         report.buyerReservationPrice = assignment.getRequirement().getMaxPrice();
-        report.maxRounds = 10;
+        report.maxRounds = assignment.getMaxRounds() > 0 ? assignment.getMaxRounds() : 10;
         report.startTime = new java.text.SimpleDateFormat("HH:mm:ss dd MMM yyyy")
                 .format(new Date(finalMsg.getTimestamp() - 300000)); // approximate start
         report.strategyName = "Auto-negotiation";
         report.autoNegotiated = true;
 
-        // Add round entries from history
+        // Add round entries from history - group offers by actual negotiation rounds
         List<NegotiationMessage> msgs = history.get(finalMsg.getNegotiationId());
         if (msgs != null) {
+            // Track current round's offers
             int round = 1;
-            for (NegotiationMessage msg : msgs) {
+            double currentDealerOffer = 0;
+            double currentBuyerOffer = 0;
+            String currentReasoning = "";
+            
+            for (NegiationMessage msg : msgs) {
                 if (msg.getType() == NegotiationMessage.Type.OFFER) {
-                    double dealerPrice = msg.getFromName().equals(assignment.getDealerName())
-                            ? msg.getPrice() : 0;
-                    double buyerPrice = msg.getFromName().equals(assignment.getBuyerName())
-                            ? msg.getPrice() : 0;
-                    if (dealerPrice > 0 || buyerPrice > 0) {
-                        report.addRound(round++, dealerPrice, buyerPrice,
-                                msg.getMessage() != null ? msg.getMessage() : "");
+                    // Update current round with the new offer
+                    if (msg.getFromName().equals(assignment.getDealerName())) {
+                        currentDealerOffer = msg.getPrice();
+                    } else if (msg.getFromName().equals(assignment.getBuyerName())) {
+                        currentBuyerOffer = msg.getPrice();
+                    }
+                    
+                    // Store reasoning from this message
+                    if (msg.getMessage() != null && !msg.getMessage().isBlank()) {
+                        currentReasoning = msg.getMessage();
+                    }
+                    
+                    // Add round when both parties have made offers OR when we have a complete exchange
+                    if (currentDealerOffer > 0 && currentBuyerOffer > 0) {
+                        report.addRound(round++, currentDealerOffer, currentBuyerOffer, currentReasoning);
+                        // Reset for next round, but carry forward the last offer as starting point
+                        if (currentDealerOffer > 0) {
+                            currentBuyerOffer = 0; // Buyer will respond next
+                        } else {
+                            currentDealerOffer = 0; // Dealer will respond next
+                        }
+                        currentReasoning = "";
                     }
                 }
+            }
+            
+            // Add any incomplete final round (if negotiation ended mid-round)
+            if (currentDealerOffer > 0 || currentBuyerOffer > 0) {
+                report.addRound(round, currentDealerOffer, currentBuyerOffer, currentReasoning);
             }
         }
 

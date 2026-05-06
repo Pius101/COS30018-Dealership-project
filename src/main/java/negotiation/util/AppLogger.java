@@ -31,10 +31,7 @@ public class AppLogger {
         this.logArea = area;
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // Public logging methods
-    // ─────────────────────────────────────────────────────────────────────────
-
+    // Public logging methods - basically wrapping hte message with some formats.
     /** General informational message. */
     public void info(String message) {
         write("   " + message);
@@ -61,10 +58,8 @@ public class AppLogger {
         System.err.println("[" + agentRole + "] ERROR: " + message);
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
     // Internal
-    // ─────────────────────────────────────────────────────────────────────────
-
+    // Actually writes to console and log area
     private void write(String text) {
         String line = "[" + SDF.format(new Date()) + "]  " + text;
         System.out.println("[" + agentRole + "]  " + line);
