@@ -43,7 +43,7 @@ public class DealerAgent extends Agent {
     private final Map<String, ConcurrentLinkedQueue<NegotiationMessage>> autoQueues
             = new ConcurrentHashMap<>();
     private boolean autoDealerMode        = false;
-    private String  autoDealerStrategyKey = "TIME_DEPENDENT_BOULWARE";
+    private String  autoDealerStrategyKey = null; // Will be set from config
     private double  autoDealerMarginPct   = 0.10;
 
     private AID       brokerAID;
@@ -127,8 +127,7 @@ public class DealerAgent extends Agent {
 
             // Set auto mode BEFORE submitting listings so it's ready when assignments arrive
             if (config.autoNegotiate) {
-                String stratKey = config.strategy != null
-                        ? config.strategy : "TIME_DEPENDENT_BOULWARE";
+                String stratKey = config.strategy != null ? config.strategy : getRandomStrategy();
                 double margin   = config.marginPct > 0 ? config.marginPct : 0.10;
                 setAutoMode(true, stratKey, margin);
                 log.info("[AUTO-DEALER] Auto mode armed: strategy=" + stratKey
@@ -279,6 +278,8 @@ public class DealerAgent extends Agent {
         if (gui != null) SwingUtilities.invokeLater(() -> gui.openNegotiationTab(assignment));
 
         if (autoDealerMode) {
+            // Store maxRounds in Assignment for report generation (using default 10 for auto-dealers)
+            assignment.setMaxRounds(10);
             startAutoNegotiation(assignment);
         }
     }
@@ -384,6 +385,13 @@ public class DealerAgent extends Agent {
         log.info("[AUTO-DEALER] Auto mode " + (enabled ? "ENABLED" : "DISABLED")
                 + " | Strategy: " + strategyKey
                 + " | Margin: " + String.format("%.0f%%", marginPct * 100));
+    }
+
+    /** Get a random strategy from available strategies */
+    private String getRandomStrategy() {
+        String[] strategies = {"TIME_DEPENDENT_BOULWARE", "TIT_FOR_TAT", "FIXED_INCREMENT_5PCT"};
+        int index = (int) (Math.random() * strategies.length);
+        return strategies[index];
     }
 
     public boolean isAutoMode() { return autoDealerMode; }

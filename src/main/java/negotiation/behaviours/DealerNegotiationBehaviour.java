@@ -72,12 +72,13 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
         // Instantiate strategy
         NegotiationStrategy s;
         try {
-            s = StrategyRegistry.create(
-                    params.strategyKey != null ? params.strategyKey : "TIME_DEPENDENT_BOULWARE");
+            String strategyKey = params.strategyKey != null ? params.strategyKey : getRandomDealerStrategy();
+            s = StrategyRegistry.create(strategyKey);
         } catch (IllegalArgumentException e) {
+            String fallbackStrategy = getRandomDealerStrategy();
             dealer.log.error("[AUTO-DEALER] Unknown strategy '" + params.strategyKey
-                    + "' — falling back to TIME_DEPENDENT_BOULWARE");
-            s = new TimeDependentStrategy(TimeDependentStrategy.Curve.BOULWARE);
+                    + "' — falling back to " + fallbackStrategy);
+            s = StrategyRegistry.create(fallbackStrategy);
         }
         this.strategy = s;
         this.strategy.initialise(ctx);
@@ -304,5 +305,12 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
             double minPrice = retailPrice * (1.0 - marginPct);
             return new AutoDealerParams(strategyKey, minPrice, maxRounds);
         }
+    }
+
+    /** Get a random dealer strategy */
+    private static String getRandomDealerStrategy() {
+        String[] strategies = {"TIME_DEPENDENT_BOULWARE", "TIT_FOR_TAT", "FIXED_INCREMENT_5PCT"};
+        int index = (int) (Math.random() * strategies.length);
+        return strategies[index];
     }
 }

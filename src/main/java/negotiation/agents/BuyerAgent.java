@@ -292,6 +292,8 @@ public class BuyerAgent extends Agent {
 
         // If auto params are waiting, start the automated negotiation behaviour
         if (pendingAutoParams != null) {
+            // Store maxRounds in Assignment for report generation
+            assignment.setMaxRounds(pendingAutoParams.maxRounds);
             startAutoNegotiation(assignment, pendingAutoParams);
             pendingAutoParams = null; // consumed — don't reuse for another assignment
         }

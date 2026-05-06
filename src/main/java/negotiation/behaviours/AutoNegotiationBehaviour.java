@@ -71,12 +71,13 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         // Create strategy from registry
         NegotiationStrategy s;
         try {
-            s = StrategyRegistry.create(
-                    params.strategyKey != null ? params.strategyKey : "BAYESIAN");
+            String strategyKey = params.strategyKey != null ? params.strategyKey : getRandomBuyerStrategy();
+            s = StrategyRegistry.create(strategyKey);
         } catch (IllegalArgumentException e) {
+            String fallbackStrategy = getRandomBuyerStrategy();
             buyer.log.error("[AUTO] Unknown strategy '" + params.strategyKey
-                    + "' — falling back to BAYESIAN");
-            s = new BayesianLearnerStrategy();
+                    + "' — falling back to " + fallbackStrategy);
+            s = StrategyRegistry.create(fallbackStrategy);
         }
         this.strategy = s;
         this.strategy.initialise(ctx);
@@ -323,5 +324,12 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                                                        double reservationPrice, int maxRounds) {
             return new AutoNegotiationParams(strategyKey, firstOffer, reservationPrice, maxRounds);
         }
+    }
+
+    /** Get a random buyer strategy */
+    private static String getRandomBuyerStrategy() {
+        String[] strategies = {"BAYESIAN", "TIME_DEPENDENT_CONCEDER", "TIT_FOR_TAT", "FIXED_INCREMENT_2PCT"};
+        int index = (int) (Math.random() * strategies.length);
+        return strategies[index];
     }
 }

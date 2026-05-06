@@ -32,6 +32,10 @@ public class Assignment {
     // ── Broker's note to both parties ─────────────────────────────────────────
     private String brokerNote;
 
+    // ── Negotiation settings ────────────────────────────────────────────────
+    /** Maximum rounds for auto-negotiation. 0 = manual (no limit). */
+    private int maxRounds = 0;
+
     /** No-arg constructor required by Gson. */
     public Assignment() {
         this.negotiationId = UUID.randomUUID().toString()
@@ -63,6 +67,9 @@ public class Assignment {
 
     public String         getBrokerNote()                          { return brokerNote; }
     public void           setBrokerNote(String v)                  { this.brokerNote = v; }
+
+    public int            getMaxRounds()                           { return maxRounds; }
+    public void           setMaxRounds(int v)                       { this.maxRounds = v; }
 
     @Override
     public String toString() {

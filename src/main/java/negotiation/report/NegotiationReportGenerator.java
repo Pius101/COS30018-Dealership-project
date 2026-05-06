@@ -94,9 +94,7 @@ public class NegotiationReportGenerator {
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
     // Save
-    // ─────────────────────────────────────────────────────────────────────────
 
     /**
      * Generate and save the HTML report.
@@ -119,9 +117,7 @@ public class NegotiationReportGenerator {
         return path.toString();
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
     // HTML generation
-    // ─────────────────────────────────────────────────────────────────────────
 
     private static String buildHtml(NegotiationReport r) {
         boolean isDeal = "DEAL".equals(r.outcome);
@@ -198,6 +194,12 @@ public class NegotiationReportGenerator {
         html.append(".log { background: #0a0c10; border: 1px solid #1e2130; border-radius: 6px;");
         html.append(" padding: 14px; font-family: monospace; font-size: 11px; line-height: 1.8;");
         html.append(" white-space: pre-wrap; color: #94a3b8; max-height: 400px; overflow-y: auto; }\n");
+        html.append(".tabs { display: flex; margin-bottom: 16px; border-bottom: 1px solid #2a2d3a; }\n");
+        html.append(".tab { padding: 10px 16px; background: none; border: none; color: #888; cursor: pointer;");
+        html.append(" font-size: 13px; border-bottom: 2px solid transparent; transition: all 0.2s; }\n");
+        html.append(".tab:hover { color: #e0e0e0; background: rgba(255,255,255,0.05); }\n");
+        html.append(".tab.active { color: #93c5fd; border-bottom-color: #93c5fd; }\n");
+        html.append(".chart-container { position: relative; height: 350px; }\n");
         html.append("</style>\n</head>\n<body>\n");
 
         html.append("<h1>&#x1F697; Negotiation Report</h1>\n");
@@ -230,9 +232,18 @@ public class NegotiationReportGenerator {
                 isDeal ? "RM " + String.format("%,.0f", r.finalPrice) : "—");
         html.append("</div>\n");
 
-        // Chart
+        // Chart with tabs
         html.append("<h2>&#x1F4C8; Price Negotiation Chart</h2>\n");
-        html.append("<div class=\'card\'><canvas id=\'negChart\'></canvas></div>\n");
+        html.append("<div class=\'card\'>\n");
+        html.append("  <div class=\'tabs\'>\n");
+        html.append("    <button class=\'tab active\' onclick=\'switchChart(\"combined\")\'>Combined View</button>\n");
+        html.append("    <button class=\'tab\' onclick=\'switchChart(\"buyer\")\'>Buyer Only</button>\n");
+        html.append("    <button class=\'tab\' onclick=\'switchChart(\"dealer\")\'>Dealer Only</button>\n");
+        html.append("  </div>\n");
+        html.append("  <div class=\'chart-container\'>\n");
+        html.append("    <canvas id=\'negChart\'></canvas>\n");
+        html.append("  </div>\n");
+        html.append("</div>\n");
 
         // Table
         html.append("<h2>&#x1F4CB; Round-by-Round Breakdown</h2>\n");
@@ -253,26 +264,79 @@ public class NegotiationReportGenerator {
                 .append(" &nbsp;|&nbsp; Mode: ").append(r.autoNegotiated ? "Automated" : "Manual")
                 .append("</p>\n");
 
-        // Chart script — no % signs here, just numbers
-        html.append("<script>\nnew Chart(document.getElementById(\'negChart\').getContext(\'2d\'), {\n");
-        html.append("  type: \'line\',\n");
-        html.append("  data: { labels: [").append(labelsJson).append("],\n");
-        html.append("    datasets: [\n");
-        html.append("      { label: \'Dealer Offer (RM)\', data: [").append(dealerJson).append("],");
-        html.append(" borderColor: \'#f97316\', backgroundColor: \'rgba(249,115,22,0.08)\',");
-        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true },\n");
-        html.append("      { label: \'Buyer Offer (RM)\', data: [").append(buyerJson).append("],");
-        html.append(" borderColor: \'#60a5fa\', backgroundColor: \'rgba(96,165,250,0.08)\',");
-        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true }\n");
-        html.append("    ]\n  },\n");
-        html.append("  options: { responsive: true,\n");
-        html.append("    plugins: { legend: { labels: { color: \'#e0e0e0\' } },\n");
-        html.append("      tooltip: { callbacks: { label: c => c.dataset.label + \': RM \' + c.parsed.y.toLocaleString() } }\n");
-        html.append("    },\n");
-        html.append("    scales: {\n");
-        html.append("      x: { ticks: { color: \'#888\' }, grid: { color: \'#1e2130\' } },\n");
-        html.append("      y: { ticks: { color: \'#888\', callback: v => \'RM \' + v.toLocaleString() }, grid: { color: \'#1e2130\' } }\n");
-        html.append("    }\n  }\n});\n</script>\n");
+        // Chart script with tab switching support
+        html.append("<script>\n");
+        html.append("const labels = [").append(labelsJson).append("];\n");
+        html.append("const dealerData = [").append(dealerJson).append("];\n");
+        html.append("const buyerData = [").append(buyerJson).append("];\n");
+        html.append("\n");
+        html.append("let currentChart = null;\n");
+        html.append("\n");
+        html.append("function createChart(view) {\n");
+        html.append("  const ctx = document.getElementById(\'negChart\').getContext(\'2d\');\n");
+        html.append("  \n");
+        html.append("  let datasets = [];\n");
+        html.append("  \n");
+        html.append("  if (view === \'combined\') {\n");
+        html.append("    datasets = [\n");
+        html.append("      { label: \'Dealer Offer (RM)\', data: dealerData,\n");
+        html.append("        borderColor: \'#f97316\', backgroundColor: \'rgba(249,115,22,0.08)\',\n");
+        html.append("        borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true },\n");
+        html.append("      { label: \'Buyer Offer (RM)\', data: buyerData,\n");
+        html.append("        borderColor: \'#60a5fa\', backgroundColor: \'rgba(96,165,250,0.08)\',\n");
+        html.append("        borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true }\n");
+        html.append("    ];\n");
+        html.append("  } else if (view === \'buyer\') {\n");
+        html.append("    datasets = [\n");
+        html.append("      { label: \'Buyer Offer (RM)\', data: buyerData,\n");
+        html.append("        borderColor: \'#60a5fa\', backgroundColor: \'rgba(96,165,250,0.15)\',\n");
+        html.append("        borderWidth: 3, pointRadius: 6, tension: 0.3, fill: true }\n");
+        html.append("    ];\n");
+        html.append("  } else if (view === \'dealer\') {\n");
+        html.append("    datasets = [\n");
+        html.append("      { label: \'Dealer Offer (RM)\', data: dealerData,\n");
+        html.append("        borderColor: \'#f97316\', backgroundColor: \'rgba(249,115,22,0.15)\',\n");
+        html.append("        borderWidth: 3, pointRadius: 6, tension: 0.3, fill: true }\n");
+        html.append("    ];\n");
+        html.append("  }\n");
+        html.append("  \n");
+        html.append("  if (currentChart) {\n");
+        html.append("    currentChart.destroy();\n");
+        html.append("  }\n");
+        html.append("  \n");
+        html.append("  currentChart = new Chart(ctx, {\n");
+        html.append("    type: \'line\',\n");
+        html.append("    data: { labels: labels, datasets: datasets },\n");
+        html.append("    options: {\n");
+        html.append("      responsive: true,\n");
+        html.append("      plugins: {\n");
+        html.append("        legend: { labels: { color: \'#e0e0e0\' } },\n");
+        html.append("        tooltip: {\n");
+        html.append("          callbacks: {\n");
+        html.append("            label: c => c.dataset.label + \': RM \' + c.parsed.y.toLocaleString()\n");
+        html.append("          }\n");
+        html.append("        }\n");
+        html.append("      },\n");
+        html.append("      scales: {\n");
+        html.append("        x: { ticks: { color: \'#888\' }, grid: { color: \'#1e2130\' } },\n");
+        html.append("        y: { ticks: { color: \'#888\', callback: v => \'RM \' + v.toLocaleString() }, grid: { color: \'#1e2130\' } }\n");
+        html.append("      }\n");
+        html.append("    }\n");
+        html.append("  });\n");
+        html.append("}\n");
+        html.append("\n");
+        html.append("function switchChart(view) {\n");
+        html.append("  // Update tab active state\n");
+        html.append("  document.querySelectorAll(\'.tab\').forEach(tab => tab.classList.remove(\'active\'));\n");
+        html.append("  event.target.classList.add(\'active\');\n");
+        html.append("  \n");
+        html.append("  // Recreate chart with new view\n");
+        html.append("  createChart(view);\n");
+        html.append("}\n");
+        html.append("\n");
+        html.append("// Initialize with combined view\n");
+        html.append("createChart(\'combined\');\n");
+        html.append("</script>\n");
         html.append("</body>\n</html>\n");
 
         return html.toString();
