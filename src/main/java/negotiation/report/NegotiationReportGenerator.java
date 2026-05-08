@@ -1,6 +1,7 @@
 package negotiation.report;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -56,6 +57,8 @@ public class NegotiationReportGenerator {
         public double buyerReservationPrice;
         public int    maxRounds;
         public String strategyName;
+        public String buyerStrategyName;
+        public String dealerStrategyName;
         public String startTime;
 
         // Per-round data
@@ -110,8 +113,9 @@ public class NegotiationReportGenerator {
                 sanitize(r.dealerName));
         Path path = Path.of(System.getProperty("user.dir"), REPORTS_DIR, filename);
         try {
+            Files.createDirectories(path.getParent());
             String html = buildHtml(r);
-            Files.writeString(path, html);
+            Files.writeString(path, html, StandardCharsets.UTF_8);
             System.out.println("[Report] Saved: " + path.toAbsolutePath());
         } catch (IOException e) {
             System.err.println("[Report] Failed to save: " + e.getMessage());
@@ -128,41 +132,62 @@ public class NegotiationReportGenerator {
 
         // Build chart data
         List<String> labels     = new ArrayList<>();
-        List<Double>  dealerData = new ArrayList<>();
-        List<Double>  buyerData  = new ArrayList<>();
+        List<String> dealerData = new ArrayList<>();
+        List<String> buyerData  = new ArrayList<>();
 
         labels.add("\"Start\"");
-        dealerData.add(r.askingPrice);
-        buyerData.add(r.buyerFirstOffer > 0 ? r.buyerFirstOffer : r.buyerReservationPrice * 0.8);
+        dealerData.add(formatChartValue(r.askingPrice));
+        buyerData.add(formatChartValue(r.buyerFirstOffer > 0 ? r.buyerFirstOffer : r.buyerReservationPrice * 0.8));
 
         for (RoundEntry entry : r.rounds) {
             labels.add("\"R" + entry.roundNum + "\"");
-            dealerData.add(entry.dealerOffer);
-            buyerData.add(entry.buyerOffer);
+            dealerData.add(formatChartValue(entry.dealerOffer));
+            buyerData.add(formatChartValue(entry.buyerOffer));
         }
         if (isDeal && r.finalPrice > 0) {
             labels.add("\"Deal\"");
-            dealerData.add(r.finalPrice);
-            buyerData.add(r.finalPrice);
+            dealerData.add(formatChartValue(r.finalPrice));
+            buyerData.add(formatChartValue(r.finalPrice));
         }
 
         String labelsJson  = String.join(", ", labels);
-        String dealerJson  = dealerData.stream().map(d -> String.format("%.0f", d))
-                .collect(java.util.stream.Collectors.joining(", "));
-        String buyerJson   = buyerData.stream().map(d -> String.format("%.0f", d))
-                .collect(java.util.stream.Collectors.joining(", "));
+        String dealerJson  = String.join(", ", dealerData);
+        String buyerJson   = String.join(", ", buyerData);
 
         double saving    = r.askingPrice - r.finalPrice;
         double savingPct = r.askingPrice > 0 ? saving / r.askingPrice * 100.0 : 0;
 
         StringBuilder rows = new StringBuilder();
+        double lastDealerOffer = 0;
+        double lastBuyerOffer = 0;
         for (RoundEntry entry : r.rounds) {
+            boolean dealerTurn = entry.dealerOffer > 0;
+            String partyLabel = dealerTurn
+                    ? "Dealer (" + escapeHtml(r.dealerName) + ")"
+                    : "Buyer (" + escapeHtml(r.buyerName) + ")";
+            String partyColor = dealerTurn ? "#f97316" : "#60a5fa";
+            double offer = dealerTurn ? entry.dealerOffer : entry.buyerOffer;
+            double comparisonOffer = dealerTurn ? lastBuyerOffer : lastDealerOffer;
+            double gapValue = comparisonOffer > 0 ? Math.abs(offer - comparisonOffer) : -1;
+            String gap = gapValue < 0
+                    ? "-"
+                    : gapValue == 0 ? "Matched" : "RM " + String.format("%,.0f", gapValue);
+            String strategyUsed = dealerTurn
+                    ? displayStrategy(r.dealerStrategyName, entry.reasoning, "Dealer")
+                    : displayStrategy(r.buyerStrategyName, entry.reasoning, "Buyer");
+
             rows.append("<tr><td>").append(entry.roundNum).append("</td>")
-                    .append("<td style=\'color:#f97316\'>RM ").append(String.format("%,.0f", entry.dealerOffer)).append("</td>")
-                    .append("<td style=\'color:#60a5fa\'>RM ").append(String.format("%,.0f", entry.buyerOffer)).append("</td>")
-                    .append("<td>RM ").append(String.format("%,.0f", Math.abs(entry.dealerOffer - entry.buyerOffer))).append("</td>")
+                    .append("<td style=\'color:").append(partyColor).append(";font-weight:700\'>")
+                    .append(partyLabel).append("</td>")
+                    .append("<td style=\'color:").append(partyColor).append("\'>RM ")
+                    .append(String.format("%,.0f", offer)).append("</td>")
+                    .append("<td>").append(escapeHtml(strategyUsed)).append("</td>")
+                    .append("<td>").append(gap).append("</td>")
                     .append("<td style=\'font-family:monospace;font-size:11px;color:#94a3b8\'>")
                     .append(escapeHtml(entry.reasoning)).append("</td></tr>\n");
+
+            if (dealerTurn) lastDealerOffer = offer;
+            else lastBuyerOffer = offer;
         }
 
         StringBuilder log = new StringBuilder();
@@ -189,7 +214,7 @@ public class NegotiationReportGenerator {
         html.append(" padding: 16px 20px; margin-bottom: 16px; }\n");
         html.append(".grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-bottom: 20px; }\n");
         html.append(".stat .label { font-size: 11px; color: #888; text-transform: uppercase; }\n");
-        html.append(".stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; }\n");
+        html.append(".stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; overflow-wrap: anywhere; }\n");
         html.append("table { width: 100%; border-collapse: collapse; background: #1a1d26;");
         html.append(" border: 1px solid #2a2d3a; border-radius: 8px; overflow: hidden; }\n");
         html.append("th { background: #252830; color: #93c5fd; font-size: 12px; padding: 10px 14px; text-align: left; }\n");
@@ -237,8 +262,8 @@ public class NegotiationReportGenerator {
         // Table
         html.append("<h2>&#x1F4CB; Round-by-Round Breakdown</h2>\n");
         html.append("<table><thead><tr>")
-                .append("<th>Round</th><th>Dealer Offer</th><th>Buyer Offer</th>")
-                .append("<th>Gap</th><th>Strategy Reasoning</th>")
+                .append("<th>Round</th><th>Party</th><th>Offer</th>")
+                .append("<th>Strategy Used</th><th>Gap To Previous Offer</th><th>Strategy Reasoning</th>")
                 .append("</tr></thead><tbody>\n")
                 .append(rows)
                 .append("</tbody></table>\n");
@@ -260,10 +285,10 @@ public class NegotiationReportGenerator {
         html.append("    datasets: [\n");
         html.append("      { label: \'Dealer Offer (RM)\', data: [").append(dealerJson).append("],");
         html.append(" borderColor: \'#f97316\', backgroundColor: \'rgba(249,115,22,0.08)\',");
-        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true },\n");
+        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true },\n");
         html.append("      { label: \'Buyer Offer (RM)\', data: [").append(buyerJson).append("],");
         html.append(" borderColor: \'#60a5fa\', backgroundColor: \'rgba(96,165,250,0.08)\',");
-        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true }\n");
+        html.append(" borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true }\n");
         html.append("    ]\n  },\n");
         html.append("  options: { responsive: true,\n");
         html.append("    plugins: { legend: { labels: { color: \'#e0e0e0\' } },\n");
@@ -281,6 +306,52 @@ public class NegotiationReportGenerator {
     private static void appendStat(StringBuilder sb, String label, String style, String value) {
         sb.append("<div class=\'card stat\'><div class=\'label\'>").append(label).append("</div>")
                 .append("<div class=\'value\' style=\'").append(style).append("\'>").append(value).append("</div></div>\n");
+    }
+
+    private static String formatChartValue(double value) {
+        return value > 0 ? String.format(Locale.US, "%.0f", value) : "null";
+    }
+
+    private static String displayStrategy(String explicitStrategy, String reasoning, String fallbackRole) {
+        if (explicitStrategy != null && !explicitStrategy.isBlank()) {
+            return explicitStrategy;
+        }
+        String inferred = inferStrategyFromReasoning(reasoning);
+        if (inferred != null && !inferred.isBlank()) {
+            return inferred;
+        }
+        return fallbackRole + " strategy not recorded";
+    }
+
+    private static String inferStrategyFromReasoning(String reasoning) {
+        if (reasoning == null || reasoning.isBlank()) return null;
+
+        int strategyIndex = reasoning.indexOf("Strategy:");
+        if (strategyIndex >= 0) {
+            String value = reasoning.substring(strategyIndex + "Strategy:".length()).trim();
+            int separator = value.indexOf("|");
+            if (separator >= 0) {
+                value = value.substring(0, separator).trim();
+            }
+            if (!value.isBlank()) return value;
+        }
+
+        String normalized = reasoning.toUpperCase(Locale.ROOT);
+        if (normalized.contains("BAYESIAN")) return "Bayesian Learner";
+        if (normalized.contains("TIT_FOR_TAT") || normalized.contains("TIT-FOR-TAT")) return "Tit-for-Tat";
+        if (normalized.contains("CURVE=CONCEDER") || normalized.contains("CONCEDER")) {
+            return "Time-Dependent (Conceder)";
+        }
+        if (normalized.contains("CURVE=BOULWARE") || normalized.contains("BOULWARE")) {
+            return "Time-Dependent (Boulware)";
+        }
+        if (normalized.contains("FIXED") && normalized.contains("5")) {
+            return "Fixed Increment (5% per round)";
+        }
+        if (normalized.contains("FIXED") && normalized.contains("2")) {
+            return "Fixed Increment (2% per round)";
+        }
+        return null;
     }
 
     private static String sanitize(String s) {

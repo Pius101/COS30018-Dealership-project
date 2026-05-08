@@ -133,7 +133,8 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     );
                     broker.log.info("Emergency saved conversation: " + assignment.getNegotiationId());
                 });
-                
+            broker.refreshNegotiationTestReport();
+                 
         } catch (Exception e) {
             broker.log.error("Failed to handle emergency save from " + msg.getSender().getLocalName()
                     + ": " + e.getMessage());

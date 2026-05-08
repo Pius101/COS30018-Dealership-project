@@ -1,0 +1,78 @@
+[Launcher] Creating sellers container...
+[Launcher] Connecting to JADE platform at 127.0.0.1:1099...
+[Launcher] Binding to local IP: 172.17.67.191
+May 08, 2026 1:43:59 PM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 08, 2026 1:43:59 PM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.17.67.191:1099
+
+May 08, 2026 1:43:59 PM jade.core.AgentContainerImpl joinPlatform
+SEVERE: Some problem occurred while joining agent platform.
+jade.core.ProfileException: Can't get a proxy to the Platform Manager - Caused by:  Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
+	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:529)
+	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
+	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
+	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
+	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
+	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
+	at negotiation.Launcher.joinPlatform(Launcher.java:418)
+	at negotiation.Launcher.launchDealer(Launcher.java:365)
+	at negotiation.Launcher.runHeadless(Launcher.java:92)
+	at negotiation.Launcher.main(Launcher.java:70)
+Nested Exception:
+jade.core.IMTPException: Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
+	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:75)
+	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
+	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
+	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
+	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
+	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
+	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
+	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
+	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
+	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
+	at negotiation.Launcher.joinPlatform(Launcher.java:418)
+	at negotiation.Launcher.launchDealer(Launcher.java:365)
+	at negotiation.Launcher.runHeadless(Launcher.java:92)
+	at negotiation.Launcher.main(Launcher.java:70)
+Nested Exception:
+jade.imtp.leap.DispatcherException: DispatcherException in remote site. No skeleton for object-id 0
+	at jade.imtp.leap.CommandDispatcher.checkRemoteExceptions(CommandDispatcher.java:510)
+	at jade.imtp.leap.CommandDispatcher.dispatchSerializedCommand(CommandDispatcher.java:413)
+	at jade.imtp.leap.CommandDispatcher.dispatchCommand(CommandDispatcher.java:340)
+	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:69)
+	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
+	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
+	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
+	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
+	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
+	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
+	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
+	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
+	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
+	at negotiation.Launcher.joinPlatform(Launcher.java:418)
+	at negotiation.Launcher.launchDealer(Launcher.java:365)
+	at negotiation.Launcher.runHeadless(Launcher.java:92)
+	at negotiation.Launcher.main(Launcher.java:70)
+[Launcher] ERROR connecting to JADE platform: JADE createAgentContainer returned null - connection failed
+[Launcher] Make sure:
+  1. HOST is running (someone selected HOST in the launcher)
+  2. Host IP is correct: 127.0.0.1
+  3. Port 1099 is not blocked by firewall
+  4. Both machines are on the same network
+java.lang.Exception: JADE createAgentContainer returned null - connection failed
+	at negotiation.Launcher.joinPlatform(Launcher.java:420)
+	at negotiation.Launcher.launchDealer(Launcher.java:365)
+	at negotiation.Launcher.runHeadless(Launcher.java:92)
+	at negotiation.Launcher.main(Launcher.java:70)
+[Launcher] Failed to start: JADE createAgentContainer returned null - connection failed
+java.lang.Exception: JADE createAgentContainer returned null - connection failed
+	at negotiation.Launcher.joinPlatform(Launcher.java:420)
+	at negotiation.Launcher.launchDealer(Launcher.java:365)
+	at negotiation.Launcher.runHeadless(Launcher.java:92)
+	at negotiation.Launcher.main(Launcher.java:70)

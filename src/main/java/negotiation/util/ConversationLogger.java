@@ -26,10 +26,10 @@ public class ConversationLogger {
     private static final Map<String, String> strategyInfo = new ConcurrentHashMap<>();
 
     static {
-        // Create conversations directory if it doesn't exist
-        File dir = new File(CONVERSATIONS_DIR);
-        if (!dir.exists()) {
-            dir.mkdirs();
+        try {
+            conversationsDirectory();
+        } catch (IOException e) {
+            System.err.println("Failed to create conversations directory: " + e.getMessage());
         }
     }
 
@@ -44,11 +44,79 @@ public class ConversationLogger {
                                        double buyerFirstOffer,
                                        double buyerReservation,
                                        int maxRounds) {
+        String existing = strategyInfo.get(negotiationId);
+        String suppliedBuyerStrategy = buyerStrategy;
+
+        String existingBuyerStrategy = valueFromInfo(existing, "BUYER_STRATEGY");
+        String existingDealerStrategy = valueFromInfo(existing, "DEALER_STRATEGY");
+
+        if (isPlaceholderStrategy(buyerStrategy) && existingBuyerStrategy != null) {
+            buyerStrategy = existingBuyerStrategy;
+        }
+        if (isPlaceholderStrategy(dealerStrategy) && existingDealerStrategy != null) {
+            dealerStrategy = existingDealerStrategy;
+        }
+
+        double effectiveFirstOffer = buyerFirstOffer;
+        double effectiveBuyerReservation = buyerReservation;
+        int effectiveMaxRounds = maxRounds;
+
+        if (isPlaceholderStrategy(suppliedBuyerStrategy) && existing != null) {
+            effectiveFirstOffer = moneyFromInfo(existing, "BuyerFirstOffer", buyerFirstOffer);
+            effectiveBuyerReservation = moneyFromInfo(existing, "BuyerBudget", buyerReservation);
+            effectiveMaxRounds = intFromInfo(existing, "MaxRounds", maxRounds);
+        }
+
         String info = String.format(
                 "BUYER_STRATEGY=%s | DEALER_STRATEGY=%s | "
                         + "BuyerFirstOffer=RM%.0f | BuyerBudget=RM%.0f | MaxRounds=%d",
-                buyerStrategy, dealerStrategy, buyerFirstOffer, buyerReservation, maxRounds);
+                buyerStrategy, dealerStrategy, effectiveFirstOffer, effectiveBuyerReservation, effectiveMaxRounds);
         strategyInfo.put(negotiationId, info);
+    }
+
+    public static String getStrategyInfo(String negotiationId) {
+        return strategyInfo.get(negotiationId);
+    }
+
+    private static String valueFromInfo(String info, String key) {
+        if (info == null || key == null) return null;
+        for (String part : info.split("\\|")) {
+            String trimmed = part.trim();
+            String prefix = key + "=";
+            if (trimmed.startsWith(prefix)) {
+                String value = trimmed.substring(prefix.length()).trim();
+                return value.isBlank() ? null : value;
+            }
+        }
+        return null;
+    }
+
+    private static double moneyFromInfo(String info, String key, double fallback) {
+        String value = valueFromInfo(info, key);
+        if (value == null) return fallback;
+        try {
+            return Double.parseDouble(value.replace("RM", "").replace(",", "").trim());
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
+    }
+
+    private static int intFromInfo(String info, String key, int fallback) {
+        String value = valueFromInfo(info, key);
+        if (value == null) return fallback;
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
+    }
+
+    private static boolean isPlaceholderStrategy(String strategy) {
+        if (strategy == null || strategy.isBlank()) return true;
+        String normalized = strategy.toLowerCase(Locale.ROOT);
+        return normalized.contains("unknown")
+                || normalized.contains("pending")
+                || normalized.contains("see buyer log");
     }
 
     /**
@@ -59,7 +127,7 @@ public class ConversationLogger {
         String filename = getConversationFilename(conversationId, assignment);
 
         try {
-            File file = new File(CONVERSATIONS_DIR, filename);
+            File file = new File(conversationsDirectory(), filename);
             boolean isNew = !file.exists();
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
@@ -179,7 +247,7 @@ public class ConversationLogger {
         String filename = activeConversations.get(negotiationId);
         if (filename == null) return;
         try {
-            File file = new File(CONVERSATIONS_DIR, filename);
+            File file = new File(conversationsDirectory(), filename);
             try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                 writer.println("  🧠 " + reasoning);
                 writer.flush();
@@ -220,7 +288,7 @@ public class ConversationLogger {
         String filename = activeConversations.get(negotiationId);
         if (filename != null) {
             try {
-                File file = new File(CONVERSATIONS_DIR, filename);
+                File file = new File(conversationsDirectory(), filename);
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println();
                     writer.println("-".repeat(80));
@@ -241,7 +309,7 @@ public class ConversationLogger {
         String filename = activeConversations.get(negotiationId);
         if (filename != null) {
             try {
-                File file = new File(CONVERSATIONS_DIR, filename);
+                File file = new File(conversationsDirectory(), filename);
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println();
                     writer.println("-".repeat(80));
@@ -274,7 +342,23 @@ public class ConversationLogger {
      * Get list of all conversation files.
      */
     public static File[] getConversationFiles() {
+        try {
+            File[] files = conversationsDirectory().listFiles((dir1, name) -> name.endsWith(".txt"));
+            return files != null ? files : new File[0];
+        } catch (IOException e) {
+            System.err.println("Failed to list conversation files: " + e.getMessage());
+            return new File[0];
+        }
+    }
+
+    private static File conversationsDirectory() throws IOException {
         File dir = new File(CONVERSATIONS_DIR);
-        return dir.listFiles((dir1, name) -> name.endsWith(".txt"));
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Could not create " + dir.getAbsolutePath());
+        }
+        if (!dir.isDirectory()) {
+            throw new IOException(dir.getAbsolutePath() + " is not a directory");
+        }
+        return dir;
     }
 }

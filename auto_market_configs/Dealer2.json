@@ -1,0 +1,44 @@
+{
+  "dealerName": "Dealer2",
+  "brand": "Mixed",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 10,
+  "listings": [
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2020,
+      "mileage": 73500,
+      "color": "Black",
+      "retailPrice": 70040,
+      "marketPrice": 68000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2021,
+      "mileage": 62300,
+      "color": "Silver",
+      "retailPrice": 77250,
+      "marketPrice": 75000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2022,
+      "mileage": 51100,
+      "color": "Red",
+      "retailPrice": 82400,
+      "marketPrice": 80000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    }
+  ]
+}

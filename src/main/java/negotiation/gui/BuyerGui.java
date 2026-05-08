@@ -315,6 +315,7 @@ public class BuyerGui extends JFrame {
         private final JButton     offerBtn;
         private final JButton     acceptBtn;
         private final JButton     rejectBtn;
+        private double lastCounterpartyOffer = 0;
         private static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss");
 
         NegotiationPanel(Assignment a, BuyerAgent buyer) {
@@ -395,7 +396,7 @@ public class BuyerGui extends JFrame {
 
             acceptBtn.addActionListener(e -> {
                 try {
-                    double price = Double.parseDouble(priceField.getText().trim());
+                    double price = getAcceptPrice();
                     int confirm  = JOptionPane.showConfirmDialog(this,
                             String.format("Accept deal at RM %.0f?", price),
                             "Confirm Accept", JOptionPane.YES_NO_OPTION);
@@ -435,6 +436,7 @@ public class BuyerGui extends JFrame {
 
             // Pre-fill price field with dealer's offer for easy counter
             if (msg.getType() == NegotiationMessage.Type.OFFER && msg.getPrice() > 0) {
+                lastCounterpartyOffer = msg.getPrice();
                 priceField.setText(String.format("%.0f", msg.getPrice()));
             }
             if (msg.getType() == NegotiationMessage.Type.REJECT) {
@@ -450,6 +452,13 @@ public class BuyerGui extends JFrame {
             historyArea.append(String.format("[%s] YOU (BUYER)  %s%s%s%n",
                     time, type, priceStr, noteStr));
             historyArea.setCaretPosition(historyArea.getDocument().getLength());
+        }
+
+        private double getAcceptPrice() throws NumberFormatException {
+            if (lastCounterpartyOffer > 0) {
+                return lastCounterpartyOffer;
+            }
+            return Double.parseDouble(priceField.getText().trim());
         }
 
         void appendSystem(String text) {

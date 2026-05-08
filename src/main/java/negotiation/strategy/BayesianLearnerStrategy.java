@@ -94,9 +94,9 @@ public class BayesianLearnerStrategy implements NegotiationStrategy {
             offer = Math.max(P0, offer * 0.99);
         }
 
-        // Clamp to valid range
-        offer = Math.min(offer, RV);
-        offer = Math.max(offer, P0);
+        // Clamp to valid range. Buyer has P0 < RV; dealer has P0 > RV.
+        offer = Math.max(offer, Math.min(P0, RV));
+        offer = Math.min(offer, Math.max(P0, RV));
 
         // Round to nearest RM 100
         offer = Math.round(offer / 100.0) * 100.0;
@@ -107,8 +107,10 @@ public class BayesianLearnerStrategy implements NegotiationStrategy {
 
     @Override
     public boolean shouldAccept(double opponentOffer, NegotiationContext ctx) {
-        // Condition 1: Opponent's offer is within budget
-        boolean withinBudget = opponentOffer <= ctx.reservationPrice;
+        // Condition 1: Opponent's offer is within our walk-away limit.
+        boolean withinBudget = ctx.role == NegotiationContext.Role.DEALER
+                ? opponentOffer >= ctx.reservationPrice
+                : opponentOffer <= ctx.reservationPrice;
         if (!withinBudget) {
             lastReasoning = String.format(
                     "REJECT: Offer RM %.0f exceeds reservation price RM %.0f",
@@ -118,7 +120,9 @@ public class BayesianLearnerStrategy implements NegotiationStrategy {
 
         // Condition 2: Near our estimated opponent floor (they can't go lower)
         double estFloor = model.getEstimatedRV();
-        boolean nearFloor = estFloor > 0 && opponentOffer <= estFloor * 1.03;
+        boolean nearFloor = ctx.role == NegotiationContext.Role.DEALER
+                ? opponentOffer >= ctx.reservationPrice * 1.01
+                : estFloor > 0 && opponentOffer <= estFloor * 1.03;
 
         // Condition 3: Deadline pressure
         boolean lastRound = ctx.isLastRound();
@@ -131,7 +135,8 @@ public class BayesianLearnerStrategy implements NegotiationStrategy {
         }
 
         // Condition 5: BATNA — don't accept if we have a better deal elsewhere
-        boolean betterElsewhere = ctx.hasBATNA() && ctx.batna < opponentOffer;
+        boolean betterElsewhere = ctx.role == NegotiationContext.Role.BUYER
+                && ctx.hasBATNA() && ctx.batna < opponentOffer;
 
         boolean accept = withinBudget && !betterElsewhere
                 && (lastRound || nearFloor || goodUtility);

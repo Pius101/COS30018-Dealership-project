@@ -1,0 +1,19 @@
+{
+  "name": "Priya17",
+  "make": "Honda",
+  "model": "City",
+  "yearMin": 0,
+  "yearMax": 0,
+  "maxPrice": 46500.0,
+  "maxMileage": 0,
+  "condition": "Used",
+  "notes": "Looking for a reliable Honda for daily commuting.",
+  "firstOffer": 35000.0,
+  "reservationPrice": 46500.0,
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_CONCEDER",
+  "maxRounds": 20,
+  "personality": "aggressive",
+  "_marketPrice": 58000.0,
+  "_flexibleModel": false
+}
