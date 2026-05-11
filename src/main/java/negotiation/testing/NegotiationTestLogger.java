@@ -47,12 +47,15 @@ public final class NegotiationTestLogger {
 
     private static final DateTimeFormatter START_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss", Locale.ROOT);
+    private static final DateTimeFormatter FULL_TIMESTAMP_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
     private static final DateTimeFormatter TIME_FORMAT =
             DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ROOT);
     private static final DateTimeFormatter REPORT_TIMESTAMP =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
 
-    private static final Pattern LINE_TIME = Pattern.compile("^\\[(\\d{2}:\\d{2}:\\d{2})]");
+    private static final Pattern LINE_TIME =
+            Pattern.compile("^\\[(?:(\\d{4}-\\d{2}-\\d{2})\\s+)?(\\d{2}:\\d{2}:\\d{2})]");
     private static final Pattern PRICE = Pattern.compile("Price:\\s*RM\\s*([0-9,.]+)");
     private static final Pattern EXPERIMENT_OFFER =
             Pattern.compile("^Round\\s+\\d+\\s+\\|\\s+(BUYER|DEALER)\\s+\\|\\s+OFFER\\s+\\|\\s+RM\\s*([0-9,.]+)");
@@ -301,14 +304,18 @@ public final class NegotiationTestLogger {
                 metrics.askingPrice = parseMoney(valueAfterColon(line));
             } else if (line.trim().startsWith("Max Price:")) {
                 metrics.buyerMaxPrice = parseMoney(valueAfterColon(line));
-            } else if (line.startsWith("COMPLETED:")) {
+            } else if (line.startsWith("COMPLETED:") || line.startsWith("Completed:")) {
                 metrics.completedAt = combineDateAndTime(startedDate, valueAfterColon(line), metrics.startedAt);
                 metrics.outcome = "COMPLETED";
-            } else if (line.startsWith("INTERRUPTED:")) {
+            } else if (line.startsWith("INTERRUPTED:") || line.startsWith("Failed:")) {
                 metrics.interruptedCount++;
                 if (!"COMPLETED".equals(metrics.outcome)) {
                     metrics.outcome = "INTERRUPTED";
                     metrics.completedAt = combineDateAndTime(startedDate, valueAfterColon(line), metrics.startedAt);
+                }
+            } else if (line.startsWith("NEGOTIATION FAILED")) {
+                if (!"COMPLETED".equals(metrics.outcome)) {
+                    metrics.outcome = "INTERRUPTED";
                 }
             } else if (line.startsWith("[") && line.contains("): ")) {
                 metrics.messageCount++;
@@ -1019,12 +1026,24 @@ __EMBEDDED_CSV__
         long completed = results.stream().filter(m -> "COMPLETED".equals(m.outcome)).count();
         long rejected = results.stream().filter(m -> "REJECTED".equals(m.outcome)).count();
         long interrupted = results.stream().filter(m -> "INTERRUPTED".equals(m.outcome)).count();
+        long failed = results.size() - completed;
+        double averageRounds = results.stream().mapToInt(m -> m.rounds).average().orElse(0);
+        double averageFinalPrice = results.stream()
+                .filter(m -> m.finalPrice > 0)
+                .mapToDouble(m -> m.finalPrice)
+                .average()
+                .orElse(0);
 
         out.append("SUMMARY\n");
         out.append("-------\n");
+        out.append("Total negotiations: ").append(results.size()).append("\n");
+        out.append("Successful negotiations: ").append(completed)
+                .append(" | Failed negotiations: ").append(failed).append("\n");
         out.append("Completed: ").append(completed)
                 .append(" | Rejected: ").append(rejected)
                 .append(" | Interrupted: ").append(interrupted).append("\n");
+        out.append("Average rounds: ").append(formatDecimal(averageRounds)).append("\n");
+        out.append("Average final price: ").append(formatMoney(averageFinalPrice)).append("\n");
         if (!timed.isEmpty()) {
             double averageMillis = timed.stream()
                     .mapToLong(m -> m.duration.toMillis())
@@ -1055,14 +1074,18 @@ __EMBEDDED_CSV__
     }
 
     private static Optional<LocalDateTime> parseMessageTime(LocalDate startDate, String line, LocalDateTime startedAt) {
-        if (startDate == null) {
-            return Optional.empty();
-        }
         Matcher matcher = LINE_TIME.matcher(line);
         if (!matcher.find()) {
             return Optional.empty();
         }
-        LocalDateTime value = LocalDateTime.of(startDate, LocalTime.parse(matcher.group(1), TIME_FORMAT));
+        LocalDate date = startDate;
+        if (matcher.group(1) != null) {
+            date = LocalDate.parse(matcher.group(1), DateTimeFormatter.ISO_LOCAL_DATE);
+        }
+        if (date == null) {
+            return Optional.empty();
+        }
+        LocalDateTime value = LocalDateTime.of(date, LocalTime.parse(matcher.group(2), TIME_FORMAT));
         if (startedAt != null && value.isBefore(startedAt)) {
             value = value.plusDays(1);
         }
@@ -1070,6 +1093,11 @@ __EMBEDDED_CSV__
     }
 
     private static LocalDateTime parseStart(String value) {
+        try {
+            return LocalDateTime.parse(value.trim(), FULL_TIMESTAMP_FORMAT);
+        } catch (RuntimeException ignored) {
+            // Try legacy filename-safe timestamp below.
+        }
         try {
             return LocalDateTime.parse(value.trim(), START_FORMAT);
         } catch (RuntimeException ignored) {
@@ -1080,6 +1108,11 @@ __EMBEDDED_CSV__
     private static LocalDateTime combineDateAndTime(LocalDate startDate, String time, LocalDateTime startedAt) {
         if (startDate == null || time == null || time.isBlank()) {
             return null;
+        }
+        try {
+            return LocalDateTime.parse(time.trim(), FULL_TIMESTAMP_FORMAT);
+        } catch (RuntimeException ignored) {
+            // Try legacy time-only value below.
         }
         try {
             LocalDateTime value = LocalDateTime.of(startDate, LocalTime.parse(time.trim(), TIME_FORMAT));

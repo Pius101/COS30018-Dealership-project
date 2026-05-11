@@ -28,6 +28,13 @@ public class NegotiationMessage {
     private String fromRole;       // "DEALER" or "BUYER"
     private String toAID;
     private String toName;
+    private String conversationId; // JADE ACL conversation id used for routing/log correlation
+    private String aclPerformative; // REQUEST, INFORM, PROPOSE, ACCEPT_PROPOSAL, etc.
+    private Integer round;         // negotiation round, when known
+    private String strategy;       // strategy used by the sender for this decision
+    private String outcome;        // ONGOING, COMPLETED, FAILED, INTERRUPTED
+    private String reason;         // decision rationale / strategy explanation
+    private Double utility;        // sender-side utility for this price, when available
     private double price;          // offered/accepted price (0 for REJECT)
     private String message;        // optional typed text from the user
     private Type   type;
@@ -63,6 +70,27 @@ public class NegotiationMessage {
 
     public String getToName()                      { return toName; }
     public void   setToName(String v)              { this.toName = v; }
+
+    public String getConversationId()              { return conversationId; }
+    public void   setConversationId(String v)      { this.conversationId = v; }
+
+    public String getAclPerformative()             { return aclPerformative; }
+    public void   setAclPerformative(String v)     { this.aclPerformative = v; }
+
+    public Integer getRound()                      { return round; }
+    public void    setRound(Integer v)             { this.round = v; }
+
+    public String getStrategy()                    { return strategy; }
+    public void   setStrategy(String v)            { this.strategy = v; }
+
+    public String getOutcome()                     { return outcome; }
+    public void   setOutcome(String v)             { this.outcome = v; }
+
+    public String getReason()                      { return reason; }
+    public void   setReason(String v)              { this.reason = v; }
+
+    public Double getUtility()                     { return utility; }
+    public void   setUtility(Double v)             { this.utility = v; }
 
     public double getPrice()                       { return price; }
     public void   setPrice(double v)               { this.price = v; }

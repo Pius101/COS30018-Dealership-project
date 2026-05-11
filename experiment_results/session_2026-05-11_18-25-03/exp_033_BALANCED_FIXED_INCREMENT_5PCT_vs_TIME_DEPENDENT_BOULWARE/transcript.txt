@@ -1,0 +1,18 @@
+EXPERIMENT 33
+================
+Scenario: BALANCED
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 70600 | Rounds: 3
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 67200 | Round 1/10 | 5.0% fixed move toward RV | Offer RM64000 -> RM67200 | RV: RM78400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 70600 | Round 2/10 | 5.0% fixed move toward RV | Offer RM67200 -> RM70600 | RV: RM78400
+Round 3 | DEALER | ACCEPT | RM 70600 | Round 3/10 | BOULWARE | Offer RM70600 vs RV RM70400 | lastRound=false → ACCEPT
+
+Final note: Round 3/10 | BOULWARE | Offer RM70600 vs RV RM70400 | lastRound=false → ACCEPT

@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+10,1,"BALANCED","TIME_DEPENDENT_CONCEDER","Time-Dependent (CONCEDER)","TIT_FOR_TAT","Tit-for-Tat","DEAL","BUYER",7,15,80000,64000,78400,70400,78400,1600,2.00,"exp_010_BALANCED_TIME_DEPENDENT_CONCEDER_vs_TIT_FOR_TAT"

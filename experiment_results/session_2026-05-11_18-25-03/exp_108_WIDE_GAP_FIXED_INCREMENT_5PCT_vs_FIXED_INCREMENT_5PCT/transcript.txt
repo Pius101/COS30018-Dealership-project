@@ -1,0 +1,20 @@
+EXPERIMENT 108
+================
+Scenario: WIDE_GAP
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 68600 | Rounds: 3
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 76000 | Round 1/10 | 5.0% fixed move toward RV | Offer RM80000 -> RM76000 | RV: RM67200
+Round 2 | BUYER | OFFER | RM 63800 | Round 1/10 | 5.0% fixed move toward RV | Offer RM60800 -> RM63800 | RV: RM82400
+Round 2 | DEALER | OFFER | RM 72200 | Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM67200
+Round 3 | BUYER | OFFER | RM 67000 | Round 2/10 | 5.0% fixed move toward RV | Offer RM63800 -> RM67000 | RV: RM82400
+Round 3 | DEALER | OFFER | RM 68600 | Round 3/10 | 5.0% fixed move toward RV | Offer RM72200 -> RM68600 | RV: RM67200
+Round 3 | BUYER | WOULD_ACCEPT | RM 68600 | Counter would meet dealer offer; accepting dealer price.
+Round 3 | BUYER | ACCEPT | RM 68600 | Round 3/10 | 5.0% fixed move toward RV | Offer RM67000 -> RM70400 | RV: RM82400
+
+Final note: Round 3/10 | 5.0% fixed move toward RV | Offer RM67000 -> RM70400 | RV: RM82400

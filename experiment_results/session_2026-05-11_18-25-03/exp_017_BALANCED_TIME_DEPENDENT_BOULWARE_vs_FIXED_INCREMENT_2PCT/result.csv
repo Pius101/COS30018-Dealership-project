@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+17,1,"BALANCED","TIME_DEPENDENT_BOULWARE","Time-Dependent (BOULWARE)","FIXED_INCREMENT_2PCT","Fixed Increment (2% per round)","DEAL","BUYER",1,3,80000,64000,78400,70400,78400,1600,2.00,"exp_017_BALANCED_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_2PCT"

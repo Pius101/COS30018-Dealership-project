@@ -1,0 +1,18 @@
+{
+  "case": 62,
+  "repeat": 1,
+  "scenario": "TIGHT_GAP",
+  "buyerStrategy": "FIXED_INCREMENT_2PCT",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 8,
+  "messageCount": 16,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 62400,
+  "buyerReservationPrice": 72800,
+  "dealerReservationPrice": 71200,
+  "finalPrice": 71700,
+  "savingFromAsk": 8300,
+  "savingPct": 10.38
+}

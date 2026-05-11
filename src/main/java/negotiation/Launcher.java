@@ -7,6 +7,7 @@ import jade.core.Runtime;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import negotiation.network.NetworkDiscovery;
+import negotiation.util.GuiMode;
 import negotiation.util.HeadlessLogConfigurer;
 
 import javax.swing.*;
@@ -63,7 +64,7 @@ public class Launcher {
         // ── Headless / CLI mode — used by spawn_agents.py ─────────────────────
         // If --headless is in args, skip the dialog entirely and launch directly.
         // Usage:
-        //   --headless --role HOST [--gui]
+        //   --headless --role HOST [--gui] [--agent-gui]
         //   --headless --role BROKER --host IP
         //   --headless --role DEALER --host IP --name AgentName --config path.json
         //   --headless --role BUYER  --host IP --name AgentName --config path.json
@@ -87,8 +88,10 @@ public class Launcher {
         String logDir = arg(args, "--log-dir", null);
         String logName = arg(args, "--log-name", "HOST".equals(role) ? "host" : name);
         boolean gui   = contains(args, "--gui");
+        boolean agentGui = contains(args, "--agent-gui");
 
         try {
+            GuiMode.setEnabled(agentGui);
             HeadlessLogConfigurer.configure(logDir, logName);
             switch (role) {
                 case "HOST"   -> launchHost(gui);

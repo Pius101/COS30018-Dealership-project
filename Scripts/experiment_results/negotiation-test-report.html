@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negotiation Test Report</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #101114;
+  --panel: #1a1d22;
+  --panel-2: #242831;
+  --border: #303542;
+  --border-soft: #222733;
+  --text: #e7eaf0;
+  --muted: #98a2b3;
+  --blue: #60a5fa;
+  --green: #4ade80;
+  --orange: #fb923c;
+  --red: #f87171;
+  --cyan: #67e8f9;
+  --violet: #a78bfa;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 24px 32px 36px;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: #93c5fd; text-decoration: underline; }
+h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+h2 {
+  color: #93c5fd;
+  font-size: 15px;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+button {
+  background: #2b3340;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #f8fafc;
+  cursor: pointer;
+  font: inherit;
+  padding: 6px 12px;
+}
+button:hover { background: #354052; }
+.topbar {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.subtitle { color: var(--muted); }
+.mono { font-family: Consolas, "Courier New", monospace; font-size: 12px; }
+.status-line { color: #cbd5e1; font-size: 12px; margin-top: 4px; }
+.banner {
+  background: #052e16;
+  border: 1px solid #16a34a;
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.banner strong { color: #86efac; font-size: 16px; }
+.banner span { color: #bbf7d0; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.label {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .45px;
+}
+.value {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.hint { color: #94a3b8; font-size: 12px; margin-top: 4px; }
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  gap: 16px;
+}
+.summary-list { display: grid; gap: 10px; }
+.summary-row {
+  background: #101114;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 10px;
+  padding: 10px 14px;
+}
+.summary-row .k { color: var(--muted); font-size: 12px; }
+.summary-row .v { color: #fff; font-weight: 600; }
+.bars { display: grid; gap: 10px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 80px;
+  gap: 10px;
+  align-items: center;
+}
+.bar-label { color: #cbd5e1; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track {
+  background: #0b0d10;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+.bar-value { color: var(--cyan); font-family: Consolas, monospace; font-size: 12px; text-align: right; }
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+  background: var(--panel);
+}
+table { width: 100%; min-width: 1080px; border-collapse: collapse; }
+th {
+  background: var(--panel-2);
+  color: #93c5fd;
+  font-size: 12px;
+  padding: 10px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #171b24; }
+.price { color: var(--green); font-weight: 700; white-space: nowrap; }
+.saving { color: var(--cyan); font-weight: 700; white-space: nowrap; }
+.over { color: var(--red); font-weight: 700; white-space: nowrap; }
+.dealer { color: var(--orange); white-space: nowrap; }
+.buyer { color: var(--blue); white-space: nowrap; }
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.done { background: #052e16; border-color: #16a34a; color: #86efac; }
+.warn { background: #3b2a14; border-color: #d97706; color: #fcd34d; }
+.bad { background: #3f1111; border-color: #dc2626; color: #fca5a5; }
+.neutral { background: #1f2937; border-color: #64748b; color: #cbd5e1; }
+.empty { color: var(--muted); padding: 18px; text-align: center; }
+.footer { color: #64748b; font-size: 11px; margin-top: 24px; }
+@media (max-width: 760px) {
+  body { padding: 18px; }
+  .topbar { display: block; }
+  .topbar button { margin-top: 12px; }
+  .split { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: 1fr; gap: 2px; }
+  .bar-row { grid-template-columns: 96px 1fr 72px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div>
+    <h1>Negotiation Test Report</h1>
+    <p class="subtitle">Current metrics from <span class="mono">logs/negotiation-test-report.csv</span>, generated from <span class="mono">conversations/*.txt</span>.</p>
+    <p class="status-line" id="last-updated">Generated at 2026-05-11 17:01:39</p>
+  </div>
+  <button id="reload" type="button">Reload data</button>
+</div>
+
+<div class="banner" id="banner"></div>
+<div class="grid" id="metrics"></div>
+
+<div class="split">
+  <div class="card">
+    <h2 style="margin-top:0">Session Highlights</h2>
+    <div class="summary-list" id="highlights"></div>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0" id="bars-title">Duration By Session</h2>
+    <div class="bars" id="durations"></div>
+  </div>
+</div>
+
+<h2>Round And Price Breakdown</h2>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Pair</th>
+        <th>Car</th>
+        <th>Outcome</th>
+        <th>Duration</th>
+        <th>Rounds</th>
+        <th>Messages</th>
+        <th>Asking</th>
+        <th>Buyer Max</th>
+        <th>Final Price</th>
+        <th>Difference</th>
+        <th>First Offers</th>
+        <th>Last Offers</th>
+        <th>Report</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+
+<h2>Source Files</h2>
+<div class="grid">
+  <div class="card"><div class="label">Text Source</div><div class="value" style="font-size:15px"><a href="../logs/negotiation-test-report.txt">negotiation-test-report.txt</a></div><div class="hint">Readable generated report.</div></div>
+  <div class="card"><div class="label">CSV Source</div><div class="value" style="font-size:15px"><a href="../logs/negotiation-test-report.csv">negotiation-test-report.csv</a></div><div class="hint">Data source used by this page.</div></div>
+  <div class="card"><div class="label">Detailed Reports</div><div class="value" style="font-size:15px"><a href="../reports/">reports/</a></div><div class="hint">Individual negotiation report pages.</div></div>
+</div>
+
+<p class="footer">The page tries to refresh the CSV every 5 seconds. If browser security blocks local file loading, it falls back to the CSV embedded when this HTML was generated.</p>
+
+<script type="text/plain" id="embedded-csv-b64">
+ZmlsZSxuZWdvdGlhdGlvbl9pZCxidXllcixkZWFsZXIsY2FyLHllYXIsb3V0Y29tZSxzdGFydCxlbmQsZHVyYXRpb25fbXMsZHVyYXRpb24scm91bmRzLG1lc3NhZ2VzLG9mZmVycyxidXllcl9vZmZlcnMsZGVhbGVyX29mZmVycyxhY2NlcHRzLHJlamVjdHMsYXNraW5nX3ByaWNlLGJ1eWVyX21heF9wcmljZSxmaW5hbF9vcl9sYXN0X3ByaWNlLGRpZmZlcmVuY2VfZnJvbV9hc2tpbmcsZGlmZmVyZW5jZV9mcm9tX2Fza2luZ19wY3QsZmlyc3RfYnV5ZXJfb2ZmZXIsZmlyc3RfZGVhbGVyX29mZmVyLGxhc3RfYnV5ZXJfb2ZmZXIsbGFzdF9kZWFsZXJfb2ZmZXIsaW50ZXJydXB0ZWRfbWFya2VycwoibmVnLVRhbjA2XzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLVRveW90YURlYWxlcl8xNzJfMTdfNzVfMTAzXzEwOTlfSkFERS1FNEMwRkI1RS00NTA1MTdfVGFuMDZfdnNfVG95b3RhRGVhbGVyX1RveW90YV9WaW9zXzIwMjMudHh0IiwibmVnLVRhbjA2XzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLVRveW90YURlYWxlcl8xNzJfMTdfNzVfMTAzXzEwOTlfSkFERS1FNEMwRkI1RS00NTA1MTciLCJUYW4wNiIsIlRveW90YURlYWxlciIsIlRveW90YSBWaW9zIiwyMDIzLCJDT01QTEVURUQiLCIyMDI2LTA1LTExXzE2LTE3LTMwIiwiMjAyNi0wNS0xMV8xNi0xNy0zNiIsNjAwMCwiNi4wMDBzIiw0LDgsNyw0LDMsMSwwLDk3MDAwLjAwLDEwOTAwMC4wMCw5NjgwMC4wMCwyMDAuMDAsMC4yMSw4MjAwMC4wMCw5NzAwMC4wMCw5NjgwMC4wMCw5NjkwMC4wMCwyCiJuZWctVGFuMDZfMTcyXzE3Xzc1XzEwM18xMDk5X0pBREUtVG95b3RhRGVhbGVyXzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLTcyRkE2M0U2LTQyNTQ4NV9UYW4wNl92c19Ub3lvdGFEZWFsZXJfVG95b3RhX1lhcmlzXzIwMjMudHh0IiwibmVnLVRhbjA2XzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLVRveW90YURlYWxlcl8xNzJfMTdfNzVfMTAzXzEwOTlfSkFERS03MkZBNjNFNi00MjU0ODUiLCJUYW4wNiIsIlRveW90YURlYWxlciIsIlRveW90YSBZYXJpcyIsMjAyMywiSU5URVJSVVBURUQiLCIyMDI2LTA1LTExXzE2LTMzLTQ1IiwiMjAyNi0wNS0xMV8xNi0zMy00OCIsMzAwMCwiMy4wMDBzIiwzLDUsNSwzLDIsMCwwLDk5MDAwLjAwLDEwOTAwMC4wMCw5ODgwMC4wMCwyMDAuMDAsMC4yMCw4MjAwMC4wMCw5OTAwMC4wMCw5ODgwMC4wMCw5OTAwMC4wMCwyCiJuZWctVGFuMDZfMTcyXzE3Xzc1XzEwM18xMDk5X0pBREUtVG95b3RhRGVhbGVyXzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLTdEQUQ2ODYzLTkyMDQ1NV9UYW4wNl92c19Ub3lvdGFEZWFsZXJfVG95b3RhX1lhcmlzXzIwMjMudHh0IiwibmVnLVRhbjA2XzE3Ml8xN183NV8xMDNfMTA5OV9KQURFLVRveW90YURlYWxlcl8xNzJfMTdfNzVfMTAzXzEwOTlfSkFERS03REFENjg2My05MjA0NTUiLCJUYW4wNiIsIlRveW90YURlYWxlciIsIlRveW90YSBZYXJpcyIsMjAyMywiQ09NUExFVEVEIiwiMjAyNi0wNS0xMV8xNi00Mi0wMCIsIjIwMjYtMDUtMTFfMTYtNDItMDgiLDgwMDAsIjguMDAwcyIsNSwxMCw5LDUsNCwxLDAsOTkwMDAuMDAsMTA5MDAwLjAwLDk4NjAwLjAwLDQwMC4wMCwwLjQwLDgyMDAwLjAwLDk5MDAwLjAwLDk4NjAwLjAwLDk4NzAwLjAwLDIK
+</script>
+<script>
+(() => {
+  const CSV_URL = '../logs/negotiation-test-report.csv';
+  const GENERATED_AT = '2026-05-11 17:01:39';
+  const embeddedCsv = new TextDecoder().decode(Uint8Array.from(
+    atob(document.getElementById('embedded-csv-b64').textContent.trim()),
+    char => char.charCodeAt(0)
+  ));
+  const moneyFormat = new Intl.NumberFormat('en-MY', { maximumFractionDigits: 0 });
+
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function parseCsv(text) {
+    const records = [];
+    let row = [];
+    let value = '';
+    let quoted = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (quoted) {
+        if (ch === '"') {
+          if (text[i + 1] === '"') {
+            value += '"';
+            i++;
+          } else {
+            quoted = false;
+          }
+        } else {
+          value += ch;
+        }
+      } else if (ch === '"') {
+        quoted = true;
+      } else if (ch === ',') {
+        row.push(value);
+        value = '';
+      } else if (ch === '\r') {
+        continue;
+      } else if (ch === '\n') {
+        row.push(value);
+        records.push(row);
+        row = [];
+        value = '';
+      } else {
+        value += ch;
+      }
+    }
+    if (value.length > 0 || row.length > 0) {
+      row.push(value);
+      records.push(row);
+    }
+    if (records.length === 0) return [];
+    const headers = records.shift().map(header => header.trim());
+    return records
+      .filter(record => record.some(cell => cell.trim() !== ''))
+      .map(record => {
+        const item = {};
+        headers.forEach((header, index) => item[header] = record[index] || '');
+        return item;
+      });
+  }
+
+  function num(row, key) {
+    const value = Number.parseFloat(row[key] || '0');
+    return Number.isFinite(value) ? value : 0;
+  }
+
+  function average(values, includeZero) {
+    const filtered = values.filter(value => Number.isFinite(value) && (includeZero || value > 0));
+    if (filtered.length === 0) return 0;
+    return filtered.reduce((sum, value) => sum + value, 0) / filtered.length;
+  }
+
+  function money(value) {
+    if (!Number.isFinite(value) || Math.abs(value) < 0.0001) return '-';
+    return 'RM ' + moneyFormat.format(Math.round(value));
+  }
+
+  function percent(value) {
+    if (!Number.isFinite(value)) return '0.00%';
+    return value.toFixed(2) + '%';
+  }
+
+  function duration(ms) {
+    if (!Number.isFinite(ms) || ms <= 0) return '-';
+    const whole = Math.max(0, Math.round(ms));
+    const totalSeconds = Math.floor(whole / 1000);
+    const millis = String(whole % 1000).padStart(3, '0');
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const hours = Math.floor(totalSeconds / 3600);
+    if (hours > 0) return `${hours}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}.${millis}s`;
+    if (minutes > 0) return `${minutes}m ${String(seconds).padStart(2, '0')}.${millis}s`;
+    return `${seconds}.${millis}s`;
+  }
+
+  function pair(row) {
+    return `${row.buyer || '-'} vs ${row.dealer || '-'}`;
+  }
+
+  function car(row) {
+    const year = num(row, 'year');
+    return `${row.car || '-'}${year > 0 ? ' ' + year : ''}`;
+  }
+
+  function sanitize(value) {
+    const cleaned = String(value || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '_');
+    return cleaned || 'unknown';
+  }
+
+  function reportHref(row) {
+    if (row.file && row.file.startsWith('session_')) {
+      const path = row.file.split('/').map(part => encodeURIComponent(part)).join('/');
+      return '../experiment_results/' + path + '/transcript.txt';
+    }
+    if (!row.negotiation_id) return '';
+    return '../reports/' + encodeURIComponent(row.negotiation_id) + '_' + sanitize(row.buyer) + '_vs_' + sanitize(row.dealer) + '.html';
+  }
+
+  function statusPill(row) {
+    const status = String(row.outcome || 'UNKNOWN').toUpperCase();
+    const className = status === 'COMPLETED' ? 'done' : status === 'REJECTED' ? 'bad' : status === 'INTERRUPTED' ? 'warn' : 'neutral';
+    let html = `<span class="pill ${className}">${esc(status)}</span>`;
+    const markers = num(row, 'interrupted_markers');
+    if (markers > 0) {
+      html += ` <span class="pill warn">${markers} marker${markers === 1 ? '' : 's'}</span>`;
+    }
+    return html;
+  }
+
+  function renderBanner(rows) {
+    const total = rows.length;
+    const completed = rows.filter(row => row.outcome === 'COMPLETED').length;
+    const rejected = rows.filter(row => row.outcome === 'REJECTED').length;
+    const interrupted = rows.filter(row => row.outcome === 'INTERRUPTED').length;
+    const markers = rows.reduce((sum, row) => sum + num(row, 'interrupted_markers'), 0);
+    const avgDuration = average(rows.map(row => num(row, 'duration_ms')), false);
+    const banner = document.getElementById('banner');
+    if (total === 0) {
+      banner.innerHTML = '<strong>No negotiations found</strong><span>Waiting for conversation logs.</span>';
+      return;
+    }
+    banner.innerHTML = `<strong>${completed} of ${total} negotiations completed</strong><span>Rejected: ${rejected} | Interrupted outcomes: ${interrupted} | Markers: ${markers} | Average duration: ${duration(avgDuration)}</span>`;
+  }
+
+  function renderCards(rows) {
+    const total = rows.length;
+    const completed = rows.filter(row => row.outcome === 'COMPLETED').length;
+    const completionRate = total > 0 ? completed / total * 100 : 0;
+    const totalRounds = rows.reduce((sum, row) => sum + num(row, 'rounds'), 0);
+    const totalMessages = rows.reduce((sum, row) => sum + num(row, 'messages'), 0);
+    const totalOffers = rows.reduce((sum, row) => sum + num(row, 'offers'), 0);
+    const avgFinal = average(rows.map(row => num(row, 'final_or_last_price')), false);
+    const totalDifference = rows.reduce((sum, row) => sum + num(row, 'difference_from_asking'), 0);
+    const cards = [
+      ['Negotiations Tested', String(total), 'Current CSV rows', ''],
+      ['Completion Rate', percent(completionRate), `${completed} completed`, 'color: var(--green)'],
+      ['Average Rounds', total > 0 ? (totalRounds / total).toFixed(2) : '0.00', `${totalRounds} rounds total`, 'color: var(--violet)'],
+      ['Messages Logged', String(totalMessages), `${totalOffers} offer messages`, 'color: var(--blue)'],
+      ['Average Final Price', money(avgFinal), 'Across priced sessions', 'color: var(--green)'],
+      ['Total Difference', money(totalDifference), 'Compared with asking prices', 'color: var(--cyan)']
+    ];
+    document.getElementById('metrics').innerHTML = cards.map(card => `
+      <div class="card">
+        <div class="label">${esc(card[0])}</div>
+        <div class="value" style="${esc(card[3])}">${esc(card[1])}</div>
+        <div class="hint">${esc(card[2])}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderHighlights(rows) {
+    const target = document.getElementById('highlights');
+    if (rows.length === 0) {
+      target.innerHTML = '<div class="empty">No conversation files found in the source folder.</div>';
+      return;
+    }
+    const timed = rows.filter(row => num(row, 'duration_ms') > 0);
+    const fastest = timed.reduce((best, row) => !best || num(row, 'duration_ms') < num(best, 'duration_ms') ? row : best, null);
+    const slowest = timed.reduce((best, row) => !best || num(row, 'duration_ms') > num(best, 'duration_ms') ? row : best, null);
+    const largestRm = rows.reduce((best, row) => !best || num(row, 'difference_from_asking') > num(best, 'difference_from_asking') ? row : best, null);
+    const largestPct = rows.reduce((best, row) => !best || num(row, 'difference_from_asking_pct') > num(best, 'difference_from_asking_pct') ? row : best, null);
+    const maxRounds = Math.max(...rows.map(row => num(row, 'rounds')));
+    const mostRounds = rows.filter(row => num(row, 'rounds') === maxRounds).slice(0, 4).map(pair).join(', ');
+    const items = [
+      ['Fastest negotiation', fastest ? `${pair(fastest)}, ${duration(num(fastest, 'duration_ms'))}` : '-'],
+      ['Slowest negotiation', slowest ? `${pair(slowest)}, ${duration(num(slowest, 'duration_ms'))}` : '-'],
+      ['Largest RM difference', largestRm ? `${pair(largestRm)}, ${money(num(largestRm, 'difference_from_asking'))}` : '-'],
+      ['Largest percentage difference', largestPct ? `${pair(largestPct)}, ${percent(num(largestPct, 'difference_from_asking_pct'))}` : '-'],
+      ['Most rounds', maxRounds > 0 ? `${mostRounds} (${maxRounds})` : '-']
+    ];
+    target.innerHTML = items.map(item => `<div class="summary-row"><div class="k">${esc(item[0])}</div><div class="v">${esc(item[1])}</div></div>`).join('');
+  }
+
+  function renderDurations(rows) {
+    const target = document.getElementById('durations');
+    const title = document.getElementById('bars-title');
+    const timed = rows.filter(row => num(row, 'duration_ms') > 0).sort((a, b) => num(a, 'duration_ms') - num(b, 'duration_ms'));
+    if (timed.length === 0) {
+      const rounded = rows.filter(row => num(row, 'rounds') > 0).sort((a, b) => num(a, 'rounds') - num(b, 'rounds'));
+      if (rounded.length === 0) {
+        if (title) title.textContent = 'Duration By Session';
+        target.innerHTML = '<div class="empty">No completed duration data yet.</div>';
+        return;
+      }
+      if (title) title.textContent = 'Rounds By Case';
+      const maxRounds = Math.max(...rounded.map(row => num(row, 'rounds')));
+      target.innerHTML = rounded.slice(0, 18).map(row => {
+        const width = Math.max(4, num(row, 'rounds') / maxRounds * 100);
+        return `<div class="bar-row"><div class="bar-label">${esc(row.negotiation_id || row.file || '-')}</div><div class="bar-track"><div class="bar" style="width:${width.toFixed(1)}%"></div></div><div class="bar-value">${esc(row.rounds)} rds</div></div>`;
+      }).join('');
+      return;
+    }
+    if (title) title.textContent = 'Duration By Session';
+    const maxDuration = Math.max(...timed.map(row => num(row, 'duration_ms')));
+    target.innerHTML = timed.map(row => {
+      const width = Math.max(4, num(row, 'duration_ms') / maxDuration * 100);
+      return `<div class="bar-row"><div class="bar-label">${esc(row.buyer || row.file || '-')}</div><div class="bar-track"><div class="bar" style="width:${width.toFixed(1)}%"></div></div><div class="bar-value">${duration(num(row, 'duration_ms'))}</div></div>`;
+    }).join('');
+  }
+
+  function renderRows(rows) {
+    const target = document.getElementById('rows');
+    if (rows.length === 0) {
+      target.innerHTML = '<tr><td colspan="13" class="empty">No conversation files found. Run negotiations first, then run NegotiationTestLogger again.</td></tr>';
+      return;
+    }
+    target.innerHTML = rows.map(row => {
+      const difference = num(row, 'difference_from_asking');
+      const pct = num(row, 'difference_from_asking_pct');
+      const differenceClass = difference < 0 ? 'over' : 'saving';
+      const report = reportHref(row);
+      return `<tr>
+        <td><span class="buyer">${esc(row.buyer || '-')}</span> vs <span class="dealer">${esc(row.dealer || '-')}</span></td>
+        <td>${esc(car(row))}</td>
+        <td>${statusPill(row)}</td>
+        <td class="mono">${esc(row.duration || duration(num(row, 'duration_ms')))}</td>
+        <td>${esc(row.rounds || '0')}</td>
+        <td>${esc(row.messages || '0')}</td>
+        <td>${esc(money(num(row, 'asking_price')))}</td>
+        <td>${esc(money(num(row, 'buyer_max_price')))}</td>
+        <td class="price">${esc(money(num(row, 'final_or_last_price')))}</td>
+        <td class="${differenceClass}">${esc(money(difference))} (${esc(percent(pct))})</td>
+        <td><span class="buyer">${esc(money(num(row, 'first_buyer_offer')))}</span> / <span class="dealer">${esc(money(num(row, 'first_dealer_offer')))}</span></td>
+        <td><span class="buyer">${esc(money(num(row, 'last_buyer_offer')))}</span> / <span class="dealer">${esc(money(num(row, 'last_dealer_offer')))}</span></td>
+        <td>${report ? `<a href="${esc(report)}">Open</a>` : '-'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function render(rows, sourceLabel) {
+    renderBanner(rows);
+    renderCards(rows);
+    renderHighlights(rows);
+    renderDurations(rows);
+    renderRows(rows);
+    document.getElementById('last-updated').textContent = `${sourceLabel} | Generated at ${GENERATED_AT} | Display refreshed ${new Date().toLocaleTimeString()}`;
+  }
+
+  async function loadData() {
+    try {
+      const response = await fetch(CSV_URL + '?t=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('CSV unavailable');
+      const text = await response.text();
+      render(parseCsv(text), 'Live CSV');
+    } catch (error) {
+      render(parseCsv(embeddedCsv), 'Embedded snapshot');
+    }
+  }
+
+  document.getElementById('reload').addEventListener('click', loadData);
+  loadData();
+  window.setInterval(loadData, 5000);
+})();
+</script>
+</body>
+</html>

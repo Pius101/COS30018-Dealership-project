@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+75,1,"WIDE_GAP","BAYESIAN","Bayesian Learner","TIME_DEPENDENT_BOULWARE","Time-Dependent (BOULWARE)","DEAL","BUYER",2,5,80000,60800,82400,67200,80000,0,0.00,"exp_075_WIDE_GAP_BAYESIAN_vs_TIME_DEPENDENT_BOULWARE"

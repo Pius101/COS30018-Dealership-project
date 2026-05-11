@@ -1,0 +1,20 @@
+EXPERIMENT 67
+================
+Scenario: TIGHT_GAP
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72200 | Rounds: 4
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79100 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM79100
+Round 2 | BUYER | OFFER | RM 65500 | Round 1/10 | 5.0% fixed move toward RV | Offer RM62400 -> RM65500 | RV: RM72800
+Round 2 | DEALER | OFFER | RM 78200 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-3100 (0.0%) | EstimatedFloor≈RM68600 | Offers seen=2 → OFFER RM78200
+Round 3 | BUYER | OFFER | RM 68800 | Round 2/10 | 5.0% fixed move toward RV | Offer RM65500 -> RM68800 | RV: RM72800
+Round 3 | DEALER | OFFER | RM 77400 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-3200 (0.0%) | EstimatedFloor≈RM72000 | Offers seen=3 → OFFER RM77400
+Round 4 | BUYER | OFFER | RM 72200 | Round 3/10 | 5.0% fixed move toward RV | Offer RM68800 -> RM72200 | RV: RM72800
+Round 4 | DEALER | ACCEPT | RM 72200 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-3267 (0.0%) | EstimatedFloor≈RM75467 | Offers seen=4 → ACCEPT RM72200
+
+Final note: Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-3267 (0.0%) | EstimatedFloor≈RM75467 | Offers seen=4 → ACCEPT RM72200

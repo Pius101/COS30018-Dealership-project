@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+99,1,"WIDE_GAP","FIXED_INCREMENT_2PCT","Fixed Increment (2% per round)","TIME_DEPENDENT_BOULWARE","Time-Dependent (BOULWARE)","DEAL","BUYER",9,20,80000,60800,82400,67200,71600,8400,10.50,"exp_099_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_BOULWARE"

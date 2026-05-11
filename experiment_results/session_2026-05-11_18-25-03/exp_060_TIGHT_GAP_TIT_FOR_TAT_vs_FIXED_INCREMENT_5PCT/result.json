@@ -1,0 +1,18 @@
+{
+  "case": 60,
+  "repeat": 1,
+  "scenario": "TIGHT_GAP",
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "FIXED_INCREMENT_5PCT",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 4,
+  "messageCount": 9,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 62400,
+  "buyerReservationPrice": 72800,
+  "dealerReservationPrice": 71200,
+  "finalPrice": 71200,
+  "savingFromAsk": 8800,
+  "savingPct": 11.00
+}

@@ -1,0 +1,32 @@
+EXPERIMENT 46
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72500 | Rounds: 10
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79800 | Round 1/10 | Opponent last conceded -22.0% (RM-13728) | Mirroring at 2.0% → Offer RM79800
+Round 2 | BUYER | OFFER | RM 68200 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM68200
+Round 2 | DEALER | OFFER | RM 79100 | Round 2/10 | Opponent last conceded 9.3% (RM6339) | Mirroring at 8.0% → Offer RM79100
+Round 3 | BUYER | OFFER | RM 69400 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM69400
+Round 3 | DEALER | OFFER | RM 79000 | Round 3/10 | Opponent last conceded 1.8% (RM1221) | Mirroring at 1.8% → Offer RM79000
+Round 4 | BUYER | OFFER | RM 70100 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM70100
+Round 4 | DEALER | OFFER | RM 78900 | Round 4/10 | Opponent last conceded 1.0% (RM707) | Mirroring at 1.0% → Offer RM78900
+Round 5 | BUYER | OFFER | RM 70700 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM70700
+Round 5 | DEALER | OFFER | RM 78800 | Round 5/10 | Opponent last conceded 0.9% (RM605) | Mirroring at 0.9% → Offer RM78800
+Round 6 | BUYER | OFFER | RM 71100 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM71100
+Round 6 | DEALER | OFFER | RM 78800 | Round 6/10 | Opponent last conceded 0.6% (RM402) | Mirroring at 0.6% → Offer RM78800
+Round 7 | BUYER | OFFER | RM 71600 | Round 6/10 | Curve=CONCEDER β=4.00 | Progress=60% → Offer RM71600
+Round 7 | DEALER | OFFER | RM 78700 | Round 7/10 | Opponent last conceded 0.7% (RM504) | Mirroring at 0.7% → Offer RM78700
+Round 8 | BUYER | OFFER | RM 71900 | Round 7/10 | Curve=CONCEDER β=4.00 | Progress=70% → Offer RM71900
+Round 8 | DEALER | OFFER | RM 78700 | Round 8/10 | Opponent last conceded 0.4% (RM301) | Mirroring at 0.5% → Offer RM78700
+Round 9 | BUYER | OFFER | RM 72200 | Round 8/10 | Curve=CONCEDER β=4.00 | Progress=80% → Offer RM72200
+Round 9 | DEALER | OFFER | RM 78700 | Round 9/10 | Opponent last conceded 0.4% (RM301) | Mirroring at 0.5% → Offer RM78700
+Round 10 | BUYER | OFFER | RM 72500 | Round 9/10 | Curve=CONCEDER β=4.00 | Progress=90% → Offer RM72500
+Round 10 | DEALER | ACCEPT | RM 72500 | Round 10/10 | OpponentConcession=0.4% | opponentStuck=false | lastRound=true → ACCEPT
+
+Final note: Round 10/10 | OpponentConcession=0.4% | opponentStuck=false | lastRound=true → ACCEPT

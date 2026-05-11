@@ -90,9 +90,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
 
         // Update strategy info in the conversation log (dealer side now known)
         // We call this again to overwrite the "Unknown" dealer strategy set by buyer
-        negotiation.util.ConversationLogger.logStrategyInfo(
+        negotiation.util.ConversationLogger.logDealerStrategyInfo(
                 negotiationId,
-                "Buyer strategy (see buyer log)",
                 strategy.getDisplayName(),
                 ctx.firstOffer,
                 ctx.reservationPrice,
@@ -159,7 +158,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                     + " — accepting.";
             dealer.log.info("[AUTO-DEALER] " + reason);
             appendReasoning("✅ ACCEPT — " + reason);
-            dealer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted.");
+            dealer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted.",
+                    round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
             active = false;
             return;
         }
@@ -173,7 +173,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                 dealer.log.info("[AUTO-DEALER] ACCEPT (strategy) — " + reason);
                 appendReasoning("✅ ACCEPT — " + reason);
                 dealer.acceptOffer(negotiationId, incoming.getPrice(),
-                        "Auto-accepted. " + reason);
+                        "Auto-accepted. " + reason,
+                        round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
                 active = false;
                 return;
             }
@@ -188,7 +189,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                         + String.format("%.0f", ctx.reservationPrice) + " — accepting.";
                 dealer.log.info("[AUTO-DEALER] " + reason);
                 appendReasoning(reason);
-                dealer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted at deadline.");
+                dealer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted at deadline.",
+                        round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
             } else {
                 String reason = "Deadline reached — buyer RM "
                         + String.format("%.0f", incoming.getPrice())
@@ -196,7 +198,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                         + String.format("%.0f", ctx.reservationPrice) + " — rejecting.";
                 dealer.log.info("[AUTO-DEALER] " + reason);
                 appendReasoning(reason);
-                dealer.rejectOffer(negotiationId, "Auto-rejected: below minimum at deadline.");
+                dealer.rejectOffer(negotiationId, "Auto-rejected: below minimum at deadline.",
+                        round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
             return;
@@ -211,7 +214,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                 dealer.log.info("[AUTO-DEALER] " + reason);
                 appendReasoning("⚠ " + reason);
                 dealer.acceptOffer(negotiationId, incoming.getPrice(),
-                        "Auto-accepted: impasse detected.");
+                        "Auto-accepted: impasse detected.",
+                        round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
             } else {
                 String reason = "Impasse detected — buyer at RM "
                         + String.format("%.0f", incoming.getPrice())
@@ -219,7 +223,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
                         + String.format("%.0f", ctx.reservationPrice) + " — ending.";
                 dealer.log.info("[AUTO-DEALER] " + reason);
                 appendReasoning("⚠ " + reason);
-                dealer.rejectOffer(negotiationId, "Auto-rejected: impasse, below minimum.");
+                dealer.rejectOffer(negotiationId, "Auto-rejected: impasse, below minimum.",
+                        round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
             return;
@@ -236,7 +241,8 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
         appendReasoning("Round " + round + " → Counter RM "
                 + String.format("%.0f", myOffer) + " | " + reasoning);
 
-        dealer.sendOffer(negotiationId, myOffer, "");
+        dealer.sendOffer(negotiationId, myOffer, "",
+                round, strategy.getDisplayName(), reasoning, utilityFor(myOffer));
 
         // Brief pause so negotiation is observable
         try { Thread.sleep(1500); } catch (InterruptedException ignored) {}
@@ -259,6 +265,16 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
         raw = Math.min(raw, ctx.askingPrice);
         // Round to nearest RM 100
         return Math.round(raw / 100.0) * 100.0;
+    }
+
+    private double utilityFor(double price) {
+        if (ctx.firstOffer <= ctx.reservationPrice) {
+            return price >= ctx.firstOffer ? 1.0 : 0.0;
+        }
+        if (price >= ctx.firstOffer) return 1.0;
+        if (price <= ctx.reservationPrice) return 0.0;
+        return Math.max(0.0, Math.min(1.0,
+                (price - ctx.reservationPrice) / (ctx.firstOffer - ctx.reservationPrice)));
     }
 
     private void appendReasoning(String text) {

@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+36,1,"BALANCED","FIXED_INCREMENT_5PCT","Fixed Increment (5% per round)","FIXED_INCREMENT_5PCT","Fixed Increment (5% per round)","DEAL","DEALER",3,7,80000,64000,78400,70400,70600,9400,11.75,"exp_036_BALANCED_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_5PCT"

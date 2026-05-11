@@ -1,0 +1,32 @@
+EXPERIMENT 99
+================
+Scenario: WIDE_GAP
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71600 | Rounds: 9
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 62000 | Round 1/10 | 2.0% fixed move toward RV | Offer RM60800 -> RM62000 | RV: RM82400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 63300 | Round 2/10 | 2.0% fixed move toward RV | Offer RM62000 -> RM63300 | RV: RM82400
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 4 | BUYER | OFFER | RM 64500 | Round 3/10 | 2.0% fixed move toward RV | Offer RM63300 -> RM64500 | RV: RM82400
+Round 4 | DEALER | OFFER | RM 79700 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM79700
+Round 5 | BUYER | OFFER | RM 65800 | Round 4/10 | 2.0% fixed move toward RV | Offer RM64500 -> RM65800 | RV: RM82400
+Round 5 | DEALER | OFFER | RM 79200 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM79200
+Round 6 | BUYER | OFFER | RM 67100 | Round 5/10 | 2.0% fixed move toward RV | Offer RM65800 -> RM67100 | RV: RM82400
+Round 6 | DEALER | OFFER | RM 78300 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM78300
+Round 7 | BUYER | OFFER | RM 68500 | Round 6/10 | 2.0% fixed move toward RV | Offer RM67100 -> RM68500 | RV: RM82400
+Round 7 | DEALER | OFFER | RM 76900 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM76900
+Round 8 | BUYER | OFFER | RM 69800 | Round 7/10 | 2.0% fixed move toward RV | Offer RM68500 -> RM69800 | RV: RM82400
+Round 8 | DEALER | OFFER | RM 74800 | Round 8/10 | Curve=BOULWARE β=0.25 | Progress=80% → Offer RM74800
+Round 9 | BUYER | OFFER | RM 71200 | Round 8/10 | 2.0% fixed move toward RV | Offer RM69800 -> RM71200 | RV: RM82400
+Round 9 | DEALER | OFFER | RM 71600 | Round 9/10 | Curve=BOULWARE β=0.25 | Progress=90% → Offer RM71600
+Round 9 | BUYER | WOULD_ACCEPT | RM 71600 | Counter would meet dealer offer; accepting dealer price.
+Round 9 | BUYER | ACCEPT | RM 71600 | Round 9/10 | 2.0% fixed move toward RV | Offer RM71200 -> RM72700 | RV: RM82400
+
+Final note: Round 9/10 | 2.0% fixed move toward RV | Offer RM71200 -> RM72700 | RV: RM82400

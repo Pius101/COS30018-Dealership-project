@@ -1,0 +1,27 @@
+EXPERIMENT 3
+================
+Scenario: BALANCED
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 77700 | Rounds: 7
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 65400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM65400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 66900 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=2 → OFFER RM66900
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 4 | BUYER | OFFER | RM 68300 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM50 (0.0%) | EstimatedFloor≈RM79850 | Offers seen=3 → OFFER RM68300
+Round 4 | DEALER | OFFER | RM 79800 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM79800
+Round 5 | BUYER | OFFER | RM 69800 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM67 (0.0%) | EstimatedFloor≈RM79733 | Offers seen=4 → OFFER RM69800
+Round 5 | DEALER | OFFER | RM 79400 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM79400
+Round 6 | BUYER | OFFER | RM 71900 | Round 5/10 | β=1.15 | Style=CONCEDER | AvgConcession=RM150 (0.3%) | EstimatedFloor≈RM79100 | Offers seen=5 → OFFER RM71900
+Round 6 | DEALER | OFFER | RM 78800 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM78800
+Round 7 | BUYER | OFFER | RM 73700 | Round 6/10 | β=1.30 | Style=CONCEDER | AvgConcession=RM240 (0.8%) | EstimatedFloor≈RM78320 | Offers seen=6 → OFFER RM73700
+Round 7 | DEALER | OFFER | RM 77700 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM77700
+Round 7 | BUYER | ACCEPT | RM 77700 | Round 7/10 | β=1.45 | Style=CONCEDER | AvgConcession=RM383 (1.5%) | EstimatedFloor≈RM76933 | Offers seen=7 → ACCEPT RM77700
+
+Final note: Round 7/10 | β=1.45 | Style=CONCEDER | AvgConcession=RM383 (1.5%) | EstimatedFloor≈RM76933 | Offers seen=7 → ACCEPT RM77700

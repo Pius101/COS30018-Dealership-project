@@ -95,6 +95,40 @@ def discover_host() -> str | None:
         sock.close()
     return None
 
+
+def get_local_ip() -> str:
+    """
+    Return the local IP that child agents should use when this machine starts
+    the JADE host. This must match the non-loopback address Java binds to.
+    """
+    import socket
+
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+            sock.connect(("8.8.8.8", 80))
+            ip = sock.getsockname()[0]
+            if ip and not ip.startswith("127."):
+                return ip
+    except OSError:
+        pass
+
+    try:
+        ip = socket.gethostbyname(socket.gethostname())
+        if ip and not ip.startswith("127."):
+            return ip
+    except OSError:
+        pass
+
+    return "127.0.0.1"
+
+
+def log_step(message: str) -> None:
+    print(f"[Spawner] {message}", flush=True)
+
+
+def format_cmd(cmd: list[str]) -> str:
+    return " ".join(f'"{part}"' if " " in part else part for part in cmd)
+
 # Dealer markup above market price
 MARKUP_MIN = 0.12   # 12% — dealers start well above market, more room to negotiate
 MARKUP_MAX = 0.22   # 22% — gives meaningful back-and-forth before meeting in the middle
@@ -152,12 +186,14 @@ def initialize_strategies(host="localhost", port=8080):
     global DEALER_STRATEGIES, BUYER_STRATEGIES
     
     # Try to fetch from Java service
+    log_step(f"Checking strategy service at http://{host}:{port}/api/strategies")
     dealer_strats, buyer_strats = fetch_strategies_from_java(host, port)
     
     if dealer_strats and buyer_strats:
         # Use dynamically fetched strategies
         DEALER_STRATEGIES = dealer_strats
         BUYER_STRATEGIES = buyer_strats
+        log_step("Loaded strategy lists from the Java strategy service")
     else:
         # Fallback to hardcoded defaults
         DEALER_STRATEGIES = [
@@ -171,6 +207,9 @@ def initialize_strategies(host="localhost", port=8080):
             "TIT_FOR_TAT",
             "FIXED_INCREMENT_2PCT",
         ]
+        log_step("Strategy service unavailable; using built-in strategy defaults")
+    log_step("Dealer strategy pool: " + ", ".join(DEALER_STRATEGIES))
+    log_step("Buyer strategy pool: " + ", ".join(BUYER_STRATEGIES))
 
 # Estimated mileage per model year
 MILEAGE_BY_YEAR = {
@@ -457,12 +496,22 @@ def launch_agent(jar: str, role: str, host: str, name: str,
         extra += ["--log-dir", log_dir, "--log-name", name]
 
     cmd = build_java_cmd(jar, extra)
+    log_path = str(Path(log_dir) / f"{name}.log") if log_dir else None
+
+    log_step(f"Launching {role.upper()} agent '{name}'")
+    log_step(f"  host: {host}:{JADE_PORT}")
+    if config_path:
+        log_step(f"  config: {config_path}")
+    if log_path:
+        log_step(f"  log: {log_path}")
 
     if dry_run:
-        print(f"  [DRY] {' '.join(cmd)}")
+        log_step(f"  dry command: {format_cmd(cmd)}")
         return None
 
-    return subprocess.Popen(cmd)
+    proc = subprocess.Popen(cmd)
+    log_step(f"  started pid={proc.pid}")
+    return proc
 
 
 def launch_host(jar: str, show_jade_gui: bool, log_dir: str | None, dry_run: bool):
@@ -471,8 +520,18 @@ def launch_host(jar: str, show_jade_gui: bool, log_dir: str | None, dry_run: boo
     if log_dir:
         extra += ["--log-dir", log_dir, "--log-name", "host"]
     cmd = build_java_cmd(jar, extra)
-    if dry_run: print(f"  [DRY] {' '.join(cmd)}"); return None
-    return subprocess.Popen(cmd)
+    log_path = str(Path(log_dir) / "host.log") if log_dir else None
+
+    log_step("Launching JADE HOST")
+    log_step("  JADE RMA GUI: " + ("enabled" if show_jade_gui else "disabled"))
+    if log_path:
+        log_step(f"  log: {log_path}")
+    if dry_run:
+        log_step(f"  dry command: {format_cmd(cmd)}")
+        return None
+    proc = subprocess.Popen(cmd)
+    log_step(f"  started pid={proc.pid}")
+    return proc
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -512,6 +571,11 @@ def main():
     parser.add_argument("--log-dir",          default="logs")
     args = parser.parse_args()
 
+    log_step("Starting Car Negotiation Platform agent spawner")
+    log_step(f"Script directory: {BASE_DIR}")
+    log_step("Mode: " + ("dry run" if args.dry_run else "launch processes"))
+    log_step("Agent Swing GUIs: disabled by headless launcher")
+
     jar       = find_jar(args.jar)
     data_path = resolve_existing_path(args.data) or str(BASE_DIR / args.data)
     data      = load_market_data(data_path)
@@ -525,10 +589,33 @@ def main():
     rng      = random.Random(args.seed)
     procs    = []
 
+    log_step(f"Application JAR: {jar}")
+    jade_jar = find_jade_jar()
+    log_step("JADE library: " + (jade_jar if jade_jar else "bundled in application JAR"))
+    log_step(f"Market data: {data_path}")
+    log_step(f"Loaded {len(data)} brands and {len(all_cars)} car price entries")
+    log_step(f"Config output directory: {out_dir}")
+    log_step(f"Agent log directory: {log_dir}")
+    log_step(f"Random seed: {args.seed}")
+
     # ── Resolve host IP ───────────────────────────────────────────────────────
     host = args.host
     if host is None:
-        host = discover_host() or "127.0.0.1"
+        log_step("Resolving JADE host address")
+        if args.as_host:
+            host = get_local_ip()
+            log_step("Using this machine's local IP because --as-host is enabled")
+        else:
+            discovered_host = discover_host()
+            if discovered_host:
+                log_step(f"Discovered JADE host at {discovered_host}")
+                host = discovered_host
+            else:
+                log_step("No JADE host discovered; falling back to 127.0.0.1")
+                host = "127.0.0.1"
+    else:
+        log_step("Using host from --host")
+    log_step(f"Agents will connect to JADE host {host}:{JADE_PORT}")
 
     strategy_override  = None if (args.buyer_strategy in (None, "RANDOM")) else args.buyer_strategy
     dealer_strategy    = args.dealer_strategy
@@ -539,12 +626,19 @@ def main():
 
     # 1. Optional: start HOST
     if args.as_host:
+        log_step("Starting HOST before launching agents")
         p = launch_host(jar, args.jade_gui, str(log_dir), args.dry_run)
         if p: procs.append(("HOST", p))
-        if not args.dry_run: time.sleep(args.delay * 3)
+        if not args.dry_run:
+            wait_seconds = args.delay * 3
+            log_step(f"Waiting {wait_seconds:.1f}s for HOST startup")
+            time.sleep(wait_seconds)
+    else:
+        log_step("Not starting HOST; expecting an existing JADE platform")
 
     # 2. Dealers — one per brand, fixed from JSON
     if not args.buyers_only:
+        log_step(f"Preparing {len(data)} dealer agent(s)")
         for brand, models in data.items():
             config = make_dealer_config(
                 brand, models, rng,
@@ -554,16 +648,22 @@ def main():
                 margin_pct=dealer_margin,
             )
             config_path = write_config(config, out_dir)
+            log_step(f"Wrote dealer config for {brand}Dealer: {config_path}")
             p = launch_agent(jar, "DEALER", host,
                              name=f"{brand}Dealer",
                              config_path=str(config_path),
                              log_dir=str(log_dir),
                              dry_run=args.dry_run)
             if p: procs.append((f"{brand}Dealer", p))
-            if not args.dry_run: time.sleep(args.delay)
+            if not args.dry_run:
+                log_step(f"Waiting {args.delay:.1f}s before launching the next agent")
+                time.sleep(args.delay)
+    else:
+        log_step("Skipping dealer agents because --buyers-only was set")
 
     # 3. Buyers — randomly generated
     if not args.dealers_only:
+        log_step(f"Preparing {args.num_buyers} buyer agent(s)")
         seen_names = set()
 
         for i in range(args.num_buyers):
@@ -576,6 +676,7 @@ def main():
             seen_names.add(profile["name"])
 
             config_path = write_config(profile, out_dir)
+            log_step(f"Wrote buyer config for {profile['name']}: {config_path}")
 
             p = launch_agent(jar, "BUYER", host,
                              name=profile["name"],
@@ -583,19 +684,37 @@ def main():
                              log_dir=str(log_dir),
                              dry_run=args.dry_run)
             if p: procs.append((profile["name"], p))
-            if not args.dry_run: time.sleep(args.delay)
+            if not args.dry_run:
+                log_step(f"Waiting {args.delay:.1f}s before launching the next agent")
+                time.sleep(args.delay)
+    else:
+        log_step("Skipping buyer agents because --dealers-only was set")
 
     # Keep child processes attached so Ctrl+C can stop them together.
     if not args.dry_run:
         try:
+            log_step(f"Launch sequence complete; monitoring {len(procs)} child process(es)")
+            last_running = None
             while True:
                 time.sleep(5)
+                exited = [(n, p.returncode) for n, p in procs if p.poll() is not None]
+                for name, code in exited:
+                    log_step(f"Process exited: {name} returncode={code}")
                 procs = [(n, p) for n, p in procs if p.poll() is None]
+                running = tuple(n for n, _ in procs)
+                if running != last_running:
+                    log_step("Still running: " + (", ".join(running) if running else "none"))
+                    last_running = running
                 if not procs:
+                    log_step("No child processes remain; spawner exiting")
                     break
         except KeyboardInterrupt:
-            for _, proc in procs:
+            log_step("Ctrl+C received; terminating child processes")
+            for name, proc in procs:
+                log_step(f"Terminating {name} pid={proc.pid}")
                 proc.terminate()
+    else:
+        log_step("Dry run complete; no Java processes were started")
 
 
 if __name__ == "__main__":

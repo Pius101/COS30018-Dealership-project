@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+25,1,"BALANCED","FIXED_INCREMENT_2PCT","Fixed Increment (2% per round)","BAYESIAN","Bayesian Learner","DEAL","DEALER",7,14,80000,64000,78400,70400,72100,7900,9.88,"exp_025_BALANCED_FIXED_INCREMENT_2PCT_vs_BAYESIAN"

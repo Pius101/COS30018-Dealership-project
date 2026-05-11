@@ -1,0 +1,17 @@
+EXPERIMENT 1
+================
+Scenario: BALANCED
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 78100 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 79000 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM79000
+Round 2 | BUYER | OFFER | RM 65400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM65400
+Round 2 | DEALER | OFFER | RM 78100 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1400 (0.0%) | EstimatedFloor≈RM66800 | Offers seen=2 → OFFER RM78100
+Round 2 | BUYER | ACCEPT | RM 78100 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM900 (0.0%) | EstimatedFloor≈RM77200 | Offers seen=2 → ACCEPT RM78100
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM900 (0.0%) | EstimatedFloor≈RM77200 | Offers seen=2 → ACCEPT RM78100

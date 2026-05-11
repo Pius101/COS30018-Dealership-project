@@ -1,0 +1,18 @@
+{
+  "case": 36,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "FIXED_INCREMENT_5PCT",
+  "dealerStrategy": "FIXED_INCREMENT_5PCT",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 3,
+  "messageCount": 7,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 70600,
+  "savingFromAsk": 9400,
+  "savingPct": 11.75
+}

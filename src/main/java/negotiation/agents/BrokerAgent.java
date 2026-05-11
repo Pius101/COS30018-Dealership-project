@@ -17,6 +17,7 @@ import negotiation.report.NegotiationReportGenerator;
 import negotiation.testing.NegotiationTestLogger;
 import negotiation.util.AppLogger;
 import negotiation.util.ConversationLogger;
+import negotiation.util.GuiMode;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -59,12 +60,16 @@ public class BrokerAgent extends Agent {
         log.info("Broker Agent starting as " + getAID().getName());
         registerWithDF();
         addBehaviour(new BrokerMessageBehaviour(this));
-        SwingUtilities.invokeLater(() -> {
-            gui = new BrokerGui(this);
-            log.setLogArea(gui.getLogArea());
-            gui.setVisible(true);
+        if (GuiMode.isEnabled()) {
+            SwingUtilities.invokeLater(() -> {
+                gui = new BrokerGui(this);
+                log.setLogArea(gui.getLogArea());
+                gui.setVisible(true);
             log.info("Platform ready — waiting for dealers and buyers.");
-        });
+            });
+        } else {
+            log.info("Platform ready in headless mode - waiting for dealers and buyers.");
+        }
     }
 
     @Override
@@ -89,7 +94,7 @@ public class BrokerAgent extends Agent {
             DFService.register(this, dfd);
             log.info("Registered in JADE DF as service type: " + Ontology.BROKER_SERVICE_TYPE);
         } catch (FIPAException fe) {
-            log.error("DF registration failed: " + fe.getMessage());
+            log.error("DF registration failed", fe);
         }
     }
 
@@ -117,10 +122,11 @@ public class BrokerAgent extends Agent {
 
     public void onNegotiationMessage(NegotiationMessage msg) {
         history.computeIfAbsent(msg.getNegotiationId(), k -> new ArrayList<>()).add(msg);
-        String detail = msg.getType() + "  RM " + String.format("%.0f", msg.getPrice())
+        String detail = aclLabel(msg) + "  " + msg.getType()
+                + "  RM " + String.format("%.0f", msg.getPrice())
                 + (msg.getMessage() != null && !msg.getMessage().isBlank()
                 ? "  \"" + msg.getMessage() + "\"" : "");
-        log.info("NEG [" + msg.getNegotiationId() + "]  "
+        log.negotiation("[" + msg.getNegotiationId() + "]  "
                 + msg.getFromName() + " → " + msg.getToName() + "  " + detail);
 
         // Bug fix #4: actually write each message to the conversation file.
@@ -138,7 +144,7 @@ public class BrokerAgent extends Agent {
         try {
             NegotiationTestLogger.refreshDefaultReports();
         } catch (IOException e) {
-            log.error("Failed to refresh negotiation test report: " + e.getMessage());
+            log.error("Failed to refresh negotiation test report", e);
         }
     }
 
@@ -405,11 +411,14 @@ public class BrokerAgent extends Agent {
         fwd.addReceiver(new AID(recipientAID, true));
         fwd.setOntology(ontology);
         fwd.setConversationId(Ontology.CONV_NEGOTIATION + "-" + msg.getNegotiationId());
+        msg.setConversationId(fwd.getConversationId());
         fwd.setContent(gson.toJson(msg));
         send(fwd);
 
         log.send(msg.getToName(), ontology,
-                "from " + msg.getFromName() + "  RM " + String.format("%.0f", msg.getPrice()));
+                "[" + msg.getNegotiationId() + "] ACL." + aclPerformativeName(performative)
+                        + " from " + msg.getFromName()
+                        + "  RM " + String.format("%.0f", msg.getPrice()));
     }
 
     public void closeDeal(NegotiationMessage acceptMsg) {
@@ -436,7 +445,7 @@ public class BrokerAgent extends Agent {
 
         // Log the completed conversation
         if (a != null) {
-            ConversationLogger.markCompleted(acceptMsg.getNegotiationId());
+            ConversationLogger.markCompleted(acceptMsg.getNegotiationId(), acceptMsg, a);
             refreshNegotiationTestReport();
             log.info("Conversation saved: " + acceptMsg.getNegotiationId());
         }
@@ -449,8 +458,23 @@ public class BrokerAgent extends Agent {
             notif.setContent(gson.toJson(acceptMsg));
             send(notif);
             log.send(party[1], Ontology.TYPE_DEAL_COMPLETE,
-                    "Final price: RM " + String.format("%.0f", acceptMsg.getPrice()));
+                    "[" + acceptMsg.getNegotiationId() + "] ACL.INFORM Final price: RM "
+                            + String.format("%.0f", acceptMsg.getPrice()));
         }
+    }
+
+    private static String aclPerformativeName(int performative) {
+        return switch (performative) {
+            case ACLMessage.REQUEST -> "REQUEST";
+            case ACLMessage.INFORM -> "INFORM";
+            case ACLMessage.PROPOSE -> "PROPOSE";
+            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
+            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
+            case ACLMessage.REFUSE -> "REFUSE";
+            case ACLMessage.FAILURE -> "FAILURE";
+            case ACLMessage.CONFIRM -> "CONFIRM";
+            default -> String.valueOf(performative);
+        };
     }
 
     private NegotiationMessage findAcceptedOffer(NegotiationMessage acceptMsg) {
@@ -465,6 +489,13 @@ public class BrokerAgent extends Agent {
             return msg;
         }
         return null;
+    }
+
+    private static String aclLabel(NegotiationMessage msg) {
+        String performative = msg.getAclPerformative();
+        return performative == null || performative.isBlank()
+                ? "ACL.UNKNOWN"
+                : "ACL." + performative;
     }
 
     /** Opens the JADE Remote Monitoring Agent (agent monitor / platform view). */
@@ -497,7 +528,7 @@ public class BrokerAgent extends Agent {
             tool.start();
             log.info("Launched JADE tool: " + className);
         } catch (Exception e) {
-            log.error("Failed to launch " + className + ": " + e.getMessage());
+            log.error("Failed to launch " + className, e);
         }
     }
 

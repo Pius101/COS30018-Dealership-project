@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+2,1,"BALANCED","BAYESIAN","Bayesian Learner","TIME_DEPENDENT_CONCEDER","Time-Dependent (CONCEDER)","DEAL","BUYER",2,5,80000,64000,78400,70400,73600,6400,8.00,"exp_002_BALANCED_BAYESIAN_vs_TIME_DEPENDENT_CONCEDER"

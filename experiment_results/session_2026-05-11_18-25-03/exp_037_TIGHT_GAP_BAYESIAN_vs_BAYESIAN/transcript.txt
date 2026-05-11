@@ -1,0 +1,31 @@
+EXPERIMENT 37
+================
+Scenario: TIGHT_GAP
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72100 | Rounds: 9
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79100 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM79100
+Round 2 | BUYER | OFFER | RM 63400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM63400
+Round 2 | DEALER | OFFER | RM 78200 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1000 (0.0%) | EstimatedFloor≈RM64400 | Offers seen=2 → OFFER RM78200
+Round 3 | BUYER | OFFER | RM 64500 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM900 (0.0%) | EstimatedFloor≈RM77300 | Offers seen=2 → OFFER RM64500
+Round 3 | DEALER | OFFER | RM 77400 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1050 (0.0%) | EstimatedFloor≈RM65550 | Offers seen=3 → OFFER RM77400
+Round 4 | BUYER | OFFER | RM 65500 | Round 3/10 | β=1.00 | Style=LINEAR | AvgConcession=RM850 (1.1%) | EstimatedFloor≈RM76380 | Offers seen=3 → OFFER RM65500
+Round 4 | DEALER | OFFER | RM 76500 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1033 (0.0%) | EstimatedFloor≈RM66533 | Offers seen=4 → OFFER RM76500
+Round 5 | BUYER | OFFER | RM 66600 | Round 4/10 | β=1.00 | Style=LINEAR | AvgConcession=RM867 (2.1%) | EstimatedFloor≈RM75460 | Offers seen=4 → OFFER RM66600
+Round 5 | DEALER | OFFER | RM 75600 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1050 (0.0%) | EstimatedFloor≈RM67650 | Offers seen=5 → OFFER RM75600
+Round 6 | BUYER | OFFER | RM 67600 | Round 5/10 | β=1.00 | Style=LINEAR | AvgConcession=RM875 (3.3%) | EstimatedFloor≈RM74550 | Offers seen=5 → OFFER RM67600
+Round 6 | DEALER | OFFER | RM 74700 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1040 (0.0%) | EstimatedFloor≈RM68640 | Offers seen=6 → OFFER RM74700
+Round 7 | BUYER | OFFER | RM 68600 | Round 6/10 | β=1.00 | Style=LINEAR | AvgConcession=RM880 (4.4%) | EstimatedFloor≈RM73644 | Offers seen=6 → OFFER RM68600
+Round 7 | DEALER | OFFER | RM 73800 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1033 (0.0%) | EstimatedFloor≈RM69633 | Offers seen=7 → OFFER RM73800
+Round 8 | BUYER | OFFER | RM 69700 | Round 7/10 | β=1.00 | Style=LINEAR | AvgConcession=RM883 (5.6%) | EstimatedFloor≈RM72740 | Offers seen=7 → OFFER RM69700
+Round 8 | DEALER | OFFER | RM 73000 | Round 8/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1043 (0.0%) | EstimatedFloor≈RM70743 | Offers seen=8 → OFFER RM73000
+Round 9 | BUYER | OFFER | RM 70700 | Round 8/10 | β=1.00 | Style=LINEAR | AvgConcession=RM871 (6.7%) | EstimatedFloor≈RM71954 | Offers seen=8 → OFFER RM70700
+Round 9 | DEALER | OFFER | RM 72100 | Round 9/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1038 (0.0%) | EstimatedFloor≈RM71738 | Offers seen=9 → OFFER RM72100
+Round 9 | BUYER | ACCEPT | RM 72100 | Round 9/10 | β=1.00 | Style=LINEAR | AvgConcession=RM875 (7.7%) | EstimatedFloor≈RM71050 | Offers seen=9 → ACCEPT RM72100
+
+Final note: Round 9/10 | β=1.00 | Style=LINEAR | AvgConcession=RM875 (7.7%) | EstimatedFloor≈RM71050 | Offers seen=9 → ACCEPT RM72100

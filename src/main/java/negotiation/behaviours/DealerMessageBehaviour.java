@@ -36,7 +36,13 @@ public class DealerMessageBehaviour extends CyclicBehaviour {
         }
 
         String type = msg.getOntology();
-        if (type == null) return;
+        if (type == null) {
+            dealer.log.warn("Message with no ontology from "
+                    + msg.getSender().getLocalName()
+                    + " | ACL." + aclPerformativeName(msg.getPerformative())
+                    + " | content=" + msg.getContent());
+            return;
+        }
 
         switch (type) {
             case Ontology.TYPE_ASSIGNMENT_NOTIFY -> handleAssignment(msg);
@@ -53,8 +59,10 @@ public class DealerMessageBehaviour extends CyclicBehaviour {
                 }
             }
             default ->
-                System.err.println("[Dealer:" + dealer.getLocalName()
-                        + "] Unknown message type: " + type);
+                dealer.log.warn("Unknown message type: " + type
+                        + " | sender=" + msg.getSender().getLocalName()
+                        + " | ACL." + aclPerformativeName(msg.getPerformative())
+                        + " | content=" + msg.getContent());
         }
     }
 
@@ -63,25 +71,53 @@ public class DealerMessageBehaviour extends CyclicBehaviour {
             Assignment a = dealer.gson.fromJson(msg.getContent(), Assignment.class);
             dealer.onAssignment(a);
         } catch (Exception e) {
-            System.err.println("[Dealer] Failed to parse assignment: " + e.getMessage());
+            dealer.log.error("Failed to parse assignment"
+                    + " | sender=" + msg.getSender().getLocalName()
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
     private void handleNegotiationMessage(ACLMessage msg) {
         try {
             NegotiationMessage nm = dealer.gson.fromJson(msg.getContent(), NegotiationMessage.class);
+            enrichAclMetadata(msg, nm);
             dealer.onNegotiationMessage(nm);
         } catch (Exception e) {
-            System.err.println("[Dealer] Failed to parse negotiation message: " + e.getMessage());
+            dealer.log.error("Failed to parse negotiation message"
+                    + " | sender=" + msg.getSender().getLocalName()
+                    + " | receiver=" + dealer.getLocalName()
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
     private void handleDealComplete(ACLMessage msg) {
         try {
             NegotiationMessage nm = dealer.gson.fromJson(msg.getContent(), NegotiationMessage.class);
+            enrichAclMetadata(msg, nm);
             dealer.onDealComplete(nm);
         } catch (Exception e) {
-            System.err.println("[Dealer] Failed to parse deal-complete: " + e.getMessage());
+            dealer.log.error("Failed to parse deal-complete"
+                    + " | sender=" + msg.getSender().getLocalName()
+                    + " | content=" + msg.getContent(), e);
         }
+    }
+
+    private static void enrichAclMetadata(ACLMessage aclMessage, NegotiationMessage negotiationMessage) {
+        negotiationMessage.setAclPerformative(aclPerformativeName(aclMessage.getPerformative()));
+        negotiationMessage.setConversationId(aclMessage.getConversationId());
+    }
+
+    private static String aclPerformativeName(int performative) {
+        return switch (performative) {
+            case ACLMessage.REQUEST -> "REQUEST";
+            case ACLMessage.INFORM -> "INFORM";
+            case ACLMessage.PROPOSE -> "PROPOSE";
+            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
+            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
+            case ACLMessage.REFUSE -> "REFUSE";
+            case ACLMessage.FAILURE -> "FAILURE";
+            case ACLMessage.CONFIRM -> "CONFIRM";
+            default -> String.valueOf(performative);
+        };
     }
 }

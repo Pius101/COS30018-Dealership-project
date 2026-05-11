@@ -1,0 +1,26 @@
+EXPERIMENT 29
+================
+Scenario: BALANCED
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 70900 | Rounds: 6
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 78400 | Round 1/10 | 2.0% fixed move toward RV | Offer RM80000 -> RM78400 | RV: RM70400
+Round 2 | BUYER | OFFER | RM 65300 | Round 1/10 | 2.0% fixed move toward RV | Offer RM64000 -> RM65300 | RV: RM78400
+Round 2 | DEALER | OFFER | RM 76800 | Round 2/10 | 2.0% fixed move toward RV | Offer RM78400 -> RM76800 | RV: RM70400
+Round 3 | BUYER | OFFER | RM 66600 | Round 2/10 | 2.0% fixed move toward RV | Offer RM65300 -> RM66600 | RV: RM78400
+Round 3 | DEALER | OFFER | RM 75300 | Round 3/10 | 2.0% fixed move toward RV | Offer RM76800 -> RM75300 | RV: RM70400
+Round 4 | BUYER | OFFER | RM 67900 | Round 3/10 | 2.0% fixed move toward RV | Offer RM66600 -> RM67900 | RV: RM78400
+Round 4 | DEALER | OFFER | RM 73800 | Round 4/10 | 2.0% fixed move toward RV | Offer RM75300 -> RM73800 | RV: RM70400
+Round 5 | BUYER | OFFER | RM 69300 | Round 4/10 | 2.0% fixed move toward RV | Offer RM67900 -> RM69300 | RV: RM78400
+Round 5 | DEALER | OFFER | RM 72300 | Round 5/10 | 2.0% fixed move toward RV | Offer RM73800 -> RM72300 | RV: RM70400
+Round 6 | BUYER | OFFER | RM 70700 | Round 5/10 | 2.0% fixed move toward RV | Offer RM69300 -> RM70700 | RV: RM78400
+Round 6 | DEALER | OFFER | RM 70900 | Round 6/10 | 2.0% fixed move toward RV | Offer RM72300 -> RM70900 | RV: RM70400
+Round 6 | BUYER | WOULD_ACCEPT | RM 70900 | Counter would meet dealer offer; accepting dealer price.
+Round 6 | BUYER | ACCEPT | RM 70900 | Round 6/10 | 2.0% fixed move toward RV | Offer RM70700 -> RM72100 | RV: RM78400
+
+Final note: Round 6/10 | 2.0% fixed move toward RV | Offer RM70700 -> RM72100 | RV: RM78400

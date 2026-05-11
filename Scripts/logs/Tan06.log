@@ -1,78 +1,69 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Tan06.log
 [Launcher] Creating buyers container...
-[Launcher] Connecting to JADE platform at 127.0.0.1:1099...
-[Launcher] Binding to local IP: 172.17.67.191
-May 08, 2026 1:44:05 PM jade.core.Runtime beginContainer
+[Launcher] Connecting to JADE platform at 172.17.75.103:1099...
+[Launcher] Binding to local IP: 172.17.75.103
+May 11, 2026 4:41:57 PM jade.core.Runtime beginContainer
 INFO: ----------------------------------
     This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
     downloaded in Open Source, under LGPL restrictions,
     at http://jade.tilab.com/
 ----------------------------------------
-May 08, 2026 1:44:05 PM jade.imtp.leap.LEAPIMTPManager initialize
+May 11, 2026 4:41:57 PM jade.imtp.leap.LEAPIMTPManager initialize
 INFO: Listening for intra-platform commands on address:
-- jicp://172.17.67.191:1099
+- jicp://172.17.75.103:53774
 
-May 08, 2026 1:44:05 PM jade.core.AgentContainerImpl joinPlatform
-SEVERE: Some problem occurred while joining agent platform.
-jade.core.ProfileException: Can't get a proxy to the Platform Manager - Caused by:  Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:529)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchBuyer(Launcher.java:388)
-	at negotiation.Launcher.runHeadless(Launcher.java:93)
-	at negotiation.Launcher.main(Launcher.java:70)
-Nested Exception:
-jade.core.IMTPException: Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
-	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:75)
-	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
-	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
-	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchBuyer(Launcher.java:388)
-	at negotiation.Launcher.runHeadless(Launcher.java:93)
-	at negotiation.Launcher.main(Launcher.java:70)
-Nested Exception:
-jade.imtp.leap.DispatcherException: DispatcherException in remote site. No skeleton for object-id 0
-	at jade.imtp.leap.CommandDispatcher.checkRemoteExceptions(CommandDispatcher.java:510)
-	at jade.imtp.leap.CommandDispatcher.dispatchSerializedCommand(CommandDispatcher.java:413)
-	at jade.imtp.leap.CommandDispatcher.dispatchCommand(CommandDispatcher.java:340)
-	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:69)
-	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
-	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
-	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchBuyer(Launcher.java:388)
-	at negotiation.Launcher.runHeadless(Launcher.java:93)
-	at negotiation.Launcher.main(Launcher.java:70)
-[Launcher] ERROR connecting to JADE platform: JADE createAgentContainer returned null - connection failed
-[Launcher] Make sure:
-  1. HOST is running (someone selected HOST in the launcher)
-  2. Host IP is correct: 127.0.0.1
-  3. Port 1099 is not blocked by firewall
-  4. Both machines are on the same network
-java.lang.Exception: JADE createAgentContainer returned null - connection failed
-	at negotiation.Launcher.joinPlatform(Launcher.java:420)
-	at negotiation.Launcher.launchBuyer(Launcher.java:388)
-	at negotiation.Launcher.runHeadless(Launcher.java:93)
-	at negotiation.Launcher.main(Launcher.java:70)
-[Launcher] Failed to start: JADE createAgentContainer returned null - connection failed
-java.lang.Exception: JADE createAgentContainer returned null - connection failed
-	at negotiation.Launcher.joinPlatform(Launcher.java:420)
-	at negotiation.Launcher.launchBuyer(Launcher.java:388)
-	at negotiation.Launcher.runHeadless(Launcher.java:93)
-	at negotiation.Launcher.main(Launcher.java:70)
+May 11, 2026 4:41:58 PM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 11, 2026 4:41:58 PM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 11, 2026 4:41:58 PM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 11, 2026 4:41:58 PM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 11, 2026 4:41:58 PM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 11, 2026 4:41:58 PM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market@172.17.75.103 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.17.75.103
+[Launcher] Buyer agent 'Tan06' joined buyers container at 172.17.75.103
+[Launcher] BUYER 'Tan06' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-11 16:41:58] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Buyer Agent 'Tan06' started. AID: Tan06@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Tan06_config.json
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [BD429D26]
+[Buyer] [2026-05-11 16:42:00] [INFO] Requirements submitted from config: Toyota (2021–any) ≤ RM 109000
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM82000 budget=RM109000 maxRounds=20
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Dealer: ToyotaDealer  Listing: 7DAD6863  Asking: RM 99000
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] started | Strategy: Time-Dependent (CONCEDER) | First offer: RM 82000 | Budget: RM 109000 | Max rounds: 20
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] AutoNegotiationBehaviour started for negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473]  Dealer: ToyotaDealer  Listing: E853059E  Asking: RM 97000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Round 1 — Opening offer: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Budget ceiling: RM 109000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481]  Dealer: ToyotaDealer  Listing: F8911047  Asking: RM 91000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489]  Dealer: ToyotaDealer  Listing: 375529E1  Asking: RM 82000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498]  Dealer: ToyotaDealer  Listing: 570B48AD  Asking: RM 94000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505]  Dealer: ToyotaDealer  Listing: 50D61A8F  Asking: RM 83000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement BD429D26 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:01] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:42:01] [INFO] [AUTO] Round 2 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:42:01] [INFO] [AUTO] COUNTER RM 97200 — Round 2/20 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM97200
+[Buyer] [2026-05-11 16:42:01] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 97200
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] Round 3 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] COUNTER RM 98800 — Round 3/20 | Curve=CONCEDER β=4.00 | Progress=15% → Offer RM98800
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98900
+[Buyer] [2026-05-11 16:42:04] [INFO] [AUTO] Round 4 | Dealer offered RM 98900
+[Buyer] [2026-05-11 16:42:04] [INFO] [AUTO] COUNTER RM 98800 — Round 4/20 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM100100
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98700
+[Buyer] [2026-05-11 16:42:06] [INFO] [AUTO] Round 5 | Dealer offered RM 98700
+[Buyer] [2026-05-11 16:42:06] [INFO] [AUTO] COUNTER RM 98600 — Round 5/20 | Curve=CONCEDER β=4.00 | Progress=25% → Offer RM101100
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98600
+[Buyer] [2026-05-11 16:42:08] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Final price: RM 98600
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Tan06' shutting down.
+[Buyer] [2026-05-11 17:01:39] [INFO] Emergency save sent — 6 ongoing negotiations

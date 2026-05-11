@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+68,1,"TIGHT_GAP","FIXED_INCREMENT_5PCT","Fixed Increment (5% per round)","TIME_DEPENDENT_CONCEDER","Time-Dependent (CONCEDER)","DEAL","DEALER",5,11,80000,62400,72800,71200,72800,7200,9.00,"exp_068_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_CONCEDER"

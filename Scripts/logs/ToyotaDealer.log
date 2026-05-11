@@ -1,78 +1,120 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\ToyotaDealer.log
 [Launcher] Creating sellers container...
-[Launcher] Connecting to JADE platform at 127.0.0.1:1099...
-[Launcher] Binding to local IP: 172.17.67.191
-May 08, 2026 1:43:55 PM jade.core.Runtime beginContainer
+[Launcher] Connecting to JADE platform at 172.17.75.103:1099...
+[Launcher] Binding to local IP: 172.17.75.103
+May 11, 2026 4:41:47 PM jade.core.Runtime beginContainer
 INFO: ----------------------------------
     This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
     downloaded in Open Source, under LGPL restrictions,
     at http://jade.tilab.com/
 ----------------------------------------
-May 08, 2026 1:43:55 PM jade.imtp.leap.LEAPIMTPManager initialize
+May 11, 2026 4:41:47 PM jade.imtp.leap.LEAPIMTPManager initialize
 INFO: Listening for intra-platform commands on address:
-- jicp://172.17.67.191:1099
+- jicp://172.17.75.103:53742
 
-May 08, 2026 1:43:55 PM jade.core.AgentContainerImpl joinPlatform
-SEVERE: Some problem occurred while joining agent platform.
-jade.core.ProfileException: Can't get a proxy to the Platform Manager - Caused by:  Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:529)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchDealer(Launcher.java:365)
-	at negotiation.Launcher.runHeadless(Launcher.java:92)
-	at negotiation.Launcher.main(Launcher.java:70)
-Nested Exception:
-jade.core.IMTPException: Dispatcher error - Caused by:  DispatcherException in remote site. No skeleton for object-id 0
-	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:75)
-	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
-	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
-	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchDealer(Launcher.java:365)
-	at negotiation.Launcher.runHeadless(Launcher.java:92)
-	at negotiation.Launcher.main(Launcher.java:70)
-Nested Exception:
-jade.imtp.leap.DispatcherException: DispatcherException in remote site. No skeleton for object-id 0
-	at jade.imtp.leap.CommandDispatcher.checkRemoteExceptions(CommandDispatcher.java:510)
-	at jade.imtp.leap.CommandDispatcher.dispatchSerializedCommand(CommandDispatcher.java:413)
-	at jade.imtp.leap.CommandDispatcher.dispatchCommand(CommandDispatcher.java:340)
-	at jade.imtp.leap.PlatformManagerStub.getPlatformName(PlatformManagerStub.java:69)
-	at jade.imtp.leap.CommandDispatcher.setPlatformManager(CommandDispatcher.java:227)
-	at jade.imtp.leap.CommandDispatcher.getPlatformManagerProxy(CommandDispatcher.java:218)
-	at jade.imtp.leap.LEAPIMTPManager.getPlatformManagerProxy(LEAPIMTPManager.java:234)
-	at jade.core.ProfileImpl.createPlatformManager(ProfileImpl.java:526)
-	at jade.core.ProfileImpl.getPlatformManager(ProfileImpl.java:442)
-	at jade.core.ProfileImpl.getServiceManager(ProfileImpl.java:456)
-	at jade.core.AgentContainerImpl.init(AgentContainerImpl.java:348)
-	at jade.core.AgentContainerImpl.joinPlatform(AgentContainerImpl.java:500)
-	at jade.core.Runtime.createAgentContainer(Runtime.java:127)
-	at negotiation.Launcher.joinPlatform(Launcher.java:418)
-	at negotiation.Launcher.launchDealer(Launcher.java:365)
-	at negotiation.Launcher.runHeadless(Launcher.java:92)
-	at negotiation.Launcher.main(Launcher.java:70)
-[Launcher] ERROR connecting to JADE platform: JADE createAgentContainer returned null - connection failed
-[Launcher] Make sure:
-  1. HOST is running (someone selected HOST in the launcher)
-  2. Host IP is correct: 127.0.0.1
-  3. Port 1099 is not blocked by firewall
-  4. Both machines are on the same network
-java.lang.Exception: JADE createAgentContainer returned null - connection failed
-	at negotiation.Launcher.joinPlatform(Launcher.java:420)
-	at negotiation.Launcher.launchDealer(Launcher.java:365)
-	at negotiation.Launcher.runHeadless(Launcher.java:92)
-	at negotiation.Launcher.main(Launcher.java:70)
-[Launcher] Failed to start: JADE createAgentContainer returned null - connection failed
-java.lang.Exception: JADE createAgentContainer returned null - connection failed
-	at negotiation.Launcher.joinPlatform(Launcher.java:420)
-	at negotiation.Launcher.launchDealer(Launcher.java:365)
-	at negotiation.Launcher.runHeadless(Launcher.java:92)
-	at negotiation.Launcher.main(Launcher.java:70)
+May 11, 2026 4:41:48 PM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 11, 2026 4:41:48 PM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 11, 2026 4:41:48 PM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 11, 2026 4:41:48 PM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 11, 2026 4:41:48 PM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 11, 2026 4:41:48 PM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container sellers-market-1@172.17.75.103 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Sellers container 'sellers-market' created at 172.17.75.103
+[Launcher] Dealer agent 'ToyotaDealer' joined sellers container at 172.17.75.103
+[Launcher] DEALER 'ToyotaDealer' running. Press Ctrl+C to stop.
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] Dealer Agent 'ToyotaDealer' started. AID: ToyotaDealer@172.17.75.103:1099/JADE
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\ToyotaDealer_config.json — 20 listings
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:ToyotaDealer] [2026-05-11 16:41:48] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Toyota Hilux  RM 106000  [F2A5AE90]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Toyota Hilux  RM 109000  [9FC6DB3C]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Toyota Hilux  RM 119000  [C763395E]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Toyota Hilux  RM 137000  [6E08C749]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Toyota Hilux  RM 148000  [E323B4E8]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Toyota Hilux  RM 155000  [79E9AA2D]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Toyota Vios  RM 52000  [1727D5E9]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Toyota Vios  RM 61000  [355180D3]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Toyota Vios  RM 70000  [B5F4AA59]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Toyota Vios  RM 82000  [26D02076]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Toyota Vios  RM 83000  [50D61A8F]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Toyota Vios  RM 94000  [570B48AD]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Toyota Vios  RM 97000  [E853059E]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Toyota Yaris  RM 56000  [A154D0FE]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Toyota Yaris  RM 63000  [CA1EA6D4]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Toyota Yaris  RM 69000  [A09EFEE5]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Toyota Yaris  RM 79000  [57D5D1FB]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Toyota Yaris  RM 82000  [375529E1]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Toyota Yaris  RM 91000  [F8911047]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Toyota Yaris  RM 99000  [7DAD6863]
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [INFO] All listings submitted from config.
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F2A5AE90 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 9FC6DB3C confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C763395E confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 6E08C749 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing E323B4E8 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 79E9AA2D confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1727D5E9 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 355180D3 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B5F4AA59 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 26D02076 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 50D61A8F confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 570B48AD confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing E853059E confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A154D0FE confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing CA1EA6D4 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A09EFEE5 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 57D5D1FB confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 375529E1 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F8911047 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:41:49] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7DAD6863 confirmed stored
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Buyer: Tan06  Listing: 7DAD6863
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 99000 | Minimum: RM 89100 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473]  Buyer: Tan06  Listing: E853059E
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 97000 | Minimum: RM 87300 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481]  Buyer: Tan06  Listing: F8911047
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 91000 | Minimum: RM 81900 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489]  Buyer: Tan06  Listing: 375529E1
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 82000 | Minimum: RM 73800 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498]  Buyer: Tan06  Listing: 570B48AD
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 94000 | Minimum: RM 84600 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505]  Buyer: Tan06  Listing: 50D61A8F
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505] ready | Strategy: Time-Dependent (BOULWARE) | Starting price: RM 83000 | Minimum: RM 74700 | Max rounds: 10
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505]
+[Dealer:ToyotaDealer] [2026-05-11 16:42:00] [MESSAGE] from Broker←Tan06 [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Dealer:ToyotaDealer] [2026-05-11 16:42:01] [INFO] [AUTO-DEALER] Round 1 | Buyer offered RM 82000
+[Dealer:ToyotaDealer] [2026-05-11 16:42:01] [INFO] [AUTO-DEALER] COUNTER RM 99000 — Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM99000
+[Dealer:ToyotaDealer] [2026-05-11 16:42:01] [MESSAGE] to Broker→Tan06 [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Dealer:ToyotaDealer] [2026-05-11 16:42:02] [MESSAGE] from Broker←Tan06 [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 97200
+[Dealer:ToyotaDealer] [2026-05-11 16:42:02] [INFO] [AUTO-DEALER] Round 2 | Buyer offered RM 97200
+[Dealer:ToyotaDealer] [2026-05-11 16:42:02] [INFO] [AUTO-DEALER] COUNTER RM 99000 — Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM99000
+[Dealer:ToyotaDealer] [2026-05-11 16:42:02] [MESSAGE] to Broker→Tan06 [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Dealer:ToyotaDealer] [2026-05-11 16:42:04] [MESSAGE] from Broker←Tan06 [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Dealer:ToyotaDealer] [2026-05-11 16:42:04] [INFO] [AUTO-DEALER] Round 3 | Buyer offered RM 98800
+[Dealer:ToyotaDealer] [2026-05-11 16:42:04] [INFO] [AUTO-DEALER] COUNTER RM 98900 — Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM98900
+[Dealer:ToyotaDealer] [2026-05-11 16:42:04] [MESSAGE] to Broker→Tan06 [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98900
+[Dealer:ToyotaDealer] [2026-05-11 16:42:06] [MESSAGE] from Broker←Tan06 [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Dealer:ToyotaDealer] [2026-05-11 16:42:06] [INFO] [AUTO-DEALER] Round 4 | Buyer offered RM 98800
+[Dealer:ToyotaDealer] [2026-05-11 16:42:06] [INFO] [AUTO-DEALER] COUNTER RM 98700 — Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM98700
+[Dealer:ToyotaDealer] [2026-05-11 16:42:06] [MESSAGE] to Broker→Tan06 [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98700
+[Dealer:ToyotaDealer] [2026-05-11 16:42:08] [MESSAGE] from Broker←Tan06 [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98600
+[Dealer:ToyotaDealer] [2026-05-11 16:42:08] [INFO] [AUTO-DEALER] Round 5 | Buyer offered RM 98600
+[Dealer:ToyotaDealer] [2026-05-11 16:42:08] [INFO] [AUTO-DEALER] Impasse detected — buyer at RM 98600 is above our floor — accepting to close deal.
+[Dealer:ToyotaDealer] [2026-05-11 16:42:08] [MESSAGE] to Broker       [NEG_ACCEPT                  ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.ACCEPT_PROPOSAL ACCEPTED at RM 98600
+[Dealer:ToyotaDealer] [2026-05-11 16:42:08] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Final price: RM 98600
+[Dealer:ToyotaDealer] [2026-05-11 17:01:39] [INFO] Dealer 'ToyotaDealer' shutting down.
+[Dealer:ToyotaDealer] [2026-05-11 17:01:39] [INFO] Emergency save sent — 6 ongoing negotiations
