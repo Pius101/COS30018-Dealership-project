@@ -10,7 +10,7 @@ import java.util.Queue;
 
 /**
  * AutoNegotiationBehaviour — drives automated buyer negotiation.
-  * One instance is created per assignment when the buyer's config has
+ * One instance is created per assignment when the buyer's config has
  * autoNegotiate=true. It runs alongside the existing BuyerMessageBehaviour
  * which keeps handling all JADE message receiving as normal.
  *
@@ -37,6 +37,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
     private int     round        = 0;
     private boolean active       = true;
     private boolean waitingFirst = true; // true until dealer sends their first offer
+    private long    resumeAt     = 0;    // Extension 1: non-blocking pacing gate
+    private final String requirementId;  // Extension 1: groups sibling negotiations
 
     // How long to wait between queue polls in ms
     private static final long POLL_INTERVAL_MS = 300;
@@ -50,6 +52,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         super(buyer);
         this.buyer         = buyer;
         this.negotiationId = assignment.getNegotiationId();
+        this.requirementId = assignment.getRequirement() != null
+                ? assignment.getRequirement().getRequirementId() : null;
         this.queue         = queue;
 
         // Build the context from params
@@ -114,6 +118,13 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
     public void action() {
         if (!active) {
             block();
+            return;
+        }
+
+        // Extension 1: non-blocking pacing. Never Thread.sleep on the shared agent
+        // thread — it would freeze the buyer's other concurrent negotiations.
+        if (System.currentTimeMillis() < resumeAt) {
+            block(POLL_INTERVAL_MS);
             return;
         }
 
@@ -182,30 +193,43 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         // Tell the strategy what the dealer just offered
         strategy.onOpponentOffer(incoming.getPrice(), round);
 
+        // Extension 1: publish this dealer's offer to the buyer's coordinator and pull
+        // the best rival price in as our BATNA, so this negotiation is informed by the
+        // others running concurrently for the same requirement.
+        buyer.recordDealerOffer(negotiationId, incoming.getPrice());
+        ctx.batna = buyer.bestAlternativeFor(negotiationId);
+
         buyer.log.info("[AUTO] Round " + round + " | Dealer offered RM "
-                + String.format("%.0f", incoming.getPrice()));
+                + String.format("%.0f", incoming.getPrice())
+                + (ctx.hasBATNA() ? "  | BATNA (best rival) RM "
+                + String.format("%.0f", ctx.batna) : ""));
 
         // ── Decision point ────────────────────────────────────────────────────
 
         // Hit the deadline — must decide now
         if (round >= ctx.maxRounds) {
-            if (incoming.getPrice() <= ctx.reservationPrice) {
+            boolean withinBudget  = incoming.getPrice() <= ctx.reservationPrice;
+            boolean bestAvailable = isBestAvailable(incoming.getPrice());
+            if (withinBudget && bestAvailable) {
                 String reason = "Deadline reached (round " + round + "/" + ctx.maxRounds
                         + ") — accepting RM " + String.format("%.0f", incoming.getPrice())
-                        + " as it is within budget.";
+                        + " (within budget and best price available).";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning(reason);
                 buyer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted at deadline.",
                         round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
+                buyer.commitDealAndCancelSiblings(negotiationId);
             } else {
-                String reason = "Deadline reached but offer RM "
-                        + String.format("%.0f", incoming.getPrice())
-                        + " exceeds budget RM "
-                        + String.format("%.0f", ctx.reservationPrice)
+                String reason = "Deadline reached — "
+                        + (!withinBudget
+                        ? "offer RM " + String.format("%.0f", incoming.getPrice())
+                        + " exceeds budget RM " + String.format("%.0f", ctx.reservationPrice)
+                        : "a better price (RM " + String.format("%.0f", ctx.batna)
+                        + ") is available in a concurrent negotiation")
                         + " — walking away.";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning(reason);
-                buyer.rejectOffer(negotiationId, "Auto-rejected: offer exceeds budget at deadline.",
+                buyer.rejectOffer(negotiationId, "Auto-rejected at deadline.",
                         round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
@@ -215,7 +239,9 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         // Impasse detection — if neither side has moved meaningfully in 3 rounds,
         // the negotiation is stuck. Accept if within budget, otherwise reject.
         if (ctx.isImpasse()) {
-            if (incoming.getPrice() <= ctx.reservationPrice) {
+            boolean withinBudget  = incoming.getPrice() <= ctx.reservationPrice;
+            boolean bestAvailable = isBestAvailable(incoming.getPrice());
+            if (withinBudget && bestAvailable) {
                 String reason = "Impasse detected (neither side moved >0.5% in last 3 rounds)"
                         + " — accepting current offer RM "
                         + String.format("%.0f", incoming.getPrice()) + " to close the deal.";
@@ -224,15 +250,18 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                 buyer.acceptOffer(negotiationId, incoming.getPrice(),
                         "Auto-accepted: impasse detected.",
                         round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
+                buyer.commitDealAndCancelSiblings(negotiationId);
             } else {
-                String reason = "Impasse detected and offer RM "
-                        + String.format("%.0f", incoming.getPrice())
-                        + " still exceeds budget RM "
-                        + String.format("%.0f", ctx.reservationPrice)
-                        + " — ending negotiation.";
+                String reason = "Impasse detected — "
+                        + (!withinBudget
+                        ? "offer RM " + String.format("%.0f", incoming.getPrice())
+                        + " exceeds budget RM " + String.format("%.0f", ctx.reservationPrice)
+                        : "a better price (RM " + String.format("%.0f", ctx.batna)
+                        + ") is available elsewhere")
+                        + " — ending this negotiation.";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning("⚠ " + reason);
-                buyer.rejectOffer(negotiationId, "Auto-rejected: impasse, over budget.",
+                buyer.rejectOffer(negotiationId, "Auto-rejected: impasse.",
                         round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
@@ -240,13 +269,20 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         }
 
         // Ask strategy: should we accept?
-        if (strategy.shouldAccept(incoming.getPrice(), ctx)) {
+        // Extension 1: hold out if a sibling negotiation already has a clearly better price.
+        if (!isBestAvailable(incoming.getPrice())) {
+            buyer.log.info("[AUTO][CONCURRENT] Not accepting RM "
+                    + String.format("%.0f", incoming.getPrice())
+                    + " — a better price RM " + String.format("%.0f", ctx.batna)
+                    + " is on the table elsewhere. Countering instead.");
+        } else if (strategy.shouldAccept(incoming.getPrice(), ctx)) {
             String reasoning = strategy.getLastReasoning();
             buyer.log.info("[AUTO] ACCEPT — " + reasoning);
             appendReasoning("✅ ACCEPT — " + reasoning);
             buyer.acceptOffer(negotiationId, incoming.getPrice(),
                     "Auto-accepted. " + reasoning,
                     round, strategy.getDisplayName(), reasoning, utilityFor(incoming.getPrice()));
+            buyer.commitDealAndCancelSiblings(negotiationId);
             active = false;
             return;
         }
@@ -276,10 +312,38 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         buyer.sendOffer(negotiationId, myOffer, "",
                 round, strategy.getDisplayName(), reasoning, utilityFor(myOffer));
 
-        // Brief pause between rounds so the negotiation is observable in the GUI
-        // and doesn't complete too fast to follow. 1.5 seconds per round.
-        try { Thread.sleep(1500); } catch (InterruptedException ignored) {}
+        // Extension 1: pace the next action WITHOUT blocking the shared agent thread,
+        // so the buyer's concurrent negotiations keep interleaving. (Replaces Thread.sleep.)
+        resumeAt = System.currentTimeMillis() + 1200;
     }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Extension 1: concurrent-negotiation coordination
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /** Accept only if this price is at least as good as the best concurrent alternative. */
+    private boolean isBestAvailable(double price) {
+        return !ctx.hasBATNA() || price <= ctx.batna + 0.01;
+    }
+
+    /**
+     * Called by BuyerAgent when a sibling negotiation (same requirement) closed a deal.
+     * This negotiation bows out: it tells its dealer it's ending, then deactivates.
+     */
+    public void cancelDueToBetterDeal(String winningNegId) {
+        if (!active) return;
+        active = false;
+        String reason = "Buyer secured the car in a concurrent negotiation ["
+                + winningNegId + "] — ending this one.";
+        buyer.log.info("[AUTO][CONCURRENT] " + reason);
+        appendReasoning("🏁 " + reason);
+        buyer.rejectOffer(negotiationId, "Buyer purchased elsewhere.",
+                round, strategy.getDisplayName(), reason, 0.0);
+        buyer.deregisterAuto(negotiationId);
+    }
+
+    /** This negotiation's requirement id (groups it with its siblings). */
+    public String getRequirementId() { return requirementId; }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Helper

@@ -1,0 +1,894 @@
+Folder PATH listing for volume New Volume
+Volume serial number is 000000AF 40C2:1CDC
+D:.
+¦   .gitignore
+¦   APDescription.txt
+¦   car-negotiation.iml
+¦   change_descriptions.txt
+¦   MTPs-Main-Container.txt
+¦   pom.xml
+¦   README.md
+¦   rma-walkthrough.html
+¦   run-appV1.2.bat
+¦   structure.txt
+¦   
++---.idea
+¦   ¦   .gitignore
+¦   ¦   .name
+¦   ¦   compiler.xml
+¦   ¦   encodings.xml
+¦   ¦   jarRepositories.xml
+¦   ¦   material_theme_project_new.xml
+¦   ¦   misc.xml
+¦   ¦   modules.xml
+¦   ¦   vcs.xml
+¦   ¦   workspace.xml
+¦   ¦   
+¦   +---runConfigurations
+¦           spawn_agents.xml
+¦           
++---agent_configs
+¦       Ahmad84_config.json
+¦       Ahmad86_config.json
+¦       Aisha34_config.json
+¦       HondaDealer_config.json
+¦       Lim80_config.json
+¦       Lim99_config.json
+¦       MazdaDealer_config.json
+¦       Muthu44_config.json
+¦       NissanDealer_config.json
+¦       PeroduaDealer_config.json
+¦       ProtonDealer_config.json
+¦       Raju21_config.json
+¦       Raju86_config.json
+¦       Tan06_config.json
+¦       Tan78_config.json
+¦       ToyotaDealer_config.json
+¦       Zara71_config.json
+¦       
++---auto_market_configs
+¦       Buyer1.json
+¦       Buyer2.json
+¦       Buyer3.json
+¦       Buyer4.json
+¦       Buyer5.json
+¦       Dealer1.json
+¦       Dealer2.json
+¦       Dealer3.json
+¦       Dealer4.json
+¦       Dealer5.json
+¦       
++---experiment_results
+¦   ¦   negotiation-test-report.html
+¦   ¦   
+¦   +---session_2026-05-11_18-25-03
+¦       ¦   summary.csv
+¦       ¦   summary.txt
+¦       ¦   
+¦       +---exp_001_BALANCED_BAYESIAN_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_002_BALANCED_BAYESIAN_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_003_BALANCED_BAYESIAN_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_004_BALANCED_BAYESIAN_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_005_BALANCED_BAYESIAN_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_006_BALANCED_BAYESIAN_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_007_BALANCED_TIME_DEPENDENT_CONCEDER_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_008_BALANCED_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_009_BALANCED_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_010_BALANCED_TIME_DEPENDENT_CONCEDER_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_011_BALANCED_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_012_BALANCED_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_013_BALANCED_TIME_DEPENDENT_BOULWARE_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_014_BALANCED_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_015_BALANCED_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_016_BALANCED_TIME_DEPENDENT_BOULWARE_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_017_BALANCED_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_018_BALANCED_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_019_BALANCED_TIT_FOR_TAT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_020_BALANCED_TIT_FOR_TAT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_021_BALANCED_TIT_FOR_TAT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_022_BALANCED_TIT_FOR_TAT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_023_BALANCED_TIT_FOR_TAT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_024_BALANCED_TIT_FOR_TAT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_025_BALANCED_FIXED_INCREMENT_2PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_026_BALANCED_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_027_BALANCED_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_028_BALANCED_FIXED_INCREMENT_2PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_029_BALANCED_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_030_BALANCED_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_031_BALANCED_FIXED_INCREMENT_5PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_032_BALANCED_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_033_BALANCED_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_034_BALANCED_FIXED_INCREMENT_5PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_035_BALANCED_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_036_BALANCED_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_037_TIGHT_GAP_BAYESIAN_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_038_TIGHT_GAP_BAYESIAN_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_039_TIGHT_GAP_BAYESIAN_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_040_TIGHT_GAP_BAYESIAN_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_041_TIGHT_GAP_BAYESIAN_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_042_TIGHT_GAP_BAYESIAN_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_043_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_044_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_045_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_046_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_047_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_048_TIGHT_GAP_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_049_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_050_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_051_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_052_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_053_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_054_TIGHT_GAP_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_055_TIGHT_GAP_TIT_FOR_TAT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_056_TIGHT_GAP_TIT_FOR_TAT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_057_TIGHT_GAP_TIT_FOR_TAT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_058_TIGHT_GAP_TIT_FOR_TAT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_059_TIGHT_GAP_TIT_FOR_TAT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_060_TIGHT_GAP_TIT_FOR_TAT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_061_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_062_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_063_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_064_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_065_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_066_TIGHT_GAP_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_067_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_068_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_069_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_070_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_071_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_072_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_073_WIDE_GAP_BAYESIAN_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_074_WIDE_GAP_BAYESIAN_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_075_WIDE_GAP_BAYESIAN_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_076_WIDE_GAP_BAYESIAN_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_077_WIDE_GAP_BAYESIAN_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_078_WIDE_GAP_BAYESIAN_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_079_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_080_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_081_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_082_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_083_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_084_WIDE_GAP_TIME_DEPENDENT_CONCEDER_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_085_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_086_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_087_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_088_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_089_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_090_WIDE_GAP_TIME_DEPENDENT_BOULWARE_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_091_WIDE_GAP_TIT_FOR_TAT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_092_WIDE_GAP_TIT_FOR_TAT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_093_WIDE_GAP_TIT_FOR_TAT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_094_WIDE_GAP_TIT_FOR_TAT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_095_WIDE_GAP_TIT_FOR_TAT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_096_WIDE_GAP_TIT_FOR_TAT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_097_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_098_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_099_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_100_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_101_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_102_WIDE_GAP_FIXED_INCREMENT_2PCT_vs_FIXED_INCREMENT_5PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_103_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_BAYESIAN
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_104_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_CONCEDER
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_105_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_TIME_DEPENDENT_BOULWARE
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_106_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_TIT_FOR_TAT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_107_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_2PCT
+¦       ¦       result.csv
+¦       ¦       result.json
+¦       ¦       transcript.txt
+¦       ¦       
+¦       +---exp_108_WIDE_GAP_FIXED_INCREMENT_5PCT_vs_FIXED_INCREMENT_5PCT
+¦               result.csv
+¦               result.json
+¦               transcript.txt
+¦               
++---lib
+¦       jade.jar
+¦       
++---logs
+¦   ¦   negotiation-test-report.csv
+¦   ¦   negotiation-test-report.txt
+¦   ¦   system.log
+¦   ¦   
+¦   +---agents
+¦           Broker.log
+¦           Buyer.log
+¦           Dealer_Agent1.log
+¦           
++---META-INF
+¦       MANIFEST.MF
+¦       
++---reearch paper
+¦       2503.06416v3.pdf
+¦       3463952.3464087.pdf
+¦       Hybrid_Approach_for_Concurrent_Automated_Negotiation.pdf
+¦       p1116.pdf
+¦       p1163.pdf
+¦       Pocket_negotiator.pdf
+¦       s10458-024-09678-1.pdf
+¦       s10489-022-03662-6.pdf
+¦       theses_3110_2.pdf
+¦       
++---Scripts
+¦   ¦   APDescription.txt
+¦   ¦   car_market_data.json
+¦   ¦   MTPs-Main-Container.txt
+¦   ¦   spawn_agents_fixed.py
+¦   ¦   
+¦   +---agent_configs
+¦   ¦       Ahmad86_config.json
+¦   ¦       Aisha34_config.json
+¦   ¦       HondaDealer_config.json
+¦   ¦       MazdaDealer_config.json
+¦   ¦       Muthu44_config.json
+¦   ¦       NissanDealer_config.json
+¦   ¦       PeroduaDealer_config.json
+¦   ¦       Priya17_config.json
+¦   ¦       Priya85_config.json
+¦   ¦       ProtonDealer_config.json
+¦   ¦       Raju86_config.json
+¦   ¦       Tan06_config.json
+¦   ¦       ToyotaDealer_config.json
+¦   ¦       Wei88_config.json
+¦   ¦       Zara71_config.json
+¦   ¦       
+¦   +---conversations
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.csv
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.jsonl
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.txt
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.csv
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.jsonl
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.txt
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517_Tan06_vs_ToyotaDealer_Toyota_Vios_2023.csv
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517_Tan06_vs_ToyotaDealer_Toyota_Vios_2023.jsonl
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517_Tan06_vs_ToyotaDealer_Toyota_Vios_2023.txt
+¦   ¦       negotiation-history.csv
+¦   ¦       negotiation-history.jsonl
+¦   ¦       
+¦   +---experiment_results
+¦   ¦       negotiation-test-report.html
+¦   ¦       
+¦   +---lib
+¦   ¦       jade.jar
+¦   ¦       
+¦   +---logs
+¦   ¦   ¦   Ahmad86.log
+¦   ¦   ¦   Aisha34.log
+¦   ¦   ¦   error.log
+¦   ¦   ¦   HondaDealer.log
+¦   ¦   ¦   host.log
+¦   ¦   ¦   MazdaDealer.log
+¦   ¦   ¦   Muthu44.log
+¦   ¦   ¦   negotiation-test-report.csv
+¦   ¦   ¦   negotiation-test-report.txt
+¦   ¦   ¦   NissanDealer.log
+¦   ¦   ¦   PeroduaDealer.log
+¦   ¦   ¦   Priya17.log
+¦   ¦   ¦   Priya85.log
+¦   ¦   ¦   ProtonDealer.log
+¦   ¦   ¦   Raju86.log
+¦   ¦   ¦   system.log
+¦   ¦   ¦   Tan06.log
+¦   ¦   ¦   ToyotaDealer.log
+¦   ¦   ¦   Wei88.log
+¦   ¦   ¦   Zara71.log
+¦   ¦   ¦   
+¦   ¦   +---agents
+¦   ¦           Broker.log
+¦   ¦           Buyer.log
+¦   ¦           Dealer_HondaDealer.log
+¦   ¦           Dealer_MazdaDealer.log
+¦   ¦           Dealer_NissanDealer.log
+¦   ¦           Dealer_PeroduaDealer.log
+¦   ¦           Dealer_ProtonDealer.log
+¦   ¦           Dealer_ToyotaDealer.log
+¦   ¦           
+¦   +---reports
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer.html
+¦   ¦       neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517_Tan06_vs_ToyotaDealer.html
+¦   ¦       
+¦   +---__pycache__
+¦           spawn_agents_fixed.cpython-314.pyc
+¦           
++---src
+¦   +---main
+¦       +---java
+¦           +---negotiation
+¦               ¦   Launcher.java
+¦               ¦   
+¦               +---agents
+¦               ¦       BrokerAgent.java
+¦               ¦       BuyerAgent.java
+¦               ¦       DealerAgent.java
+¦               ¦       
+¦               +---behaviours
+¦               ¦       AutoNegotiationBehaviour.java
+¦               ¦       BrokerMessageBehaviour.java
+¦               ¦       BuyerMessageBehaviour.java
+¦               ¦       DealerMessageBehaviour.java
+¦               ¦       DealerNegotiationBehaviour.java
+¦               ¦       
+¦               +---experiments
+¦               ¦       StrategyExperimentRunner.java
+¦               ¦       
+¦               +---gui
+¦               ¦       BrokerGui.java
+¦               ¦       BuyerGui.java
+¦               ¦       DealerGui.java
+¦               ¦       
+¦               +---messages
+¦               ¦       Ontology.java
+¦               ¦       
+¦               +---models
+¦               ¦       Assignment.java
+¦               ¦       BuyerShortlistEntry.java
+¦               ¦       BuyerShortlistMessage.java
+¦               ¦       CarListing.java
+¦               ¦       CarRequirement.java
+¦               ¦       DealerSelection.java
+¦               ¦       MatchingResults.java
+¦               ¦       NegotiationMessage.java
+¦               ¦       PotentialBuyerEntry.java
+¦               ¦       PotentialBuyerList.java
+¦               ¦       
+¦               +---network
+¦               ¦       NetworkDiscovery.java
+¦               ¦       
+¦               +---report
+¦               ¦       NegotiationReportGenerator.java
+¦               ¦       
+¦               +---strategy
+¦               ¦       BayesianLearnerStrategy.java
+¦               ¦       FixedIncrementStrategy.java
+¦               ¦       MultiAttributeUtility.java
+¦               ¦       NegotiationContext.java
+¦               ¦       NegotiationStrategy.java
+¦               ¦       OpponentModel.java
+¦               ¦       StrategyRegistry.java
+¦               ¦       TimeDependentStrategy.java
+¦               ¦       TitForTatStrategy.java
+¦               ¦       
+¦               +---testing
+¦               ¦       NegotiationTestLogger.java
+¦               ¦       
+¦               +---util
+¦                       AppLogger.java
+¦                       ConversationLogger.java
+¦                       GuiMode.java
+¦                       HeadlessLogConfigurer.java
+¦                       NegotiationAuditService.java
+¦                       
++---target
+    ¦   car-negotiation-1.0-SNAPSHOT-jar-with-dependencies.jar
+    ¦   car-negotiation-1.0-SNAPSHOT.jar
+    ¦   
+    +---archive-tmp
+    +---classes
+    ¦   +---negotiation
+    ¦       ¦   Launcher.class
+    ¦       ¦   
+    ¦       +---agents
+    ¦       ¦       BrokerAgent$1.class
+    ¦       ¦       BrokerAgent.class
+    ¦       ¦       BuyerAgent$BuyerConfig.class
+    ¦       ¦       BuyerAgent$EmergencyPayload.class
+    ¦       ¦       BuyerAgent.class
+    ¦       ¦       DealerAgent$DealerConfig$ListingSpec.class
+    ¦       ¦       DealerAgent$DealerConfig.class
+    ¦       ¦       DealerAgent$EmergencyPayload.class
+    ¦       ¦       DealerAgent.class
+    ¦       ¦       
+    ¦       +---behaviours
+    ¦       ¦       AutoNegotiationBehaviour$AutoNegotiationParams.class
+    ¦       ¦       AutoNegotiationBehaviour.class
+    ¦       ¦       BrokerMessageBehaviour.class
+    ¦       ¦       BuyerMessageBehaviour.class
+    ¦       ¦       DealerMessageBehaviour.class
+    ¦       ¦       DealerNegotiationBehaviour$AutoDealerParams.class
+    ¦       ¦       DealerNegotiationBehaviour.class
+    ¦       ¦       
+    ¦       +---experiments
+    ¦       ¦       StrategyExperimentRunner$ExperimentCase.class
+    ¦       ¦       StrategyExperimentRunner$ExperimentOptions.class
+    ¦       ¦       StrategyExperimentRunner$ExperimentResult.class
+    ¦       ¦       StrategyExperimentRunner$ExperimentTask.class
+    ¦       ¦       StrategyExperimentRunner$Scenario.class
+    ¦       ¦       StrategyExperimentRunner$TranscriptLine.class
+    ¦       ¦       StrategyExperimentRunner.class
+    ¦       ¦       
+    ¦       +---gui
+    ¦       ¦       BrokerGui$1.class
+    ¦       ¦       BrokerGui$2.class
+    ¦       ¦       BrokerGui.class
+    ¦       ¦       BuyerGui$1.class
+    ¦       ¦       BuyerGui$NegotiationPanel.class
+    ¦       ¦       BuyerGui.class
+    ¦       ¦       DealerGui$1.class
+    ¦       ¦       DealerGui$NegotiationPanel.class
+    ¦       ¦       DealerGui.class
+    ¦       ¦       
+    ¦       +---messages
+    ¦       ¦       Ontology$MESSAGE_TYPE.class
+    ¦       ¦       Ontology.class
+    ¦       ¦       
+    ¦       +---models
+    ¦       ¦       Assignment.class
+    ¦       ¦       BuyerShortlistEntry.class
+    ¦       ¦       CarListing.class
+    ¦       ¦       CarRequirement.class
+    ¦       ¦       NegotiationMessage$Type.class
+    ¦       ¦       NegotiationMessage.class
+    ¦       ¦       PotentialBuyerEntry.class
+    ¦       ¦       
+    ¦       +---network
+    ¦       ¦       NetworkDiscovery.class
+    ¦       ¦       
+    ¦       +---report
+    ¦       ¦       NegotiationReportGenerator$NegotiationReport.class
+    ¦       ¦       NegotiationReportGenerator$RoundEntry.class
+    ¦       ¦       NegotiationReportGenerator.class
+    ¦       ¦       
+    ¦       +---strategy
+    ¦       ¦       BayesianLearnerStrategy$1.class
+    ¦       ¦       BayesianLearnerStrategy.class
+    ¦       ¦       FixedIncrementStrategy$FixedAmountVariant.class
+    ¦       ¦       FixedIncrementStrategy.class
+    ¦       ¦       MultiAttributeUtility.class
+    ¦       ¦       NegotiationContext$Role.class
+    ¦       ¦       NegotiationContext.class
+    ¦       ¦       NegotiationStrategy.class
+    ¦       ¦       OpponentModel$Style.class
+    ¦       ¦       OpponentModel.class
+    ¦       ¦       StrategyRegistry.class
+    ¦       ¦       TimeDependentStrategy$Curve.class
+    ¦       ¦       TimeDependentStrategy.class
+    ¦       ¦       TitForTatStrategy.class
+    ¦       ¦       
+    ¦       +---testing
+    ¦       ¦       NegotiationTestLogger$NegotiationMetrics.class
+    ¦       ¦       NegotiationTestLogger.class
+    ¦       ¦       
+    ¦       +---util
+    ¦               AppLogger.class
+    ¦               ConversationLogger$1.class
+    ¦               ConversationLogger$StrategyMetadata.class
+    ¦               ConversationLogger.class
+    ¦               GuiMode.class
+    ¦               HeadlessLogConfigurer.class
+    ¦               NegotiationAuditService.class
+    ¦               
+    +---generated-sources
+    ¦   +---annotations
+    +---maven-archiver
+    ¦       pom.properties
+    ¦       
+    +---maven-status
+        +---maven-compiler-plugin
+            +---compile
+                +---default-compile
+                        createdFiles.lst
+                        inputFiles.lst
+                        

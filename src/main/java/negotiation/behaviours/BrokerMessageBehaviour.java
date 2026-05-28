@@ -4,8 +4,10 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import negotiation.agents.BrokerAgent;
 import negotiation.messages.Ontology;
+import negotiation.models.BuyerShortlistMessage;
 import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.DealerSelection;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.ConversationLogger;
 
@@ -29,29 +31,25 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
 
         String type = msg.getOntology();
         if (type == null) {
-            broker.log.error("Message with no ontology from " + msg.getSender().getLocalName()
-                    + " | ACL." + aclPerformativeName(msg.getPerformative())
-                    + " | conversationId=" + msg.getConversationId()
-                    + " | content=" + msg.getContent());
+            broker.log.error("Message with no ontology from " + msg.getSender().getLocalName());
             return;
         }
 
         switch (type) {
             case Ontology.TYPE_LISTING_REGISTER   -> handleListingRegister(msg);
             case Ontology.TYPE_BUYER_REQUIREMENTS -> handleBuyerRequirements(msg);
+            case Ontology.TYPE_BUYER_SHORTLIST    -> handleBuyerShortlist(msg);   // NEW (Phase C trigger)
+            case Ontology.TYPE_DEALER_SELECTION   -> handleDealerSelection(msg);  // NEW (Phase D trigger)
             case Ontology.TYPE_NEG_OFFER          -> handleNegotiationMessage(msg, NegotiationMessage.Type.OFFER);
             case Ontology.TYPE_NEG_ACCEPT         -> handleNegotiationAccept(msg);
             case Ontology.TYPE_NEG_REJECT         -> handleNegotiationMessage(msg, NegotiationMessage.Type.REJECT);
-            case "EMERGENCY_SAVE"                  -> handleEmergencySave(msg);
+            case "EMERGENCY_SAVE"                 -> handleEmergencySave(msg);
             default -> broker.log.error("Unknown ontology type: " + type
-                    + " | sender=" + msg.getSender().getLocalName()
-                    + " | ACL." + aclPerformativeName(msg.getPerformative())
-                    + " | conversationId=" + msg.getConversationId()
-                    + " | content=" + msg.getContent());
+                    + "  from " + msg.getSender().getLocalName());
         }
     }
 
-    // ── Handlers ────────────────────────────────────────────────────────────
+    // ── Registration handlers ─────────────────────────────────────────────────
 
     private void handleListingRegister(ACLMessage msg) {
         try {
@@ -69,7 +67,7 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     "ACK for " + listing.getListingId());
         } catch (Exception e) {
             broker.log.error("Bad LISTING_REGISTER from " + msg.getSender().getLocalName()
-                    + " | content=" + msg.getContent(), e);
+                    + ": " + e.getMessage());
         }
     }
 
@@ -89,20 +87,47 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     "ACK for " + req.getRequirementId());
         } catch (Exception e) {
             broker.log.error("Bad BUYER_REQUIREMENTS from " + msg.getSender().getLocalName()
-                    + " | content=" + msg.getContent(), e);
+                    + ": " + e.getMessage());
         }
     }
+
+    // ── Spec protocol handlers (NEW) ──────────────────────────────────────────
+
+    /** Phase C: a buyer returned her shortlist → broker forwards potential buyers to dealers. */
+    private void handleBuyerShortlist(ACLMessage msg) {
+        try {
+            BuyerShortlistMessage sl =
+                    broker.gson.fromJson(msg.getContent(), BuyerShortlistMessage.class);
+            broker.onBuyerShortlist(sl);
+        } catch (Exception e) {
+            broker.log.error("Bad BUYER_SHORTLIST from " + msg.getSender().getLocalName()
+                    + ": " + e.getMessage());
+        }
+    }
+
+    /** Phase D: a dealer returned its selected buyers → broker creates assignments. */
+    private void handleDealerSelection(ACLMessage msg) {
+        try {
+            DealerSelection sel =
+                    broker.gson.fromJson(msg.getContent(), DealerSelection.class);
+            broker.onDealerSelection(sel);
+        } catch (Exception e) {
+            broker.log.error("Bad DEALER_SELECTION from " + msg.getSender().getLocalName()
+                    + ": " + e.getMessage());
+        }
+    }
+
+    // ── Negotiation handlers ──────────────────────────────────────────────────
 
     private void handleNegotiationMessage(ACLMessage msg, NegotiationMessage.Type type) {
         try {
             NegotiationMessage nm = broker.gson.fromJson(msg.getContent(), NegotiationMessage.class);
             nm.setType(type);
             nm.setTimestamp(System.currentTimeMillis());
-            enrichAclMetadata(msg, nm);
             broker.routeNegotiationMessage(nm, nm.getToAID());
         } catch (Exception e) {
             broker.log.error("Bad negotiation message from " + msg.getSender().getLocalName()
-                    + " | content=" + msg.getContent(), e);
+                    + ": " + e.getMessage());
         }
     }
 
@@ -111,65 +136,30 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
             NegotiationMessage nm = broker.gson.fromJson(msg.getContent(), NegotiationMessage.class);
             nm.setType(NegotiationMessage.Type.ACCEPT);
             nm.setTimestamp(System.currentTimeMillis());
-            enrichAclMetadata(msg, nm);
             broker.closeDeal(nm);
         } catch (Exception e) {
             broker.log.error("Bad NEG_ACCEPT from " + msg.getSender().getLocalName()
-                    + " | content=" + msg.getContent(), e);
+                    + ": " + e.getMessage());
         }
     }
 
     private void handleEmergencySave(ACLMessage msg) {
         try {
-            // Parse emergency save data
-            String content = msg.getContent();
             broker.log.info("Emergency save request from " + msg.getSender().getLocalName());
-            
-            // Extract data using simple parsing (avoiding complex object creation)
             String agentName = msg.getSender().getLocalName();
             String reason = "shutdown";
-            
-            // Find all ongoing negotiations for this agent
+
             broker.getAssignmentsMap().values().stream()
-                .filter(assignment -> assignment.getBuyerAID().equals(msg.getSender().getName()) || 
-                                   assignment.getDealerAID().equals(msg.getSender().getName()))
-                .forEach(assignment -> {
-                    ConversationLogger.markInterrupted(
-                        assignment.getNegotiationId(), 
-                        agentName, 
-                        reason
-                    );
-                    broker.log.info("Emergency saved conversation: " + assignment.getNegotiationId());
-                });
-            broker.refreshNegotiationTestReport();
-                 
+                    .filter(assignment -> assignment.getBuyerAID().equals(msg.getSender().getName())
+                            || assignment.getDealerAID().equals(msg.getSender().getName()))
+                    .forEach(assignment -> {
+                        ConversationLogger.markInterrupted(
+                                assignment.getNegotiationId(), agentName, reason);
+                        broker.log.info("Emergency saved conversation: " + assignment.getNegotiationId());
+                    });
         } catch (Exception e) {
             broker.log.error("Failed to handle emergency save from " + msg.getSender().getLocalName()
-                    + " | content=" + msg.getContent(), e);
+                    + ": " + e.getMessage());
         }
-    }
-
-    private void enrichAclMetadata(ACLMessage aclMessage, NegotiationMessage negotiationMessage) {
-        negotiationMessage.setAclPerformative(aclPerformativeName(aclMessage.getPerformative()));
-        String conversationId = aclMessage.getConversationId();
-        if (conversationId == null || conversationId.isBlank()
-                || Ontology.CONV_NEGOTIATION.equals(conversationId)) {
-            conversationId = Ontology.CONV_NEGOTIATION + "-" + negotiationMessage.getNegotiationId();
-        }
-        negotiationMessage.setConversationId(conversationId);
-    }
-
-    private static String aclPerformativeName(int performative) {
-        return switch (performative) {
-            case ACLMessage.REQUEST -> "REQUEST";
-            case ACLMessage.INFORM -> "INFORM";
-            case ACLMessage.PROPOSE -> "PROPOSE";
-            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
-            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
-            case ACLMessage.REFUSE -> "REFUSE";
-            case ACLMessage.FAILURE -> "FAILURE";
-            case ACLMessage.CONFIRM -> "CONFIRM";
-            default -> String.valueOf(performative);
-        };
     }
 }

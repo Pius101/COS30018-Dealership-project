@@ -36,6 +36,23 @@ public class Assignment {
     /** Maximum rounds for auto-negotiation. 0 = manual (no limit). */
     private int maxRounds = 0;
 
+    // ── Buyer negotiation params (filled by automated matching protocol) ──────
+    /** Buyer's opening bid — set from their BUYER_SHORTLIST entry. 0 = not set. */
+    private double buyerFirstOffer;
+    /** Buyer's reservation (walk-away) price. 0 = not set. */
+    private double buyerReservationPrice;
+    /** Strategy key the buyer wants to use. null = use random default. */
+    private String buyerStrategyKey;
+    /** Whether to start auto-negotiation immediately on assignment. */
+    private boolean autoNegotiate;
+
+    // ── Extension 2: multi-attribute weights ─────────────────────────────────
+    /** Non-zero when buyer specified attribute weights for multi-attribute negotiation. */
+    private double weightPrice;
+    private double weightYear;
+    private double weightMileage;
+    private double weightCondition;
+
     /** No-arg constructor required by Gson. */
     public Assignment() {
         this.negotiationId = UUID.randomUUID().toString()
@@ -70,6 +87,30 @@ public class Assignment {
 
     public int            getMaxRounds()                           { return maxRounds; }
     public void           setMaxRounds(int v)                       { this.maxRounds = v; }
+
+    public double         getBuyerFirstOffer()                     { return buyerFirstOffer; }
+    public void           setBuyerFirstOffer(double v)             { this.buyerFirstOffer = v; }
+
+    public double         getBuyerReservationPrice()               { return buyerReservationPrice; }
+    public void           setBuyerReservationPrice(double v)       { this.buyerReservationPrice = v; }
+
+    public String         getBuyerStrategyKey()                    { return buyerStrategyKey; }
+    public void           setBuyerStrategyKey(String v)            { this.buyerStrategyKey = v; }
+
+    public boolean        isAutoNegotiate()                        { return autoNegotiate; }
+    public void           setAutoNegotiate(boolean v)              { this.autoNegotiate = v; }
+
+    public double         getWeightPrice()                         { return weightPrice; }
+    public void           setWeightPrice(double v)                 { this.weightPrice = v; }
+
+    public double         getWeightYear()                          { return weightYear; }
+    public void           setWeightYear(double v)                  { this.weightYear = v; }
+
+    public double         getWeightMileage()                       { return weightMileage; }
+    public void           setWeightMileage(double v)               { this.weightMileage = v; }
+
+    public double         getWeightCondition()                     { return weightCondition; }
+    public void           setWeightCondition(double v)             { this.weightCondition = v; }
 
     @Override
     public String toString() {

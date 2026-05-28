@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Negotiation Report — Toyota Corolla 2004</title>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; padding: 24px 32px; }
+h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+h2 { color: #93c5fd; font-size: 15px; margin: 28px 0 12px; border-bottom: 1px solid #2a2d3a; padding-bottom: 6px; }
+.card { background: #1a1d26; border: 1px solid #2a2d3a; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-bottom: 20px; }
+.stat .label { font-size: 11px; color: #888; text-transform: uppercase; }
+.stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; background: #1a1d26; border: 1px solid #2a2d3a; border-radius: 8px; overflow: hidden; }
+th { background: #252830; color: #93c5fd; font-size: 12px; padding: 10px 14px; text-align: left; }
+td { padding: 9px 14px; border-bottom: 1px solid #1e2130; }
+tr:last-child td { border-bottom: none; }
+.log { background: #0a0c10; border: 1px solid #1e2130; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 11px; line-height: 1.8; white-space: pre-wrap; color: #94a3b8; max-height: 400px; overflow-y: auto; }
+</style>
+</head>
+<body>
+<h1>&#x1F697; Negotiation Report</h1>
+<p style='color:#888;margin-bottom:20px'>Toyota Corolla 2004 &nbsp;|&nbsp; buyer1 vs dealer1 &nbsp;|&nbsp; 05:03:13 29 May 2026</p>
+<div style='background:#052e16;border:1px solid #16a34a;border-radius:10px;padding:14px 20px;margin-bottom:20px;font-size:16px;font-weight:700'>&#x2705; DEAL — Final price: RM 12,750 &nbsp;|&nbsp; Saved: RM 2,250 (15.0%)</div>
+<div class='grid'>
+<div class='card stat'><div class='label'>Asking Price</div><div class='value' style='color:#f97316'>RM 15,000</div></div>
+<div class='card stat'><div class='label'>Buyer First Offer</div><div class='value' style='color:#60a5fa'>—</div></div>
+<div class='card stat'><div class='label'>Buyer Budget</div><div class='value' style='color:#a5b4fc'>—</div></div>
+<div class='card stat'><div class='label'>Rounds</div><div class='value' style='color:#fff'>0 / 10</div></div>
+<div class='card stat'><div class='label'>Strategy</div><div class='value' style='color:#fbbf24'>Auto-negotiation</div></div>
+<div class='card stat'><div class='label'>Final Price</div><div class='value' style='color:#4ade80'>RM 12,750</div></div>
+</div>
+<h2>&#x1F4C8; Price Negotiation Chart</h2>
+<div class='card'><canvas id='negChart'></canvas></div>
+<h2>&#x1F4CB; Round-by-Round Breakdown</h2>
+<table><thead><tr><th>Round</th><th>Party</th><th>Offer</th><th>Strategy Used</th><th>Gap To Previous Offer</th><th>Strategy Reasoning</th></tr></thead><tbody>
+</tbody></table>
+<h2>&#x1F9E0; Full Thinking Log</h2>
+<div class='log'>[DEAL]  Final price: RM 12,750
+</div>
+<p style='color:#555;font-size:11px;margin-top:24px'>Report generated: 05:08:13 29 May 2026 &nbsp;|&nbsp; ID: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399 &nbsp;|&nbsp; Mode: Automated</p>
+<script>
+new Chart(document.getElementById('negChart').getContext('2d'), {
+  type: 'line',
+  data: { labels: ["Start", "Deal"],
+    datasets: [
+      { label: 'Dealer Offer (RM)', data: [15000, 12750], borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true },
+      { label: 'Buyer Offer (RM)', data: [null, 12750], borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true }
+    ]
+  },
+  options: { responsive: true,
+    plugins: { legend: { labels: { color: '#e0e0e0' } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': RM ' + c.parsed.y.toLocaleString() } }
+    },
+    scales: {
+      x: { ticks: { color: '#888' }, grid: { color: '#1e2130' } },
+      y: { ticks: { color: '#888', callback: v => 'RM ' + v.toLocaleString() }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+</script>
+</body>
+</html>

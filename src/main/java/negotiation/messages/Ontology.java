@@ -29,6 +29,7 @@ public final class Ontology {
     // ── Conversation Categories ───────────────────────────────────────────────
     /** Groups related messages - helps with message filtering */
     public static final String CONV_REGISTRATION  = "registration";
+    public static final String CONV_MATCHING      = "matching";    // automated match protocol
     public static final String CONV_ASSIGNMENT    = "assignment";
     public static final String CONV_NEGOTIATION   = "negotiation";
 
@@ -50,6 +51,43 @@ public final class Ontology {
         /** Broker → Buyer: "Got your requirements, stored them" */
         public static final String REQUIREMENTS_ACK   = "REQUIREMENTS_ACK";
         
+        /**
+         * AUTOMATED MATCHING PROTOCOL (Task 1 core flow)
+         *
+         * Flow:
+         *   1. BA submits requirements (BUYER_REQUIREMENTS above)
+         *   2. KA auto-matches and sends results → BA
+         *   3. BA sends back shortlist → KA
+         *   4. KA sends interested buyers per listing → DA
+         *   5. DA sends selection back → KA
+         *   6. KA creates assignment → notifies DA + BA (ASSIGNMENT_NOTIFY above)
+         */
+
+        /**
+         * KA → BA: "Here are the listings that match your requirements."
+         * Content: { requirementId, listings: [CarListing, ...] }
+         */
+        public static final String MATCHING_RESULTS = "MATCHING_RESULTS";
+
+        /**
+         * BA → KA: "I want to negotiate on these listings (my shortlist)."
+         * Content: { requirementId, buyerAID, buyerName, entries: [BuyerShortlistEntry, ...] }
+         * (Up to 3 entries — Extension 1 allows concurrent negotiations)
+         */
+        public static final String BUYER_SHORTLIST  = "BUYER_SHORTLIST";
+
+        /**
+         * KA → DA: "These buyers are interested in your listing [ID]."
+         * Content: { listingId, buyers: [PotentialBuyerEntry, ...] }
+         */
+        public static final String POTENTIAL_BUYERS = "POTENTIAL_BUYERS";
+
+        /**
+         * DA → KA: "I want to negotiate with these buyers."
+         * Content: { listingId, selectedBuyerAIDs: ["aid1", "aid2", ...] }
+         */
+        public static final String DEALER_SELECTION = "DEALER_SELECTION";
+
         /**
          * ASSIGNMENT MESSAGES
          * Broker tells buyers and dealers they've been matched
@@ -88,7 +126,13 @@ public final class Ontology {
     public static final String TYPE_NEG_ACCEPT         = MESSAGE_TYPE.NEG_ACCEPT;
     public static final String TYPE_NEG_REJECT         = MESSAGE_TYPE.NEG_REJECT;
     public static final String TYPE_DEAL_COMPLETE      = MESSAGE_TYPE.DEAL_COMPLETE;
-    
+
+    // ── Spec protocol: matching → shortlist → selection ──
+    public static final String TYPE_MATCH_RESULTS    = "MATCH_RESULTS";     // Broker → Buyer
+    public static final String TYPE_BUYER_SHORTLIST  = "BUYER_SHORTLIST";   // Buyer  → Broker
+    public static final String TYPE_POTENTIAL_BUYERS = "POTENTIAL_BUYERS";  // Broker → Dealer
+    public static final String TYPE_DEALER_SELECTION = "DEALER_SELECTION";  // Dealer → Broker
+
     // ── Special Messages ───────────────────────────────────────────────────────
     /** Agent → Broker: "I'm shutting down, save my active negotiations" */
     public static final String EMERGENCY_SAVE = "EMERGENCY_SAVE";

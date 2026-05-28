@@ -1,0 +1,70 @@
+[Buyer] [2026-05-29 03:16:32] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 03:16:32] [INFO] Buyer Agent 'buyer1' started. AID: buyer1@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 03:16:32] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 03:17:50] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota Corolla (2004–2010) ≤ RM 30000  [68E562DE]
+[Buyer] [2026-05-29 03:17:50] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 68E562DE confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 04:36:34] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] (any car)  [AD569FB5]
+[Buyer] [2026-05-29 04:36:38] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] (any car)  [3DE0A07F]
+[Buyer] [2026-05-29 04:36:38] [WARN] Unknown message type: BUYER_REQUIREMENTS | sender=ams | ACL.FAILURE | content=( (action ( agent-identifier :name buyer1@192.168.1.217:1099/JADE  :addresses (sequence http://MSI.home:7778/acc )) (ACLMessage) ) (MTS-error ( agent-identifier :name broker@192.168.1.217:1099/JADE  :addresses (sequence http://MSI.home:7778/acc )) (internal-error "Agent not found: getContainerID() failed to find agent broker@192.168.1.217:1099/JADE")) )
+[Buyer] [2026-05-29 04:38:50] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 04:38:51] [INFO] Buyer Agent 'buyer1' started. AID: buyer1@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 04:38:51] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 04:39:09] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota  [760FB585]
+[Buyer] [2026-05-29 04:39:09] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 760FB585 confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 05:01:31] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399]  Dealer: dealer1  Listing: 3C1DD5FA  Asking: RM 15000
+[Buyer] [2026-05-29 05:08:13] [MESSAGE] to Broker       [NEG_ACCEPT                  ] [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399] ACL.ACCEPT_PROPOSAL ACCEPTED at RM 12750
+[Buyer] [2026-05-29 05:08:13] [EVENT] DEAL COMPLETE  [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399]  Final price: RM 12750
+[Buyer] [2026-05-29 05:09:05] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] (2000–2010)  [CF28DF32]
+[Buyer] [2026-05-29 05:09:05] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-C78021BB-545436]  Dealer: dealer1  Listing: C78021BB  Asking: RM 20000
+[Buyer] [2026-05-29 05:09:05] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444]  Dealer: dealer1  Listing: 78D47F88  Asking: RM 20000
+[Buyer] [2026-05-29 05:09:05] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement CF28DF32 confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 05:09:25] [NEGOTIATION] [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444] Buyer rejected negotiation
+[Buyer] [2026-05-29 05:09:45] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] (2005–2010)  [81ACFDD7]
+[Buyer] [2026-05-29 05:09:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-C78021BB-585871]  Dealer: dealer1  Listing: C78021BB  Asking: RM 20000
+[Buyer] [2026-05-29 05:09:45] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 81ACFDD7 confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 05:14:56] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:14:56] [INFO] Buyer Agent 'buyer1' started. AID: buyer1@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:14:56] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:15:04] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota  [02B15E27]
+[Buyer] [2026-05-29 05:15:04] [MESSAGE] from Broker     [MATCH_RESULTS               ] 0 match(es)
+[Buyer] [2026-05-29 05:15:04] [INFO] [MATCH] No new cars to shortlist for requirement 02B15E27
+[Buyer] [2026-05-29 05:15:04] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 02B15E27 confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 05:15:27] [MESSAGE] from Broker     [MATCH_RESULTS               ] 1 match(es)
+[Buyer] [2026-05-29 05:15:27] [MESSAGE] to Broker       [BUYER_SHORTLIST             ] 1 car(s) shortlisted
+[Buyer] [2026-05-29 05:15:27] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-E8D329FF-927048]  Dealer: dealer1  Listing: E8D329FF  Asking: RM 20000
+[Buyer] [2026-05-29 05:42:36] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:42:36] [INFO] Buyer Agent 'buyerA' started. AID: buyerA@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:42:36] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota Corolla ≤ RM 25000  [F2A61148]
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] from Broker     [MATCH_RESULTS               ] 3 match(es)
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] to Broker       [BUYER_SHORTLIST             ] 3 car(s) shortlisted
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement F2A61148 confirmed stored — waiting for assignment
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676]  Dealer: Dealer-B  Listing: 4708753E  Asking: RM 20000
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691]  Dealer: Dealer-C  Listing: 84723AF4  Asking: RM 22000
+[Buyer] [2026-05-29 05:48:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704]  Dealer: Dealer-A  Listing: 46018AA2  Asking: RM 18000
+[Buyer] [2026-05-29 05:48:34] [MESSAGE] from Broker←Dealer-B [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] ACL.PROPOSE RM 20000
+[Buyer] [2026-05-29 05:48:37] [MESSAGE] from Broker←Dealer-A [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704] ACL.PROPOSE RM 18000
+[Buyer] [2026-05-29 05:48:39] [MESSAGE] from Broker←Dealer-C [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] ACL.PROPOSE RM 22000
+[Buyer] [2026-05-29 05:50:50] [MESSAGE] to Broker→Dealer-A [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704] ACL.PROPOSE RM 15000
+[Buyer] [2026-05-29 05:51:10] [MESSAGE] to Broker→Dealer-C [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] ACL.PROPOSE RM 15000
+[Buyer] [2026-05-29 05:51:16] [MESSAGE] to Broker→Dealer-B [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] ACL.PROPOSE RM 15000
+[Buyer] [2026-05-29 05:53:55] [NEGOTIATION] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] Buyer rejected negotiation
+[Buyer] [2026-05-29 05:53:59] [NEGOTIATION] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] Buyer rejected negotiation
+[Buyer] [2026-05-29 05:54:04] [NEGOTIATION] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704] Buyer rejected negotiation
+[Buyer] [2026-05-29 05:59:49] [MESSAGE] from Broker     [MATCH_RESULTS               ] 4 match(es)
+[Buyer] [2026-05-29 05:59:49] [MESSAGE] to Broker       [BUYER_SHORTLIST             ] 1 car(s) shortlisted
+[Buyer] [2026-05-29 05:59:49] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339]  Dealer: Dealer-A  Listing: 20B59F23  Asking: RM 18000
+[Buyer] [2026-05-29 06:00:03] [MESSAGE] from Broker     [MATCH_RESULTS               ] 5 match(es)
+[Buyer] [2026-05-29 06:00:03] [MESSAGE] to Broker       [BUYER_SHORTLIST             ] 1 car(s) shortlisted
+[Buyer] [2026-05-29 06:00:03] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104]  Dealer: Dealer-B  Listing: 9B66190F  Asking: RM 20000
+[Buyer] [2026-05-29 06:00:09] [MESSAGE] from Broker     [MATCH_RESULTS               ] 6 match(es)
+[Buyer] [2026-05-29 06:00:09] [MESSAGE] to Broker       [BUYER_SHORTLIST             ] 1 car(s) shortlisted
+[Buyer] [2026-05-29 06:00:09] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-C3FC9474-609504]  Dealer: Dealer-C  Listing: C3FC9474  Asking: RM 22000
+[Buyer] [2026-05-29 06:08:16] [MESSAGE] to Broker→Dealer-A [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339] ACL.PROPOSE RM 15300
+[Buyer] [2026-05-29 06:08:16] [MESSAGE] from Broker←Dealer-A [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339] ACL.PROPOSE RM 17800
+[Buyer] [2026-05-29 06:08:51] [MESSAGE] to Broker→Dealer-A [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339] ACL.PROPOSE RM 16000
+[Buyer] [2026-05-29 06:08:52] [MESSAGE] from Broker←Dealer-A [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339] ACL.PROPOSE RM 17600
+[Buyer] [2026-05-29 06:09:31] [MESSAGE] to Broker→Dealer-B [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 17000
+[Buyer] [2026-05-29 06:09:31] [MESSAGE] from Broker←Dealer-B [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 19800
+[Buyer] [2026-05-29 06:09:45] [MESSAGE] to Broker→Dealer-B [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 17500
+[Buyer] [2026-05-29 06:09:45] [MESSAGE] from Broker←Dealer-B [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 19600

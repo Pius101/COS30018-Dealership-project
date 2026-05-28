@@ -1,0 +1,8 @@
+[Dealer:Agent1] [2026-05-29 03:16:08] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Dealer:Agent1] [2026-05-29 03:16:08] [INFO] Dealer Agent 'Agent1' started. AID: Agent1@192.168.1.217:1099/JADE
+[Dealer:Agent1] [2026-05-29 03:16:08] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Dealer:Agent1] [2026-05-29 03:17:00] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: BAYESIAN | Margin: 10%
+[Dealer:Agent1] [2026-05-29 03:17:01] [INFO] [AUTO-DEALER] Auto mode DISABLED | Strategy: BAYESIAN | Margin: 10%
+[Dealer:Agent1] [2026-05-29 03:17:02] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: BAYESIAN | Margin: 10%
+[Dealer:Agent1] [2026-05-29 03:18:45] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2004 Toyota Corolla  RM 32000  [B73E8A7A]
+[Dealer:Agent1] [2026-05-29 03:18:45] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B73E8A7A confirmed stored

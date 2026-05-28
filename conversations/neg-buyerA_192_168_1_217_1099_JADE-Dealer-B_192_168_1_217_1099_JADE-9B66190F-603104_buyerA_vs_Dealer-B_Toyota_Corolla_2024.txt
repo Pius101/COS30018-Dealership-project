@@ -1,0 +1,27 @@
+================================================================================
+CAR NEGOTIATION CONVERSATION
+================================================================================
+Session ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104
+Started: 2026-05-29 06:09:31
+
+PARTICIPANTS:
+  Buyer:  buyerA (AID: buyerA@192.168.1.217:1099/JADE)
+  Dealer: Dealer-B (AID: Dealer-B@192.168.1.217:1099/JADE)
+
+ITEM DETAILS:
+  Car:       Toyota Corolla
+  Year:      2024
+  Asking:    RM 20000
+  Condition: New
+
+BUYER REQUIREMENTS:
+  Max Price: RM 25000
+
+CONVERSATION:
+--------------------------------------------------------------------------------
+[2026-05-29 06:09:31] Round 1 | BUYER->DEALER buyerA (BUYER): OFFER | ACL.PROPOSE | Price: RM 17000 | Outcome: ONGOING
+[2026-05-29 06:09:31] Round 1 | DEALER->BUYER Dealer-B (DEALER): OFFER | ACL.PROPOSE | Price: RM 19800 | Strategy: Bayesian Learner | Utility: 0.90 | Outcome: ONGOING
+           Reason: "Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM19800"
+[2026-05-29 06:09:45] Round 2 | BUYER->DEALER buyerA (BUYER): OFFER | ACL.PROPOSE | Price: RM 17500 | Outcome: ONGOING
+[2026-05-29 06:09:45] Round 2 | DEALER->BUYER Dealer-B (DEALER): OFFER | ACL.PROPOSE | Price: RM 19600 | Strategy: Bayesian Learner | Utility: 0.80 | Outcome: ONGOING
+           Reason: "Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-500 (0.0%) | EstimatedFloor≈RM18000 | Offers seen=2 → OFFER RM19600"

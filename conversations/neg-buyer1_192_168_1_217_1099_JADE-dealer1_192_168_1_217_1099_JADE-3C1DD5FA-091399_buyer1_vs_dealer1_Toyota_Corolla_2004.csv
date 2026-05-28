@@ -1,0 +1,2 @@
+timestamp,negotiationId,conversationId,round,sender,receiver,type,aclPerformative,price,strategy,outcome,utility,buyerUtility,dealerUtility,reason
+2026-05-29 05:08:13,neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399,negotiation-neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399,1,buyer1,dealer1,ACCEPT,ACCEPT_PROPOSAL,12750.00,,COMPLETED,,,,

@@ -16,7 +16,10 @@ import negotiation.gui.DealerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
 import negotiation.models.CarListing;
+import negotiation.models.DealerSelection;
 import negotiation.models.NegotiationMessage;
+import negotiation.models.PotentialBuyerEntry;
+import negotiation.models.PotentialBuyerList;
 import negotiation.util.AppLogger;
 import negotiation.util.GuiMode;
 
@@ -77,8 +80,8 @@ public class DealerAgent extends Agent {
                 if (brokerAID != null) {
                     log.info("Connected to Broker: " + brokerAID.getName());
                 } else {
-                log.error("Broker not found in DF — check the HOST is running!");
-            }
+                    log.error("Broker not found in DF — check the HOST is running!");
+                }
             });
         } else {
             logStartupState();
@@ -309,6 +312,41 @@ public class DealerAgent extends Agent {
     // Callbacks from DealerMessageBehaviour
     // ─────────────────────────────────────────────────────────────────────────
 
+    /**
+     * Phase C of the spec protocol: the broker forwarded the potential buyers
+     * (and their first offers) interested in this dealer's cars (ACL CFP). The
+     * dealer selects whom to engage and replies with a DEALER_SELECTION
+     * (ACL PROPOSE). Here the policy is to engage any buyer whose opening offer
+     * is at least 50% of the car's retail price; tune as you like.
+     */
+    public void onPotentialBuyers(PotentialBuyerList pl) {
+        log.recv("Broker", Ontology.TYPE_POTENTIAL_BUYERS,
+                (pl.getBuyers() == null ? 0 : pl.getBuyers().size()) + " potential buyer(s)");
+
+        DealerSelection sel = new DealerSelection();
+        sel.setDealerAID(getAID().getName());
+
+        if (pl.getBuyers() != null) {
+            for (PotentialBuyerEntry pb : pl.getBuyers()) {
+                CarListing l = myListings.get(pb.getListingId());
+                if (l == null) continue;
+                if (pb.getFirstOffer() >= l.getRetailPrice() * 0.50) {
+                    sel.getSelected().add(pb);
+                }
+            }
+        }
+
+        ACLMessage m = new ACLMessage(ACLMessage.PROPOSE);
+        m.addReceiver(brokerAID);
+        m.setOntology(Ontology.TYPE_DEALER_SELECTION);
+        m.setConversationId(Ontology.CONV_MATCHING);
+        m.setContent(gson.toJson(sel));
+        send(m);
+        log.send("Broker", Ontology.TYPE_DEALER_SELECTION,
+                sel.getSelected().size() + " of "
+                        + (pl.getBuyers() == null ? 0 : pl.getBuyers().size()) + " buyer(s) accepted");
+    }
+
     public void onAssignment(Assignment assignment) {
         assignments.put(assignment.getNegotiationId(), assignment);
         history.put(assignment.getNegotiationId(), new ArrayList<>());
@@ -461,7 +499,7 @@ public class DealerAgent extends Agent {
                         JOptionPane.showMessageDialog(gui,
                                 "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
                                 "Connection Error", JOptionPane.ERROR_MESSAGE));
-                }
+            }
             return false;
         }
         return true;

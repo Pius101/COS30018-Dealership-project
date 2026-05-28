@@ -13,7 +13,11 @@ import negotiation.behaviours.BuyerMessageBehaviour;
 import negotiation.gui.BuyerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
+import negotiation.models.BuyerShortlistEntry;
+import negotiation.models.BuyerShortlistMessage;
+import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.MatchingResults;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.AppLogger;
 import negotiation.util.GuiMode;
@@ -54,6 +58,16 @@ public class BuyerAgent extends Agent {
     // Auto params stored from config until an assignment arrives
     private AutoNegotiationParams pendingAutoParams = null;
 
+    // ── Extension 1: concurrent-negotiation coordination ──────────────────────
+    // The buyer can run up to 3 negotiations at once (one per shortlisted dealer).
+    // These maps let the negotiations inform each other (shared BATNA) and let the
+    // buyer commit to the best dealer and cancel the rest.
+    private final Map<String, AutoNegotiationBehaviour> activeAuto        = new ConcurrentHashMap<>();
+    private final Map<String, String>                   negToRequirement  = new ConcurrentHashMap<>();
+    private final Map<String, Double>                   latestDealerOffer = new ConcurrentHashMap<>();
+    private final java.util.Set<String>                 settledRequirements
+            = ConcurrentHashMap.newKeySet();
+
     private AID      brokerAID;
     private BuyerGui gui;
 
@@ -82,8 +96,8 @@ public class BuyerAgent extends Agent {
                 if (brokerAID != null) {
                     log.info("Connected to Broker: " + brokerAID.getName());
                 } else {
-                log.error("Broker not found in DF — check the HOST is running!");
-            }
+                    log.error("Broker not found in DF — check the HOST is running!");
+                }
             });
         } else {
             logStartupState();
@@ -320,6 +334,62 @@ public class BuyerAgent extends Agent {
     // Callbacks from BuyerMessageBehaviour
     // ─────────────────────────────────────────────────────────────────────────
 
+    /**
+     * Phase B of the spec protocol: the broker returned the dealers/cars matching
+     * our specifications. We pick up to three (per the brief) that we are not
+     * already negotiating, attach a first offer to each, and reply with a
+     * BUYER_SHORTLIST (ACL PROPOSE).
+     */
+    public void onMatchResults(MatchingResults mr) {
+        log.recv("Broker", Ontology.TYPE_MATCH_RESULTS,
+                (mr.getMatches() == null ? 0 : mr.getMatches().size()) + " match(es)");
+
+        BuyerShortlistMessage sl = new BuyerShortlistMessage();
+        sl.setRequirementId(mr.getRequirementId());
+        sl.setBuyerAID(getAID().getName());
+        sl.setBuyerName(getLocalName());
+
+        int picked = 0;
+        if (mr.getMatches() != null) {
+            for (CarListing l : mr.getMatches()) {
+                if (picked >= 3) break;                       // spec: up to three dealers
+                if (alreadyNegotiating(l.getListingId())) continue;
+
+                double first = (pendingAutoParams != null && pendingAutoParams.firstOffer > 0)
+                        ? pendingAutoParams.firstOffer
+                        : l.getRetailPrice() * 0.85;          // sensible default opening bid
+
+                BuyerShortlistEntry e = new BuyerShortlistEntry();
+                e.setListingId(l.getListingId());
+                e.setDealerAID(l.getDealerAID());
+                e.setFirstOffer(first);
+                sl.getEntries().add(e);
+                picked++;
+            }
+        }
+
+        if (sl.getEntries().isEmpty()) {
+            log.info("[MATCH] No new cars to shortlist for requirement " + mr.getRequirementId());
+            return;
+        }
+
+        ACLMessage m = new ACLMessage(ACLMessage.PROPOSE);
+        m.addReceiver(brokerAID);
+        m.setOntology(Ontology.TYPE_BUYER_SHORTLIST);
+        m.setConversationId(Ontology.CONV_MATCHING);
+        m.setContent(gson.toJson(sl));
+        send(m);
+        log.send("Broker", Ontology.TYPE_BUYER_SHORTLIST,
+                sl.getEntries().size() + " car(s) shortlisted");
+    }
+
+    /** True if we already have an assignment/negotiation for this listing. */
+    private boolean alreadyNegotiating(String listingId) {
+        return assignments.values().stream()
+                .anyMatch(a -> a.getListing() != null
+                        && listingId.equals(a.getListing().getListingId()));
+    }
+
     public void onAssignment(Assignment assignment) {
         assignments.put(assignment.getNegotiationId(), assignment);
         history.put(assignment.getNegotiationId(), new ArrayList<>());
@@ -332,12 +402,21 @@ public class BuyerAgent extends Agent {
         // Always open the GUI tab so progress is visible (even in auto mode)
         if (gui != null) SwingUtilities.invokeLater(() -> gui.openNegotiationTab(assignment));
 
-        // If auto params are waiting, start the automated negotiation behaviour
+        // If auto params are configured, start automated negotiation for THIS assignment.
+        // Extension 1: we deliberately do NOT clear pendingAutoParams, so every dealer
+        // the broker assigns to this buyer (up to 3) spins up its own concurrent
+        // negotiation. We skip assignments for a requirement that already closed a deal.
         if (pendingAutoParams != null) {
-            // Store maxRounds in Assignment for report generation
-            assignment.setMaxRounds(pendingAutoParams.maxRounds);
-            startAutoNegotiation(assignment, pendingAutoParams);
-            pendingAutoParams = null; // consumed — don't reuse for another assignment
+            String reqId = assignment.getRequirement() != null
+                    ? assignment.getRequirement().getRequirementId() : null;
+            if (isRequirementSettled(reqId)) {
+                log.info("[AUTO][CONCURRENT] Requirement " + reqId
+                        + " already settled — skipping negotiation ["
+                        + assignment.getNegotiationId() + "]");
+            } else {
+                assignment.setMaxRounds(pendingAutoParams.maxRounds);
+                startAutoNegotiation(assignment, pendingAutoParams);
+            }
         }
     }
 
@@ -480,7 +559,7 @@ public class BuyerAgent extends Agent {
                         JOptionPane.showMessageDialog(gui,
                                 "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
                                 "Connection Error", JOptionPane.ERROR_MESSAGE));
-                }
+            }
             return false;
         }
         return true;
@@ -503,8 +582,63 @@ public class BuyerAgent extends Agent {
         // Create and register the behaviour with JADE
         AutoNegotiationBehaviour behaviour = new AutoNegotiationBehaviour(
                 this, assignment, params, queue);
+        // Extension 1: register in the concurrent-negotiation coordinator
+        activeAuto.put(negId, behaviour);
+        if (assignment.getRequirement() != null) {
+            negToRequirement.put(negId, assignment.getRequirement().getRequirementId());
+        }
         addBehaviour(behaviour);
         log.info("[AUTO] AutoNegotiationBehaviour started for negotiation [" + negId + "]");
+    }
+
+    // ── Extension 1: concurrent-negotiation coordination ──────────────────────
+
+    /** A negotiation just saw a new dealer offer — remember it as a possible alternative. */
+    public void recordDealerOffer(String negotiationId, double price) {
+        latestDealerOffer.put(negotiationId, price);
+    }
+
+    /**
+     * The best alternative price (lowest dealer offer) currently on the table from the
+     * buyer's OTHER live negotiations for the same requirement — i.e. the BATNA for the
+     * given negotiation. Returns Double.MAX_VALUE when there is no alternative yet.
+     */
+    public double bestAlternativeFor(String negotiationId) {
+        String reqId = negToRequirement.get(negotiationId);
+        double best = Double.MAX_VALUE;
+        for (Map.Entry<String, Double> e : latestDealerOffer.entrySet()) {
+            if (e.getKey().equals(negotiationId)) continue;
+            if (reqId != null && !reqId.equals(negToRequirement.get(e.getKey()))) continue;
+            best = Math.min(best, e.getValue());
+        }
+        return best;
+    }
+
+    /**
+     * Called when one negotiation closes a deal. The buyer only needs one car, so we
+     * mark the requirement settled and cancel the sibling negotiations for it.
+     */
+    public void commitDealAndCancelSiblings(String winningNegId) {
+        String reqId = negToRequirement.get(winningNegId);
+        if (reqId == null) return;
+        settledRequirements.add(reqId);
+        for (Map.Entry<String, String> e : negToRequirement.entrySet()) {
+            String negId = e.getKey();
+            if (negId.equals(winningNegId)) continue;
+            if (!reqId.equals(e.getValue())) continue;
+            AutoNegotiationBehaviour sibling = activeAuto.get(negId);
+            if (sibling != null) sibling.cancelDueToBetterDeal(winningNegId);
+        }
+    }
+
+    /** Remove a finished negotiation from the active-behaviour registry. */
+    public void deregisterAuto(String negotiationId) {
+        activeAuto.remove(negotiationId);
+    }
+
+    /** True once any negotiation for this requirement has closed a deal. */
+    public boolean isRequirementSettled(String requirementId) {
+        return requirementId != null && settledRequirements.contains(requirementId);
     }
 
     // ── Accessors ────────────────────────────────────────────────────────────

@@ -31,6 +31,12 @@ public class MultiAttributeUtility {
     private double firstOffer;
     private double reservationPrice;
 
+    // Car-specific attributes used in multi-attribute evaluation
+    private int carYear = 2020;
+    private int carMileage = 30000;
+    private String carCondition = "Used";
+    private int carWarrantyMonths = 0;
+
     // Accept if overall utility >= this threshold
     private double acceptanceThreshold = 0.65;
 
@@ -82,7 +88,7 @@ public class MultiAttributeUtility {
      * Used in V2 automated negotiation.
      */
     public double evaluate(double offeredPrice) {
-        return evaluate(offeredPrice, 2020, 30000, "Used", 0);
+        return evaluate(offeredPrice, carYear, carMileage, carCondition, carWarrantyMonths);
     }
 
     /**

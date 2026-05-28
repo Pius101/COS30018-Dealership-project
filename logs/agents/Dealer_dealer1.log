@@ -1,0 +1,23 @@
+[Dealer:dealer1] [2026-05-29 04:38:00] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 04:38:00] [INFO] Dealer Agent 'dealer1' started. AID: dealer1@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 04:38:00] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 04:39:32] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2004 Totola Corolla  RM 20000  [78D47F88]
+[Dealer:dealer1] [2026-05-29 04:39:32] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 78D47F88 confirmed stored
+[Dealer:dealer1] [2026-05-29 05:01:31] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2004 Toyota Corolla  RM 15000  [3C1DD5FA]
+[Dealer:dealer1] [2026-05-29 05:01:31] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399]  Buyer: buyer1  Listing: 3C1DD5FA
+[Dealer:dealer1] [2026-05-29 05:01:31] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 3C1DD5FA confirmed stored
+[Dealer:dealer1] [2026-05-29 05:08:13] [EVENT] DEAL COMPLETE  [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399]  Final price: RM 12750
+[Dealer:dealer1] [2026-05-29 05:08:38] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2005 Nissan Almera  RM 20000  [C78021BB]
+[Dealer:dealer1] [2026-05-29 05:08:38] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C78021BB confirmed stored
+[Dealer:dealer1] [2026-05-29 05:09:05] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-C78021BB-545436]  Buyer: buyer1  Listing: C78021BB
+[Dealer:dealer1] [2026-05-29 05:09:05] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444]  Buyer: buyer1  Listing: 78D47F88
+[Dealer:dealer1] [2026-05-29 05:09:25] [MESSAGE] from Broker←buyer1 [REJECT                      ] [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444] ACL.REFUSE RM 0
+[Dealer:dealer1] [2026-05-29 05:09:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-C78021BB-585871]  Buyer: buyer1  Listing: C78021BB
+[Dealer:dealer1] [2026-05-29 05:14:40] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 05:14:40] [INFO] Dealer Agent 'dealer1' started. AID: dealer1@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 05:14:40] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Dealer:dealer1] [2026-05-29 05:15:27] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2005 Toyota Corolla  RM 20000  [E8D329FF]
+[Dealer:dealer1] [2026-05-29 05:15:27] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing E8D329FF confirmed stored
+[Dealer:dealer1] [2026-05-29 05:15:27] [MESSAGE] from Broker     [POTENTIAL_BUYERS            ] 1 potential buyer(s)
+[Dealer:dealer1] [2026-05-29 05:15:27] [MESSAGE] to Broker       [DEALER_SELECTION            ] 1 of 1 buyer(s) accepted
+[Dealer:dealer1] [2026-05-29 05:15:27] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-E8D329FF-927048]  Buyer: buyer1  Listing: E8D329FF

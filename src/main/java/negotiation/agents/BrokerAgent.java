@@ -65,7 +65,7 @@ public class BrokerAgent extends Agent {
                 gui = new BrokerGui(this);
                 log.setLogArea(gui.getLogArea());
                 gui.setVisible(true);
-            log.info("Platform ready — waiting for dealers and buyers.");
+                log.info("Platform ready — waiting for dealers and buyers.");
             });
         } else {
             log.info("Platform ready in headless mode - waiting for dealers and buyers.");
@@ -205,8 +205,8 @@ public class BrokerAgent extends Agent {
             double currentDealerOffer = 0;
             double currentBuyerOffer = 0;
             String currentReasoning = "";
-            
-            for (NegiationMessage msg : msgs) {
+
+            for (NegotiationMessage msg : msgs) {
                 if (msg.getType() == NegotiationMessage.Type.OFFER) {
                     // Update current round with the new offer
                     if (msg.getFromName().equals(assignment.getDealerName())) {
@@ -214,12 +214,12 @@ public class BrokerAgent extends Agent {
                     } else if (msg.getFromName().equals(assignment.getBuyerName())) {
                         currentBuyerOffer = msg.getPrice();
                     }
-                    
+
                     // Store reasoning from this message
                     if (msg.getMessage() != null && !msg.getMessage().isBlank()) {
                         currentReasoning = msg.getMessage();
                     }
-                    
+
                     // Add round when both parties have made offers OR when we have a complete exchange
                     if (currentDealerOffer > 0 && currentBuyerOffer > 0) {
                         report.addRound(round++, currentDealerOffer, currentBuyerOffer, currentReasoning);
@@ -233,7 +233,7 @@ public class BrokerAgent extends Agent {
                     }
                 }
             }
-            
+
             // Add any incomplete final round (if negotiation ended mid-round)
             if (currentDealerOffer > 0 || currentBuyerOffer > 0) {
                 report.addRound(round, currentDealerOffer, currentBuyerOffer, currentReasoning);
@@ -351,30 +351,104 @@ public class BrokerAgent extends Agent {
     }
 
     private void autoAssignMatchesForListing(CarListing listing) {
-        List<CarRequirement> matches = requirements.values().stream()
+        // SPEC PROTOCOL: when a new listing arrives, re-run matching for every buyer
+        // whose requirement it satisfies (and who isn't already negotiating it). The
+        // buyer re-shortlists; the shortlist/selection hops then run as normal.
+        requirements.values().stream()
                 .filter(req -> matches(listing, req))
                 .filter(req -> !assignmentExists(listing.getListingId(), req.getRequirementId()))
-                .toList();
-
-        for (CarRequirement req : matches) {
-            log.event("AUTO MATCH  Listing " + listing.getListingId()
-                    + " -> Buyer " + req.getBuyerName()
-                    + " [" + req.getRequirementId() + "]");
-            createAssignment(listing, req, AUTO_ASSIGN_NOTE);
-        }
+                .forEach(this::runMatchingFor);
     }
 
     private void autoAssignMatchesForRequirement(CarRequirement req) {
+        // SPEC PROTOCOL (Phase B): instead of assigning directly, send the buyer the
+        // list of dealers/cars that match her specs. She replies with a shortlist
+        // (BUYER_SHORTLIST), the relevant dealers then select whom to engage
+        // (DEALER_SELECTION), and only then is an Assignment created.
+        runMatchingFor(req);
+    }
+
+    /**
+     * Phase B of the spec interaction protocol (FIPA iterated Contract Net):
+     * match a buyer's requirement against every registered listing and send the
+     * matching cars back to that buyer as MATCH_RESULTS (ACL INFORM).
+     */
+    public void runMatchingFor(CarRequirement req) {
         List<CarListing> matches = listings.values().stream()
                 .filter(listing -> matches(listing, req))
-                .filter(listing -> !assignmentExists(listing.getListingId(), req.getRequirementId()))
                 .toList();
 
-        for (CarListing listing : matches) {
-            log.event("AUTO MATCH  Buyer " + req.getBuyerName()
-                    + " [" + req.getRequirementId() + "]"
-                    + " -> Listing " + listing.getListingId());
-            createAssignment(listing, req, AUTO_ASSIGN_NOTE);
+        MatchingResults mr = new MatchingResults();
+        mr.setRequirementId(req.getRequirementId());
+        mr.setBuyerAID(req.getBuyerAID());
+        mr.setMatches(new ArrayList<>(matches));
+
+        ACLMessage m = new ACLMessage(ACLMessage.INFORM);
+        m.addReceiver(new AID(req.getBuyerAID(), true));
+        m.setOntology(Ontology.TYPE_MATCH_RESULTS);
+        m.setConversationId(Ontology.CONV_MATCHING);
+        m.setContent(gson.toJson(mr));
+        send(m);
+
+        log.send(req.getBuyerName(), Ontology.TYPE_MATCH_RESULTS,
+                matches.size() + " matching car(s)  [req " + req.getRequirementId() + "]");
+    }
+
+    /**
+     * Phase C: a buyer returned her shortlist (cars she will negotiate + first offers).
+     * Group the entries by dealer and forward each dealer a PotentialBuyerList as a
+     * CFP (call for proposals). Each dealer then selects whom to engage.
+     */
+    public void onBuyerShortlist(BuyerShortlistMessage sl) {
+        log.recv(sl.getBuyerName(), Ontology.TYPE_BUYER_SHORTLIST,
+                sl.getEntries().size() + " car(s) shortlisted  [req " + sl.getRequirementId() + "]");
+
+        Map<String, PotentialBuyerList> perDealer = new HashMap<>();
+        for (BuyerShortlistEntry e : sl.getEntries()) {
+            CarListing l = listings.get(e.getListingId());
+            if (l == null) continue;
+            PotentialBuyerEntry pb = new PotentialBuyerEntry();
+            pb.setRequirementId(sl.getRequirementId());
+            pb.setBuyerAID(sl.getBuyerAID());
+            pb.setBuyerName(sl.getBuyerName());
+            pb.setListingId(e.getListingId());
+            pb.setFirstOffer(e.getFirstOffer());
+            perDealer.computeIfAbsent(l.getDealerAID(), k -> {
+                PotentialBuyerList pl = new PotentialBuyerList();
+                pl.setDealerAID(l.getDealerAID());
+                return pl;
+            }).getBuyers().add(pb);
+        }
+
+        for (PotentialBuyerList pl : perDealer.values()) {
+            ACLMessage m = new ACLMessage(ACLMessage.CFP);
+            m.addReceiver(new AID(pl.getDealerAID(), true));
+            m.setOntology(Ontology.TYPE_POTENTIAL_BUYERS);
+            m.setConversationId(Ontology.CONV_MATCHING);
+            m.setContent(gson.toJson(pl));
+            send(m);
+            log.send(new AID(pl.getDealerAID(), true).getLocalName(),
+                    Ontology.TYPE_POTENTIAL_BUYERS, pl.getBuyers().size() + " potential buyer(s)");
+        }
+    }
+
+    /**
+     * Phase D: a dealer returned the buyers it has chosen to engage. For each
+     * selected (listing, buyer) pair create an Assignment — reusing the existing,
+     * proven createAssignment() path that starts the negotiation.
+     */
+    public void onDealerSelection(DealerSelection sel) {
+        log.recv(new AID(sel.getDealerAID(), true).getLocalName(),
+                Ontology.TYPE_DEALER_SELECTION, sel.getSelected().size() + " buyer(s) accepted");
+
+        for (PotentialBuyerEntry pb : sel.getSelected()) {
+            CarListing     listing = listings.get(pb.getListingId());
+            CarRequirement req     = requirements.get(pb.getRequirementId());
+            if (listing == null || req == null) continue;
+            if (assignmentExists(listing.getListingId(), req.getRequirementId())) continue;
+            createAssignment(listing, req,
+                    "Matched via shortlist/selection (buyer first offer RM "
+                            + String.format("%.0f", pb.getFirstOffer()) + ")");
         }
     }
 
