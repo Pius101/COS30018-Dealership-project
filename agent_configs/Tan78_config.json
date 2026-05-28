@@ -1,0 +1,19 @@
+{
+  "name": "Tan78",
+  "make": "Proton",
+  "model": "Persona",
+  "yearMin": 0,
+  "yearMax": 0,
+  "maxPrice": 43500.0,
+  "maxMileage": 80000,
+  "condition": "Used",
+  "notes": "Looking for a reliable Proton for daily commuting.",
+  "firstOffer": 32500.0,
+  "reservationPrice": 43500.0,
+  "autoNegotiate": true,
+  "strategy": "BAYESIAN",
+  "maxRounds": 12,
+  "personality": "aggressive",
+  "_marketPrice": 48000.0,
+  "_flexibleModel": false
+}

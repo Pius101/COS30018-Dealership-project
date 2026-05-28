@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+58,1,"TIGHT_GAP","TIT_FOR_TAT","Tit-for-Tat","TIT_FOR_TAT","Tit-for-Tat","NO_DEAL","NONE",10,20,80000,62400,72800,71200,0,0,0.00,"exp_058_TIGHT_GAP_TIT_FOR_TAT_vs_TIT_FOR_TAT"

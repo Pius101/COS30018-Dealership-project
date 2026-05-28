@@ -1,0 +1,19 @@
+{
+  "name": "Ahmad86",
+  "make": "Perodua",
+  "model": "Bezza",
+  "yearMin": 2021,
+  "yearMax": 0,
+  "maxPrice": 27000.0,
+  "maxMileage": 50000,
+  "condition": "Used",
+  "notes": "Looking for a reliable Perodua for daily commuting.",
+  "firstOffer": 19000.0,
+  "reservationPrice": 27000.0,
+  "autoNegotiate": true,
+  "strategy": "FIXED_INCREMENT_5PCT",
+  "maxRounds": 15,
+  "personality": "aggressive",
+  "_marketPrice": 32000.0,
+  "_flexibleModel": false
+}

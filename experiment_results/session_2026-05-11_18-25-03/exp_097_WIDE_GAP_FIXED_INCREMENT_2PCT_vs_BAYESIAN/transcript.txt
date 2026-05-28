@@ -1,0 +1,26 @@
+EXPERIMENT 97
+================
+Scenario: WIDE_GAP
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 68500 | Rounds: 7
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 78700 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM78700
+Round 2 | BUYER | OFFER | RM 62000 | Round 1/10 | 2.0% fixed move toward RV | Offer RM60800 -> RM62000 | RV: RM82400
+Round 2 | DEALER | OFFER | RM 77400 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1200 (0.0%) | EstimatedFloor≈RM63200 | Offers seen=2 → OFFER RM77400
+Round 3 | BUYER | OFFER | RM 63300 | Round 2/10 | 2.0% fixed move toward RV | Offer RM62000 -> RM63300 | RV: RM82400
+Round 3 | DEALER | OFFER | RM 76200 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1250 (0.0%) | EstimatedFloor≈RM64550 | Offers seen=3 → OFFER RM76200
+Round 4 | BUYER | OFFER | RM 64500 | Round 3/10 | 2.0% fixed move toward RV | Offer RM63300 -> RM64500 | RV: RM82400
+Round 4 | DEALER | OFFER | RM 74900 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1233 (0.0%) | EstimatedFloor≈RM65733 | Offers seen=4 → OFFER RM74900
+Round 5 | BUYER | OFFER | RM 65800 | Round 4/10 | 2.0% fixed move toward RV | Offer RM64500 -> RM65800 | RV: RM82400
+Round 5 | DEALER | OFFER | RM 73600 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1250 (0.0%) | EstimatedFloor≈RM67050 | Offers seen=5 → OFFER RM73600
+Round 6 | BUYER | OFFER | RM 67100 | Round 5/10 | 2.0% fixed move toward RV | Offer RM65800 -> RM67100 | RV: RM82400
+Round 6 | DEALER | OFFER | RM 72300 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1260 (0.0%) | EstimatedFloor≈RM68360 | Offers seen=6 → OFFER RM72300
+Round 7 | BUYER | OFFER | RM 68500 | Round 6/10 | 2.0% fixed move toward RV | Offer RM67100 -> RM68500 | RV: RM82400
+Round 7 | DEALER | ACCEPT | RM 68500 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1283 (0.0%) | EstimatedFloor≈RM69783 | Offers seen=7 → ACCEPT RM68500
+
+Final note: Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1283 (0.0%) | EstimatedFloor≈RM69783 | Offers seen=7 → ACCEPT RM68500

@@ -29,7 +29,10 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
 
         String type = msg.getOntology();
         if (type == null) {
-            broker.log.error("Message with no ontology from " + msg.getSender().getLocalName());
+            broker.log.error("Message with no ontology from " + msg.getSender().getLocalName()
+                    + " | ACL." + aclPerformativeName(msg.getPerformative())
+                    + " | conversationId=" + msg.getConversationId()
+                    + " | content=" + msg.getContent());
             return;
         }
 
@@ -41,7 +44,10 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
             case Ontology.TYPE_NEG_REJECT         -> handleNegotiationMessage(msg, NegotiationMessage.Type.REJECT);
             case "EMERGENCY_SAVE"                  -> handleEmergencySave(msg);
             default -> broker.log.error("Unknown ontology type: " + type
-                    + "  from " + msg.getSender().getLocalName());
+                    + " | sender=" + msg.getSender().getLocalName()
+                    + " | ACL." + aclPerformativeName(msg.getPerformative())
+                    + " | conversationId=" + msg.getConversationId()
+                    + " | content=" + msg.getContent());
         }
     }
 
@@ -63,7 +69,7 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     "ACK for " + listing.getListingId());
         } catch (Exception e) {
             broker.log.error("Bad LISTING_REGISTER from " + msg.getSender().getLocalName()
-                    + ": " + e.getMessage());
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
@@ -83,7 +89,7 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     "ACK for " + req.getRequirementId());
         } catch (Exception e) {
             broker.log.error("Bad BUYER_REQUIREMENTS from " + msg.getSender().getLocalName()
-                    + ": " + e.getMessage());
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
@@ -92,10 +98,11 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
             NegotiationMessage nm = broker.gson.fromJson(msg.getContent(), NegotiationMessage.class);
             nm.setType(type);
             nm.setTimestamp(System.currentTimeMillis());
+            enrichAclMetadata(msg, nm);
             broker.routeNegotiationMessage(nm, nm.getToAID());
         } catch (Exception e) {
             broker.log.error("Bad negotiation message from " + msg.getSender().getLocalName()
-                    + ": " + e.getMessage());
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
@@ -104,10 +111,11 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
             NegotiationMessage nm = broker.gson.fromJson(msg.getContent(), NegotiationMessage.class);
             nm.setType(NegotiationMessage.Type.ACCEPT);
             nm.setTimestamp(System.currentTimeMillis());
+            enrichAclMetadata(msg, nm);
             broker.closeDeal(nm);
         } catch (Exception e) {
             broker.log.error("Bad NEG_ACCEPT from " + msg.getSender().getLocalName()
-                    + ": " + e.getMessage());
+                    + " | content=" + msg.getContent(), e);
         }
     }
 
@@ -133,10 +141,35 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     );
                     broker.log.info("Emergency saved conversation: " + assignment.getNegotiationId());
                 });
-                
+            broker.refreshNegotiationTestReport();
+                 
         } catch (Exception e) {
             broker.log.error("Failed to handle emergency save from " + msg.getSender().getLocalName()
-                    + ": " + e.getMessage());
+                    + " | content=" + msg.getContent(), e);
         }
+    }
+
+    private void enrichAclMetadata(ACLMessage aclMessage, NegotiationMessage negotiationMessage) {
+        negotiationMessage.setAclPerformative(aclPerformativeName(aclMessage.getPerformative()));
+        String conversationId = aclMessage.getConversationId();
+        if (conversationId == null || conversationId.isBlank()
+                || Ontology.CONV_NEGOTIATION.equals(conversationId)) {
+            conversationId = Ontology.CONV_NEGOTIATION + "-" + negotiationMessage.getNegotiationId();
+        }
+        negotiationMessage.setConversationId(conversationId);
+    }
+
+    private static String aclPerformativeName(int performative) {
+        return switch (performative) {
+            case ACLMessage.REQUEST -> "REQUEST";
+            case ACLMessage.INFORM -> "INFORM";
+            case ACLMessage.PROPOSE -> "PROPOSE";
+            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
+            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
+            case ACLMessage.REFUSE -> "REFUSE";
+            case ACLMessage.FAILURE -> "FAILURE";
+            case ACLMessage.CONFIRM -> "CONFIRM";
+            default -> String.valueOf(performative);
+        };
     }
 }

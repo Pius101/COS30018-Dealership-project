@@ -1,0 +1,23 @@
+EXPERIMENT 82
+================
+Scenario: WIDE_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 78000 | Rounds: 5
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 79700 | Round 1/10 | Opponent last conceded -24.0% (RM-14592) | Mirroring at 2.0% → Offer RM79700
+Round 2 | BUYER | OFFER | RM 72900 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+Round 2 | DEALER | OFFER | RM 78700 | Round 2/10 | Opponent last conceded 19.9% (RM14508) | Mirroring at 8.0% → Offer RM78700
+Round 3 | BUYER | OFFER | RM 75200 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM75200
+Round 3 | DEALER | OFFER | RM 78300 | Round 3/10 | Opponent last conceded 3.2% (RM2373) | Mirroring at 3.2% → Offer RM78300
+Round 4 | BUYER | OFFER | RM 76800 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM76800
+Round 4 | DEALER | OFFER | RM 78100 | Round 4/10 | Opponent last conceded 2.1% (RM1634) | Mirroring at 2.1% → Offer RM78100
+Round 5 | BUYER | OFFER | RM 78000 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM78000
+Round 5 | DEALER | WOULD_ACCEPT | RM 78000 | Counter would be below buyer offer; accepting buyer price.
+Round 5 | DEALER | ACCEPT | RM 78000 | Round 5/10 | Opponent last conceded 1.6% (RM1219) | Mirroring at 1.6% → Offer RM77900
+
+Final note: Round 5/10 | Opponent last conceded 1.6% (RM1219) | Mirroring at 1.6% → Offer RM77900

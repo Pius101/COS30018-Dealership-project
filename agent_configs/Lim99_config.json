@@ -1,0 +1,19 @@
+{
+  "name": "Lim99",
+  "make": "Proton",
+  "model": "Saga",
+  "yearMin": 0,
+  "yearMax": 0,
+  "maxPrice": 37000.0,
+  "maxMileage": 100000,
+  "condition": "Any",
+  "notes": "Interested in a Proton Saga, flexible on year.",
+  "firstOffer": 34500.0,
+  "reservationPrice": 37000.0,
+  "autoNegotiate": true,
+  "strategy": "FIXED_INCREMENT_2PCT",
+  "maxRounds": 10,
+  "personality": "easy",
+  "_marketPrice": 35000.0,
+  "_flexibleModel": false
+}

@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+67,1,"TIGHT_GAP","FIXED_INCREMENT_5PCT","Fixed Increment (5% per round)","BAYESIAN","Bayesian Learner","DEAL","DEALER",4,8,80000,62400,72800,71200,72200,7800,9.75,"exp_067_TIGHT_GAP_FIXED_INCREMENT_5PCT_vs_BAYESIAN"

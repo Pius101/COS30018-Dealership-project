@@ -1,0 +1,27 @@
+EXPERIMENT 10
+================
+Scenario: BALANCED
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 78400 | Rounds: 7
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 79800 | Round 1/10 | Opponent last conceded -20.0% (RM-12800) | Mirroring at 2.0% → Offer RM79800
+Round 2 | BUYER | OFFER | RM 72100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72100
+Round 2 | DEALER | OFFER | RM 79000 | Round 2/10 | Opponent last conceded 12.7% (RM9125) | Mirroring at 8.0% → Offer RM79000
+Round 3 | BUYER | OFFER | RM 73600 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM73600
+Round 3 | DEALER | OFFER | RM 78800 | Round 3/10 | Opponent last conceded 2.1% (RM1531) | Mirroring at 2.1% → Offer RM78800
+Round 4 | BUYER | OFFER | RM 74700 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM74700
+Round 4 | DEALER | OFFER | RM 78700 | Round 4/10 | Opponent last conceded 1.5% (RM1116) | Mirroring at 1.5% → Offer RM78700
+Round 5 | BUYER | OFFER | RM 75500 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM75500
+Round 5 | DEALER | OFFER | RM 78600 | Round 5/10 | Opponent last conceded 1.1% (RM809) | Mirroring at 1.1% → Offer RM78600
+Round 6 | BUYER | OFFER | RM 76100 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM76100
+Round 6 | DEALER | OFFER | RM 78500 | Round 6/10 | Opponent last conceded 0.8% (RM605) | Mirroring at 0.8% → Offer RM78500
+Round 7 | BUYER | OFFER | RM 76700 | Round 6/10 | Curve=CONCEDER β=4.00 | Progress=60% → Offer RM76700
+Round 7 | DEALER | OFFER | RM 78400 | Round 7/10 | Opponent last conceded 0.8% (RM605) | Mirroring at 0.8% → Offer RM78400
+Round 7 | BUYER | ACCEPT | RM 78400 | Round 7/10 | CONCEDER | Offer RM78400 vs RV RM78400 | lastRound=false → ACCEPT
+
+Final note: Round 7/10 | CONCEDER | Offer RM78400 vs RV RM78400 | lastRound=false → ACCEPT

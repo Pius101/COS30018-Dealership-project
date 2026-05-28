@@ -1,0 +1,19 @@
+EXPERIMENT 42
+================
+Scenario: TIGHT_GAP
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 3
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 76000 | Round 1/10 | 5.0% fixed move toward RV | Offer RM80000 -> RM76000 | RV: RM71200
+Round 2 | BUYER | OFFER | RM 63400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM63400
+Round 2 | DEALER | OFFER | RM 72200 | Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM71200
+Round 3 | BUYER | OFFER | RM 64500 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM3800 (0.0%) | EstimatedFloor≈RM68400 | Offers seen=2 → OFFER RM64500
+Round 3 | DEALER | OFFER | RM 71200 | Round 3/10 | 5.0% fixed move toward RV | Offer RM72200 -> RM71200 | RV: RM71200
+Round 3 | BUYER | ACCEPT | RM 71200 | Round 3/10 | β=0.85 | Style=BOULWARE | AvgConcession=RM2400 (5.0%) | EstimatedFloor≈RM69760 | Offers seen=3 → ACCEPT RM71200
+
+Final note: Round 3/10 | β=0.85 | Style=BOULWARE | AvgConcession=RM2400 (5.0%) | EstimatedFloor≈RM69760 | Offers seen=3 → ACCEPT RM71200

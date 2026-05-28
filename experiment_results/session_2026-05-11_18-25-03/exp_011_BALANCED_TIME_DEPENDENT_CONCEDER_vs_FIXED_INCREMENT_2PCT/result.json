@@ -1,0 +1,18 @@
+{
+  "case": 11,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "dealerStrategy": "FIXED_INCREMENT_2PCT",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 1,
+  "messageCount": 3,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 78400,
+  "savingFromAsk": 1600,
+  "savingPct": 2.00
+}

@@ -1,0 +1,21 @@
+EXPERIMENT 104
+================
+Scenario: WIDE_GAP
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 70400 | Rounds: 4
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 72800 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72800
+Round 2 | BUYER | OFFER | RM 63800 | Round 1/10 | 5.0% fixed move toward RV | Offer RM60800 -> RM63800 | RV: RM82400
+Round 2 | DEALER | OFFER | RM 71400 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM71400
+Round 3 | BUYER | OFFER | RM 67000 | Round 2/10 | 5.0% fixed move toward RV | Offer RM63800 -> RM67000 | RV: RM82400
+Round 3 | DEALER | OFFER | RM 70500 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM70500
+Round 4 | BUYER | OFFER | RM 70400 | Round 3/10 | 5.0% fixed move toward RV | Offer RM67000 -> RM70400 | RV: RM82400
+Round 4 | DEALER | WOULD_ACCEPT | RM 70400 | Counter would be below buyer offer; accepting buyer price.
+Round 4 | DEALER | ACCEPT | RM 70400 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM69800
+
+Final note: Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM69800

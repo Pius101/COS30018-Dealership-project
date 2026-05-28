@@ -1,0 +1,16 @@
+EXPERIMENT 79
+================
+Scenario: WIDE_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72900 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 78700 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM78700
+Round 2 | BUYER | OFFER | RM 72900 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+Round 2 | DEALER | ACCEPT | RM 72900 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-12100 (0.0%) | EstimatedFloor≈RM85000 | Offers seen=2 → ACCEPT RM72900
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-12100 (0.0%) | EstimatedFloor≈RM85000 | Offers seen=2 → ACCEPT RM72900

@@ -1,0 +1,17 @@
+EXPERIMENT 84
+================
+Scenario: WIDE_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72900 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 76000 | Round 1/10 | 5.0% fixed move toward RV | Offer RM80000 -> RM76000 | RV: RM67200
+Round 2 | BUYER | OFFER | RM 72900 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+Round 2 | DEALER | WOULD_ACCEPT | RM 72900 | Counter would be below buyer offer; accepting buyer price.
+Round 2 | DEALER | ACCEPT | RM 72900 | Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM67200
+
+Final note: Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM67200

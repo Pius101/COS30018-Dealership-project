@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+16,1,"BALANCED","TIME_DEPENDENT_BOULWARE","Time-Dependent (BOULWARE)","TIT_FOR_TAT","Tit-for-Tat","DEAL","DEALER",10,20,80000,64000,78400,70400,73400,6600,8.25,"exp_016_BALANCED_TIME_DEPENDENT_BOULWARE_vs_TIT_FOR_TAT"

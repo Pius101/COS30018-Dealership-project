@@ -1,0 +1,17 @@
+EXPERIMENT 77
+================
+Scenario: WIDE_GAP
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 76800 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 78400 | Round 1/10 | 2.0% fixed move toward RV | Offer RM80000 -> RM78400 | RV: RM67200
+Round 2 | BUYER | OFFER | RM 63000 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM63000
+Round 2 | DEALER | OFFER | RM 76800 | Round 2/10 | 2.0% fixed move toward RV | Offer RM78400 -> RM76800 | RV: RM67200
+Round 2 | BUYER | ACCEPT | RM 76800 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM1600 (0.0%) | EstimatedFloor≈RM75200 | Offers seen=2 → ACCEPT RM76800
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM1600 (0.0%) | EstimatedFloor≈RM75200 | Offers seen=2 → ACCEPT RM76800

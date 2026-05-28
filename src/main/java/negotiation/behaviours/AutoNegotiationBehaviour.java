@@ -71,13 +71,12 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         // Create strategy from registry
         NegotiationStrategy s;
         try {
-            String strategyKey = params.strategyKey != null ? params.strategyKey : getRandomBuyerStrategy();
-            s = StrategyRegistry.create(strategyKey);
+            s = StrategyRegistry.create(
+                    params.strategyKey != null ? params.strategyKey : "BAYESIAN");
         } catch (IllegalArgumentException e) {
-            String fallbackStrategy = getRandomBuyerStrategy();
             buyer.log.error("[AUTO] Unknown strategy '" + params.strategyKey
-                    + "' — falling back to " + fallbackStrategy);
-            s = StrategyRegistry.create(fallbackStrategy);
+                    + "' — falling back to BAYESIAN");
+            s = new BayesianLearnerStrategy();
         }
         this.strategy = s;
         this.strategy.initialise(ctx);
@@ -89,10 +88,9 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                 + " | Max rounds: " + ctx.maxRounds);
 
         // Log strategy info to conversation file so it appears in the header
-        negotiation.util.ConversationLogger.logStrategyInfo(
+        negotiation.util.ConversationLogger.logBuyerStrategyInfo(
                 negotiationId,
                 strategy.getDisplayName(),
-                "Unknown (manual or pending)",  // dealer strategy unknown from buyer's side
                 ctx.firstOffer,
                 ctx.reservationPrice,
                 ctx.maxRounds);
@@ -151,7 +149,11 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
 
         buyer.sendOffer(negotiationId, offer,
                 "Auto-negotiation started. My opening offer: RM "
-                        + String.format("%.0f", offer));
+                        + String.format("%.0f", offer),
+                round,
+                strategy.getDisplayName(),
+                "Round 1 opening offer using " + strategy.getDisplayName(),
+                utilityFor(offer));
 
         String reasoning = "Round 1 — Opening offer: RM " + String.format("%.0f", offer)
                 + " | Strategy: " + strategy.getDisplayName()
@@ -193,7 +195,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                         + " as it is within budget.";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning(reason);
-                buyer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted at deadline.");
+                buyer.acceptOffer(negotiationId, incoming.getPrice(), "Auto-accepted at deadline.",
+                        round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
             } else {
                 String reason = "Deadline reached but offer RM "
                         + String.format("%.0f", incoming.getPrice())
@@ -202,7 +205,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                         + " — walking away.";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning(reason);
-                buyer.rejectOffer(negotiationId, "Auto-rejected: offer exceeds budget at deadline.");
+                buyer.rejectOffer(negotiationId, "Auto-rejected: offer exceeds budget at deadline.",
+                        round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
             return;
@@ -218,7 +222,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning("⚠ " + reason);
                 buyer.acceptOffer(negotiationId, incoming.getPrice(),
-                        "Auto-accepted: impasse detected.");
+                        "Auto-accepted: impasse detected.",
+                        round, strategy.getDisplayName(), reason, utilityFor(incoming.getPrice()));
             } else {
                 String reason = "Impasse detected and offer RM "
                         + String.format("%.0f", incoming.getPrice())
@@ -227,7 +232,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                         + " — ending negotiation.";
                 buyer.log.info("[AUTO] " + reason);
                 appendReasoning("⚠ " + reason);
-                buyer.rejectOffer(negotiationId, "Auto-rejected: impasse, over budget.");
+                buyer.rejectOffer(negotiationId, "Auto-rejected: impasse, over budget.",
+                        round, strategy.getDisplayName(), reason, 0.0);
             }
             active = false;
             return;
@@ -239,7 +245,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
             buyer.log.info("[AUTO] ACCEPT — " + reasoning);
             appendReasoning("✅ ACCEPT — " + reasoning);
             buyer.acceptOffer(negotiationId, incoming.getPrice(),
-                    "Auto-accepted. " + reasoning);
+                    "Auto-accepted. " + reasoning,
+                    round, strategy.getDisplayName(), reasoning, utilityFor(incoming.getPrice()));
             active = false;
             return;
         }
@@ -266,7 +273,8 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         appendReasoning("Round " + round + " → Counter RM "
                 + String.format("%.0f", myOffer) + " | " + reasoning);
 
-        buyer.sendOffer(negotiationId, myOffer, "");
+        buyer.sendOffer(negotiationId, myOffer, "",
+                round, strategy.getDisplayName(), reasoning, utilityFor(myOffer));
 
         // Brief pause between rounds so the negotiation is observable in the GUI
         // and doesn't complete too fast to follow. 1.5 seconds per round.
@@ -276,6 +284,16 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
     // ─────────────────────────────────────────────────────────────────────────
     // Helper
     // ─────────────────────────────────────────────────────────────────────────
+
+    private double utilityFor(double price) {
+        if (ctx.reservationPrice <= ctx.firstOffer) {
+            return price <= ctx.reservationPrice ? 1.0 : 0.0;
+        }
+        if (price <= ctx.firstOffer) return 1.0;
+        if (price >= ctx.reservationPrice) return 0.0;
+        return Math.max(0.0, Math.min(1.0,
+                (ctx.reservationPrice - price) / (ctx.reservationPrice - ctx.firstOffer)));
+    }
 
     /** Append reasoning text to the GUI chat tab AND the conversation log file. */
     private void appendReasoning(String text) {
@@ -324,12 +342,5 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
                                                        double reservationPrice, int maxRounds) {
             return new AutoNegotiationParams(strategyKey, firstOffer, reservationPrice, maxRounds);
         }
-    }
-
-    /** Get a random buyer strategy */
-    private static String getRandomBuyerStrategy() {
-        String[] strategies = {"BAYESIAN", "TIME_DEPENDENT_CONCEDER", "TIT_FOR_TAT", "FIXED_INCREMENT_2PCT"};
-        int index = (int) (Math.random() * strategies.length);
-        return strategies[index];
     }
 }

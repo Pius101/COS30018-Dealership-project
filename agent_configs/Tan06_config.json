@@ -1,0 +1,19 @@
+{
+  "name": "Tan06",
+  "make": "Toyota",
+  "model": "",
+  "yearMin": 2021,
+  "yearMax": 0,
+  "maxPrice": 109000.0,
+  "maxMileage": 0,
+  "condition": "Any",
+  "notes": "Comparing options \u2014 open to Toyota vehicles.",
+  "firstOffer": 82000.0,
+  "reservationPrice": 109000.0,
+  "autoNegotiate": true,
+  "strategy": "BAYESIAN",
+  "maxRounds": 20,
+  "personality": "aggressive",
+  "_marketPrice": 125000.0,
+  "_flexibleModel": true
+}

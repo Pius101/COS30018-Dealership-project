@@ -1,0 +1,18 @@
+{
+  "case": 74,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "buyerStrategy": "BAYESIAN",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 2,
+  "messageCount": 5,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 60800,
+  "buyerReservationPrice": 82400,
+  "dealerReservationPrice": 67200,
+  "finalPrice": 71400,
+  "savingFromAsk": 8600,
+  "savingPct": 10.75
+}

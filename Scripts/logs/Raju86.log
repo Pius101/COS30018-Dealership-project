@@ -1,0 +1,41 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Raju86.log
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 172.17.75.103:1099...
+[Launcher] Binding to local IP: 172.17.75.103
+May 11, 2026 4:41:59 PM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 11, 2026 4:41:59 PM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.17.75.103:53781
+
+May 11, 2026 4:42:00 PM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 11, 2026 4:42:00 PM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 11, 2026 4:42:00 PM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 11, 2026 4:42:00 PM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 11, 2026 4:42:00 PM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 11, 2026 4:42:00 PM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-1@172.17.75.103 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.17.75.103
+[Launcher] Buyer agent 'Raju86' joined buyers container at 172.17.75.103
+[Launcher] BUYER 'Raju86' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-11 16:42:00] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Buyer Agent 'Raju86' started. AID: Raju86@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Raju86_config.json
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [CEDD996A]
+[Buyer] [2026-05-11 16:42:02] [INFO] Requirements submitted from config: Mazda (2018–any) Used ≤ RM 97000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] Auto-negotiate armed: strategy=TIT_FOR_TAT firstOffer=RM87500 budget=RM97000 maxRounds=15
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement CEDD996A confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Raju86' shutting down.

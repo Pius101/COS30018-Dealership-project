@@ -1,0 +1,163 @@
+Change Descriptions
+===================
+
+Git account currently configured for this repository:
+pumpkins <116141356+Pius101@users.noreply.github.com>
+
+If these staged changes are committed now, the commit will be marked as made by
+that account.
+
+
+Current Staged Changes
+----------------------
+
+1. Added structured negotiation audit logging.
+   - Added NegotiationAuditService.java.
+   - Negotiation events are now written to machine-readable CSV and JSONL files.
+   - A shared negotiation-history.csv and negotiation-history.jsonl can be
+     produced under the conversations folder.
+   - Per-negotiation CSV and JSONL audit files can also be produced.
+
+2. Improved human-readable conversation logs.
+   - Conversation logs now include full timestamps.
+   - Logs now include round numbers, ACL performatives, strategy names,
+     outcomes, utility values, and reasons.
+   - Completed and failed negotiations now write clearer summary sections.
+   - Conversation filenames now use the negotiation ID more directly.
+
+3. Expanded NegotiationMessage metadata.
+   - Added conversationId.
+   - Added aclPerformative.
+   - Added round.
+   - Added strategy.
+   - Added outcome.
+   - Added reason.
+   - Added utility.
+
+4. Updated BuyerAgent and DealerAgent.
+   - Offers, accepts, and rejects can now include round, strategy, reason,
+     outcome, and utility metadata.
+   - Messages now set ACL performative and conversation ID information.
+   - Negotiation log output is more descriptive.
+   - Error handling now logs stack traces instead of only short error messages.
+
+5. Updated BrokerAgent.
+   - Broker logs now include ACL performative labels.
+   - Forwarded negotiation messages keep their conversation ID.
+   - Deal completion now passes richer information to ConversationLogger.
+   - Several error logs now include full exception details.
+
+6. Updated message behaviours.
+   - BrokerMessageBehaviour, BuyerMessageBehaviour, and DealerMessageBehaviour
+     now enrich negotiation messages with ACL metadata.
+   - Unknown or malformed messages are logged with sender, ACL performative,
+     conversation ID, and content details where available.
+   - Parsing failures now log full exception details.
+
+7. Updated auto-negotiation behaviour.
+   - Buyer auto-negotiation now records buyer strategy details separately.
+   - Dealer auto-negotiation now records dealer strategy details separately.
+   - Automatic offers, accepts, and rejects now include round, strategy,
+     reasoning, and utility information.
+   - Buyer and dealer utility calculations were added for negotiation prices.
+
+8. Improved AppLogger.
+   - Logs now use full date-time timestamps.
+   - Log levels were added, including INFO, DEBUG, WARN, ERROR, MESSAGE,
+     NEGOTIATION, and EVENT.
+   - Logs are written to console, GUI text areas, logs/system.log,
+     logs/error.log, and per-agent log files.
+   - Debug mode can be enabled or disabled with the negotiation.debug property.
+   - Error logging can now include stack traces.
+
+9. Added headless log configuration.
+   - Added HeadlessLogConfigurer.java.
+   - Headless Java launches can redirect stdout and stderr to per-process log
+     files.
+
+10. Updated NegotiationTestLogger.
+    - It now parses the newer full timestamp format.
+    - It recognizes the newer completed and failed negotiation markers.
+    - Reports now include total negotiations, successful negotiations, failed
+      negotiations, average rounds, and average final price.
+
+11. Added an IntelliJ run configuration.
+    - Added .idea/runConfigurations/spawn_agents.xml.
+    - This runs Scripts/spawn_agents_fixed.py from IntelliJ.
+
+
+Additional Changes Made After Log Check
+---------------------------------------
+
+1. Fixed the agent spawner host address problem.
+   - The recent agent logs showed spawned agents trying to connect to
+     127.0.0.1:1099 while Java was binding JADE to the local Wi-Fi IP
+     172.17.75.103.
+   - Scripts/spawn_agents_fixed.py now detects the local non-loopback IP when
+     running with --as-host.
+   - Spawned dealers and buyers now connect to that detected host IP instead of
+     falling back to 127.0.0.1.
+   - The spawner prints the host address it will use before launching agents.
+
+2. Updated the IntelliJ spawner run configuration.
+   - .idea/runConfigurations/spawn_agents.xml now passes --as-host.
+   - This makes the IntelliJ "spawn_agents" configuration start the JADE HOST
+     first instead of only launching buyers and dealers.
+
+3. Configured spawner-launched agents to run without opening GUIs.
+   - Added GuiMode.java as a shared switch for enabling or disabling Swing
+     agent windows.
+   - Launcher.java now disables agent GUIs by default in --headless mode.
+   - A new --agent-gui flag can be used with --headless if agent windows are
+     wanted for debugging.
+   - BrokerAgent, BuyerAgent, and DealerAgent now skip creating their Swing GUI
+     windows when GUI mode is disabled.
+   - BuyerAgent and DealerAgent now guard GUI callbacks so headless mode does
+     not fail when no GUI object exists.
+
+4. Verified the updated spawner path.
+   - Ran a Python syntax check using the project virtual environment.
+   - Confirmed the spawner detects 172.17.75.103 as the local host IP.
+   - Ran a dry run showing HOST would be launched first in headless mode.
+   - Ran mvn -q -DskipTests package successfully after the GUI-mode changes.
+
+5. Added clearer terminal progress output to the agent spawner.
+   - Scripts/spawn_agents_fixed.py now prints [Spawner] status lines while it
+     runs.
+   - It prints the script directory, selected mode, JAR path, JADE library path,
+     market data path, config output directory, log directory, random seed, and
+     resolved JADE host.
+   - It reports whether strategies came from the Java strategy service or the
+     built-in fallback list.
+   - It prints every generated dealer and buyer config path.
+   - It prints each HOST, DEALER, and BUYER launch, including host, config path,
+     log file path, process ID, and dry-run command when --dry-run is used.
+   - While running, it reports child process exits and what processes are still
+     running.
+
+
+Generated Or Runtime Files
+--------------------------
+
+1. A Python bytecode cache file is staged:
+   Scripts/__pycache__/spawn_agents_fixed.cpython-314.pyc
+
+   This is generated by Python and is usually not something to commit unless the
+   project intentionally tracks generated cache files.
+
+2. Several Scripts/logs/*.log files are modified but not staged.
+   These appear to be runtime output logs from running the agents.
+
+
+Recent Commits Already Marked As This Account
+---------------------------------------------
+
+1. b6ada57 on 2026-05-08
+   Author: pumpkins <116141356+Pius101@users.noreply.github.com>
+   Message: changed a few thing made the ogging more robust
+
+2. 4b8075a on 2026-05-07
+   Author: pumpkins <116141356+Pius101@users.noreply.github.com>
+   Message: Refactored Ontology.java Added a REST api for all available
+   negotiation strat when broker connects at http://localhost:8080/api/strategies
+   Fixed website chart error and different chart views.

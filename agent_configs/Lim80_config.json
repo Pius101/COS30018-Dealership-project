@@ -1,0 +1,19 @@
+{
+  "name": "Lim80",
+  "make": "Proton",
+  "model": "",
+  "yearMin": 2018,
+  "yearMax": 0,
+  "maxPrice": 26000.0,
+  "maxMileage": 0,
+  "condition": "New",
+  "notes": "Looking for a reliable Proton for daily commuting.",
+  "firstOffer": 19000.0,
+  "reservationPrice": 26000.0,
+  "autoNegotiate": true,
+  "strategy": "TIT_FOR_TAT",
+  "maxRounds": 12,
+  "personality": "aggressive",
+  "_marketPrice": 32000.0,
+  "_flexibleModel": true
+}

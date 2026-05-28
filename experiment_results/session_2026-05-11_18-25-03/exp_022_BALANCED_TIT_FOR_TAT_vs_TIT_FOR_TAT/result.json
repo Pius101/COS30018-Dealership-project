@@ -1,0 +1,18 @@
+{
+  "case": 22,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "TIT_FOR_TAT",
+  "outcome": "NO_DEAL",
+  "acceptedBy": "NONE",
+  "roundsTaken": 10,
+  "messageCount": 20,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 0,
+  "savingFromAsk": 0,
+  "savingPct": 0.00
+}

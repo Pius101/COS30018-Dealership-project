@@ -1,0 +1,30 @@
+STRATEGY EXPERIMENT SESSION
+===========================
+Experiments: 108
+Deals: 105 (97.22%)
+Average rounds: 6.00
+Average final price: RM 72686
+
+BEST BUYER OUTCOMES BY FINAL PRICE
+#090 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 8 final=RM 67200
+#091 WIDE_GAP   buyer=TIT_FOR_TAT              dealer=BAYESIAN                 outcome=DEAL    rounds=10 final=RM 67200
+#092 WIDE_GAP   buyer=TIT_FOR_TAT              dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds=10 final=RM 67200
+#095 WIDE_GAP   buyer=TIT_FOR_TAT              dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds=10 final=RM 67200
+#096 WIDE_GAP   buyer=TIT_FOR_TAT              dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 5 final=RM 67200
+#102 WIDE_GAP   buyer=FIXED_INCREMENT_2PCT     dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 6 final=RM 67200
+#078 WIDE_GAP   buyer=BAYESIAN                 dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 4 final=RM 67300
+#086 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 8 final=RM 67900
+#089 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 8 final=RM 68100
+#097 WIDE_GAP   buyer=FIXED_INCREMENT_2PCT     dealer=BAYESIAN                 outcome=DEAL    rounds= 7 final=RM 68500
+
+FASTEST DEALS
+#011 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 1 final=RM 78400
+#017 BALANCED   buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 1 final=RM 78400
+#080 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 1 final=RM 72800
+#001 BALANCED   buyer=BAYESIAN                 dealer=BAYESIAN                 outcome=DEAL    rounds= 2 final=RM 78100
+#002 BALANCED   buyer=BAYESIAN                 dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 2 final=RM 73600
+#005 BALANCED   buyer=BAYESIAN                 dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 2 final=RM 76800
+#007 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=BAYESIAN                 outcome=DEAL    rounds= 2 final=RM 72100
+#008 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 2 final=RM 73600
+#012 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 2 final=RM 72200
+#013 BALANCED   buyer=TIME_DEPENDENT_BOULWARE  dealer=BAYESIAN                 outcome=DEAL    rounds= 2 final=RM 78100

@@ -1,0 +1,28 @@
+EXPERIMENT 62
+================
+Scenario: TIGHT_GAP
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 71700 | Rounds: 8
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 75100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM75100
+Round 2 | BUYER | OFFER | RM 63600 | Round 1/10 | 2.0% fixed move toward RV | Offer RM62400 -> RM63600 | RV: RM72800
+Round 2 | DEALER | OFFER | RM 74100 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM74100
+Round 3 | BUYER | OFFER | RM 64900 | Round 2/10 | 2.0% fixed move toward RV | Offer RM63600 -> RM64900 | RV: RM72800
+Round 3 | DEALER | OFFER | RM 73500 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM73500
+Round 4 | BUYER | OFFER | RM 66200 | Round 3/10 | 2.0% fixed move toward RV | Offer RM64900 -> RM66200 | RV: RM72800
+Round 4 | DEALER | OFFER | RM 73000 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM73000
+Round 5 | BUYER | OFFER | RM 67500 | Round 4/10 | 2.0% fixed move toward RV | Offer RM66200 -> RM67500 | RV: RM72800
+Round 5 | DEALER | OFFER | RM 72600 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM72600
+Round 6 | BUYER | OFFER | RM 68900 | Round 5/10 | 2.0% fixed move toward RV | Offer RM67500 -> RM68900 | RV: RM72800
+Round 6 | DEALER | OFFER | RM 72300 | Round 6/10 | Curve=CONCEDER β=4.00 | Progress=60% → Offer RM72300
+Round 7 | BUYER | OFFER | RM 70300 | Round 6/10 | 2.0% fixed move toward RV | Offer RM68900 -> RM70300 | RV: RM72800
+Round 7 | DEALER | OFFER | RM 72000 | Round 7/10 | Curve=CONCEDER β=4.00 | Progress=70% → Offer RM72000
+Round 8 | BUYER | OFFER | RM 71700 | Round 7/10 | 2.0% fixed move toward RV | Offer RM70300 -> RM71700 | RV: RM72800
+Round 8 | DEALER | ACCEPT | RM 71700 | Round 8/10 | CONCEDER | Offer RM71700 vs RV RM71200 | lastRound=false → ACCEPT
+
+Final note: Round 8/10 | CONCEDER | Offer RM71700 vs RV RM71200 | lastRound=false → ACCEPT

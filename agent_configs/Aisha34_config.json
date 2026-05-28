@@ -1,0 +1,19 @@
+{
+  "name": "Aisha34",
+  "make": "Honda",
+  "model": "City",
+  "yearMin": 0,
+  "yearMax": 0,
+  "maxPrice": 46500.0,
+  "maxMileage": 0,
+  "condition": "Any",
+  "notes": "Need a car under RM 46,500. Aggressive bargainer, low opening offer.",
+  "firstOffer": 35000.0,
+  "reservationPrice": 46500.0,
+  "autoNegotiate": true,
+  "strategy": "FIXED_INCREMENT_2PCT",
+  "maxRounds": 12,
+  "personality": "aggressive",
+  "_marketPrice": 58000.0,
+  "_flexibleModel": false
+}

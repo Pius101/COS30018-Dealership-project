@@ -1,0 +1,18 @@
+{
+  "case": 3,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "BAYESIAN",
+  "dealerStrategy": "TIME_DEPENDENT_BOULWARE",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 7,
+  "messageCount": 15,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 77700,
+  "savingFromAsk": 2300,
+  "savingPct": 2.88
+}
