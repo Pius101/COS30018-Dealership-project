@@ -7,39 +7,43 @@ import jade.core.Runtime;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import negotiation.network.NetworkDiscovery;
+import negotiation.util.GuiMode;
+import negotiation.util.HeadlessLogConfigurer;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * Application entry point creates a window.
+ * Application entry point — shows a startup dialog.
  *
- * Roles:
- *   HOST   → Main Container + BrokerAgent (KA).  Run ONCE on one machine.
+ * ─── Roles ───────────────────────────────────────────────────────────────────
+ *   HOST   → Main Container + separate Broker container.  Run ONCE on one machine.
  *   DEALER → Peripheral container + DealerAgent (DA).  Each dealer runs this.
  *   BUYER  → Peripheral container + BuyerAgent  (BA).  Each buyer runs this.
  *
+ * ─── JADE agents created ─────────────────────────────────────────────────────
  *   This launcher uses the JADE programmatic API (jade.core.Runtime) to create
  *   real JADE containers and agents — identical to running jade.Boot from the
  *   command line, just without needing a terminal.
  *
- * HOST creates:
+ *   HOST creates:
  *     - A JADE Main Container (hosts the AMS, DF, and optionally the RMA GUI)
- *     - BrokerAgent named "broker" → registers with DF as "car-negotiation-broker"
+ *     - A separate "broker-market" container
+ *     - BrokerAgent named "broker" in broker-market → registers with DF as "car-negotiation-broker"
  *
- * DEALER / BUYER creates:
+ *   DEALER / BUYER creates:
  *     - A JADE peripheral container (connects to the host's Main Container)
  *     - DealerAgent / BuyerAgent with the name you type in the dialog
  *     - These agents search the DF for "car-negotiation-broker" to find KA
  *
- * Network (Searchy)
+ * ─── Network (Searchy) ────────────────────────────────────────────────
  *   When HOST starts, it also starts a UDP listener on port 45678.
  *   When DEALER/BUYER clicks "Search", a UDP broadcast goes out and the
- *   host replies with its IP if they are in the same network.
+ *   host replies with its IP — no manual IP typing needed on the same WiFi.
  *   If Search fails (firewall / different subnet), type the IP manually.
  *
- * Build and distribute
+ * ─── Build and distribute ────────────────────────────────────────────────────
  *   mvn package  →  target/car-negotiation-1.0-SNAPSHOT-jar-with-dependencies.jar
  *   Share the JAR with groupmates.  They run:
  *     java -jar car-negotiation-1.0-SNAPSHOT-jar-with-dependencies.jar
@@ -47,8 +51,12 @@ import java.awt.*;
 public class Launcher {
 
     // Shared containers for grouping agents
+    private static AgentContainer hostContainer = null;
+    private static AgentContainer brokerContainer = null;
     private static AgentContainer buyersContainer = null;
     private static AgentContainer sellersContainer = null;
+    private static final String BROKER_CONTAINER_NAME = "broker-market";
+    private static final String BROKER_AGENT_NAME = "broker";
     private static final String BUYERS_CONTAINER_NAME = "buyers-market";
     private static final String SELLERS_CONTAINER_NAME = "sellers-market";
 
@@ -56,7 +64,8 @@ public class Launcher {
         // ── Headless / CLI mode — used by spawn_agents.py ─────────────────────
         // If --headless is in args, skip the dialog entirely and launch directly.
         // Usage:
-        //   --headless --role HOST [--gui]
+        //   --headless --role HOST [--gui] [--agent-gui]
+        //   --headless --role BROKER --host IP
         //   --headless --role DEALER --host IP --name AgentName --config path.json
         //   --headless --role BUYER  --host IP --name AgentName --config path.json
         if (contains(args, "--headless")) {
@@ -70,30 +79,32 @@ public class Launcher {
         SwingUtilities.invokeLater(Launcher::showDialog);
     }
 
-    /** Parse args array and launch the appropriate role without showing any dialog.
-     * If none, creates a broker at local hosst, with a generic name and no configuration.
-     *
-     * arg method to look for the flag and extract the value
-     * contains method for checking if a flag is present and doesn't care if value is given
-     * */
+    /** Parse args array and launch the appropriate role without showing any dialog. */
     private static void runHeadless(String[] args) {
         String role   = arg(args, "--role",   "HOST").toUpperCase();
         String host   = arg(args, "--host",   "127.0.0.1");
         String name   = arg(args, "--name",   "agent");
         String config = arg(args, "--config", null);
-        boolean gui   = contains(args, "--gui"); // did user type "--gui" or not
+        String logDir = arg(args, "--log-dir", null);
+        String logName = arg(args, "--log-name", "HOST".equals(role) ? "host" : name);
+        boolean gui   = contains(args, "--gui");
+        boolean agentGui = contains(args, "--agent-gui");
 
         try {
+            GuiMode.setEnabled(agentGui);
+            HeadlessLogConfigurer.configure(logDir, logName);
             switch (role) {
                 case "HOST"   -> launchHost(gui);
+                case "BROKER" -> launchBroker(host);
                 case "DEALER" -> launchDealer(host, name, config);
                 case "BUYER"  -> launchBuyer(host, name, config);
                 default -> {
                     System.err.println("[Launcher] Unknown --role: " + role
-                            + ". Use HOST, DEALER, or BUYER.");
+                            + ". Use HOST, BROKER, DEALER, or BUYER.");
                     System.exit(1);
                 }
             }
+            // Keep JVM alive — agents run on JADE threads
             System.out.println("[Launcher] " + role + " '" + name + "' running. Press Ctrl+C to stop.");
         } catch (Exception e) {
             System.err.println("[Launcher] Failed to start: " + e.getMessage());
@@ -102,11 +113,7 @@ public class Launcher {
         }
     }
 
-    /**
-     * Looks for the value of a specific terminal argument.
-     * ie arg(args, "--host", "specific value") will return the value of the --host argument,
-     * "specific value" if not found
-     */
+    /** Get the value of a named CLI argument, e.g. --host 192.168.1.10 → "192.168.1.10" */
     private static String arg(String[] args, String flag, String defaultValue) {
         for (int i = 0; i < args.length - 1; i++) {
             if (args[i].equalsIgnoreCase(flag)) return args[i + 1];
@@ -120,7 +127,6 @@ public class Launcher {
         return false;
     }
 
-    // Launcher UI
     private static void showDialog() {
         JDialog dlg = new JDialog((Frame) null, "Car Negotiation Platform", true);
         dlg.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -282,57 +288,73 @@ public class Launcher {
         dlg.setVisible(true);
     }
 
+    // ─────────────────────────────────────────────────────────────────────────
     // Launch implementations
+    // ─────────────────────────────────────────────────────────────────────────
+
     /**
-     * HOST: creates the JADE Main Container and the Broker Agent.
+     * HOST: creates the JADE Main Container, then starts BrokerAgent in its own container.
      *
      * JADE system agents created automatically by the framework:
      *   "ams"  — Agent Management System (AID registry, lifecycle)
      *   "df"   — Directory Facilitator (yellow pages / service lookup)
      *   "rma"  — Remote Monitoring Agent (GUI, only if showJadeGui=true)
      *
-     * Our agent:
-     *   "broker" — BrokerAgent (KA): registers "car-negotiation-broker" in DF
+     * Our broker agent:
+     *   "broker" — BrokerAgent (KA): runs in the "broker-market" container and
+     *   registers "car-negotiation-broker" in DF
      *
      * Also starts UDP discovery listener on port 45678.
      */
     private static void launchHost(boolean showJadeGui) throws Exception {
-        // JADE setup
-        Runtime rt = Runtime.instance(); // reference to the JADE system
-        Profile p  = new ProfileImpl(); // configs for JADE
-
-        // tell JADE to create Main container
-        // Main container hosts AMS and DF
+        Runtime rt = Runtime.instance();
+        Profile p  = new ProfileImpl();
         p.setParameter(Profile.MAIN, "true");
-
-        // whether JADE should show its UI
         p.setParameter(Profile.GUI, showJadeGui ? "true" : "false");
-
-        // Bind to WiFi/hotspot IP instead of VirtualBox (127.0.0.1)
+        // Bind to WiFi/hotspot IP instead of VirtualBox
         String localIp = NetworkDiscovery.getLocalIP();
         p.setParameter(Profile.LOCAL_HOST, localIp);
 
-        // creates the broker
-        AgentContainer mc = rt.createMainContainer(p);
-        AgentController broker = mc.createNewAgent(
-                "broker", "negotiation.agents.BrokerAgent", new Object[0]);
-        broker.start();
+        hostContainer = rt.createMainContainer(p);
+        brokerContainer = joinPlatform(localIp, BROKER_CONTAINER_NAME);
+        startBrokerAgent(brokerContainer);
 
-        // Start REST service for Python script to fetch strategies
-        try {
-            negotiation.rest.StrategyRestService.start(8080);
-        } catch (Exception e) {
-            System.err.println("[Launcher] Failed to start Strategy REST service: " + e.getMessage());
-            System.err.println("[Launcher] Python script will use fallback strategies");
-        }
-
-        // UDP listener so other device in same network can find this machine
+        // UDP listener so groupmates can Search this machine
         NetworkDiscovery.startHostListener(clientIp ->
                 System.out.println("[Discovery] Peer connected from " + clientIp));
 
-        System.out.println("  Broker Agent (KA) started");
+        System.out.println();
+        System.out.println("════════════════════════════════════════════════");
+        System.out.println("  HOST is running — Main Container started");
+        System.out.println("  Broker Agent : " + BROKER_AGENT_NAME + " in container " + BROKER_CONTAINER_NAME);
         System.out.println("  JADE platform : " + localIp + ":1099/JADE");
         System.out.println("  Your IP       : " + localIp);
+        System.out.println("  Share the IP above OR let groupmates Search");
+        System.out.println("════════════════════════════════════════════════");
+        System.out.println();
+    }
+
+    /**
+     * BROKER: joins an existing JADE platform and starts BrokerAgent in its own container.
+     */
+    private static void launchBroker(String hostIp) throws Exception {
+        if (brokerContainer == null) {
+            System.out.println("[Launcher] Creating broker container...");
+            brokerContainer = joinPlatform(hostIp, BROKER_CONTAINER_NAME);
+            if (brokerContainer == null) {
+                throw new Exception("Failed to create broker container - check host IP and network");
+            }
+            System.out.println("[Launcher] Broker container '" + BROKER_CONTAINER_NAME + "' created at " + hostIp);
+        }
+        startBrokerAgent(brokerContainer);
+    }
+
+    private static void startBrokerAgent(AgentContainer container) throws Exception {
+        AgentController broker = container.createNewAgent(
+                BROKER_AGENT_NAME, "negotiation.agents.BrokerAgent", new Object[0]);
+        broker.start();
+        System.out.println("[Launcher] Broker agent '" + BROKER_AGENT_NAME
+                + "' started in container '" + BROKER_CONTAINER_NAME + "'");
     }
 
     /**
@@ -383,7 +405,6 @@ public class Launcher {
     }
 
     /**
-     * Used by the seller and buyer
      * Creates a peripheral JADE container connected to hostIp:1099 with a specific name.
      * Once connected, agents in this container are fully registered in the AMS
      * and can message any other agent on the platform.

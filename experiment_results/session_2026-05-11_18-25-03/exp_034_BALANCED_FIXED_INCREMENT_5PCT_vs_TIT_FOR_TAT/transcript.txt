@@ -1,0 +1,24 @@
+EXPERIMENT 34
+================
+Scenario: BALANCED
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 78000 | Rounds: 5
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 79800 | Round 1/10 | Opponent last conceded -20.0% (RM-12800) | Mirroring at 2.0% → Offer RM79800
+Round 2 | BUYER | OFFER | RM 67200 | Round 1/10 | 5.0% fixed move toward RV | Offer RM64000 -> RM67200 | RV: RM78400
+Round 2 | DEALER | OFFER | RM 79300 | Round 2/10 | Opponent last conceded 5.0% (RM3360) | Mirroring at 5.0% → Offer RM79300
+Round 3 | BUYER | OFFER | RM 70600 | Round 2/10 | 5.0% fixed move toward RV | Offer RM67200 -> RM70600 | RV: RM78400
+Round 3 | DEALER | OFFER | RM 78800 | Round 3/10 | Opponent last conceded 5.1% (RM3572) | Mirroring at 5.1% → Offer RM78800
+Round 4 | BUYER | OFFER | RM 74100 | Round 3/10 | 5.0% fixed move toward RV | Offer RM70600 -> RM74100 | RV: RM78400
+Round 4 | DEALER | OFFER | RM 78400 | Round 4/10 | Opponent last conceded 5.0% (RM3674) | Mirroring at 5.0% → Offer RM78400
+Round 5 | BUYER | OFFER | RM 77800 | Round 4/10 | 5.0% fixed move toward RV | Offer RM74100 -> RM77800 | RV: RM78400
+Round 5 | DEALER | OFFER | RM 78000 | Round 5/10 | Opponent last conceded 5.0% (RM3885) | Mirroring at 5.0% → Offer RM78000
+Round 5 | BUYER | WOULD_ACCEPT | RM 78000 | Counter would meet dealer offer; accepting dealer price.
+Round 5 | BUYER | ACCEPT | RM 78000 | Round 5/10 | 5.0% fixed move toward RV | Offer RM77800 -> RM78400 | RV: RM78400
+
+Final note: Round 5/10 | 5.0% fixed move toward RV | Offer RM77800 -> RM78400 | RV: RM78400

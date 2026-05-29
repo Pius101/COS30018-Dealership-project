@@ -1,0 +1,27 @@
+[Dealer:Dealer-B] [2026-05-29 05:43:39] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Dealer:Dealer-B] [2026-05-29 05:43:39] [INFO] Dealer Agent 'Dealer-B' started. AID: Dealer-B@192.168.1.217:1099/JADE
+[Dealer:Dealer-B] [2026-05-29 05:43:39] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Dealer:Dealer-B] [2026-05-29 05:45:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2004 Toyota Corolla  RM 20000  [4708753E]
+[Dealer:Dealer-B] [2026-05-29 05:45:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 4708753E confirmed stored
+[Dealer:Dealer-B] [2026-05-29 05:48:10] [MESSAGE] from Broker     [POTENTIAL_BUYERS            ] 1 potential buyer(s)
+[Dealer:Dealer-B] [2026-05-29 05:48:10] [MESSAGE] to Broker       [DEALER_SELECTION            ] 1 of 1 buyer(s) accepted
+[Dealer:Dealer-B] [2026-05-29 05:48:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676]  Buyer: buyerA  Listing: 4708753E
+[Dealer:Dealer-B] [2026-05-29 05:48:34] [MESSAGE] to Broker→buyerA [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] ACL.PROPOSE RM 20000
+[Dealer:Dealer-B] [2026-05-29 05:50:14] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: BAYESIAN | Margin: 10%
+[Dealer:Dealer-B] [2026-05-29 05:51:16] [MESSAGE] from Broker←buyerA [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] ACL.PROPOSE RM 15000
+[Dealer:Dealer-B] [2026-05-29 05:53:55] [MESSAGE] from Broker←buyerA [REJECT                      ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676] ACL.REFUSE RM 0
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2024 Toyota Corolla  RM 20000  [9B66190F]
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 9B66190F confirmed stored
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [MESSAGE] from Broker     [POTENTIAL_BUYERS            ] 1 potential buyer(s)
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [MESSAGE] to Broker       [DEALER_SELECTION            ] 1 of 1 buyer(s) accepted
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104]  Buyer: buyerA  Listing: 9B66190F
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [INFO] [AUTO-DEALER] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ready | Strategy: Bayesian Learner | Starting price: RM 20000 | Minimum: RM 18000 | Max rounds: 10
+[Dealer:Dealer-B] [2026-05-29 06:00:03] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104]
+[Dealer:Dealer-B] [2026-05-29 06:09:31] [MESSAGE] from Broker←buyerA [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 17000
+[Dealer:Dealer-B] [2026-05-29 06:09:31] [INFO] [AUTO-DEALER] Round 1 | Buyer offered RM 17000
+[Dealer:Dealer-B] [2026-05-29 06:09:31] [INFO] [AUTO-DEALER] COUNTER RM 19800 — Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM19800
+[Dealer:Dealer-B] [2026-05-29 06:09:31] [MESSAGE] to Broker→buyerA [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 19800
+[Dealer:Dealer-B] [2026-05-29 06:09:45] [MESSAGE] from Broker←buyerA [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 17500
+[Dealer:Dealer-B] [2026-05-29 06:09:45] [INFO] [AUTO-DEALER] Round 2 | Buyer offered RM 17500
+[Dealer:Dealer-B] [2026-05-29 06:09:45] [INFO] [AUTO-DEALER] COUNTER RM 19600 — Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-500 (0.0%) | EstimatedFloor≈RM18000 | Offers seen=2 → OFFER RM19600
+[Dealer:Dealer-B] [2026-05-29 06:09:45] [MESSAGE] to Broker→buyerA [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104] ACL.PROPOSE RM 19600

@@ -1,0 +1,16 @@
+{
+  "name": "Buyer3",
+  "make": "Honda",
+  "model": "City",
+  "yearMin": 2021,
+  "yearMax": 2023,
+  "maxPrice": 86400,
+  "maxMileage": 150000,
+  "condition": "Used",
+  "notes": "Auto-created buyer request from car_market_data.json",
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_CONCEDER",
+  "firstOffer": 70400,
+  "reservationPrice": 86400,
+  "maxRounds": 10
+}

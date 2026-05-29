@@ -1,0 +1,2 @@
+timestamp,negotiationId,conversationId,round,sender,receiver,type,aclPerformative,price,strategy,outcome,utility,buyerUtility,dealerUtility,reason
+2026-05-29 05:09:25,neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444,negotiation-neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444,1,buyer1,dealer1,REJECT,REFUSE,,,FAILED,,,,

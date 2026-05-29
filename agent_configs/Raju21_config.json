@@ -1,0 +1,19 @@
+{
+  "name": "Raju21",
+  "make": "Mazda",
+  "model": "CX-5",
+  "yearMin": 2019,
+  "yearMax": 0,
+  "maxPrice": 92000.0,
+  "maxMileage": 100000,
+  "condition": "Any",
+  "notes": "Comparing options — open to Mazda vehicles.",
+  "firstOffer": 85500.0,
+  "reservationPrice": 92000.0,
+  "autoNegotiate": true,
+  "strategy": "BAYESIAN",
+  "maxRounds": 10,
+  "personality": "easy",
+  "_marketPrice": 95000.0,
+  "_flexibleModel": false
+}

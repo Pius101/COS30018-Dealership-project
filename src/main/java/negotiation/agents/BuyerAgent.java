@@ -13,9 +13,14 @@ import negotiation.behaviours.BuyerMessageBehaviour;
 import negotiation.gui.BuyerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
+import negotiation.models.BuyerShortlistEntry;
+import negotiation.models.BuyerShortlistMessage;
+import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.MatchingResults;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.AppLogger;
+import negotiation.util.GuiMode;
 
 import negotiation.behaviours.AutoNegotiationBehaviour;
 import negotiation.behaviours.AutoNegotiationBehaviour.AutoNegotiationParams;
@@ -53,6 +58,16 @@ public class BuyerAgent extends Agent {
     // Auto params stored from config until an assignment arrives
     private AutoNegotiationParams pendingAutoParams = null;
 
+    // ── Extension 1: concurrent-negotiation coordination ──────────────────────
+    // The buyer can run up to 3 negotiations at once (one per shortlisted dealer).
+    // These maps let the negotiations inform each other (shared BATNA) and let the
+    // buyer commit to the best dealer and cancel the rest.
+    private final Map<String, AutoNegotiationBehaviour> activeAuto        = new ConcurrentHashMap<>();
+    private final Map<String, String>                   negToRequirement  = new ConcurrentHashMap<>();
+    private final Map<String, Double>                   latestDealerOffer = new ConcurrentHashMap<>();
+    private final java.util.Set<String>                 settledRequirements
+            = ConcurrentHashMap.newKeySet();
+
     private AID      brokerAID;
     private BuyerGui gui;
 
@@ -72,17 +87,21 @@ public class BuyerAgent extends Agent {
     protected void setup() {
         brokerAID = findBroker();
         addBehaviour(new BuyerMessageBehaviour(this));
-        SwingUtilities.invokeLater(() -> {
-            gui = new BuyerGui(this);
-            log.setLogArea(gui.getLogArea());
-            gui.setVisible(true);
-            log.info("Buyer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
-            if (brokerAID != null) {
-                log.info("Connected to Broker: " + brokerAID.getName());
-            } else {
-                log.error("Broker not found in DF — check the HOST is running!");
-            }
-        });
+        if (GuiMode.isEnabled()) {
+            SwingUtilities.invokeLater(() -> {
+                gui = new BuyerGui(this);
+                log.setLogArea(gui.getLogArea());
+                gui.setVisible(true);
+                log.info("Buyer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
+                if (brokerAID != null) {
+                    log.info("Connected to Broker: " + brokerAID.getName());
+                } else {
+                    log.error("Broker not found in DF — check the HOST is running!");
+                }
+            });
+        } else {
+            logStartupState();
+        }
 
         // Auto-load requirements from config file if passed as agent argument.
         // The spawn script passes the config path as args[0].
@@ -112,7 +131,7 @@ public class BuyerAgent extends Agent {
                 send(emergencySave);
                 log.info("Emergency save sent — " + payload.ongoingNegotiations.length + " ongoing negotiations");
             } catch (Exception e) {
-                log.error("Failed to send emergency save: " + e.getMessage());
+                log.error("Failed to send emergency save", e);
             }
         }
 
@@ -170,7 +189,7 @@ public class BuyerAgent extends Agent {
         } catch (java.io.IOException e) {
             log.error("Cannot read config file: " + configPath + " — " + e.getMessage());
         } catch (Exception e) {
-            log.error("Config parse error: " + e.getMessage());
+            log.error("Config parse error for " + configPath, e);
         }
     }
 
@@ -198,7 +217,9 @@ public class BuyerAgent extends Agent {
                 log.info("Broker found in DF: " + found.getName());
                 return found;
             }
-        } catch (FIPAException fe) { fe.printStackTrace(); }
+        } catch (FIPAException fe) {
+            log.error("Broker DF lookup failed", fe);
+        }
         return null;
     }
 
@@ -222,11 +243,23 @@ public class BuyerAgent extends Agent {
 
         log.send("Broker", Ontology.TYPE_BUYER_REQUIREMENTS,
                 req.summary() + "  [" + req.getRequirementId() + "]");
-        SwingUtilities.invokeLater(() -> gui.onRequirementSubmitted(req));
+        if (gui != null) {
+            SwingUtilities.invokeLater(() -> gui.onRequirementSubmitted(req));
+        }
     }
 
     /** Called by the negotiation chat panel when buyer sends a counter-offer. */
     public void sendOffer(String negotiationId, double price, String messageText) {
+        sendOffer(negotiationId, price, messageText, 0, null, null, null);
+    }
+
+    public void sendOffer(String negotiationId,
+                          double price,
+                          String messageText,
+                          int round,
+                          String strategy,
+                          String reason,
+                          Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -234,14 +267,25 @@ public class BuyerAgent extends Agent {
         NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText, NegotiationMessage.Type.OFFER);
         nm.setToAID(a.getDealerAID());
         nm.setToName(a.getDealerName());
+        setAuditMetadata(nm, round, strategy, "ONGOING", reason, utility);
         recordAndSend(nm, ACLMessage.PROPOSE, Ontology.TYPE_NEG_OFFER);
         log.send("Broker→" + a.getDealerName(), Ontology.TYPE_NEG_OFFER,
-                "RM " + String.format("%.0f", price)
-                        + (messageText.isBlank() ? "" : "  \"" + messageText + "\""));
+                "[" + negotiationId + "] ACL.PROPOSE RM " + String.format("%.0f", price)
+                        + (isBlank(messageText) ? "" : "  \"" + messageText + "\""));
     }
 
     /** Called when buyer accepts the dealer's last offer. */
     public void acceptOffer(String negotiationId, double price, String messageText) {
+        acceptOffer(negotiationId, price, messageText, 0, null, null, null);
+    }
+
+    public void acceptOffer(String negotiationId,
+                            double price,
+                            String messageText,
+                            int round,
+                            String strategy,
+                            String reason,
+                            Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -249,6 +293,8 @@ public class BuyerAgent extends Agent {
         NegotiationMessage nm = buildMsg(negotiationId, a, price, messageText, NegotiationMessage.Type.ACCEPT);
         nm.setToAID(a.getDealerAID());
         nm.setToName(a.getDealerName());
+        setAuditMetadata(nm, round, strategy, "COMPLETED", reason, utility);
+        setTransportMetadata(nm, ACLMessage.ACCEPT_PROPOSAL);
         recordLocal(nm);
 
         ACLMessage msg = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
@@ -258,11 +304,20 @@ public class BuyerAgent extends Agent {
         msg.setContent(gson.toJson(nm));
         send(msg);
         log.send("Broker", Ontology.TYPE_NEG_ACCEPT,
-                "ACCEPTED at RM " + String.format("%.0f", price));
+                "[" + negotiationId + "] ACL.ACCEPT_PROPOSAL ACCEPTED at RM " + String.format("%.0f", price));
     }
 
     /** Called when buyer rejects (ends the negotiation). */
     public void rejectOffer(String negotiationId, String messageText) {
+        rejectOffer(negotiationId, messageText, 0, null, null, null);
+    }
+
+    public void rejectOffer(String negotiationId,
+                            String messageText,
+                            int round,
+                            String strategy,
+                            String reason,
+                            Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -270,13 +325,70 @@ public class BuyerAgent extends Agent {
         NegotiationMessage nm = buildMsg(negotiationId, a, 0, messageText, NegotiationMessage.Type.REJECT);
         nm.setToAID(a.getDealerAID());
         nm.setToName(a.getDealerName());
+        setAuditMetadata(nm, round, strategy, "FAILED", reason, utility);
         recordAndSend(nm, ACLMessage.REFUSE, Ontology.TYPE_NEG_REJECT);
-        log.info("Negotiation [" + negotiationId + "] REJECTED by buyer");
+        log.negotiation("[" + negotiationId + "] Buyer rejected negotiation");
     }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Callbacks from BuyerMessageBehaviour
     // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Phase B of the spec protocol: the broker returned the dealers/cars matching
+     * our specifications. We pick up to three (per the brief) that we are not
+     * already negotiating, attach a first offer to each, and reply with a
+     * BUYER_SHORTLIST (ACL PROPOSE).
+     */
+    public void onMatchResults(MatchingResults mr) {
+        log.recv("Broker", Ontology.TYPE_MATCH_RESULTS,
+                (mr.getMatches() == null ? 0 : mr.getMatches().size()) + " match(es)");
+
+        BuyerShortlistMessage sl = new BuyerShortlistMessage();
+        sl.setRequirementId(mr.getRequirementId());
+        sl.setBuyerAID(getAID().getName());
+        sl.setBuyerName(getLocalName());
+
+        int picked = 0;
+        if (mr.getMatches() != null) {
+            for (CarListing l : mr.getMatches()) {
+                if (picked >= 3) break;                       // spec: up to three dealers
+                if (alreadyNegotiating(l.getListingId())) continue;
+
+                double first = (pendingAutoParams != null && pendingAutoParams.firstOffer > 0)
+                        ? pendingAutoParams.firstOffer
+                        : l.getRetailPrice() * 0.85;          // sensible default opening bid
+
+                BuyerShortlistEntry e = new BuyerShortlistEntry();
+                e.setListingId(l.getListingId());
+                e.setDealerAID(l.getDealerAID());
+                e.setFirstOffer(first);
+                sl.getEntries().add(e);
+                picked++;
+            }
+        }
+
+        if (sl.getEntries().isEmpty()) {
+            log.info("[MATCH] No new cars to shortlist for requirement " + mr.getRequirementId());
+            return;
+        }
+
+        ACLMessage m = new ACLMessage(ACLMessage.PROPOSE);
+        m.addReceiver(brokerAID);
+        m.setOntology(Ontology.TYPE_BUYER_SHORTLIST);
+        m.setConversationId(Ontology.CONV_MATCHING);
+        m.setContent(gson.toJson(sl));
+        send(m);
+        log.send("Broker", Ontology.TYPE_BUYER_SHORTLIST,
+                sl.getEntries().size() + " car(s) shortlisted");
+    }
+
+    /** True if we already have an assignment/negotiation for this listing. */
+    private boolean alreadyNegotiating(String listingId) {
+        return assignments.values().stream()
+                .anyMatch(a -> a.getListing() != null
+                        && listingId.equals(a.getListing().getListingId()));
+    }
 
     public void onAssignment(Assignment assignment) {
         assignments.put(assignment.getNegotiationId(), assignment);
@@ -290,19 +402,29 @@ public class BuyerAgent extends Agent {
         // Always open the GUI tab so progress is visible (even in auto mode)
         if (gui != null) SwingUtilities.invokeLater(() -> gui.openNegotiationTab(assignment));
 
-        // If auto params are waiting, start the automated negotiation behaviour
+        // If auto params are configured, start automated negotiation for THIS assignment.
+        // Extension 1: we deliberately do NOT clear pendingAutoParams, so every dealer
+        // the broker assigns to this buyer (up to 3) spins up its own concurrent
+        // negotiation. We skip assignments for a requirement that already closed a deal.
         if (pendingAutoParams != null) {
-            // Store maxRounds in Assignment for report generation
-            assignment.setMaxRounds(pendingAutoParams.maxRounds);
-            startAutoNegotiation(assignment, pendingAutoParams);
-            pendingAutoParams = null; // consumed — don't reuse for another assignment
+            String reqId = assignment.getRequirement() != null
+                    ? assignment.getRequirement().getRequirementId() : null;
+            if (isRequirementSettled(reqId)) {
+                log.info("[AUTO][CONCURRENT] Requirement " + reqId
+                        + " already settled — skipping negotiation ["
+                        + assignment.getNegotiationId() + "]");
+            } else {
+                assignment.setMaxRounds(pendingAutoParams.maxRounds);
+                startAutoNegotiation(assignment, pendingAutoParams);
+            }
         }
     }
 
     public void onNegotiationMessage(NegotiationMessage msg) {
         recordLocal(msg);
         log.recv("Broker←" + msg.getFromName(), msg.getType().name(),
-                "RM " + String.format("%.0f", msg.getPrice())
+                "[" + msg.getNegotiationId() + "] "
+                        + aclLabel(msg) + " RM " + String.format("%.0f", msg.getPrice())
                         + (msg.getMessage() != null && !msg.getMessage().isBlank()
                         ? "  \"" + msg.getMessage() + "\"" : ""));
 
@@ -339,6 +461,7 @@ public class BuyerAgent extends Agent {
                                         double price, String text, NegotiationMessage.Type type) {
         NegotiationMessage nm = new NegotiationMessage();
         nm.setNegotiationId(negotiationId);
+        nm.setConversationId(Ontology.CONV_NEGOTIATION + "-" + negotiationId);
         nm.setListingId(a.getListing().getListingId());
         nm.setListingDescription(a.getListing().toString());
         nm.setFromAID(getAID().getName());
@@ -351,6 +474,7 @@ public class BuyerAgent extends Agent {
     }
 
     private void recordAndSend(NegotiationMessage nm, int performative, String ontology) {
+        setTransportMetadata(nm, performative);
         recordLocal(nm);
         ACLMessage msg = new ACLMessage(performative);
         msg.addReceiver(brokerAID);
@@ -360,8 +484,69 @@ public class BuyerAgent extends Agent {
         send(msg);
     }
 
+    private void setAuditMetadata(NegotiationMessage nm,
+                                  int round,
+                                  String strategy,
+                                  String outcome,
+                                  String reason,
+                                  Double utility) {
+        if (round > 0) {
+            nm.setRound(round);
+        }
+        if (!isBlank(strategy)) {
+            nm.setStrategy(strategy);
+        }
+        if (!isBlank(outcome)) {
+            nm.setOutcome(outcome);
+        }
+        if (!isBlank(reason)) {
+            nm.setReason(reason);
+        }
+        if (utility != null && !utility.isNaN() && !utility.isInfinite()) {
+            nm.setUtility(utility);
+        }
+    }
+
+    private void setTransportMetadata(NegotiationMessage nm, int performative) {
+        nm.setAclPerformative(aclPerformativeName(performative));
+        if (isBlank(nm.getConversationId())) {
+            nm.setConversationId(Ontology.CONV_NEGOTIATION + "-" + nm.getNegotiationId());
+        }
+    }
+
+    private static String aclPerformativeName(int performative) {
+        return switch (performative) {
+            case ACLMessage.REQUEST -> "REQUEST";
+            case ACLMessage.INFORM -> "INFORM";
+            case ACLMessage.PROPOSE -> "PROPOSE";
+            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
+            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
+            case ACLMessage.REFUSE -> "REFUSE";
+            case ACLMessage.FAILURE -> "FAILURE";
+            case ACLMessage.CONFIRM -> "CONFIRM";
+            default -> String.valueOf(performative);
+        };
+    }
+
+    private static String aclLabel(NegotiationMessage msg) {
+        return isBlank(msg.getAclPerformative()) ? "ACL.UNKNOWN" : "ACL." + msg.getAclPerformative();
+    }
+
+    private static boolean isBlank(String value) {
+        return value == null || value.isBlank();
+    }
+
     private void recordLocal(NegotiationMessage nm) {
         history.computeIfAbsent(nm.getNegotiationId(), k -> new ArrayList<>()).add(nm);
+    }
+
+    private void logStartupState() {
+        log.info("Buyer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
+        if (brokerAID != null) {
+            log.info("Connected to Broker: " + brokerAID.getName());
+        } else {
+            log.error("Broker not found in DF - check the HOST is running!");
+        }
     }
 
     private boolean ensureBroker() {
@@ -369,10 +554,12 @@ public class BuyerAgent extends Agent {
         brokerAID = findBroker();
         if (brokerAID == null) {
             log.error("Cannot find Broker Agent — is the HOST running?");
-            SwingUtilities.invokeLater(() ->
-                    JOptionPane.showMessageDialog(gui,
-                            "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
-                            "Connection Error", JOptionPane.ERROR_MESSAGE));
+            if (gui != null) {
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(gui,
+                                "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
+                                "Connection Error", JOptionPane.ERROR_MESSAGE));
+            }
             return false;
         }
         return true;
@@ -395,8 +582,63 @@ public class BuyerAgent extends Agent {
         // Create and register the behaviour with JADE
         AutoNegotiationBehaviour behaviour = new AutoNegotiationBehaviour(
                 this, assignment, params, queue);
+        // Extension 1: register in the concurrent-negotiation coordinator
+        activeAuto.put(negId, behaviour);
+        if (assignment.getRequirement() != null) {
+            negToRequirement.put(negId, assignment.getRequirement().getRequirementId());
+        }
         addBehaviour(behaviour);
         log.info("[AUTO] AutoNegotiationBehaviour started for negotiation [" + negId + "]");
+    }
+
+    // ── Extension 1: concurrent-negotiation coordination ──────────────────────
+
+    /** A negotiation just saw a new dealer offer — remember it as a possible alternative. */
+    public void recordDealerOffer(String negotiationId, double price) {
+        latestDealerOffer.put(negotiationId, price);
+    }
+
+    /**
+     * The best alternative price (lowest dealer offer) currently on the table from the
+     * buyer's OTHER live negotiations for the same requirement — i.e. the BATNA for the
+     * given negotiation. Returns Double.MAX_VALUE when there is no alternative yet.
+     */
+    public double bestAlternativeFor(String negotiationId) {
+        String reqId = negToRequirement.get(negotiationId);
+        double best = Double.MAX_VALUE;
+        for (Map.Entry<String, Double> e : latestDealerOffer.entrySet()) {
+            if (e.getKey().equals(negotiationId)) continue;
+            if (reqId != null && !reqId.equals(negToRequirement.get(e.getKey()))) continue;
+            best = Math.min(best, e.getValue());
+        }
+        return best;
+    }
+
+    /**
+     * Called when one negotiation closes a deal. The buyer only needs one car, so we
+     * mark the requirement settled and cancel the sibling negotiations for it.
+     */
+    public void commitDealAndCancelSiblings(String winningNegId) {
+        String reqId = negToRequirement.get(winningNegId);
+        if (reqId == null) return;
+        settledRequirements.add(reqId);
+        for (Map.Entry<String, String> e : negToRequirement.entrySet()) {
+            String negId = e.getKey();
+            if (negId.equals(winningNegId)) continue;
+            if (!reqId.equals(e.getValue())) continue;
+            AutoNegotiationBehaviour sibling = activeAuto.get(negId);
+            if (sibling != null) sibling.cancelDueToBetterDeal(winningNegId);
+        }
+    }
+
+    /** Remove a finished negotiation from the active-behaviour registry. */
+    public void deregisterAuto(String negotiationId) {
+        activeAuto.remove(negotiationId);
+    }
+
+    /** True once any negotiation for this requirement has closed a deal. */
+    public boolean isRequirementSettled(String requirementId) {
+        return requirementId != null && settledRequirements.contains(requirementId);
     }
 
     // ── Accessors ────────────────────────────────────────────────────────────

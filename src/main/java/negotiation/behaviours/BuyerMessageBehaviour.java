@@ -5,17 +5,17 @@ import jade.lang.acl.ACLMessage;
 import negotiation.agents.BuyerAgent;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
+import negotiation.models.MatchingResults;
 import negotiation.models.NegotiationMessage;
 
 /**
- * Buyer Agent's cyclic message listener.
- *
  * Handles messages arriving from the Broker Agent:
+ *   MATCH_RESULTS      — broker sent dealers/cars matching our specs (NEW)
  *   ASSIGNMENT_NOTIFY  — broker assigned us to a dealer
  *   NEG_OFFER          — dealer sent an offer (routed by KA)
  *   NEG_REJECT         — dealer ended the negotiation (routed by KA)
  *   DEAL_COMPLETE      — KA confirmed the deal is done
- *   REQUIREMENTS_ACK   — KA confirmed requirements were stored (optional log)
+ *   REQUIREMENTS_ACK   — KA confirmed requirements were stored
  */
 public class BuyerMessageBehaviour extends CyclicBehaviour {
 
@@ -29,16 +29,13 @@ public class BuyerMessageBehaviour extends CyclicBehaviour {
     @Override
     public void action() {
         ACLMessage msg = myAgent.receive();
-
-        if (msg == null) {
-            block();
-            return;
-        }
+        if (msg == null) { block(); return; }
 
         String type = msg.getOntology();
         if (type == null) return;
 
         switch (type) {
+            case Ontology.TYPE_MATCH_RESULTS      -> handleMatchResults(msg);   // NEW (Phase B)
             case Ontology.TYPE_ASSIGNMENT_NOTIFY  -> handleAssignment(msg);
             case Ontology.TYPE_NEG_OFFER          -> handleNegotiationMessage(msg);
             case Ontology.TYPE_NEG_REJECT         -> handleNegotiationMessage(msg);
@@ -46,15 +43,25 @@ public class BuyerMessageBehaviour extends CyclicBehaviour {
             case Ontology.TYPE_REQUIREMENTS_ACK   -> {
                 try {
                     com.google.gson.JsonObject obj = buyer.gson.fromJson(
-                        msg.getContent(), com.google.gson.JsonObject.class);
+                            msg.getContent(), com.google.gson.JsonObject.class);
                     buyer.onRequirementAck(obj.get("requirementId").getAsString());
                 } catch (Exception ignored) {
                     buyer.log.recv("Broker", Ontology.TYPE_REQUIREMENTS_ACK, "");
                 }
             }
             default ->
-                System.err.println("[Buyer:" + buyer.getLocalName()
-                        + "] Unknown message type: " + type);
+                    System.err.println("[Buyer:" + buyer.getLocalName()
+                            + "] Unknown message type: " + type);
+        }
+    }
+
+    /** NEW — Phase B: broker returned matching cars; buyer replies with a shortlist. */
+    private void handleMatchResults(ACLMessage msg) {
+        try {
+            MatchingResults mr = buyer.gson.fromJson(msg.getContent(), MatchingResults.class);
+            buyer.onMatchResults(mr);
+        } catch (Exception e) {
+            System.err.println("[Buyer] Failed to parse MATCH_RESULTS: " + e.getMessage());
         }
     }
 

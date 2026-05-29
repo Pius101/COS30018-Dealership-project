@@ -1,0 +1,44 @@
+{
+  "dealerName": "Dealer5",
+  "brand": "Mixed",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 10,
+  "listings": [
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "mileage": 90000,
+      "color": "Blue",
+      "retailPrice": 87550,
+      "marketPrice": 85000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2020,
+      "mileage": 78800,
+      "color": "Grey",
+      "retailPrice": 100940,
+      "marketPrice": 98000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2021,
+      "mileage": 67600,
+      "color": "White",
+      "retailPrice": 108150,
+      "marketPrice": 105000.0,
+      "condition": "Used",
+      "description": "Auto-loaded from car_market_data.json"
+    }
+  ]
+}

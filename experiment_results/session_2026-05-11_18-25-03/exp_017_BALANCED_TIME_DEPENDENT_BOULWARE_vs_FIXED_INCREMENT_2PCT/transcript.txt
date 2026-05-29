@@ -1,0 +1,15 @@
+EXPERIMENT 17
+================
+Scenario: BALANCED
+Buyer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 78400 | Rounds: 1
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 78400 | Round 1/10 | 2.0% fixed move toward RV | Offer RM80000 -> RM78400 | RV: RM70400
+Round 1 | BUYER | ACCEPT | RM 78400 | Round 1/10 | BOULWARE | Offer RM78400 vs RV RM78400 | lastRound=false → ACCEPT
+
+Final note: Round 1/10 | BOULWARE | Offer RM78400 vs RV RM78400 | lastRound=false → ACCEPT

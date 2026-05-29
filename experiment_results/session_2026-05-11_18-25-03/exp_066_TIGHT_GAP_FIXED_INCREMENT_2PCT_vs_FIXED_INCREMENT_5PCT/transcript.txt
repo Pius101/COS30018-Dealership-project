@@ -1,0 +1,28 @@
+EXPERIMENT 66
+================
+Scenario: TIGHT_GAP
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 7
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 76000 | Round 1/10 | 5.0% fixed move toward RV | Offer RM80000 -> RM76000 | RV: RM71200
+Round 2 | BUYER | OFFER | RM 63600 | Round 1/10 | 2.0% fixed move toward RV | Offer RM62400 -> RM63600 | RV: RM72800
+Round 2 | DEALER | OFFER | RM 72200 | Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM71200
+Round 3 | BUYER | OFFER | RM 64900 | Round 2/10 | 2.0% fixed move toward RV | Offer RM63600 -> RM64900 | RV: RM72800
+Round 3 | DEALER | OFFER | RM 71200 | Round 3/10 | 5.0% fixed move toward RV | Offer RM72200 -> RM71200 | RV: RM71200
+Round 4 | BUYER | OFFER | RM 66200 | Round 3/10 | 2.0% fixed move toward RV | Offer RM64900 -> RM66200 | RV: RM72800
+Round 4 | DEALER | OFFER | RM 71200 | Round 4/10 | 5.0% fixed move toward RV | Offer RM71200 -> RM71200 | RV: RM71200
+Round 5 | BUYER | OFFER | RM 67500 | Round 4/10 | 2.0% fixed move toward RV | Offer RM66200 -> RM67500 | RV: RM72800
+Round 5 | DEALER | OFFER | RM 71200 | Round 5/10 | 5.0% fixed move toward RV | Offer RM71200 -> RM71200 | RV: RM71200
+Round 6 | BUYER | OFFER | RM 68900 | Round 5/10 | 2.0% fixed move toward RV | Offer RM67500 -> RM68900 | RV: RM72800
+Round 6 | DEALER | OFFER | RM 71200 | Round 6/10 | 5.0% fixed move toward RV | Offer RM71200 -> RM71200 | RV: RM71200
+Round 7 | BUYER | OFFER | RM 70300 | Round 6/10 | 2.0% fixed move toward RV | Offer RM68900 -> RM70300 | RV: RM72800
+Round 7 | DEALER | OFFER | RM 71200 | Round 7/10 | 5.0% fixed move toward RV | Offer RM71200 -> RM71200 | RV: RM71200
+Round 7 | BUYER | WOULD_ACCEPT | RM 71200 | Counter would meet dealer offer; accepting dealer price.
+Round 7 | BUYER | ACCEPT | RM 71200 | Round 7/10 | 2.0% fixed move toward RV | Offer RM70300 -> RM71700 | RV: RM72800
+
+Final note: Round 7/10 | 2.0% fixed move toward RV | Offer RM70300 -> RM71700 | RV: RM72800

@@ -1,0 +1,16 @@
+EXPERIMENT 80
+================
+Scenario: WIDE_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72800 | Rounds: 1
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 72800 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72800
+Round 1 | BUYER | WOULD_ACCEPT | RM 72800 | Counter would meet dealer offer; accepting dealer price.
+Round 1 | BUYER | ACCEPT | RM 72800 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+
+Final note: Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900

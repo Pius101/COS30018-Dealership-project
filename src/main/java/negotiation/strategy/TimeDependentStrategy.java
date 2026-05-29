@@ -84,12 +84,17 @@ public class TimeDependentStrategy implements NegotiationStrategy {
 
     @Override
     public boolean shouldAccept(double opponentOffer, NegotiationContext ctx) {
-        boolean withinBudget = opponentOffer <= ctx.reservationPrice;
+        boolean withinBudget = ctx.role == NegotiationContext.Role.DEALER
+                ? opponentOffer >= ctx.reservationPrice
+                : opponentOffer <= ctx.reservationPrice;
         boolean lastRound    = ctx.isLastRound();
         boolean accept = withinBudget && lastRound;
 
         // Also accept if within 1% of reservation value (very close to our limit)
-        if (withinBudget && opponentOffer >= ctx.reservationPrice * 0.99) accept = true;
+        if (withinBudget && ctx.role == NegotiationContext.Role.BUYER
+                && opponentOffer >= ctx.reservationPrice * 0.99) accept = true;
+        if (withinBudget && ctx.role == NegotiationContext.Role.DEALER
+                && opponentOffer <= ctx.reservationPrice * 1.01) accept = true;
 
         lastReasoning = String.format(
                 "Round %d/%d | %s | Offer RM%.0f vs RV RM%.0f | lastRound=%s → %s",

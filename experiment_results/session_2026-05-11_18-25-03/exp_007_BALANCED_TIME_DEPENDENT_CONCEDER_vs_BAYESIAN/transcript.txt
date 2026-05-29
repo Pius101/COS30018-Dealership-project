@@ -1,0 +1,16 @@
+EXPERIMENT 7
+================
+Scenario: BALANCED
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72100 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 79000 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM79000
+Round 2 | BUYER | OFFER | RM 72100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72100
+Round 2 | DEALER | ACCEPT | RM 72100 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-8100 (0.0%) | EstimatedFloor≈RM80200 | Offers seen=2 → ACCEPT RM72100
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-8100 (0.0%) | EstimatedFloor≈RM80200 | Offers seen=2 → ACCEPT RM72100

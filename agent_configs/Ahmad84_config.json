@@ -1,0 +1,19 @@
+{
+  "name": "Ahmad84",
+  "make": "Perodua",
+  "model": "",
+  "yearMin": 0,
+  "yearMax": 0,
+  "maxPrice": 29500.0,
+  "maxMileage": 100000,
+  "condition": "Used",
+  "notes": "Need a car under RM 29,500. Flexible buyer, willing to pay near market price.",
+  "firstOffer": 27000.0,
+  "reservationPrice": 29500.0,
+  "autoNegotiate": true,
+  "strategy": "FIXED_INCREMENT_2PCT",
+  "maxRounds": 15,
+  "personality": "easy",
+  "_marketPrice": 28000.0,
+  "_flexibleModel": true
+}

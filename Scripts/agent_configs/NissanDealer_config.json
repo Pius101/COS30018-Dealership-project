@@ -1,0 +1,77 @@
+{
+  "dealerName": "NissanDealer",
+  "brand": "Nissan",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 20,
+  "listings": [
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2018,
+      "mileage": 60000,
+      "color": "Metallic Silver",
+      "retailPrice": 48000.0,
+      "marketPrice": 40000.0,
+      "condition": "Used",
+      "description": "2018 Nissan Almera, 60,000 km. Market ref: RM 40,000."
+    },
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2019,
+      "mileage": 44000,
+      "color": "Navy Blue",
+      "retailPrice": 48000.0,
+      "marketPrice": 42000.0,
+      "condition": "Used",
+      "description": "2019 Nissan Almera, 44,000 km. Market ref: RM 42,000."
+    },
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2020,
+      "mileage": 34000,
+      "color": "Graphite Grey",
+      "retailPrice": 60000.0,
+      "marketPrice": 50000.0,
+      "condition": "Used",
+      "description": "2020 Nissan Almera, 34,000 km. Market ref: RM 50,000."
+    },
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2021,
+      "mileage": 23500,
+      "color": "Navy Blue",
+      "retailPrice": 63000.0,
+      "marketPrice": 55000.0,
+      "condition": "Used",
+      "description": "2021 Nissan Almera, 23,500 km. Market ref: RM 55,000."
+    },
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2022,
+      "mileage": 38000,
+      "color": "Navy Blue",
+      "retailPrice": 70000.0,
+      "marketPrice": 60000.0,
+      "condition": "Used",
+      "description": "2022 Nissan Almera, 38,000 km. Market ref: RM 60,000."
+    },
+    {
+      "make": "Nissan",
+      "model": "Almera",
+      "year": 2023,
+      "mileage": 16500,
+      "color": "Pearl White",
+      "retailPrice": 77000.0,
+      "marketPrice": 68000.0,
+      "condition": "New",
+      "description": "2023 Nissan Almera, 16,500 km. Market ref: RM 68,000."
+    }
+  ]
+}

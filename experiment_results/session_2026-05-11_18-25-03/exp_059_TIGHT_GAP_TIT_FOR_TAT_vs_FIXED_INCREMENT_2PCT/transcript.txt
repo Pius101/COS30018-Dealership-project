@@ -1,0 +1,27 @@
+EXPERIMENT 59
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 7
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 78400 | Round 1/10 | 2.0% fixed move toward RV | Offer RM80000 -> RM78400 | RV: RM71200
+Round 2 | BUYER | OFFER | RM 62600 | Round 1/10 | Opponent last conceded 2.0% (RM1568) | Mirroring at 2.0% → Offer RM62600
+Round 2 | DEALER | OFFER | RM 76800 | Round 2/10 | 2.0% fixed move toward RV | Offer RM78400 -> RM76800 | RV: RM71200
+Round 3 | BUYER | OFFER | RM 62800 | Round 2/10 | Opponent last conceded 2.0% (RM1567) | Mirroring at 2.0% → Offer RM62800
+Round 3 | DEALER | OFFER | RM 75300 | Round 3/10 | 2.0% fixed move toward RV | Offer RM76800 -> RM75300 | RV: RM71200
+Round 4 | BUYER | OFFER | RM 63000 | Round 3/10 | Opponent last conceded 2.0% (RM1471) | Mirroring at 2.0% → Offer RM63000
+Round 4 | DEALER | OFFER | RM 73800 | Round 4/10 | 2.0% fixed move toward RV | Offer RM75300 -> RM73800 | RV: RM71200
+Round 5 | BUYER | OFFER | RM 63200 | Round 4/10 | Opponent last conceded 2.0% (RM1470) | Mirroring at 2.0% → Offer RM63200
+Round 5 | DEALER | OFFER | RM 72300 | Round 5/10 | 2.0% fixed move toward RV | Offer RM73800 -> RM72300 | RV: RM71200
+Round 6 | BUYER | OFFER | RM 63400 | Round 5/10 | Opponent last conceded 2.0% (RM1470) | Mirroring at 2.0% → Offer RM63400
+Round 6 | DEALER | OFFER | RM 71200 | Round 6/10 | 2.0% fixed move toward RV | Offer RM72300 -> RM71200 | RV: RM71200
+Round 7 | BUYER | OFFER | RM 63500 | Round 6/10 | Opponent last conceded 1.5% (RM1083) | Mirroring at 1.5% → Offer RM63500
+Round 7 | DEALER | OFFER | RM 71200 | Round 7/10 | 2.0% fixed move toward RV | Offer RM71200 -> RM71200 | RV: RM71200
+Round 7 | BUYER | ACCEPT | RM 71200 | Round 7/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT
+
+Final note: Round 7/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT

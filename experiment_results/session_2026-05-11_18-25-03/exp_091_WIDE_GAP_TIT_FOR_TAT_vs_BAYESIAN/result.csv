@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+91,1,"WIDE_GAP","TIT_FOR_TAT","Tit-for-Tat","BAYESIAN","Bayesian Learner","DEAL","BUYER",10,21,80000,60800,82400,67200,67200,12800,16.00,"exp_091_WIDE_GAP_TIT_FOR_TAT_vs_BAYESIAN"

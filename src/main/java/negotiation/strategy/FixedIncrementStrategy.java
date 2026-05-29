@@ -67,17 +67,20 @@ public class FixedIncrementStrategy implements NegotiationStrategy {
 
     @Override
     public double generateOffer(NegotiationContext ctx) {
-        // Increase current offer by the fixed percentage
-        currentOffer = currentOffer * (1.0 + incrementPct / 100.0);
+        if (ctx.role == NegotiationContext.Role.DEALER) {
+            currentOffer = currentOffer * (1.0 - incrementPct / 100.0);
+        } else {
+            currentOffer = currentOffer * (1.0 + incrementPct / 100.0);
+        }
 
-        // Never exceed reservation price
-        currentOffer = Math.min(currentOffer, ctx.reservationPrice);
+        currentOffer = Math.max(currentOffer, Math.min(ctx.firstOffer, ctx.reservationPrice));
+        currentOffer = Math.min(currentOffer, Math.max(ctx.firstOffer, ctx.reservationPrice));
 
         // Round to nearest RM 100
         double offer = Math.round(currentOffer / 100.0) * 100.0;
 
         lastReasoning = String.format(
-                "Round %d/%d | +%.1f%% increment | Offer RM%.0f → RM%.0f | RV ceiling: RM%.0f",
+                "Round %d/%d | %.1f%% fixed move toward RV | Offer RM%.0f -> RM%.0f | RV: RM%.0f",
                 ctx.currentRound, ctx.maxRounds, incrementPct,
                 ctx.lastMyOffer, offer, ctx.reservationPrice);
 
@@ -86,7 +89,9 @@ public class FixedIncrementStrategy implements NegotiationStrategy {
 
     @Override
     public boolean shouldAccept(double opponentOffer, NegotiationContext ctx) {
-        boolean withinBudget = opponentOffer <= ctx.reservationPrice;
+        boolean withinBudget = ctx.role == NegotiationContext.Role.DEALER
+                ? opponentOffer >= ctx.reservationPrice
+                : opponentOffer <= ctx.reservationPrice;
         boolean lastRound    = ctx.isLastRound();
 
         // Simple rule: accept if within budget and at deadline
@@ -130,15 +135,22 @@ public class FixedIncrementStrategy implements NegotiationStrategy {
         @Override
         public double generateOffer(NegotiationContext ctx) {
             double base  = ctx.lastMyOffer > 0 ? ctx.lastMyOffer : ctx.firstOffer;
-            double offer = Math.min(base + amountPerRound, ctx.reservationPrice);
+            double direction = ctx.role == NegotiationContext.Role.DEALER ? -1.0 : 1.0;
+            double offer = base + direction * amountPerRound;
+            offer = Math.max(offer, Math.min(ctx.firstOffer, ctx.reservationPrice));
+            offer = Math.min(offer, Math.max(ctx.firstOffer, ctx.reservationPrice));
             offer = Math.round(offer / 100.0) * 100.0;
-            lastReasoning = String.format("Round %d | +RM%.0f → Offer RM%.0f", ctx.currentRound, amountPerRound, offer);
+            lastReasoning = String.format("Round %d | RM%.0f move toward RV -> Offer RM%.0f",
+                    ctx.currentRound, amountPerRound, offer);
             return offer;
         }
 
         @Override
         public boolean shouldAccept(double opponentOffer, NegotiationContext ctx) {
-            return opponentOffer <= ctx.reservationPrice && ctx.isLastRound();
+            boolean withinLimit = ctx.role == NegotiationContext.Role.DEALER
+                    ? opponentOffer >= ctx.reservationPrice
+                    : opponentOffer <= ctx.reservationPrice;
+            return withinLimit && ctx.isLastRound();
         }
 
         @Override public String getLastReasoning() { return lastReasoning; }

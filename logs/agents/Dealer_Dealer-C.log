@@ -1,0 +1,19 @@
+[Dealer:Dealer-C] [2026-05-29 05:43:52] [INFO] Broker found in DF: broker@192.168.1.217:1099/JADE
+[Dealer:Dealer-C] [2026-05-29 05:43:52] [INFO] Dealer Agent 'Dealer-C' started. AID: Dealer-C@192.168.1.217:1099/JADE
+[Dealer:Dealer-C] [2026-05-29 05:43:52] [INFO] Connected to Broker: broker@192.168.1.217:1099/JADE
+[Dealer:Dealer-C] [2026-05-29 05:45:39] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2004 Toyota Corolla  RM 22000  [84723AF4]
+[Dealer:Dealer-C] [2026-05-29 05:45:39] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 84723AF4 confirmed stored
+[Dealer:Dealer-C] [2026-05-29 05:48:10] [MESSAGE] from Broker     [POTENTIAL_BUYERS            ] 1 potential buyer(s)
+[Dealer:Dealer-C] [2026-05-29 05:48:10] [MESSAGE] to Broker       [DEALER_SELECTION            ] 1 of 1 buyer(s) accepted
+[Dealer:Dealer-C] [2026-05-29 05:48:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691]  Buyer: buyerA  Listing: 84723AF4
+[Dealer:Dealer-C] [2026-05-29 05:48:39] [MESSAGE] to Broker→buyerA [NEG_OFFER                   ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] ACL.PROPOSE RM 22000
+[Dealer:Dealer-C] [2026-05-29 05:50:10] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: BAYESIAN | Margin: 10%
+[Dealer:Dealer-C] [2026-05-29 05:51:10] [MESSAGE] from Broker←buyerA [OFFER                       ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] ACL.PROPOSE RM 15000
+[Dealer:Dealer-C] [2026-05-29 05:53:59] [MESSAGE] from Broker←buyerA [REJECT                      ] [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691] ACL.REFUSE RM 0
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2024 Toyota Corolla  RM 22000  [C3FC9474]
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C3FC9474 confirmed stored
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [MESSAGE] from Broker     [POTENTIAL_BUYERS            ] 1 potential buyer(s)
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [MESSAGE] to Broker       [DEALER_SELECTION            ] 1 of 1 buyer(s) accepted
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-C3FC9474-609504]  Buyer: buyerA  Listing: C3FC9474
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [INFO] [AUTO-DEALER] Negotiation [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-C3FC9474-609504] ready | Strategy: Bayesian Learner | Starting price: RM 22000 | Minimum: RM 19800 | Max rounds: 10
+[Dealer:Dealer-C] [2026-05-29 06:00:09] [INFO] [AUTO-DEALER] DealerNegotiationBehaviour started for [neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-C3FC9474-609504]

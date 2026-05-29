@@ -355,6 +355,7 @@ public class DealerGui extends JFrame {
         private final JButton      offerBtn;
         private final JButton      acceptBtn;
         private final JButton      rejectBtn;
+        private double lastCounterpartyOffer = 0;
         private static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss");
 
         NegotiationPanel(Assignment a, DealerAgent dealer) {
@@ -429,15 +430,19 @@ public class DealerGui extends JFrame {
             });
 
             acceptBtn.addActionListener(e -> {
-                double price = Double.parseDouble(priceField.getText().trim());
-                String note  = messageField.getText().trim();
-                int confirm  = JOptionPane.showConfirmDialog(this,
-                        String.format("Accept deal at RM %.0f?", price),
-                        "Confirm Accept", JOptionPane.YES_NO_OPTION);
-                if (confirm == JOptionPane.YES_OPTION) {
-                    dealer.acceptOffer(assignment.getNegotiationId(), price, note);
-                    appendSent("ACCEPT", price, note);
-                    disableInput();
+                try {
+                    double price = getAcceptPrice();
+                    String note  = messageField.getText().trim();
+                    int confirm  = JOptionPane.showConfirmDialog(this,
+                            String.format("Accept deal at RM %.0f?", price),
+                            "Confirm Accept", JOptionPane.YES_NO_OPTION);
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        dealer.acceptOffer(assignment.getNegotiationId(), price, note);
+                        appendSent("ACCEPT", price, note);
+                        disableInput();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Enter a valid price.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             });
 
@@ -465,6 +470,10 @@ public class DealerGui extends JFrame {
                     time, msg.getFromName(), msg.getFromRole(), msg.getType().name(), price, note));
             historyArea.setCaretPosition(historyArea.getDocument().getLength());
 
+            if (msg.getType() == NegotiationMessage.Type.OFFER && msg.getPrice() > 0) {
+                lastCounterpartyOffer = msg.getPrice();
+                priceField.setText(String.format("%.0f", msg.getPrice()));
+            }
             if (msg.getType() == NegotiationMessage.Type.REJECT) {
                 appendSystem("Buyer ended the negotiation.");
                 disableInput();
@@ -477,6 +486,13 @@ public class DealerGui extends JFrame {
             String noteStr  = note != null && !note.isBlank() ? "\n  \"" + note + "\"" : "";
             historyArea.append(String.format(
                     "[%s] YOU (DEALER)  %s%s%s%n", time, type, priceStr, noteStr));
+        }
+
+        private double getAcceptPrice() {
+            if (lastCounterpartyOffer > 0) {
+                return lastCounterpartyOffer;
+            }
+            return Double.parseDouble(priceField.getText().trim());
         }
 
         void appendSystem(String text) {

@@ -1,0 +1,19 @@
+{
+  "name": "Raju86",
+  "make": "Mazda",
+  "model": "",
+  "yearMin": 2018,
+  "yearMax": 0,
+  "maxPrice": 97000.0,
+  "maxMileage": 50000,
+  "condition": "Used",
+  "notes": "Comparing options \u2014 open to Mazda vehicles.",
+  "firstOffer": 87500.0,
+  "reservationPrice": 97000.0,
+  "autoNegotiate": true,
+  "strategy": "TIT_FOR_TAT",
+  "maxRounds": 15,
+  "personality": "easy",
+  "_marketPrice": 95000.0,
+  "_flexibleModel": true
+}

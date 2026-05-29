@@ -1,0 +1,231 @@
+{
+  "dealerName": "ToyotaDealer",
+  "brand": "Toyota",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 20,
+  "listings": [
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2018,
+      "mileage": 56500,
+      "color": "Ruby Red",
+      "retailPrice": 106000.0,
+      "marketPrice": 88000.0,
+      "condition": "Used",
+      "description": "2018 Toyota Hilux, 56,500 km. Market ref: RM 88,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2019,
+      "mileage": 81500,
+      "color": "Midnight Black",
+      "retailPrice": 109000.0,
+      "marketPrice": 95000.0,
+      "condition": "Used",
+      "description": "2019 Toyota Hilux, 81,500 km. Market ref: RM 95,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2020,
+      "mileage": 53500,
+      "color": "Metallic Silver",
+      "retailPrice": 119000.0,
+      "marketPrice": 105000.0,
+      "condition": "Used",
+      "description": "2020 Toyota Hilux, 53,500 km. Market ref: RM 105,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2021,
+      "mileage": 24500,
+      "color": "Navy Blue",
+      "retailPrice": 137000.0,
+      "marketPrice": 115000.0,
+      "condition": "Used",
+      "description": "2021 Toyota Hilux, 24,500 km. Market ref: RM 115,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2022,
+      "mileage": 27500,
+      "color": "Graphite Grey",
+      "retailPrice": 148000.0,
+      "marketPrice": 125000.0,
+      "condition": "Used",
+      "description": "2022 Toyota Hilux, 27,500 km. Market ref: RM 125,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2023,
+      "mileage": 15000,
+      "color": "Ruby Red",
+      "retailPrice": 155000.0,
+      "marketPrice": 135000.0,
+      "condition": "New",
+      "description": "2023 Toyota Hilux, 15,000 km. Market ref: RM 135,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2017,
+      "mileage": 102000,
+      "color": "Graphite Grey",
+      "retailPrice": 52000.0,
+      "marketPrice": 45000.0,
+      "condition": "Used",
+      "description": "2017 Toyota Vios, 102,000 km. Market ref: RM 45,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2018,
+      "mileage": 95000,
+      "color": "Midnight Black",
+      "retailPrice": 61000.0,
+      "marketPrice": 52000.0,
+      "condition": "Used",
+      "description": "2018 Toyota Vios, 95,000 km. Market ref: RM 52,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2019,
+      "mileage": 43500,
+      "color": "Metallic Silver",
+      "retailPrice": 70000.0,
+      "marketPrice": 58000.0,
+      "condition": "Used",
+      "description": "2019 Toyota Vios, 43,500 km. Market ref: RM 58,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2020,
+      "mileage": 50500,
+      "color": "Ruby Red",
+      "retailPrice": 82000.0,
+      "marketPrice": 68000.0,
+      "condition": "Used",
+      "description": "2020 Toyota Vios, 50,500 km. Market ref: RM 68,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2021,
+      "mileage": 34000,
+      "color": "Navy Blue",
+      "retailPrice": 83000.0,
+      "marketPrice": 72000.0,
+      "condition": "Used",
+      "description": "2021 Toyota Vios, 34,000 km. Market ref: RM 72,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2022,
+      "mileage": 20500,
+      "color": "Metallic Silver",
+      "retailPrice": 94000.0,
+      "marketPrice": 78000.0,
+      "condition": "Used",
+      "description": "2022 Toyota Vios, 20,500 km. Market ref: RM 78,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Vios",
+      "year": 2023,
+      "mileage": 13000,
+      "color": "Graphite Grey",
+      "retailPrice": 97000.0,
+      "marketPrice": 82000.0,
+      "condition": "New",
+      "description": "2023 Toyota Vios, 13,000 km. Market ref: RM 82,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2017,
+      "mileage": 77500,
+      "color": "Metallic Silver",
+      "retailPrice": 56000.0,
+      "marketPrice": 48000.0,
+      "condition": "Used",
+      "description": "2017 Toyota Yaris, 77,500 km. Market ref: RM 48,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2018,
+      "mileage": 87000,
+      "color": "Navy Blue",
+      "retailPrice": 63000.0,
+      "marketPrice": 55000.0,
+      "condition": "Used",
+      "description": "2018 Toyota Yaris, 87,000 km. Market ref: RM 55,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2019,
+      "mileage": 78500,
+      "color": "Ruby Red",
+      "retailPrice": 69000.0,
+      "marketPrice": 60000.0,
+      "condition": "Used",
+      "description": "2019 Toyota Yaris, 78,500 km. Market ref: RM 60,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2020,
+      "mileage": 56000,
+      "color": "Midnight Black",
+      "retailPrice": 79000.0,
+      "marketPrice": 65000.0,
+      "condition": "Used",
+      "description": "2020 Toyota Yaris, 56,000 km. Market ref: RM 65,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2021,
+      "mileage": 29000,
+      "color": "Navy Blue",
+      "retailPrice": 82000.0,
+      "marketPrice": 72000.0,
+      "condition": "Used",
+      "description": "2021 Toyota Yaris, 29,000 km. Market ref: RM 72,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2022,
+      "mileage": 35000,
+      "color": "Pearl White",
+      "retailPrice": 91000.0,
+      "marketPrice": 78000.0,
+      "condition": "Used",
+      "description": "2022 Toyota Yaris, 35,000 km. Market ref: RM 78,000."
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2023,
+      "mileage": 5000,
+      "color": "Graphite Grey",
+      "retailPrice": 99000.0,
+      "marketPrice": 82000.0,
+      "condition": "New",
+      "description": "2023 Toyota Yaris, 5,000 km. Market ref: RM 82,000."
+    }
+  ]
+}

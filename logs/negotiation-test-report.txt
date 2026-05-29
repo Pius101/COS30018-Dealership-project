@@ -1,0 +1,112 @@
+NEGOTIATION TEST REPORT
+=======================
+Negotiations tested: 7
+
+ID: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399
+File: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399_buyer1_vs_dealer1_Toyota_Corolla_2004.txt
+Pair: buyer1 vs dealer1
+Car: Toyota Corolla 2004
+Outcome: COMPLETED
+Started: 2026-05-29_05-08-13
+Ended: 2026-05-29_05-08-13
+Duration: 0.000s
+Messages: 1 | Offers: 0 | Buyer offers: 0 | Dealer offers: 0 | Rounds: 0
+Asking price: RM 15,000 | Buyer max: - | Final/last price: RM 12,750
+Difference from asking: RM 2,250 (15.00%)
+First buyer/dealer offers: - / -
+Last buyer/dealer offers: - / -
+
+ID: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444
+File: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-78D47F88-545444_buyer1_vs_dealer1_Totola_Corolla_2004.txt
+Pair: buyer1 vs dealer1
+Car: Totola Corolla 2004
+Outcome: REJECTED
+Started: 2026-05-29_05-09-25
+Ended: 2026-05-29_05-09-25
+Duration: 0.000s
+Messages: 1 | Offers: 0 | Buyer offers: 0 | Dealer offers: 0 | Rounds: 0
+Asking price: RM 20,000 | Buyer max: - | Final/last price: -
+Difference from asking: - (0.00%)
+First buyer/dealer offers: - / -
+Last buyer/dealer offers: - / -
+
+ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676
+File: neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-4708753E-890676_buyerA_vs_Dealer-B_Toyota_Corolla_2004.txt
+Pair: buyerA vs Dealer-B
+Car: Toyota Corolla 2004
+Outcome: REJECTED
+Started: 2026-05-29_05-48-34
+Ended: 2026-05-29_05-53-55
+Duration: 5m 21.000s
+Messages: 3 | Offers: 2 | Buyer offers: 1 | Dealer offers: 1 | Rounds: 1
+Asking price: RM 20,000 | Buyer max: RM 25,000 | Final/last price: RM 15,000
+Difference from asking: RM 5,000 (25.00%)
+First buyer/dealer offers: RM 15,000 / RM 20,000
+Last buyer/dealer offers: RM 15,000 / RM 20,000
+
+ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704
+File: neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704_buyerA_vs_Dealer-A_Toyota_Corolla_2004.txt
+Pair: buyerA vs Dealer-A
+Car: Toyota Corolla 2004
+Outcome: REJECTED
+Started: 2026-05-29_05-48-36
+Ended: 2026-05-29_05-54-04
+Duration: 5m 28.000s
+Messages: 3 | Offers: 2 | Buyer offers: 1 | Dealer offers: 1 | Rounds: 1
+Asking price: RM 18,000 | Buyer max: RM 25,000 | Final/last price: RM 15,000
+Difference from asking: RM 3,000 (16.67%)
+First buyer/dealer offers: RM 15,000 / RM 18,000
+Last buyer/dealer offers: RM 15,000 / RM 18,000
+
+ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691
+File: neg-buyerA_192_168_1_217_1099_JADE-Dealer-C_192_168_1_217_1099_JADE-84723AF4-890691_buyerA_vs_Dealer-C_Toyota_Corolla_2004.txt
+Pair: buyerA vs Dealer-C
+Car: Toyota Corolla 2004
+Outcome: REJECTED
+Started: 2026-05-29_05-48-39
+Ended: 2026-05-29_05-53-59
+Duration: 5m 20.000s
+Messages: 3 | Offers: 2 | Buyer offers: 1 | Dealer offers: 1 | Rounds: 1
+Asking price: RM 22,000 | Buyer max: RM 25,000 | Final/last price: RM 15,000
+Difference from asking: RM 7,000 (31.82%)
+First buyer/dealer offers: RM 15,000 / RM 22,000
+Last buyer/dealer offers: RM 15,000 / RM 22,000
+
+ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339
+File: neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-20B59F23-589339_buyerA_vs_Dealer-A_Toyota_Corolla_2024.txt
+Pair: buyerA vs Dealer-A
+Car: Toyota Corolla 2024
+Outcome: UNKNOWN
+Started: 2026-05-29_06-08-16
+Ended: 2026-05-29_06-08-52
+Duration: 36.000s
+Messages: 4 | Offers: 4 | Buyer offers: 2 | Dealer offers: 2 | Rounds: 2
+Asking price: RM 18,000 | Buyer max: RM 25,000 | Final/last price: RM 17,600
+Difference from asking: RM 400 (2.22%)
+First buyer/dealer offers: RM 15,300 / RM 17,800
+Last buyer/dealer offers: RM 16,000 / RM 17,600
+
+ID: neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104
+File: neg-buyerA_192_168_1_217_1099_JADE-Dealer-B_192_168_1_217_1099_JADE-9B66190F-603104_buyerA_vs_Dealer-B_Toyota_Corolla_2024.txt
+Pair: buyerA vs Dealer-B
+Car: Toyota Corolla 2024
+Outcome: UNKNOWN
+Started: 2026-05-29_06-09-31
+Ended: 2026-05-29_06-09-45
+Duration: 14.000s
+Messages: 4 | Offers: 4 | Buyer offers: 2 | Dealer offers: 2 | Rounds: 2
+Asking price: RM 20,000 | Buyer max: RM 25,000 | Final/last price: RM 19,600
+Difference from asking: RM 400 (2.00%)
+First buyer/dealer offers: RM 17,000 / RM 19,800
+Last buyer/dealer offers: RM 17,500 / RM 19,600
+
+SUMMARY
+-------
+Total negotiations: 7
+Successful negotiations: 1 | Failed negotiations: 6
+Completed: 1 | Rejected: 4 | Interrupted: 0
+Average rounds: 1.00
+Average final price: RM 15,825
+Average duration: 2m 25.571s
+Fastest: neg-buyer1_192_168_1_217_1099_JADE-dealer1_192_168_1_217_1099_JADE-3C1DD5FA-091399_buyer1_vs_dealer1_Toyota_Corolla_2004.txt (0.000s)
+Slowest: neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704_buyerA_vs_Dealer-A_Toyota_Corolla_2004.txt (5m 28.000s)

@@ -1,0 +1,18 @@
+{
+  "case": 25,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "FIXED_INCREMENT_2PCT",
+  "dealerStrategy": "BAYESIAN",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 7,
+  "messageCount": 14,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 72100,
+  "savingFromAsk": 7900,
+  "savingPct": 9.88
+}

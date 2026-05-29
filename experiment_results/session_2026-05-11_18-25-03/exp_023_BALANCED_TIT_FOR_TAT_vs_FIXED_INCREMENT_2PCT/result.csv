@@ -1,0 +1,2 @@
+case,repeat,scenario,buyer_strategy,buyer_strategy_name,dealer_strategy,dealer_strategy_name,outcome,accepted_by,rounds,messages,asking_price,buyer_first_offer,buyer_reservation_price,dealer_reservation_price,final_price,saving_from_ask,saving_pct,folder
+23,1,"BALANCED","TIT_FOR_TAT","Tit-for-Tat","FIXED_INCREMENT_2PCT","Fixed Increment (2% per round)","DEAL","BUYER",8,17,80000,64000,78400,70400,70400,9600,12.00,"exp_023_BALANCED_TIT_FOR_TAT_vs_FIXED_INCREMENT_2PCT"

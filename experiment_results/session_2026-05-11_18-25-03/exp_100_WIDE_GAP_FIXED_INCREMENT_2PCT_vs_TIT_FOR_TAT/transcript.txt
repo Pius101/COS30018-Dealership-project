@@ -1,0 +1,32 @@
+EXPERIMENT 100
+================
+Scenario: WIDE_GAP
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72700 | Rounds: 10
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 79700 | Round 1/10 | Opponent last conceded -24.0% (RM-14592) | Mirroring at 2.0% → Offer RM79700
+Round 2 | BUYER | OFFER | RM 62000 | Round 1/10 | 2.0% fixed move toward RV | Offer RM60800 -> RM62000 | RV: RM82400
+Round 2 | DEALER | OFFER | RM 79500 | Round 2/10 | Opponent last conceded 2.0% (RM1224) | Mirroring at 2.0% → Offer RM79500
+Round 3 | BUYER | OFFER | RM 63300 | Round 2/10 | 2.0% fixed move toward RV | Offer RM62000 -> RM63300 | RV: RM82400
+Round 3 | DEALER | OFFER | RM 79200 | Round 3/10 | Opponent last conceded 2.1% (RM1327) | Mirroring at 2.1% → Offer RM79200
+Round 4 | BUYER | OFFER | RM 64500 | Round 3/10 | 2.0% fixed move toward RV | Offer RM63300 -> RM64500 | RV: RM82400
+Round 4 | DEALER | OFFER | RM 79000 | Round 4/10 | Opponent last conceded 1.9% (RM1223) | Mirroring at 1.9% → Offer RM79000
+Round 5 | BUYER | OFFER | RM 65800 | Round 4/10 | 2.0% fixed move toward RV | Offer RM64500 -> RM65800 | RV: RM82400
+Round 5 | DEALER | OFFER | RM 78800 | Round 5/10 | Opponent last conceded 2.0% (RM1326) | Mirroring at 2.0% → Offer RM78800
+Round 6 | BUYER | OFFER | RM 67100 | Round 5/10 | 2.0% fixed move toward RV | Offer RM65800 -> RM67100 | RV: RM82400
+Round 6 | DEALER | OFFER | RM 78600 | Round 6/10 | Opponent last conceded 2.0% (RM1326) | Mirroring at 2.0% → Offer RM78600
+Round 7 | BUYER | OFFER | RM 68500 | Round 6/10 | 2.0% fixed move toward RV | Offer RM67100 -> RM68500 | RV: RM82400
+Round 7 | DEALER | OFFER | RM 78400 | Round 7/10 | Opponent last conceded 2.1% (RM1429) | Mirroring at 2.1% → Offer RM78400
+Round 8 | BUYER | OFFER | RM 69800 | Round 7/10 | 2.0% fixed move toward RV | Offer RM68500 -> RM69800 | RV: RM82400
+Round 8 | DEALER | OFFER | RM 78200 | Round 8/10 | Opponent last conceded 1.9% (RM1325) | Mirroring at 1.9% → Offer RM78200
+Round 9 | BUYER | OFFER | RM 71200 | Round 8/10 | 2.0% fixed move toward RV | Offer RM69800 -> RM71200 | RV: RM82400
+Round 9 | DEALER | OFFER | RM 78000 | Round 9/10 | Opponent last conceded 2.0% (RM1428) | Mirroring at 2.0% → Offer RM78000
+Round 10 | BUYER | OFFER | RM 72700 | Round 9/10 | 2.0% fixed move toward RV | Offer RM71200 -> RM72700 | RV: RM82400
+Round 10 | DEALER | ACCEPT | RM 72700 | Round 10/10 | OpponentConcession=2.1% | opponentStuck=false | lastRound=true → ACCEPT
+
+Final note: Round 10/10 | OpponentConcession=2.1% | opponentStuck=false | lastRound=true → ACCEPT

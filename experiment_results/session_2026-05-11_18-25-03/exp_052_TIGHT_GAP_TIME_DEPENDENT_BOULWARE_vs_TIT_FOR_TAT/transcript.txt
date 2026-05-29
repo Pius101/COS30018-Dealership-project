@@ -1,0 +1,32 @@
+EXPERIMENT 52
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: NO_DEAL | Accepted by: NONE | Final price: - | Rounds: 10
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79800 | Round 1/10 | Opponent last conceded -22.0% (RM-13728) | Mirroring at 2.0% → Offer RM79800
+Round 2 | BUYER | OFFER | RM 62400 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM62400
+Round 2 | DEALER | OFFER | RM 79600 | Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM79600
+Round 3 | BUYER | OFFER | RM 62400 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM62400
+Round 3 | DEALER | OFFER | RM 79400 | Round 3/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM79400
+Round 4 | BUYER | OFFER | RM 62500 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM62500
+Round 4 | DEALER | OFFER | RM 79400 | Round 4/10 | Opponent last conceded 0.2% (RM100) | Mirroring at 0.5% → Offer RM79400
+Round 5 | BUYER | OFFER | RM 62700 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM62700
+Round 5 | DEALER | OFFER | RM 79400 | Round 5/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79400
+Round 6 | BUYER | OFFER | RM 63100 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM63100
+Round 6 | DEALER | OFFER | RM 79300 | Round 6/10 | Opponent last conceded 0.6% (RM403) | Mirroring at 0.6% → Offer RM79300
+Round 7 | BUYER | OFFER | RM 63700 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM63700
+Round 7 | DEALER | OFFER | RM 79200 | Round 7/10 | Opponent last conceded 1.0% (RM606) | Mirroring at 1.0% → Offer RM79200
+Round 8 | BUYER | OFFER | RM 64900 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM64900
+Round 8 | DEALER | OFFER | RM 79000 | Round 8/10 | Opponent last conceded 1.9% (RM1223) | Mirroring at 1.9% → Offer RM79000
+Round 9 | BUYER | OFFER | RM 66700 | Round 8/10 | Curve=BOULWARE β=0.25 | Progress=80% → Offer RM66700
+Round 9 | DEALER | OFFER | RM 78800 | Round 9/10 | Opponent last conceded 2.8% (RM1850) | Mirroring at 2.8% → Offer RM78800
+Round 10 | BUYER | OFFER | RM 69200 | Round 9/10 | Curve=BOULWARE β=0.25 | Progress=90% → Offer RM69200
+Round 10 | DEALER | OFFER | RM 78500 | Round 10/10 | Opponent last conceded 3.7% (RM2594) | Mirroring at 3.7% → Offer RM78500
+
+Final note: Deadline reached without either side accepting.

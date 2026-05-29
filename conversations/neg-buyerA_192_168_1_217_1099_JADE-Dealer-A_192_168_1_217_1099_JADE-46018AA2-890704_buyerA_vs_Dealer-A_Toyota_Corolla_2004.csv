@@ -1,0 +1,4 @@
+timestamp,negotiationId,conversationId,round,sender,receiver,type,aclPerformative,price,strategy,outcome,utility,buyerUtility,dealerUtility,reason
+2026-05-29 05:48:36,neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,negotiation-neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,1,Dealer-A,buyerA,OFFER,PROPOSE,18000.00,,ONGOING,,,,
+2026-05-29 05:50:50,neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,negotiation-neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,2,buyerA,Dealer-A,OFFER,PROPOSE,15000.00,,ONGOING,,,,
+2026-05-29 05:54:04,neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,negotiation-neg-buyerA_192_168_1_217_1099_JADE-Dealer-A_192_168_1_217_1099_JADE-46018AA2-890704,2,buyerA,Dealer-A,REJECT,REFUSE,,,FAILED,,,,

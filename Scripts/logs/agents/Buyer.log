@@ -1,0 +1,183 @@
+[Buyer] [2026-05-11 16:17:28] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:28] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Tan06_config.json
+[Buyer] [2026-05-11 16:17:29] [INFO] Buyer Agent 'Tan06' started. AID: Tan06@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:29] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [21C747D7]
+[Buyer] [2026-05-11 16:17:30] [INFO] Requirements submitted from config: Toyota (2021–any) ≤ RM 109000
+[Buyer] [2026-05-11 16:17:30] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM82000 budget=RM109000 maxRounds=20
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Dealer: ToyotaDealer  Listing: E4C0FB5E  Asking: RM 97000
+[Buyer] [2026-05-11 16:17:30] [INFO] [AUTO] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] started | Strategy: Time-Dependent (CONCEDER) | First offer: RM 82000 | Budget: RM 109000 | Max rounds: 20
+[Buyer] [2026-05-11 16:17:30] [INFO] [AUTO] AutoNegotiationBehaviour started for negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7041BCD0-450533]  Dealer: ToyotaDealer  Listing: 7041BCD0  Asking: RM 94000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Buyer] [2026-05-11 16:17:30] [INFO] [AUTO] Round 1 — Opening offer: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Budget ceiling: RM 109000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-BC59CAAC-450551]  Dealer: ToyotaDealer  Listing: BC59CAAC  Asking: RM 83000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-8218B9E4-450563]  Dealer: ToyotaDealer  Listing: 8218B9E4  Asking: RM 99000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-05EA7C68-450573]  Dealer: ToyotaDealer  Listing: 05EA7C68  Asking: RM 82000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-1065E179-450582]  Dealer: ToyotaDealer  Listing: 1065E179  Asking: RM 91000
+[Buyer] [2026-05-11 16:17:30] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 21C747D7 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:17:30] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:30] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Raju86_config.json
+[Buyer] [2026-05-11 16:17:31] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 97000
+[Buyer] [2026-05-11 16:17:31] [INFO] [AUTO] Round 2 | Dealer offered RM 97000
+[Buyer] [2026-05-11 16:17:31] [INFO] [AUTO] COUNTER RM 96900 — Round 2/20 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM97200
+[Buyer] [2026-05-11 16:17:31] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 96900
+[Buyer] [2026-05-11 16:17:31] [INFO] Buyer Agent 'Raju86' started. AID: Raju86@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:31] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:32] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:32] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya17_config.json
+[Buyer] [2026-05-11 16:17:32] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [1343488D]
+[Buyer] [2026-05-11 16:17:32] [INFO] Requirements submitted from config: Mazda (2018–any) Used ≤ RM 97000
+[Buyer] [2026-05-11 16:17:32] [INFO] [AUTO] Auto-negotiate armed: strategy=TIT_FOR_TAT firstOffer=RM87500 budget=RM97000 maxRounds=15
+[Buyer] [2026-05-11 16:17:32] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 1343488D confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:17:32] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 97000
+[Buyer] [2026-05-11 16:17:32] [INFO] [AUTO] Round 3 | Dealer offered RM 97000
+[Buyer] [2026-05-11 16:17:32] [INFO] [AUTO] COUNTER RM 96900 — Round 3/20 | Curve=CONCEDER β=4.00 | Progress=15% → Offer RM98800
+[Buyer] [2026-05-11 16:17:32] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 96900
+[Buyer] [2026-05-11 16:17:32] [INFO] Buyer Agent 'Priya17' started. AID: Priya17@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:32] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:34] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:34] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya85_config.json
+[Buyer] [2026-05-11 16:17:34] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [35995196]
+[Buyer] [2026-05-11 16:17:34] [INFO] Requirements submitted from config: Honda City Used ≤ RM 46500
+[Buyer] [2026-05-11 16:17:34] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM35000 budget=RM46500 maxRounds=20
+[Buyer] [2026-05-11 16:17:34] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 35995196 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:17:34] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 96900
+[Buyer] [2026-05-11 16:17:34] [INFO] [AUTO] Round 4 | Dealer offered RM 96900
+[Buyer] [2026-05-11 16:17:34] [INFO] [AUTO] COUNTER RM 96800 — Round 4/20 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM100100
+[Buyer] [2026-05-11 16:17:34] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE RM 96800
+[Buyer] [2026-05-11 16:17:34] [INFO] Buyer Agent 'Priya85' started. AID: Priya85@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:34] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:36] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:36] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Wei88_config.json
+[Buyer] [2026-05-11 16:17:36] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [FAD5F980]
+[Buyer] [2026-05-11 16:17:36] [INFO] Requirements submitted from config: Toyota Vios (2021–any) ≤ RM 76000
+[Buyer] [2026-05-11 16:17:36] [INFO] [AUTO] Auto-negotiate armed: strategy=BAYESIAN firstOffer=RM63500 budget=RM76000 maxRounds=20
+[Buyer] [2026-05-11 16:17:36] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement FAD5F980 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:17:36] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Final price: RM 96800
+[Buyer] [2026-05-11 16:17:36] [INFO] Buyer Agent 'Wei88' started. AID: Wei88@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:36] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:17:38] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [D5E65629]
+[Buyer] [2026-05-11 16:17:38] [INFO] Requirements submitted from config: Toyota (2021–any) Used ≤ RM 50000
+[Buyer] [2026-05-11 16:17:38] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM38000 budget=RM50000 maxRounds=15
+[Buyer] [2026-05-11 16:17:38] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement D5E65629 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:19:30] [INFO] Buyer 'Wei88' shutting down.
+[Buyer] [2026-05-11 16:19:30] [INFO] Buyer 'Raju86' shutting down.
+[Buyer] [2026-05-11 16:19:30] [INFO] Buyer 'Tan06' shutting down.
+[Buyer] [2026-05-11 16:19:30] [INFO] Emergency save sent — 6 ongoing negotiations
+[Buyer] [2026-05-11 16:19:30] [INFO] Buyer 'Priya85' shutting down.
+[Buyer] [2026-05-11 16:19:30] [INFO] Buyer 'Priya17' shutting down.
+[Buyer] [2026-05-11 16:33:43] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:43] [INFO] Buyer Agent 'Tan06' started. AID: Tan06@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:43] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:43] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Tan06_config.json
+[Buyer] [2026-05-11 16:33:45] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:45] [INFO] Buyer Agent 'Raju86' started. AID: Raju86@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:45] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:45] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Raju86_config.json
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [1F228FDD]
+[Buyer] [2026-05-11 16:33:45] [INFO] Requirements submitted from config: Toyota (2021–any) ≤ RM 109000
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM82000 budget=RM109000 maxRounds=20
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  Dealer: ToyotaDealer  Listing: 72FA63E6  Asking: RM 99000
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] started | Strategy: Time-Dependent (CONCEDER) | First offer: RM 82000 | Budget: RM 109000 | Max rounds: 20
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] AutoNegotiationBehaviour started for negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-9683B0E1-425494]  Dealer: ToyotaDealer  Listing: 9683B0E1  Asking: RM 82000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] Round 1 — Opening offer: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Budget ceiling: RM 109000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B0283DD1-425498]  Dealer: ToyotaDealer  Listing: B0283DD1  Asking: RM 97000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-2D219447-425503]  Dealer: ToyotaDealer  Listing: 2D219447  Asking: RM 83000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B5903AE6-425508]  Dealer: ToyotaDealer  Listing: B5903AE6  Asking: RM 94000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-3E95CC0D-425511]  Dealer: ToyotaDealer  Listing: 3E95CC0D  Asking: RM 91000
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 1F228FDD confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] Round 2 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:33:45] [INFO] [AUTO] COUNTER RM 97200 — Round 2/20 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM97200
+[Buyer] [2026-05-11 16:33:45] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE RM 97200
+[Buyer] [2026-05-11 16:33:47] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:47] [INFO] Buyer Agent 'Priya17' started. AID: Priya17@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:47] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:33:47] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [E1E66707]
+[Buyer] [2026-05-11 16:33:47] [INFO] Requirements submitted from config: Mazda (2018–any) Used ≤ RM 97000
+[Buyer] [2026-05-11 16:33:47] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya17_config.json
+[Buyer] [2026-05-11 16:33:47] [INFO] [AUTO] Auto-negotiate armed: strategy=TIT_FOR_TAT firstOffer=RM87500 budget=RM97000 maxRounds=15
+[Buyer] [2026-05-11 16:33:47] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement E1E66707 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:33:47] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:33:47] [INFO] [AUTO] Round 3 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:33:47] [INFO] [AUTO] COUNTER RM 98800 — Round 3/20 | Curve=CONCEDER β=4.00 | Progress=15% → Offer RM98800
+[Buyer] [2026-05-11 16:33:47] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE RM 98800
+[Buyer] [2026-05-11 16:33:48] [INFO] Buyer 'Raju86' shutting down.
+[Buyer] [2026-05-11 16:33:48] [INFO] Buyer 'Tan06' shutting down.
+[Buyer] [2026-05-11 16:33:48] [INFO] Emergency save sent — 6 ongoing negotiations
+[Buyer] [2026-05-11 16:41:58] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Buyer Agent 'Tan06' started. AID: Tan06@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:41:58] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Tan06_config.json
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [BD429D26]
+[Buyer] [2026-05-11 16:42:00] [INFO] Requirements submitted from config: Toyota (2021–any) ≤ RM 109000
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM82000 budget=RM109000 maxRounds=20
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Dealer: ToyotaDealer  Listing: 7DAD6863  Asking: RM 99000
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] started | Strategy: Time-Dependent (CONCEDER) | First offer: RM 82000 | Budget: RM 109000 | Max rounds: 20
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] AutoNegotiationBehaviour started for negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473]  Dealer: ToyotaDealer  Listing: E853059E  Asking: RM 97000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Buyer] [2026-05-11 16:42:00] [INFO] [AUTO] Round 1 — Opening offer: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Budget ceiling: RM 109000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481]  Dealer: ToyotaDealer  Listing: F8911047  Asking: RM 91000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489]  Dealer: ToyotaDealer  Listing: 375529E1  Asking: RM 82000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498]  Dealer: ToyotaDealer  Listing: 570B48AD  Asking: RM 94000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505]  Dealer: ToyotaDealer  Listing: 50D61A8F  Asking: RM 83000
+[Buyer] [2026-05-11 16:42:00] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement BD429D26 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:00] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Buyer Agent 'Raju86' started. AID: Raju86@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:00] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Raju86_config.json
+[Buyer] [2026-05-11 16:42:01] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:42:01] [INFO] [AUTO] Round 2 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:42:01] [INFO] [AUTO] COUNTER RM 97200 — Round 2/20 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM97200
+[Buyer] [2026-05-11 16:42:01] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 97200
+[Buyer] [2026-05-11 16:42:02] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:02] [INFO] Buyer Agent 'Priya17' started. AID: Priya17@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:02] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:02] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya17_config.json
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [CEDD996A]
+[Buyer] [2026-05-11 16:42:02] [INFO] Requirements submitted from config: Mazda (2018–any) Used ≤ RM 97000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] Auto-negotiate armed: strategy=TIT_FOR_TAT firstOffer=RM87500 budget=RM97000 maxRounds=15
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement CEDD996A confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 99000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] Round 3 | Dealer offered RM 99000
+[Buyer] [2026-05-11 16:42:02] [INFO] [AUTO] COUNTER RM 98800 — Round 3/20 | Curve=CONCEDER β=4.00 | Progress=15% → Offer RM98800
+[Buyer] [2026-05-11 16:42:02] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Buyer] [2026-05-11 16:42:04] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:04] [INFO] Buyer Agent 'Priya85' started. AID: Priya85@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:04] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:04] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya85_config.json
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [7F0A025E]
+[Buyer] [2026-05-11 16:42:04] [INFO] Requirements submitted from config: Honda City Used ≤ RM 46500
+[Buyer] [2026-05-11 16:42:04] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM35000 budget=RM46500 maxRounds=20
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 7F0A025E confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98900
+[Buyer] [2026-05-11 16:42:04] [INFO] [AUTO] Round 4 | Dealer offered RM 98900
+[Buyer] [2026-05-11 16:42:04] [INFO] [AUTO] COUNTER RM 98800 — Round 4/20 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM100100
+[Buyer] [2026-05-11 16:42:04] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98800
+[Buyer] [2026-05-11 16:42:06] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [INFO] Buyer Agent 'Wei88' started. AID: Wei88@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [C31B2590]
+[Buyer] [2026-05-11 16:42:06] [INFO] Requirements submitted from config: Toyota Vios (2021–any) ≤ RM 76000
+[Buyer] [2026-05-11 16:42:06] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Wei88_config.json
+[Buyer] [2026-05-11 16:42:06] [INFO] [AUTO] Auto-negotiate armed: strategy=BAYESIAN firstOffer=RM63500 budget=RM76000 maxRounds=20
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement C31B2590 confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] from Broker←ToyotaDealer [OFFER                       ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98700
+[Buyer] [2026-05-11 16:42:06] [INFO] [AUTO] Round 5 | Dealer offered RM 98700
+[Buyer] [2026-05-11 16:42:06] [INFO] [AUTO] COUNTER RM 98600 — Round 5/20 | Curve=CONCEDER β=4.00 | Progress=25% → Offer RM101100
+[Buyer] [2026-05-11 16:42:06] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE RM 98600
+[Buyer] [2026-05-11 16:42:08] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [A856E62B]
+[Buyer] [2026-05-11 16:42:08] [INFO] Requirements submitted from config: Toyota (2021–any) Used ≤ RM 50000
+[Buyer] [2026-05-11 16:42:08] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM38000 budget=RM50000 maxRounds=15
+[Buyer] [2026-05-11 16:42:08] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement A856E62B confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 16:42:08] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Final price: RM 98600
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Wei88' shutting down.
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Raju86' shutting down.
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Tan06' shutting down.
+[Buyer] [2026-05-11 17:01:39] [INFO] Emergency save sent — 6 ongoing negotiations
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Priya85' shutting down.
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Priya17' shutting down.

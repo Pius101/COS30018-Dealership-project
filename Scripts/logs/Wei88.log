@@ -1,0 +1,41 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Wei88.log
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 172.17.75.103:1099...
+[Launcher] Binding to local IP: 172.17.75.103
+May 11, 2026 4:42:05 PM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 11, 2026 4:42:05 PM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.17.75.103:53800
+
+May 11, 2026 4:42:06 PM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 11, 2026 4:42:06 PM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 11, 2026 4:42:06 PM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 11, 2026 4:42:06 PM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 11, 2026 4:42:06 PM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 11, 2026 4:42:06 PM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-4@172.17.75.103 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.17.75.103
+[Launcher] Buyer agent 'Wei88' joined buyers container at 172.17.75.103
+[Launcher] BUYER 'Wei88' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-11 16:42:06] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [INFO] Buyer Agent 'Wei88' started. AID: Wei88@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Buyer] [2026-05-11 16:42:06] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Wei88_config.json
+[Buyer] [2026-05-11 16:42:08] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [A856E62B]
+[Buyer] [2026-05-11 16:42:08] [INFO] Requirements submitted from config: Toyota (2021–any) Used ≤ RM 50000
+[Buyer] [2026-05-11 16:42:08] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM38000 budget=RM50000 maxRounds=15
+[Buyer] [2026-05-11 16:42:08] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement A856E62B confirmed stored — waiting for assignment
+[Buyer] [2026-05-11 17:01:39] [INFO] Buyer 'Wei88' shutting down.

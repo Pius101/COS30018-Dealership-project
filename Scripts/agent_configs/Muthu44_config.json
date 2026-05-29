@@ -1,0 +1,19 @@
+{
+  "name": "Muthu44",
+  "make": "Perodua",
+  "model": "Myvi",
+  "yearMin": 2019,
+  "yearMax": 0,
+  "maxPrice": 41000.0,
+  "maxMileage": 50000,
+  "condition": "Any",
+  "notes": "Need a car under RM 41,000. Balanced approach.",
+  "firstOffer": 33000.0,
+  "reservationPrice": 41000.0,
+  "autoNegotiate": true,
+  "strategy": "FIXED_INCREMENT_2PCT",
+  "maxRounds": 12,
+  "personality": "moderate",
+  "_marketPrice": 45000.0,
+  "_flexibleModel": false
+}

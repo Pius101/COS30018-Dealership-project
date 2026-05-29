@@ -1,0 +1,17 @@
+EXPERIMENT 48
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72200 | Rounds: 2
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 76000 | Round 1/10 | 5.0% fixed move toward RV | Offer RM80000 -> RM76000 | RV: RM71200
+Round 2 | BUYER | OFFER | RM 68200 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM68200
+Round 2 | DEALER | OFFER | RM 72200 | Round 2/10 | 5.0% fixed move toward RV | Offer RM76000 -> RM72200 | RV: RM71200
+Round 2 | BUYER | ACCEPT | RM 72200 | Round 2/10 | CONCEDER | Offer RM72200 vs RV RM72800 | lastRound=false → ACCEPT
+
+Final note: Round 2/10 | CONCEDER | Offer RM72200 vs RV RM72800 | lastRound=false → ACCEPT

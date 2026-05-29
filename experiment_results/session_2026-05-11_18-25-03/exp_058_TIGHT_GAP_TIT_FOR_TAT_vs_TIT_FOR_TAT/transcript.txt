@@ -1,0 +1,32 @@
+EXPERIMENT 58
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: NO_DEAL | Accepted by: NONE | Final price: - | Rounds: 10
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79800 | Round 1/10 | Opponent last conceded -22.0% (RM-13728) | Mirroring at 2.0% → Offer RM79800
+Round 2 | BUYER | OFFER | RM 62600 | Round 1/10 | Opponent last conceded 0.3% (RM200) | Mirroring at 2.0% → Offer RM62600
+Round 2 | DEALER | OFFER | RM 79800 | Round 2/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 3 | BUYER | OFFER | RM 62800 | Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM62800
+Round 3 | DEALER | OFFER | RM 79800 | Round 3/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 4 | BUYER | OFFER | RM 63000 | Round 3/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM63000
+Round 4 | DEALER | OFFER | RM 79800 | Round 4/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 5 | BUYER | OFFER | RM 63200 | Round 4/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM63200
+Round 5 | DEALER | OFFER | RM 79800 | Round 5/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 6 | BUYER | OFFER | RM 63400 | Round 5/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM63400
+Round 6 | DEALER | OFFER | RM 79800 | Round 6/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 7 | BUYER | OFFER | RM 63600 | Round 6/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM63600
+Round 7 | DEALER | OFFER | RM 79800 | Round 7/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 8 | BUYER | OFFER | RM 63800 | Round 7/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM63800
+Round 8 | DEALER | OFFER | RM 79800 | Round 8/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 9 | BUYER | OFFER | RM 64000 | Round 8/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64000
+Round 9 | DEALER | OFFER | RM 79800 | Round 9/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+Round 10 | BUYER | OFFER | RM 64200 | Round 9/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64200
+Round 10 | DEALER | OFFER | RM 79800 | Round 10/10 | Opponent last conceded 0.3% (RM201) | Mirroring at 0.5% → Offer RM79800
+
+Final note: Deadline reached without either side accepting.

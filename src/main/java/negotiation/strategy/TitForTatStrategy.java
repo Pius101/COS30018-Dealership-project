@@ -43,7 +43,9 @@ public class TitForTatStrategy implements NegotiationStrategy {
     @Override
     public void onOpponentOffer(double price, int round) {
         if (previousOpponentOffer > 0) {
-            double concession = previousOpponentOffer - price;
+            double concession = ctx != null && ctx.role == NegotiationContext.Role.DEALER
+                    ? price - previousOpponentOffer
+                    : previousOpponentOffer - price;
             lastOpponentConcessionPct = (concession / previousOpponentOffer) * 100.0;
         }
         previousOpponentOffer = price;
@@ -68,7 +70,8 @@ public class TitForTatStrategy implements NegotiationStrategy {
 
         double move  = gap * (movePct / 100.0);
         double offer = lastMyOffer + move;
-        offer = Math.min(offer, ctx.reservationPrice);
+        offer = Math.max(offer, Math.min(ctx.firstOffer, ctx.reservationPrice));
+        offer = Math.min(offer, Math.max(ctx.firstOffer, ctx.reservationPrice));
         offer = Math.round(offer / 100.0) * 100.0;
 
         lastReasoning = String.format(
@@ -82,7 +85,9 @@ public class TitForTatStrategy implements NegotiationStrategy {
 
     @Override
     public boolean shouldAccept(double opponentOffer, NegotiationContext ctx) {
-        boolean withinBudget = opponentOffer <= ctx.reservationPrice;
+        boolean withinBudget = ctx.role == NegotiationContext.Role.DEALER
+                ? opponentOffer >= ctx.reservationPrice
+                : opponentOffer <= ctx.reservationPrice;
         boolean lastRound    = ctx.isLastRound();
 
         // Accept if within budget AND (deadline OR opponent barely moved = they're near their floor)

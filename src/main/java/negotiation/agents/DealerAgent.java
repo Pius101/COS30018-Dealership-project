@@ -16,8 +16,12 @@ import negotiation.gui.DealerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
 import negotiation.models.CarListing;
+import negotiation.models.DealerSelection;
 import negotiation.models.NegotiationMessage;
+import negotiation.models.PotentialBuyerEntry;
+import negotiation.models.PotentialBuyerList;
 import negotiation.util.AppLogger;
+import negotiation.util.GuiMode;
 
 import javax.swing.*;
 import java.util.*;
@@ -67,17 +71,21 @@ public class DealerAgent extends Agent {
         brokerAID = findBroker();
         addBehaviour(new DealerMessageBehaviour(this));
 
-        SwingUtilities.invokeLater(() -> {
-            gui = new DealerGui(this);
-            log.setLogArea(gui.getLogArea());
-            gui.setVisible(true);
-            log.info("Dealer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
-            if (brokerAID != null) {
-                log.info("Connected to Broker: " + brokerAID.getName());
-            } else {
-                log.error("Broker not found in DF — check the HOST is running!");
-            }
-        });
+        if (GuiMode.isEnabled()) {
+            SwingUtilities.invokeLater(() -> {
+                gui = new DealerGui(this);
+                log.setLogArea(gui.getLogArea());
+                gui.setVisible(true);
+                log.info("Dealer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
+                if (brokerAID != null) {
+                    log.info("Connected to Broker: " + brokerAID.getName());
+                } else {
+                    log.error("Broker not found in DF — check the HOST is running!");
+                }
+            });
+        } else {
+            logStartupState();
+        }
 
         Object[] args = getArguments();
         if (args != null && args.length > 0 && args[0] instanceof String configPath) {
@@ -104,7 +112,7 @@ public class DealerAgent extends Agent {
                 log.info("Emergency save sent — " + payload.ongoingNegotiations.length
                         + " ongoing negotiations");
             } catch (Exception e) {
-                log.error("Failed to send emergency save: " + e.getMessage());
+                log.error("Failed to send emergency save", e);
             }
         }
         if (gui != null) SwingUtilities.invokeLater(gui::dispose);
@@ -148,7 +156,7 @@ public class DealerAgent extends Agent {
         } catch (java.io.IOException e) {
             log.error("Cannot read config file: " + configPath + " — " + e.getMessage());
         } catch (Exception e) {
-            log.error("Config parse error: " + e.getMessage());
+            log.error("Config parse error for " + configPath, e);
         }
     }
 
@@ -185,7 +193,9 @@ public class DealerAgent extends Agent {
                 log.info("Broker found in DF: " + found.getName());
                 return found;
             }
-        } catch (FIPAException fe) { fe.printStackTrace(); }
+        } catch (FIPAException fe) {
+            log.error("Broker DF lookup failed", fe);
+        }
         return null;
     }
 
@@ -211,10 +221,22 @@ public class DealerAgent extends Agent {
                         + "  RM " + String.format("%.0f", listing.getRetailPrice())
                         + "  [" + listing.getListingId() + "]");
 
-        SwingUtilities.invokeLater(() -> gui.refreshMyListings(new ArrayList<>(myListings.values())));
+        if (gui != null) {
+            SwingUtilities.invokeLater(() -> gui.refreshMyListings(new ArrayList<>(myListings.values())));
+        }
     }
 
     public void sendOffer(String negotiationId, double price, String messageText) {
+        sendOffer(negotiationId, price, messageText, 0, null, null, null);
+    }
+
+    public void sendOffer(String negotiationId,
+                          double price,
+                          String messageText,
+                          int round,
+                          String strategy,
+                          String reason,
+                          Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -223,13 +245,24 @@ public class DealerAgent extends Agent {
                 NegotiationMessage.Type.OFFER);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
+        setAuditMetadata(nm, round, strategy, "ONGOING", reason, utility);
         recordAndSend(nm, ACLMessage.PROPOSE, Ontology.TYPE_NEG_OFFER);
         log.send("Broker→" + a.getBuyerName(), Ontology.TYPE_NEG_OFFER,
-                "RM " + String.format("%.0f", price)
-                        + (messageText.isBlank() ? "" : "  \"" + messageText + "\""));
+                "[" + negotiationId + "] ACL.PROPOSE RM " + String.format("%.0f", price)
+                        + (isBlank(messageText) ? "" : "  \"" + messageText + "\""));
     }
 
     public void acceptOffer(String negotiationId, double price, String messageText) {
+        acceptOffer(negotiationId, price, messageText, 0, null, null, null);
+    }
+
+    public void acceptOffer(String negotiationId,
+                            double price,
+                            String messageText,
+                            int round,
+                            String strategy,
+                            String reason,
+                            Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -238,6 +271,8 @@ public class DealerAgent extends Agent {
                 NegotiationMessage.Type.ACCEPT);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
+        setAuditMetadata(nm, round, strategy, "COMPLETED", reason, utility);
+        setTransportMetadata(nm, ACLMessage.ACCEPT_PROPOSAL);
         recordLocal(nm);
 
         ACLMessage msg = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
@@ -247,10 +282,19 @@ public class DealerAgent extends Agent {
         msg.setContent(gson.toJson(nm));
         send(msg);
         log.send("Broker", Ontology.TYPE_NEG_ACCEPT,
-                "ACCEPTED at RM " + String.format("%.0f", price));
+                "[" + negotiationId + "] ACL.ACCEPT_PROPOSAL ACCEPTED at RM " + String.format("%.0f", price));
     }
 
     public void rejectOffer(String negotiationId, String messageText) {
+        rejectOffer(negotiationId, messageText, 0, null, null, null);
+    }
+
+    public void rejectOffer(String negotiationId,
+                            String messageText,
+                            int round,
+                            String strategy,
+                            String reason,
+                            Double utility) {
         if (!ensureBroker()) return;
         Assignment a = assignments.get(negotiationId);
         if (a == null) return;
@@ -259,13 +303,49 @@ public class DealerAgent extends Agent {
                 NegotiationMessage.Type.REJECT);
         nm.setToAID(a.getBuyerAID());
         nm.setToName(a.getBuyerName());
+        setAuditMetadata(nm, round, strategy, "FAILED", reason, utility);
         recordAndSend(nm, ACLMessage.REFUSE, Ontology.TYPE_NEG_REJECT);
-        log.info("Negotiation [" + negotiationId + "] REJECTED by dealer");
+        log.negotiation("[" + negotiationId + "] Dealer rejected negotiation");
     }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Callbacks from DealerMessageBehaviour
     // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Phase C of the spec protocol: the broker forwarded the potential buyers
+     * (and their first offers) interested in this dealer's cars (ACL CFP). The
+     * dealer selects whom to engage and replies with a DEALER_SELECTION
+     * (ACL PROPOSE). Here the policy is to engage any buyer whose opening offer
+     * is at least 50% of the car's retail price; tune as you like.
+     */
+    public void onPotentialBuyers(PotentialBuyerList pl) {
+        log.recv("Broker", Ontology.TYPE_POTENTIAL_BUYERS,
+                (pl.getBuyers() == null ? 0 : pl.getBuyers().size()) + " potential buyer(s)");
+
+        DealerSelection sel = new DealerSelection();
+        sel.setDealerAID(getAID().getName());
+
+        if (pl.getBuyers() != null) {
+            for (PotentialBuyerEntry pb : pl.getBuyers()) {
+                CarListing l = myListings.get(pb.getListingId());
+                if (l == null) continue;
+                if (pb.getFirstOffer() >= l.getRetailPrice() * 0.50) {
+                    sel.getSelected().add(pb);
+                }
+            }
+        }
+
+        ACLMessage m = new ACLMessage(ACLMessage.PROPOSE);
+        m.addReceiver(brokerAID);
+        m.setOntology(Ontology.TYPE_DEALER_SELECTION);
+        m.setConversationId(Ontology.CONV_MATCHING);
+        m.setContent(gson.toJson(sel));
+        send(m);
+        log.send("Broker", Ontology.TYPE_DEALER_SELECTION,
+                sel.getSelected().size() + " of "
+                        + (pl.getBuyers() == null ? 0 : pl.getBuyers().size()) + " buyer(s) accepted");
+    }
 
     public void onAssignment(Assignment assignment) {
         assignments.put(assignment.getNegotiationId(), assignment);
@@ -287,7 +367,8 @@ public class DealerAgent extends Agent {
     public void onNegotiationMessage(NegotiationMessage msg) {
         recordLocal(msg);
         log.recv("Broker←" + msg.getFromName(), msg.getType().name(),
-                "RM " + String.format("%.0f", msg.getPrice())
+                "[" + msg.getNegotiationId() + "] "
+                        + aclLabel(msg) + " RM " + String.format("%.0f", msg.getPrice())
                         + (msg.getMessage() != null && !msg.getMessage().isBlank()
                         ? "  \"" + msg.getMessage() + "\"" : ""));
 
@@ -320,6 +401,7 @@ public class DealerAgent extends Agent {
                                         NegotiationMessage.Type type) {
         NegotiationMessage nm = new NegotiationMessage();
         nm.setNegotiationId(negotiationId);
+        nm.setConversationId(Ontology.CONV_NEGOTIATION + "-" + negotiationId);
         nm.setListingId(a.getListing().getListingId());
         nm.setListingDescription(a.getListing().toString());
         nm.setFromAID(getAID().getName());
@@ -332,6 +414,7 @@ public class DealerAgent extends Agent {
     }
 
     private void recordAndSend(NegotiationMessage nm, int performative, String ontology) {
+        setTransportMetadata(nm, performative);
         recordLocal(nm);
         ACLMessage msg = new ACLMessage(performative);
         msg.addReceiver(brokerAID);
@@ -341,8 +424,69 @@ public class DealerAgent extends Agent {
         send(msg);
     }
 
+    private void setAuditMetadata(NegotiationMessage nm,
+                                  int round,
+                                  String strategy,
+                                  String outcome,
+                                  String reason,
+                                  Double utility) {
+        if (round > 0) {
+            nm.setRound(round);
+        }
+        if (!isBlank(strategy)) {
+            nm.setStrategy(strategy);
+        }
+        if (!isBlank(outcome)) {
+            nm.setOutcome(outcome);
+        }
+        if (!isBlank(reason)) {
+            nm.setReason(reason);
+        }
+        if (utility != null && !utility.isNaN() && !utility.isInfinite()) {
+            nm.setUtility(utility);
+        }
+    }
+
+    private void setTransportMetadata(NegotiationMessage nm, int performative) {
+        nm.setAclPerformative(aclPerformativeName(performative));
+        if (isBlank(nm.getConversationId())) {
+            nm.setConversationId(Ontology.CONV_NEGOTIATION + "-" + nm.getNegotiationId());
+        }
+    }
+
+    private static String aclPerformativeName(int performative) {
+        return switch (performative) {
+            case ACLMessage.REQUEST -> "REQUEST";
+            case ACLMessage.INFORM -> "INFORM";
+            case ACLMessage.PROPOSE -> "PROPOSE";
+            case ACLMessage.ACCEPT_PROPOSAL -> "ACCEPT_PROPOSAL";
+            case ACLMessage.REJECT_PROPOSAL -> "REJECT_PROPOSAL";
+            case ACLMessage.REFUSE -> "REFUSE";
+            case ACLMessage.FAILURE -> "FAILURE";
+            case ACLMessage.CONFIRM -> "CONFIRM";
+            default -> String.valueOf(performative);
+        };
+    }
+
+    private static String aclLabel(NegotiationMessage msg) {
+        return isBlank(msg.getAclPerformative()) ? "ACL.UNKNOWN" : "ACL." + msg.getAclPerformative();
+    }
+
+    private static boolean isBlank(String value) {
+        return value == null || value.isBlank();
+    }
+
     private void recordLocal(NegotiationMessage nm) {
         history.computeIfAbsent(nm.getNegotiationId(), k -> new ArrayList<>()).add(nm);
+    }
+
+    private void logStartupState() {
+        log.info("Dealer Agent '" + getLocalName() + "' started. AID: " + getAID().getName());
+        if (brokerAID != null) {
+            log.info("Connected to Broker: " + brokerAID.getName());
+        } else {
+            log.error("Broker not found in DF - check the HOST is running!");
+        }
     }
 
     private boolean ensureBroker() {
@@ -350,10 +494,12 @@ public class DealerAgent extends Agent {
         brokerAID = findBroker();
         if (brokerAID == null) {
             log.error("Cannot find Broker Agent — is the HOST running?");
-            SwingUtilities.invokeLater(() ->
-                    JOptionPane.showMessageDialog(gui,
-                            "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
-                            "Connection Error", JOptionPane.ERROR_MESSAGE));
+            if (gui != null) {
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(gui,
+                                "Cannot reach the Broker Agent.\nMake sure the HOST is running.",
+                                "Connection Error", JOptionPane.ERROR_MESSAGE));
+            }
             return false;
         }
         return true;

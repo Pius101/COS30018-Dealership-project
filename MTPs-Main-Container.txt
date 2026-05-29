@@ -1,1 +1,1 @@
-http://MSI:7778/acc
+http://MSI.home:7778/acc

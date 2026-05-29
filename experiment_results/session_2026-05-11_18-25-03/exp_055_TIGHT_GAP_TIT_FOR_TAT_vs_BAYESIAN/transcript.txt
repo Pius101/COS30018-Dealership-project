@@ -1,0 +1,33 @@
+EXPERIMENT 55
+================
+Scenario: TIGHT_GAP
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 10
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 79100 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM79100
+Round 2 | BUYER | OFFER | RM 62600 | Round 1/10 | Opponent last conceded 1.1% (RM890) | Mirroring at 2.0% → Offer RM62600
+Round 2 | DEALER | OFFER | RM 78200 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-200 (0.0%) | EstimatedFloor≈RM62800 | Offers seen=2 → OFFER RM78200
+Round 3 | BUYER | OFFER | RM 62700 | Round 2/10 | Opponent last conceded 1.1% (RM890) | Mirroring at 1.1% → Offer RM62700
+Round 3 | DEALER | OFFER | RM 77400 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-150 (0.0%) | EstimatedFloor≈RM62850 | Offers seen=3 → OFFER RM77400
+Round 4 | BUYER | OFFER | RM 62800 | Round 3/10 | Opponent last conceded 1.0% (RM792) | Mirroring at 1.0% → Offer RM62800
+Round 4 | DEALER | OFFER | RM 76500 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-133 (0.0%) | EstimatedFloor≈RM62933 | Offers seen=4 → OFFER RM76500
+Round 5 | BUYER | OFFER | RM 62900 | Round 4/10 | Opponent last conceded 1.2% (RM890) | Mirroring at 1.2% → Offer RM62900
+Round 5 | DEALER | OFFER | RM 75600 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-125 (0.0%) | EstimatedFloor≈RM63025 | Offers seen=5 → OFFER RM75600
+Round 6 | BUYER | OFFER | RM 63000 | Round 5/10 | Opponent last conceded 1.2% (RM889) | Mirroring at 1.2% → Offer RM63000
+Round 6 | DEALER | OFFER | RM 74700 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-120 (0.0%) | EstimatedFloor≈RM63120 | Offers seen=6 → OFFER RM74700
+Round 7 | BUYER | OFFER | RM 63100 | Round 6/10 | Opponent last conceded 1.2% (RM889) | Mirroring at 1.2% → Offer RM63100
+Round 7 | DEALER | OFFER | RM 73800 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-117 (0.0%) | EstimatedFloor≈RM63217 | Offers seen=7 → OFFER RM73800
+Round 8 | BUYER | OFFER | RM 63200 | Round 7/10 | Opponent last conceded 1.2% (RM889) | Mirroring at 1.2% → Offer RM63200
+Round 8 | DEALER | OFFER | RM 73000 | Round 8/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-114 (0.0%) | EstimatedFloor≈RM63314 | Offers seen=8 → OFFER RM73000
+Round 9 | BUYER | OFFER | RM 63300 | Round 8/10 | Opponent last conceded 1.1% (RM791) | Mirroring at 1.1% → Offer RM63300
+Round 9 | DEALER | OFFER | RM 72100 | Round 9/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-113 (0.0%) | EstimatedFloor≈RM63413 | Offers seen=9 → OFFER RM72100
+Round 10 | BUYER | OFFER | RM 63400 | Round 9/10 | Opponent last conceded 1.2% (RM889) | Mirroring at 1.2% → Offer RM63400
+Round 10 | DEALER | OFFER | RM 71200 | Round 10/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-111 (0.0%) | EstimatedFloor≈RM63511 | Offers seen=10 → OFFER RM71200
+Round 10 | BUYER | ACCEPT | RM 71200 | Round 10/10 | OpponentConcession=1.2% | opponentStuck=false | lastRound=true → ACCEPT
+
+Final note: Round 10/10 | OpponentConcession=1.2% | opponentStuck=false | lastRound=true → ACCEPT

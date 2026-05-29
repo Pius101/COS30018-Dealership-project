@@ -1,0 +1,18 @@
+{
+  "case": 4,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "buyerStrategy": "BAYESIAN",
+  "dealerStrategy": "TIT_FOR_TAT",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 8,
+  "messageCount": 17,
+  "askingPrice": 80000,
+  "buyerFirstOffer": 64000,
+  "buyerReservationPrice": 78400,
+  "dealerReservationPrice": 70400,
+  "finalPrice": 78400,
+  "savingFromAsk": 1600,
+  "savingPct": 2.00
+}

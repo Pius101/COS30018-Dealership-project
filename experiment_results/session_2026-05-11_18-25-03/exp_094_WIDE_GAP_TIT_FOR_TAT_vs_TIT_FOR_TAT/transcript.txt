@@ -1,0 +1,19 @@
+EXPERIMENT 94
+================
+Scenario: WIDE_GAP
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 79500 | Rounds: 3
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 79700 | Round 1/10 | Opponent last conceded -24.0% (RM-14592) | Mirroring at 2.0% → Offer RM79700
+Round 2 | BUYER | OFFER | RM 61200 | Round 1/10 | Opponent last conceded 0.4% (RM299) | Mirroring at 2.0% → Offer RM61200
+Round 2 | DEALER | OFFER | RM 79600 | Round 2/10 | Opponent last conceded 0.7% (RM403) | Mirroring at 0.7% → Offer RM79600
+Round 3 | BUYER | OFFER | RM 61300 | Round 2/10 | Opponent last conceded 0.1% (RM100) | Mirroring at 0.5% → Offer RM61300
+Round 3 | DEALER | OFFER | RM 79500 | Round 3/10 | Opponent last conceded 0.2% (RM100) | Mirroring at 0.5% → Offer RM79500
+Round 3 | BUYER | ACCEPT | RM 79500 | Round 3/10 | OpponentConcession=0.1% | opponentStuck=true | lastRound=false → ACCEPT
+
+Final note: Round 3/10 | OpponentConcession=0.1% | opponentStuck=true | lastRound=false → ACCEPT
