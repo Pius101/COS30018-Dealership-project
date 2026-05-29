@@ -121,6 +121,19 @@ KA  ──DEAL_COMPLETE──────────▶ DA & BA         (broker
 
 ---
 
+## Extensions
+
+### Extension 1: Multiple Concurrent Negotiations
+
+The system now supports coordinated concurrent negotiations for a single requirement:
+
+- **Redundancy Management**: Once a deal is struck for a specific requirement, the BuyerAgent automatically rejects all other ongoing negotiations for that same requirement to prevent double-purchasing.
+- **BATNA (Best Alternative to a Negotiated Agreement)**: Automated buyers dynamically track the best available offer across all concurrent negotiations. If a better offer is found elsewhere, the agent "tightens" its reservation price for other negotiations to remain competitive.
+- **Automated State Tracking**: The agent manages multiple `AutoNegotiationBehaviour` instances, ensuring clean termination when a requirement is satisfied.
+- **Enhanced GUI Visibility**: All automated negotiation actions (offers, acceptances, rejections, and strategy reasoning) are logged directly to the GUI chat tabs for better monitoring.
+
+---
+
 ## Common Issues
 
 | Problem | Fix |

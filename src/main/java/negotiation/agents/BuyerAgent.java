@@ -380,8 +380,9 @@ public class BuyerAgent extends Agent {
         if (gui != null) SwingUtilities.invokeLater(() -> gui.onDealComplete(finalMsg));
 
         // Extension 1: Multiple concurrent negotiations
-        // If we just completed a deal, terminate other active negotiations for the same requirement
-        terminateOtherNegotiationsForSameRequirement(finalMsg.getNegotiationId());
+        // If we just completed a deal, keep other active negotiations for the same requirement
+        // to see if we can find an even better price elsewhere.
+        // terminateOtherNegotiationsForSameRequirement(finalMsg.getNegotiationId());
     }
 
     private void terminateOtherNegotiationsForSameRequirement(String completedNegId) {
@@ -433,9 +434,9 @@ public class BuyerAgent extends Agent {
                 continue;
             }
 
-            // Look through history of this negotiation for the lowest dealer offer
+            // Look through history of this negotiation for the lowest dealer offer or a completed deal price
             for (NegotiationMessage m : entry.getValue()) {
-                if (m.getFromRole().equals("DEALER") && m.getType() == NegotiationMessage.Type.OFFER) {
+                if (m.getFromRole().equals("DEALER") && (m.getType() == NegotiationMessage.Type.OFFER || m.getType() == NegotiationMessage.Type.ACCEPT)) {
                     if (m.getPrice() < best) {
                         best = m.getPrice();
                     }
