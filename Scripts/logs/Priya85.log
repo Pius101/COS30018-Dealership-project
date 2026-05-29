@@ -1,0 +1,41 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Priya85.log
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:23:14 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:23:14 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51825
+
+May 22, 2026 2:23:14 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:23:14 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:23:14 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:23:14 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:23:14 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:23:14 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-3@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.16.0.119
+[Launcher] Buyer agent 'Priya85' joined buyers container at 172.16.0.119
+[Launcher] BUYER 'Priya85' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-22 02:23:14] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:14] [INFO] Buyer Agent 'Priya85' started. AID: Priya85@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:14] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:14] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya85_config.json
+[Buyer] [2026-05-22 02:23:16] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [9140667D]
+[Buyer] [2026-05-22 02:23:16] [INFO] Requirements submitted from config: Toyota Vios (2021–any) ≤ RM 76000
+[Buyer] [2026-05-22 02:23:16] [INFO] [AUTO] Auto-negotiate armed: strategy=BAYESIAN firstOffer=RM63500 budget=RM76000 maxRounds=20
+[Buyer] [2026-05-22 02:23:16] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 9140667D confirmed stored — waiting for assignment
+[Buyer] [2026-05-22 02:40:53] [INFO] Buyer 'Priya85' shutting down.

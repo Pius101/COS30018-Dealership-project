@@ -6,6 +6,8 @@ import negotiation.agents.BrokerAgent;
 import negotiation.messages.Ontology;
 import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.BuyerShortlist;
+import negotiation.models.DealerSelection;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.ConversationLogger;
 
@@ -36,6 +38,8 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
         switch (type) {
             case Ontology.TYPE_LISTING_REGISTER   -> handleListingRegister(msg);
             case Ontology.TYPE_BUYER_REQUIREMENTS -> handleBuyerRequirements(msg);
+            case Ontology.TYPE_BUYER_SHORTLIST    -> handleBuyerShortlist(msg);
+            case Ontology.TYPE_DEALER_SELECTION   -> handleDealerSelection(msg);
             case Ontology.TYPE_NEG_OFFER          -> handleNegotiationMessage(msg, NegotiationMessage.Type.OFFER);
             case Ontology.TYPE_NEG_ACCEPT         -> handleNegotiationAccept(msg);
             case Ontology.TYPE_NEG_REJECT         -> handleNegotiationMessage(msg, NegotiationMessage.Type.REJECT);
@@ -83,6 +87,30 @@ public class BrokerMessageBehaviour extends CyclicBehaviour {
                     "ACK for " + req.getRequirementId());
         } catch (Exception e) {
             broker.log.error("Bad BUYER_REQUIREMENTS from " + msg.getSender().getLocalName()
+                    + ": " + e.getMessage());
+        }
+    }
+
+    private void handleBuyerShortlist(ACLMessage msg) {
+        try {
+            BuyerShortlist shortlist = broker.gson.fromJson(msg.getContent(), BuyerShortlist.class);
+            shortlist.setBuyerAID(msg.getSender().getName());
+            shortlist.setBuyerName(msg.getSender().getLocalName());
+            broker.onShortlistReceived(shortlist);
+        } catch (Exception e) {
+            broker.log.error("Bad BUYER_SHORTLIST from " + msg.getSender().getLocalName()
+                    + ": " + e.getMessage());
+        }
+    }
+
+    private void handleDealerSelection(ACLMessage msg) {
+        try {
+            DealerSelection selection = broker.gson.fromJson(msg.getContent(), DealerSelection.class);
+            selection.setDealerAID(msg.getSender().getName());
+            selection.setDealerName(msg.getSender().getLocalName());
+            broker.onDealerSelection(selection);
+        } catch (Exception e) {
+            broker.log.error("Bad DEALER_SELECTION from " + msg.getSender().getLocalName()
                     + ": " + e.getMessage());
         }
     }

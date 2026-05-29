@@ -1,0 +1,78 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\PeroduaDealer.log
+[Launcher] Creating sellers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:22:55 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:22:56 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51764
+
+May 22, 2026 2:22:56 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:22:56 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:22:56 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:22:56 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:22:56 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:22:56 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container sellers-market@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Sellers container 'sellers-market' created at 172.16.0.119
+[Launcher] Dealer agent 'PeroduaDealer' joined sellers container at 172.16.0.119
+[Launcher] DEALER 'PeroduaDealer' running. Press Ctrl+C to stop.
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] Dealer Agent 'PeroduaDealer' started. AID: PeroduaDealer@172.16.0.119:1099/JADE
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\PeroduaDealer_config.json — 19 listings
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:PeroduaDealer] [2026-05-22 02:22:56] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Perodua Axia  RM 26000  [C69C9F9F]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Perodua Axia  RM 29000  [F5D6B2DF]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Perodua Axia  RM 33000  [888BB8E6]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Perodua Axia  RM 33000  [246B20A6]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Perodua Axia  RM 36000  [1B21B243]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Perodua Axia  RM 41000  [54BBDD84]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Perodua Bezza  RM 33000  [59133FCC]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Perodua Bezza  RM 37000  [26A5BB31]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Perodua Bezza  RM 37000  [CA773542]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Perodua Bezza  RM 43000  [664E6C70]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Perodua Bezza  RM 45000  [DE3A9716]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Perodua Bezza  RM 51000  [CE51A8F4]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Perodua Myvi  RM 35000  [A41E2B8E]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Perodua Myvi  RM 37000  [88CDA335]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Perodua Myvi  RM 44000  [C99295E9]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Perodua Myvi  RM 45000  [F0D70A4B]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Perodua Myvi  RM 50000  [7CFEBDA2]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Perodua Myvi  RM 51000  [DC9C3A7B]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Perodua Myvi  RM 57000  [7846538F]
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [INFO] All listings submitted from config.
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C69C9F9F confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F5D6B2DF confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 888BB8E6 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 246B20A6 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1B21B243 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 54BBDD84 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 59133FCC confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 26A5BB31 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing CA773542 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 664E6C70 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DE3A9716 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing CE51A8F4 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A41E2B8E confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 88CDA335 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C99295E9 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F0D70A4B confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7CFEBDA2 confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DC9C3A7B confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:22:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7846538F confirmed stored
+[Dealer:PeroduaDealer] [2026-05-22 02:40:53] [INFO] Dealer 'PeroduaDealer' shutting down.

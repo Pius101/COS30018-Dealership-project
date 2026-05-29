@@ -5,6 +5,7 @@ import jade.lang.acl.ACLMessage;
 import negotiation.agents.DealerAgent;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
+import negotiation.models.DealerBuyerOffers;
 import negotiation.models.NegotiationMessage;
 
 /**
@@ -40,6 +41,7 @@ public class DealerMessageBehaviour extends CyclicBehaviour {
 
         switch (type) {
             case Ontology.TYPE_ASSIGNMENT_NOTIFY -> handleAssignment(msg);
+            case Ontology.TYPE_BUYER_OFFERS      -> handleBuyerOffers(msg);
             case Ontology.TYPE_NEG_OFFER         -> handleNegotiationMessage(msg);
             case Ontology.TYPE_NEG_REJECT        -> handleNegotiationMessage(msg);
             case Ontology.TYPE_DEAL_COMPLETE     -> handleDealComplete(msg);
@@ -64,6 +66,15 @@ public class DealerMessageBehaviour extends CyclicBehaviour {
             dealer.onAssignment(a);
         } catch (Exception e) {
             System.err.println("[Dealer] Failed to parse assignment: " + e.getMessage());
+        }
+    }
+
+    private void handleBuyerOffers(ACLMessage msg) {
+        try {
+            DealerBuyerOffers offers = dealer.gson.fromJson(msg.getContent(), DealerBuyerOffers.class);
+            dealer.onBuyerOffers(offers);
+        } catch (Exception e) {
+            System.err.println("[Dealer] Failed to parse buyer offers: " + e.getMessage());
         }
     }
 

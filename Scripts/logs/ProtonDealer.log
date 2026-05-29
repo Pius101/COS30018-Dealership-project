@@ -1,0 +1,76 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\ProtonDealer.log
+[Launcher] Creating sellers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:23:02 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:23:02 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51785
+
+May 22, 2026 2:23:02 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:23:02 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:23:02 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:23:02 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:23:02 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:23:02 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container sellers-market-3@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Sellers container 'sellers-market' created at 172.16.0.119
+[Launcher] Dealer agent 'ProtonDealer' joined sellers container at 172.16.0.119
+[Launcher] DEALER 'ProtonDealer' running. Press Ctrl+C to stop.
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] Dealer Agent 'ProtonDealer' started. AID: ProtonDealer@172.16.0.119:1099/JADE
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\ProtonDealer_config.json — 18 listings
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:ProtonDealer] [2026-05-22 02:23:02] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Proton Persona  RM 37000  [AB7BF3F1]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Proton Persona  RM 40000  [E53090E8]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Proton Persona  RM 51000  [882AA150]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Proton Persona  RM 50000  [196F1552]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Proton Persona  RM 59000  [4ACE1DFF]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Proton Persona  RM 61000  [2B567837]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Proton Saga  RM 20000  [2590DC08]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Proton Saga  RM 25000  [987240FF]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Proton Saga  RM 32000  [F975E408]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Proton Saga  RM 36000  [EADBB357]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Proton Saga  RM 36000  [BE164E61]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Proton Saga  RM 39000  [73399F69]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Proton Saga  RM 45000  [A731EBEE]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Proton X50  RM 74000  [C8C0E775]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Proton X50  RM 88000  [15A745F5]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Proton X50  RM 93000  [249F6D66]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Proton X50  RM 99000  [36618F06]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Proton X50  RM 105000  [BC3885AE]
+[Dealer:ProtonDealer] [2026-05-22 02:23:03] [INFO] All listings submitted from config.
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing AB7BF3F1 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing E53090E8 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 882AA150 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 196F1552 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 4ACE1DFF confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2B567837 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2590DC08 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 987240FF confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F975E408 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing EADBB357 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing BE164E61 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 73399F69 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A731EBEE confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C8C0E775 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 15A745F5 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 249F6D66 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 36618F06 confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:23:04] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing BC3885AE confirmed stored
+[Dealer:ProtonDealer] [2026-05-22 02:40:53] [INFO] Dealer 'ProtonDealer' shutting down.

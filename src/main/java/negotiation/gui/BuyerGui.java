@@ -2,7 +2,10 @@ package negotiation.gui;
 
 import negotiation.agents.BuyerAgent;
 import negotiation.models.Assignment;
+import negotiation.models.BuyerShortlist;
+import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.MatchedListings;
 import negotiation.models.NegotiationMessage;
 
 import javax.swing.*;
@@ -28,6 +31,8 @@ public class BuyerGui extends JFrame {
     private final JTabbedPane tabs;
 
     private final DefaultTableModel requirementsModel;
+    private final DefaultTableModel matchesModel;
+    private final JTable            matchesTable;
     private final DefaultTableModel assignmentsModel;
 
     // ── Activity log ──────────────────────────────────────────────────────────
@@ -36,6 +41,7 @@ public class BuyerGui extends JFrame {
     private final Map<String, NegotiationPanel> negPanels = new LinkedHashMap<>();
 
     private static final String[] REQ_COLS  = {"ID", "Make", "Model", "Year Min", "Year Max", "Max Price (RM)", "Condition", "Status"};
+    private static final String[] MATCH_COLS = {"Select", "Req ID", "Listing ID", "Dealer", "Car", "Year", "Mileage", "Asking Price (RM)", "Condition", "First Offer (RM)", "Note"};
     private static final String[] ASGN_COLS = {"Negotiation ID", "Dealer", "Listing", "Asking Price (RM)", "Status"};
 
     public BuyerGui(BuyerAgent buyer) {
@@ -43,11 +49,15 @@ public class BuyerGui extends JFrame {
         this.buyer = buyer;
 
         requirementsModel = makeReadOnlyModel(REQ_COLS);
+        matchesModel      = makeMatchesModel();
+        matchesTable      = new JTable(matchesModel);
         assignmentsModel  = makeReadOnlyModel(ASGN_COLS);
         tabs = new JTabbedPane();
 
         tabs.addTab("🔍  My Requirements", buildRequirementsTab());
         tabs.addTab("📌  Assignments",      buildAssignmentsTab());
+
+        tabs.addTab("Broker Matches",       buildMatchesTab());
 
         logArea.setEditable(false);
         logArea.setFont(new Font("Monospaced", Font.PLAIN, 11));
@@ -160,6 +170,30 @@ public class BuyerGui extends JFrame {
     // Tab: Assignments
     // ─────────────────────────────────────────────────────────────────────────
 
+    private JPanel buildMatchesTab() {
+        JPanel p = new JPanel(new BorderLayout(8, 8));
+        p.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JLabel info = new JLabel("Matched listings from the broker. Select up to three listings from one requirement and send first offers.");
+        p.add(info, BorderLayout.NORTH);
+
+        styleTable(matchesTable);
+        matchesTable.setRowHeight(24);
+        matchesTable.getColumnModel().getColumn(0).setMaxWidth(60);
+        matchesTable.getColumnModel().getColumn(10).setPreferredWidth(180);
+        p.add(new JScrollPane(matchesTable), BorderLayout.CENTER);
+
+        JButton sendShortlistBtn = new JButton("Send Shortlist to Broker");
+        sendShortlistBtn.setFont(sendShortlistBtn.getFont().deriveFont(Font.BOLD));
+        sendShortlistBtn.addActionListener(e -> sendShortlistFromMatches());
+
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttons.add(sendShortlistBtn);
+        p.add(buttons, BorderLayout.SOUTH);
+
+        return p;
+    }
+
     private JPanel buildAssignmentsTab() {
         JPanel p = new JPanel(new BorderLayout(8, 8));
         p.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -188,6 +222,38 @@ public class BuyerGui extends JFrame {
                 req.getCondition(),
                 "⏳ Waiting for broker"
         });
+    }
+
+    /** Replaces the displayed broker matches for one requirement. */
+    public void onMatchedListings(MatchedListings matches) {
+        String reqId = matches.getRequirementId();
+        removeMatchRows(reqId);
+
+        List<CarListing> listings = matches.getListings();
+        if (listings == null || listings.isEmpty()) {
+            updateRequirementStatus(reqId, "No matches");
+            return;
+        }
+
+        for (CarListing listing : listings) {
+            matchesModel.addRow(new Object[]{
+                    Boolean.FALSE,
+                    reqId,
+                    listing.getListingId(),
+                    listing.getDealerName(),
+                    listing.getMake() + " " + listing.getModel(),
+                    listing.getYear(),
+                    listing.getMileage(),
+                    String.format("%.0f", listing.getRetailPrice()),
+                    listing.getCondition(),
+                    String.format("%.0f", defaultFirstOffer(reqId, listing)),
+                    ""
+            });
+        }
+
+        updateRequirementStatus(reqId, listings.size() + " match(es)");
+        int idx = indexOfTab("Broker Matches");
+        if (idx >= 0) tabs.setSelectedIndex(idx);
     }
 
     /** Opens a new negotiation tab when the broker assigns us to a dealer. */
@@ -268,6 +334,103 @@ public class BuyerGui extends JFrame {
     // Helpers
     // ─────────────────────────────────────────────────────────────────────────
 
+    private void sendShortlistFromMatches() {
+        BuyerShortlist shortlist = new BuyerShortlist();
+        List<BuyerShortlist.Entry> entries = new ArrayList<>();
+        String reqId = null;
+
+        for (int row = 0; row < matchesModel.getRowCount(); row++) {
+            Object selected = matchesModel.getValueAt(row, 0);
+            if (!(selected instanceof Boolean) || !((Boolean) selected)) continue;
+
+            String rowReqId = String.valueOf(matchesModel.getValueAt(row, 1));
+            if (reqId == null) {
+                reqId = rowReqId;
+            } else if (!reqId.equals(rowReqId)) {
+                JOptionPane.showMessageDialog(this,
+                        "Choose listings from one requirement at a time.",
+                        "Shortlist Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (entries.size() >= 3) {
+                JOptionPane.showMessageDialog(this,
+                        "A buyer can shortlist up to three dealers/listings.",
+                        "Shortlist Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String listingId = String.valueOf(matchesModel.getValueAt(row, 2));
+            double firstOffer;
+            try {
+                firstOffer = Double.parseDouble(String.valueOf(matchesModel.getValueAt(row, 9)).trim());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "First offer must be a number for listing " + listingId + ".",
+                        "Shortlist Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (firstOffer <= 0) {
+                JOptionPane.showMessageDialog(this,
+                        "First offer must be greater than zero for listing " + listingId + ".",
+                        "Shortlist Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String note = String.valueOf(matchesModel.getValueAt(row, 10)).trim();
+            entries.add(new BuyerShortlist.Entry(listingId, firstOffer, note));
+        }
+
+        if (entries.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Select at least one matched listing.",
+                    "Shortlist Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        shortlist.setRequirementId(reqId);
+        shortlist.setEntries(entries);
+        buyer.sendShortlist(shortlist);
+        updateRequirementStatus(reqId, "Shortlist sent");
+        JOptionPane.showMessageDialog(this,
+                "Shortlist sent to broker.",
+                "Shortlist Sent", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void removeMatchRows(String requirementId) {
+        for (int row = matchesModel.getRowCount() - 1; row >= 0; row--) {
+            if (requirementId.equals(matchesModel.getValueAt(row, 1))) {
+                matchesModel.removeRow(row);
+            }
+        }
+    }
+
+    private double defaultFirstOffer(String requirementId, CarListing listing) {
+        double offer = listing.getRetailPrice() * 0.90;
+        CarRequirement req = findRequirementById(requirementId);
+        if (req != null && req.getMaxPrice() > 0) {
+            offer = Math.min(offer, req.getMaxPrice());
+        }
+        return Math.round(offer / 100.0) * 100.0;
+    }
+
+    private CarRequirement findRequirementById(String requirementId) {
+        return buyer.getMyRequirements().stream()
+                .filter(req -> requirementId.equals(req.getRequirementId()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private void updateRequirementStatus(String requirementId, String status) {
+        for (int i = 0; i < requirementsModel.getRowCount(); i++) {
+            if (requirementId.equals(requirementsModel.getValueAt(i, 0))) {
+                requirementsModel.setValueAt(status, i, 7);
+                return;
+            }
+        }
+    }
+
     private void updateAssignmentStatus(String negotiationId, String status) {
         for (int i = 0; i < assignmentsModel.getRowCount(); i++) {
             if (negotiationId.equals(assignmentsModel.getValueAt(i, 0))) {
@@ -287,6 +450,18 @@ public class BuyerGui extends JFrame {
     private static DefaultTableModel makeReadOnlyModel(String[] cols) {
         return new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
+        };
+    }
+
+    private static DefaultTableModel makeMatchesModel() {
+        return new DefaultTableModel(MATCH_COLS, 0) {
+            @Override public boolean isCellEditable(int r, int c) {
+                return c == 0 || c == 9 || c == 10;
+            }
+
+            @Override public Class<?> getColumnClass(int c) {
+                return c == 0 ? Boolean.class : Object.class;
+            }
         };
     }
 

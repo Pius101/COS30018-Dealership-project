@@ -1,0 +1,221 @@
+{
+  "dealerName": "HondaDealer",
+  "brand": "Honda",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "autoSelectBuyers": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 20,
+  "listings": [
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2018,
+      "mileage": 94500,
+      "color": "Ruby Red",
+      "retailPrice": 59000.0,
+      "marketPrice": 52000.0,
+      "condition": "Used",
+      "description": "2018 Honda City, 94,500 km. Market ref: RM 52,000."
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2019,
+      "mileage": 65000,
+      "color": "Ruby Red",
+      "retailPrice": 68000.0,
+      "marketPrice": 58000.0,
+      "condition": "Used",
+      "description": "2019 Honda City, 65,000 km. Market ref: RM 58,000."
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2020,
+      "mileage": 60500,
+      "color": "Navy Blue",
+      "retailPrice": 80000.0,
+      "marketPrice": 68000.0,
+      "condition": "Used",
+      "description": "2020 Honda City, 60,500 km. Market ref: RM 68,000."
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2021,
+      "mileage": 21000,
+      "color": "Graphite Grey",
+      "retailPrice": 86000.0,
+      "marketPrice": 75000.0,
+      "condition": "Used",
+      "description": "2021 Honda City, 21,000 km. Market ref: RM 75,000."
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2022,
+      "mileage": 32500,
+      "color": "Navy Blue",
+      "retailPrice": 95000.0,
+      "marketPrice": 80000.0,
+      "condition": "Used",
+      "description": "2022 Honda City, 32,500 km. Market ref: RM 80,000."
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 2023,
+      "mileage": 11000,
+      "color": "Pearl White",
+      "retailPrice": 98000.0,
+      "marketPrice": 82000.0,
+      "condition": "New",
+      "description": "2023 Honda City, 11,000 km. Market ref: RM 82,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2017,
+      "mileage": 70500,
+      "color": "Ruby Red",
+      "retailPrice": 71000.0,
+      "marketPrice": 62000.0,
+      "condition": "Used",
+      "description": "2017 Honda Civic, 70,500 km. Market ref: RM 62,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2018,
+      "mileage": 97500,
+      "color": "Graphite Grey",
+      "retailPrice": 84000.0,
+      "marketPrice": 75000.0,
+      "condition": "Used",
+      "description": "2018 Honda Civic, 97,500 km. Market ref: RM 75,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "mileage": 73000,
+      "color": "Metallic Silver",
+      "retailPrice": 97000.0,
+      "marketPrice": 85000.0,
+      "condition": "Used",
+      "description": "2019 Honda Civic, 73,000 km. Market ref: RM 85,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2020,
+      "mileage": 37000,
+      "color": "Graphite Grey",
+      "retailPrice": 115000.0,
+      "marketPrice": 98000.0,
+      "condition": "Used",
+      "description": "2020 Honda Civic, 37,000 km. Market ref: RM 98,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2021,
+      "mileage": 53500,
+      "color": "Navy Blue",
+      "retailPrice": 121000.0,
+      "marketPrice": 105000.0,
+      "condition": "Used",
+      "description": "2021 Honda Civic, 53,500 km. Market ref: RM 105,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2022,
+      "mileage": 22500,
+      "color": "Metallic Silver",
+      "retailPrice": 131000.0,
+      "marketPrice": 115000.0,
+      "condition": "Used",
+      "description": "2022 Honda Civic, 22,500 km. Market ref: RM 115,000."
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2023,
+      "mileage": 17500,
+      "color": "Pearl White",
+      "retailPrice": 147000.0,
+      "marketPrice": 125000.0,
+      "condition": "New",
+      "description": "2023 Honda Civic, 17,500 km. Market ref: RM 125,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2018,
+      "mileage": 82000,
+      "color": "Pearl White",
+      "retailPrice": 88000.0,
+      "marketPrice": 75000.0,
+      "condition": "Used",
+      "description": "2018 Honda HR-V, 82,000 km. Market ref: RM 75,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2019,
+      "mileage": 64000,
+      "color": "Midnight Black",
+      "retailPrice": 96000.0,
+      "marketPrice": 85000.0,
+      "condition": "Used",
+      "description": "2019 Honda HR-V, 64,000 km. Market ref: RM 85,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2020,
+      "mileage": 46000,
+      "color": "Navy Blue",
+      "retailPrice": 109000.0,
+      "marketPrice": 95000.0,
+      "condition": "Used",
+      "description": "2020 Honda HR-V, 46,000 km. Market ref: RM 95,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2021,
+      "mileage": 25500,
+      "color": "Graphite Grey",
+      "retailPrice": 128000.0,
+      "marketPrice": 105000.0,
+      "condition": "Used",
+      "description": "2021 Honda HR-V, 25,500 km. Market ref: RM 105,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2022,
+      "mileage": 12500,
+      "color": "Navy Blue",
+      "retailPrice": 131000.0,
+      "marketPrice": 112000.0,
+      "condition": "Used",
+      "description": "2022 Honda HR-V, 12,500 km. Market ref: RM 112,000."
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2023,
+      "mileage": 4000,
+      "color": "Graphite Grey",
+      "retailPrice": 144000.0,
+      "marketPrice": 120000.0,
+      "condition": "New",
+      "description": "2023 Honda HR-V, 4,000 km. Market ref: RM 120,000."
+    }
+  ]
+}

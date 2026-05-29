@@ -37,8 +37,9 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
     private final NegotiationContext  ctx;
     private final Queue<NegotiationMessage> queue;
 
-    private int     round  = 0;
-    private boolean active = true;
+    private int     round        = 0;
+    private boolean active       = true;
+    private boolean waitingFirst = true;
 
     private static final long POLL_INTERVAL_MS = 300;
 
@@ -120,6 +121,11 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
 
         NegotiationMessage incoming = queue.poll();
         if (incoming == null) {
+            // Nothing yet — if it's the very first round, the dealer initiates the negotiation.
+            if (waitingFirst && round == 0) {
+                sendOpeningOffer();
+                waitingFirst = false;
+            }
             block(POLL_INTERVAL_MS);
             return;
         }
@@ -130,6 +136,30 @@ public class DealerNegotiationBehaviour extends CyclicBehaviour {
     // ─────────────────────────────────────────────────────────────────────────
     // Handlers
     // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Send the opening offer to the buyer as soon as the negotiation starts.
+     * As per the PDF requirement, the dealer initiates the negotiations.
+     */
+    private void sendOpeningOffer() {
+        round = 1;
+        ctx.currentRound = round;
+
+        // Dealer starts at the retail/asking price
+        double offer = ctx.firstOffer;
+        ctx.recordMyOffer(offer);
+
+        dealer.sendOffer(negotiationId, offer,
+                "Negotiation initiated. My opening price: RM "
+                        + String.format("%.0f", offer));
+
+        String reasoning = "Round 1 — Initiating negotiation at RM " + String.format("%.0f", offer)
+                + " | Strategy: " + strategy.getDisplayName()
+                + " | Minimum floor: RM " + String.format("%.0f", ctx.reservationPrice);
+
+        dealer.log.info("[AUTO-DEALER] " + reasoning);
+        appendReasoning(reasoning);
+    }
 
     private void handleIncoming(NegotiationMessage incoming) {
 

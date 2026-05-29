@@ -1,0 +1,41 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Priya17.log
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:23:12 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:23:12 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51818
+
+May 22, 2026 2:23:12 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:23:12 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:23:12 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:23:12 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:23:12 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:23:12 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-2@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.16.0.119
+[Launcher] Buyer agent 'Priya17' joined buyers container at 172.16.0.119
+[Launcher] BUYER 'Priya17' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-22 02:23:12] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:12] [INFO] Buyer Agent 'Priya17' started. AID: Priya17@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:12] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:12] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Priya17_config.json
+[Buyer] [2026-05-22 02:23:14] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [8783D175]
+[Buyer] [2026-05-22 02:23:14] [INFO] Requirements submitted from config: Honda City Used ≤ RM 46500
+[Buyer] [2026-05-22 02:23:14] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM35000 budget=RM46500 maxRounds=20
+[Buyer] [2026-05-22 02:23:14] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 8783D175 confirmed stored — waiting for assignment
+[Buyer] [2026-05-22 02:40:53] [INFO] Buyer 'Priya17' shutting down.

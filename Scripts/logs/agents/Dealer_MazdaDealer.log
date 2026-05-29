@@ -1,0 +1,136 @@
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\MazdaDealer_config.json — 13 listings
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] Dealer Agent 'MazdaDealer' started. AID: MazdaDealer@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:17:24] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:17:25] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [B7D14D3F]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [A0C2F3F4]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [2A8FFE29]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [B8A4B163]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [0A2DE81C]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [C8781FED]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [880ECDC3]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [EAE9D3E6]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [DB3D2688]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [762A572B]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [010E3EC0]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [2721E6BE]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [36A5719E]
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [INFO] All listings submitted from config.
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B7D14D3F confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A0C2F3F4 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2A8FFE29 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B8A4B163 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 0A2DE81C confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C8781FED confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 880ECDC3 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing EAE9D3E6 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DB3D2688 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 762A572B confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 010E3EC0 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2721E6BE confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:17:26] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 36A5719E confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:19:30] [INFO] Dealer 'MazdaDealer' shutting down.
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] Dealer Agent 'MazdaDealer' started. AID: MazdaDealer@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\MazdaDealer_config.json — 13 listings
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:MazdaDealer] [2026-05-11 16:33:39] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [1AAD2387]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [B1DFB7AB]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [957A71EF]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [39721222]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [52A65D13]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [98294653]
+[Dealer:MazdaDealer] [2026-05-11 16:33:40] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [086235C4]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [45FCE7F9]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [3AC354AE]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [0AE1B3D4]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [8D5DB78D]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [24DE1F82]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [8BC70B1D]
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [INFO] All listings submitted from config.
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1AAD2387 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B1DFB7AB confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 957A71EF confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 39721222 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 52A65D13 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 98294653 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 086235C4 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 45FCE7F9 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 3AC354AE confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 0AE1B3D4 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 8D5DB78D confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 24DE1F82 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:41] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 8BC70B1D confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:33:48] [INFO] Dealer 'MazdaDealer' shutting down.
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] Dealer Agent 'MazdaDealer' started. AID: MazdaDealer@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\MazdaDealer_config.json — 13 listings
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:MazdaDealer] [2026-05-11 16:41:54] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [15A42ADD]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [B24C4883]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [7D12F928]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [DCF2B0EC]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [0823C2CE]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [70AADDED]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [1B111ADE]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [13A4C16D]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [C1D77349]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [A78C8A11]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [5960DF61]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [799ADF98]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [AECC7D3B]
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [INFO] All listings submitted from config.
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 15A42ADD confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B24C4883 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7D12F928 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DCF2B0EC confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 0823C2CE confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 70AADDED confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1B111ADE confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 13A4C16D confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C1D77349 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A78C8A11 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 5960DF61 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 799ADF98 confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 16:41:55] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing AECC7D3B confirmed stored
+[Dealer:MazdaDealer] [2026-05-11 17:01:39] [INFO] Dealer 'MazdaDealer' shutting down.
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] Dealer Agent 'MazdaDealer' started. AID: MazdaDealer@172.16.0.119:1099/JADE
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\MazdaDealer_config.json — 13 listings
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:MazdaDealer] [2026-05-22 02:23:04] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [2CD0D999]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [B7C57D1E]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [647659CF]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [CF9C85A5]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [7E20E06F]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [867ABF8A]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [5A3645D0]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [9D1CC3DA]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [B2E6F746]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [4EE21570]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [A72B00C2]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [2B2026B8]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [6233567A]
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [INFO] All listings submitted from config.
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2CD0D999 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B7C57D1E confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 647659CF confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing CF9C85A5 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7E20E06F confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 867ABF8A confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 5A3645D0 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 9D1CC3DA confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B2E6F746 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 4EE21570 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A72B00C2 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 2B2026B8 confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:23:05] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 6233567A confirmed stored
+[Dealer:MazdaDealer] [2026-05-22 02:40:53] [INFO] Dealer 'MazdaDealer' shutting down.

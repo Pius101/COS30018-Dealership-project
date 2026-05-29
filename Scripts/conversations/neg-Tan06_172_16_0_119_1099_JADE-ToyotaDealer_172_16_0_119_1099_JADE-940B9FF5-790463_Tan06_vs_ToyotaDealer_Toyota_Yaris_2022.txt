@@ -1,0 +1,52 @@
+================================================================================
+CAR NEGOTIATION CONVERSATION
+================================================================================
+Session ID: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463
+Started: 2026-05-22 02:23:10
+
+PARTICIPANTS:
+  Buyer:  Tan06 (AID: Tan06@172.16.0.119:1099/JADE)
+  Dealer: ToyotaDealer (AID: ToyotaDealer@172.16.0.119:1099/JADE)
+
+ITEM DETAILS:
+  Car:       Toyota Yaris
+  Year:      2022
+  Asking:    RM 91000
+  Condition: Used
+
+BUYER REQUIREMENTS:
+  Max Price: RM 109000
+  Notes:     Comparing options — open to Toyota vehicles.
+
+CONVERSATION:
+--------------------------------------------------------------------------------
+[2026-05-22 02:23:10] Round 1 | BUYER->DEALER Tan06 (BUYER): OFFER | ACL.PROPOSE | Price: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Utility: 1.00 | Outcome: ONGOING
+           Reason: "Round 1 opening offer using Time-Dependent (CONCEDER)"
+[2026-05-22 02:23:10] Round 1 | DEALER->BUYER ToyotaDealer (DEALER): ACCEPT | ACL.ACCEPT_PROPOSAL | Price: RM 82000 | Strategy: Time-Dependent (BOULWARE) | Utility: 0.01 | Outcome: COMPLETED
+           Reason: "Round 1/10 | BOULWARE | Offer RM82000 vs RV RM81900 | lastRound=false → ACCEPT"
+
+--------------------------------------------------------------------------------
+NEGOTIATION COMPLETED
+Completed: 2026-05-22 02:23:10
+Final price: RM 82000
+Buyer: Tan06
+Dealer: ToyotaDealer
+Rounds: 1
+Outcome: Accepted
+================================================================================
+
+--------------------------------------------------------------------------------
+NEGOTIATION FAILED
+Failed: 2026-05-22 02:40:53
+Reason: ToyotaDealer shutdown
+Rounds: 1
+Outcome: Interrupted
+================================================================================
+
+--------------------------------------------------------------------------------
+NEGOTIATION FAILED
+Failed: 2026-05-22 02:40:53
+Reason: Tan06 shutdown
+Rounds: 1
+Outcome: Interrupted
+================================================================================

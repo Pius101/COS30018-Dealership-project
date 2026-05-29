@@ -16,6 +16,8 @@ import negotiation.gui.DealerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
 import negotiation.models.CarListing;
+import negotiation.models.DealerBuyerOffers;
+import negotiation.models.DealerSelection;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.AppLogger;
 
@@ -36,6 +38,7 @@ public class DealerAgent extends Agent {
     public       AppLogger log  = new AppLogger("Dealer");
 
     private final Map<String, CarListing>               myListings  = new ConcurrentHashMap<>();
+    private final Map<String, DealerBuyerOffers.Entry>   buyerOffers = new ConcurrentHashMap<>();
     private final Map<String, Assignment>               assignments = new ConcurrentHashMap<>();
     private final Map<String, List<NegotiationMessage>> history     = new ConcurrentHashMap<>();
 
@@ -45,6 +48,9 @@ public class DealerAgent extends Agent {
     private boolean autoDealerMode        = false;
     private String  autoDealerStrategyKey = null; // Will be set from config
     private double  autoDealerMarginPct   = 0.10;
+    private boolean autoSelectBuyerOffers = false;
+    private int     autoDealerMaxRounds   = 10;
+    private final Set<String> autoSelectedOfferKeys = ConcurrentHashMap.newKeySet();
 
     private AID       brokerAID;
     private DealerGui gui;
@@ -126,6 +132,15 @@ public class DealerAgent extends Agent {
                     + " — " + config.listings.size() + " listings");
 
             // Set auto mode BEFORE submitting listings so it's ready when assignments arrive
+            autoDealerMaxRounds = config.maxRounds > 0 ? config.maxRounds : 10;
+            autoSelectBuyerOffers = config.autoSelectBuyers != null
+                    ? config.autoSelectBuyers
+                    : config.autoNegotiate;
+            if (autoSelectBuyerOffers) {
+                log.info("[AUTO-DEALER] Auto-select buyer offers armed"
+                        + " | Max rounds: " + autoDealerMaxRounds);
+            }
+
             if (config.autoNegotiate) {
                 String stratKey = config.strategy != null ? config.strategy : getRandomStrategy();
                 double margin   = config.marginPct > 0 ? config.marginPct : 0.10;
@@ -157,6 +172,7 @@ public class DealerAgent extends Agent {
         String  brand;
         boolean autoSubmit;
         boolean autoNegotiate;
+        Boolean autoSelectBuyers;
         String  strategy;
         double  marginPct;
         int     maxRounds;
@@ -263,6 +279,25 @@ public class DealerAgent extends Agent {
         log.info("Negotiation [" + negotiationId + "] REJECTED by dealer");
     }
 
+    /** Called by DealerGui when the dealer selects buyers to negotiate with. */
+    public void sendDealerSelection(DealerSelection selection) {
+        if (!ensureBroker()) return;
+
+        selection.setDealerAID(getAID().getName());
+        selection.setDealerName(getLocalName());
+
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(brokerAID);
+        msg.setOntology(Ontology.TYPE_DEALER_SELECTION);
+        msg.setConversationId(Ontology.CONV_ASSIGNMENT);
+        msg.setContent(gson.toJson(selection));
+        send(msg);
+
+        int count = selection.getEntries() == null ? 0 : selection.getEntries().size();
+        log.send("Broker", Ontology.TYPE_DEALER_SELECTION,
+                count + " selected buyer(s)");
+    }
+
     // ─────────────────────────────────────────────────────────────────────────
     // Callbacks from DealerMessageBehaviour
     // ─────────────────────────────────────────────────────────────────────────
@@ -278,10 +313,51 @@ public class DealerAgent extends Agent {
         if (gui != null) SwingUtilities.invokeLater(() -> gui.openNegotiationTab(assignment));
 
         if (autoDealerMode) {
-            // Store maxRounds in Assignment for report generation (using default 10 for auto-dealers)
-            assignment.setMaxRounds(10);
+            // Store maxRounds in Assignment for report generation.
+            assignment.setMaxRounds(autoDealerMaxRounds);
             startAutoNegotiation(assignment);
         }
+    }
+
+    public void onBuyerOffers(DealerBuyerOffers offers) {
+        if (offers.getEntries() != null) {
+            for (DealerBuyerOffers.Entry entry : offers.getEntries()) {
+                buyerOffers.put(offerKey(entry.getRequirementId(), entry.getListingId()), entry);
+            }
+        }
+
+        int count = offers.getEntries() == null ? 0 : offers.getEntries().size();
+        log.recv("Broker", Ontology.TYPE_BUYER_OFFERS,
+                count + " buyer offer(s) for your listings");
+
+        if (gui != null) SwingUtilities.invokeLater(() -> gui.onBuyerOffers(offers));
+        if (autoSelectBuyerOffers && count > 0) {
+            sendAutoDealerSelection(offers);
+        }
+    }
+
+    private void sendAutoDealerSelection(DealerBuyerOffers offers) {
+        if (offers.getEntries() == null || offers.getEntries().isEmpty()) return;
+
+        DealerSelection selection = new DealerSelection();
+        List<DealerSelection.Entry> entries = new ArrayList<>();
+
+        for (DealerBuyerOffers.Entry offer : offers.getEntries()) {
+            String key = offerKey(offer.getRequirementId(), offer.getListingId());
+            if (!autoSelectedOfferKeys.add(key)) continue;
+
+            entries.add(new DealerSelection.Entry(
+                    offer.getRequirementId(),
+                    offer.getListingId(),
+                    "Auto-selected buyer offer for assignment"));
+        }
+
+        if (entries.isEmpty()) return;
+
+        selection.setEntries(entries);
+        log.info("[AUTO-DEALER] Auto-selecting " + entries.size()
+                + " buyer offer(s) for broker assignment");
+        sendDealerSelection(selection);
     }
 
     public void onNegotiationMessage(NegotiationMessage msg) {
@@ -345,6 +421,10 @@ public class DealerAgent extends Agent {
         history.computeIfAbsent(nm.getNegotiationId(), k -> new ArrayList<>()).add(nm);
     }
 
+    private String offerKey(String requirementId, String listingId) {
+        return requirementId + "::" + listingId;
+    }
+
     private boolean ensureBroker() {
         if (brokerAID != null) return true;
         brokerAID = findBroker();
@@ -363,6 +443,10 @@ public class DealerAgent extends Agent {
 
     public void startAutoNegotiation(Assignment assignment) {
         String negId = assignment.getNegotiationId();
+        if (autoQueues.containsKey(negId)) {
+            log.info("[AUTO-DEALER] DealerNegotiationBehaviour already running for [" + negId + "]");
+            return;
+        }
         ConcurrentLinkedQueue<NegotiationMessage> queue = new ConcurrentLinkedQueue<>();
         autoQueues.put(negId, queue);
 
@@ -370,7 +454,7 @@ public class DealerAgent extends Agent {
                 autoDealerStrategyKey,
                 assignment.getListing().getRetailPrice(),
                 autoDealerMarginPct,
-                10);
+                autoDealerMaxRounds);
 
         DealerNegotiationBehaviour behaviour =
                 new DealerNegotiationBehaviour(this, assignment, params, queue);
@@ -398,6 +482,7 @@ public class DealerAgent extends Agent {
 
     // ── Accessors ─────────────────────────────────────────────────────────────
     public List<CarListing>         getMyListings()          { return new ArrayList<>(myListings.values()); }
+    public Map<String, DealerBuyerOffers.Entry> getBuyerOffers() { return Collections.unmodifiableMap(buyerOffers); }
     public Map<String, Assignment>  getAssignments()         { return Collections.unmodifiableMap(assignments); }
     public List<NegotiationMessage> getHistory(String id)    { return history.getOrDefault(id, Collections.emptyList()); }
     public DealerGui                getGui()                 { return gui; }

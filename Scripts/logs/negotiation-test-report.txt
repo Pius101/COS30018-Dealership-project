@@ -1,0 +1,74 @@
+NEGOTIATION TEST REPORT
+=======================
+Negotiations tested: 4
+
+ID: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517
+File: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517_Tan06_vs_ToyotaDealer_Toyota_Vios_2023.txt
+Pair: Tan06 vs ToyotaDealer
+Car: Toyota Vios 2023
+Outcome: COMPLETED
+Started: 2026-05-11_16-17-30
+Ended: 2026-05-11_16-17-36
+Duration: 6.000s
+Messages: 8 | Offers: 7 | Buyer offers: 4 | Dealer offers: 3 | Rounds: 4
+Asking price: RM 97,000 | Buyer max: RM 109,000 | Final/last price: RM 96,800
+Difference from asking: RM 200 (0.21%)
+First buyer/dealer offers: RM 82,000 / RM 97,000
+Last buyer/dealer offers: RM 96,800 / RM 96,900
+Interrupted markers after/within session: 2
+
+ID: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485
+File: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.txt
+Pair: Tan06 vs ToyotaDealer
+Car: Toyota Yaris 2023
+Outcome: INTERRUPTED
+Started: 2026-05-11_16-33-45
+Ended: 2026-05-11_16-33-48
+Duration: 3.000s
+Messages: 5 | Offers: 5 | Buyer offers: 3 | Dealer offers: 2 | Rounds: 3
+Asking price: RM 99,000 | Buyer max: RM 109,000 | Final/last price: RM 98,800
+Difference from asking: RM 200 (0.20%)
+First buyer/dealer offers: RM 82,000 / RM 99,000
+Last buyer/dealer offers: RM 98,800 / RM 99,000
+Interrupted markers after/within session: 2
+
+ID: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455
+File: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.txt
+Pair: Tan06 vs ToyotaDealer
+Car: Toyota Yaris 2023
+Outcome: COMPLETED
+Started: 2026-05-11_16-42-00
+Ended: 2026-05-11_16-42-08
+Duration: 8.000s
+Messages: 10 | Offers: 9 | Buyer offers: 5 | Dealer offers: 4 | Rounds: 5
+Asking price: RM 99,000 | Buyer max: RM 109,000 | Final/last price: RM 98,600
+Difference from asking: RM 400 (0.40%)
+First buyer/dealer offers: RM 82,000 / RM 99,000
+Last buyer/dealer offers: RM 98,600 / RM 98,700
+Interrupted markers after/within session: 2
+
+ID: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463
+File: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463_Tan06_vs_ToyotaDealer_Toyota_Yaris_2022.txt
+Pair: Tan06 vs ToyotaDealer
+Car: Toyota Yaris 2022
+Outcome: COMPLETED
+Started: 2026-05-22_02-23-10
+Ended: 2026-05-22_02-23-10
+Duration: 0.000s
+Messages: 2 | Offers: 1 | Buyer offers: 1 | Dealer offers: 0 | Rounds: 1
+Asking price: RM 91,000 | Buyer max: RM 109,000 | Final/last price: RM 82,000
+Difference from asking: RM 9,000 (9.89%)
+First buyer/dealer offers: RM 82,000 / -
+Last buyer/dealer offers: RM 82,000 / -
+Interrupted markers after/within session: 2
+
+SUMMARY
+-------
+Total negotiations: 4
+Successful negotiations: 3 | Failed negotiations: 1
+Completed: 3 | Rejected: 0 | Interrupted: 1
+Average rounds: 3.25
+Average final price: RM 94,050
+Average duration: 4.250s
+Fastest: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463_Tan06_vs_ToyotaDealer_Toyota_Yaris_2022.txt (0.000s)
+Slowest: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455_Tan06_vs_ToyotaDealer_Toyota_Yaris_2023.txt (8.000s)
