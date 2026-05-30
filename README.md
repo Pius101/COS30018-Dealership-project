@@ -1,3 +1,12 @@
+# How to run
+
+1. Check root project folder to have these:
+  - A lib folder containing "jade.jar"
+  - A "NegotiationAppLauncher.bat" file
+  - A "target" folder (not given) whichi contains teh jar file for the project, compile it locally
+2. To get your target folder run "mvn clean package" in your terminal (alternatively run the project in your IDE launching the Launcher class)
+3. Click o the .bat file to run the appication. For more instances, just click on the bat file again.
+
 # Car Negotiation Platform - COS30018
 
 Multi-agent automotive negotiation system built with JADE 4.6.0, Java 21, Maven, Gson, and FlatLaf Swing.
