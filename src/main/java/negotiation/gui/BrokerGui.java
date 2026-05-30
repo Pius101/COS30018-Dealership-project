@@ -36,6 +36,10 @@ public class BrokerGui extends JFrame {
     private final DefaultTableModel requirementsModel;
     private final JTable            requirementsTable;
 
+    // Buyer shortlists returned after broker matching
+    private final DefaultTableModel shortlistsModel;
+    private final JTable            shortlistsTable;
+
     // ── Assign tab — the key V1 feature ──────────────────────────────────────
     private final DefaultTableModel assignListingsModel;
     private final JTable            assignListingsTable;
@@ -55,6 +59,15 @@ public class BrokerGui extends JFrame {
     // negotiationId → tab label for lookup
     private final Map<String, String>       negLabels = new LinkedHashMap<>();
 
+    // Broker accounting tab
+    private final DefaultTableModel accountingModel;
+    private final JTable            accountingTable;
+    private final JLabel            feeTotalLabel;
+    private final JLabel            commissionTotalLabel;
+    private final JLabel            revenueTotalLabel;
+    private final JSpinner          fixedFeeSpinner;
+    private final JSpinner          commissionRateSpinner;
+
     // ── Activity log (bottom of window) ──────────────────────────────────────
     private final JTextArea logArea = new JTextArea();
 
@@ -63,7 +76,9 @@ public class BrokerGui extends JFrame {
 
     private static final String[] LISTING_COLS    = {"ID", "Dealer", "Make", "Model", "Year", "Mileage (km)", "Price (RM)", "Condition"};
     private static final String[] REQUIREMENT_COLS = {"ID", "Buyer", "Make", "Model", "Year Min", "Year Max", "Max Price (RM)", "Condition"};
+    private static final String[] SHORTLIST_COLS  = {"Req ID", "Buyer", "Listing ID", "Dealer", "Car", "First Offer (RM)", "Note"};
     private static final String[] COMPLETED_COLS  = {"Negotiation ID", "Dealer", "Buyer", "Car", "Final Price (RM)"};
+    private static final String[] ACCOUNTING_COLS = {"Negotiation ID", "Dealer", "Buyer", "Fixed Fee (RM)", "Commission (RM)", "Broker Revenue (RM)"};
     private static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss");
 
     public BrokerGui(BrokerAgent broker) {
@@ -75,6 +90,8 @@ public class BrokerGui extends JFrame {
         listingsTable      = new JTable(listingsModel);
         requirementsModel  = makeReadOnlyModel(REQUIREMENT_COLS);
         requirementsTable  = new JTable(requirementsModel);
+        shortlistsModel    = makeReadOnlyModel(SHORTLIST_COLS);
+        shortlistsTable    = new JTable(shortlistsModel);
         assignListingsModel = makeReadOnlyModel(LISTING_COLS);
         assignListingsTable = new JTable(assignListingsModel);
         assignBuyersModel  = makeReadOnlyModel(REQUIREMENT_COLS);
@@ -83,6 +100,15 @@ public class BrokerGui extends JFrame {
         negList            = new JList<>(negListModel);
         negHistoryArea     = new JTextArea();
         completedModel     = makeReadOnlyModel(COMPLETED_COLS);
+        accountingModel    = makeReadOnlyModel(ACCOUNTING_COLS);
+        accountingTable    = new JTable(accountingModel);
+        feeTotalLabel      = new JLabel();
+        commissionTotalLabel = new JLabel();
+        revenueTotalLabel  = new JLabel();
+        fixedFeeSpinner    = new JSpinner(new SpinnerNumberModel(
+                broker.getFixedNegotiationFee(), 0.0, 100000.0, 50.0));
+        commissionRateSpinner = new JSpinner(new SpinnerNumberModel(
+                broker.getCommissionRate() * 100.0, 0.0, 100.0, 0.25));
         brokerNoteField    = new JTextArea(2, 30);
         selectionStatus    = new JLabel("No selection");
 
@@ -108,8 +134,10 @@ public class BrokerGui extends JFrame {
         // Style tables
         styleTableWithTheme(listingsTable, primaryColor, headerColor);
         styleTableWithTheme(requirementsTable, primaryColor, headerColor);
+        styleTableWithTheme(shortlistsTable, primaryColor, headerColor);
         styleTableWithTheme(assignListingsTable, primaryColor, headerColor);
         styleTableWithTheme(assignBuyersTable, primaryColor, headerColor);
+        styleTableWithTheme(accountingTable, primaryColor, headerColor);
         
         // Style text areas
         brokerNoteField.setBackground(headerColor);
@@ -195,7 +223,9 @@ public class BrokerGui extends JFrame {
         tabs.addTab("📋  Listings",      buildListingsTab());
         tabs.addTab("👤  Buyers",         buildBuyersTab());
         tabs.addTab("🔗  Assign",         buildAssignTab());
+        tabs.addTab("Shortlists",          buildShortlistsTab());
         tabs.addTab("💬  Negotiations",  buildNegotiationsTab());
+        tabs.addTab("Accounting",          buildAccountingTab());
 
         // ── Activity log panel at the bottom ──────────────────────────────────
         logArea.setEditable(false);
@@ -246,6 +276,29 @@ public class BrokerGui extends JFrame {
     }
 
     // ── Tab: Assign ───────────────────────────────────────────────────────────
+
+    private JPanel buildShortlistsTab() {
+        JPanel p = new JPanel(new BorderLayout(8, 8));
+        p.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JLabel hdr = new JLabel("Buyer shortlists returned after broker matching");
+        hdr.setFont(hdr.getFont().deriveFont(Font.BOLD));
+        p.add(hdr, BorderLayout.NORTH);
+
+        styleTable(shortlistsTable);
+        shortlistsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        p.add(new JScrollPane(shortlistsTable), BorderLayout.CENTER);
+
+        JButton assignBtn = new JButton("Assign Selected Shortlist");
+        assignBtn.setFont(assignBtn.getFont().deriveFont(Font.BOLD));
+        assignBtn.addActionListener(e -> doAssignShortlist());
+
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttons.add(assignBtn);
+        p.add(buttons, BorderLayout.SOUTH);
+
+        return p;
+    }
 
     private JPanel buildAssignTab() {
         JPanel p = new JPanel(new BorderLayout(8, 8));
@@ -346,9 +399,87 @@ public class BrokerGui extends JFrame {
         return p;
     }
 
+    private JPanel buildAccountingTab() {
+        JPanel p = new JPanel(new BorderLayout(8, 8));
+        p.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JPanel settings = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 4));
+        settings.setBorder(new TitledBorder("Broker Charges"));
+        settings.add(new JLabel("Fixed fee (RM):"));
+        fixedFeeSpinner.setEditor(new JSpinner.NumberEditor(fixedFeeSpinner, "0.00"));
+        fixedFeeSpinner.addChangeListener(e -> {
+            broker.setFixedNegotiationFee(((Number) fixedFeeSpinner.getValue()).doubleValue());
+            refreshAccounting();
+        });
+        settings.add(fixedFeeSpinner);
+
+        settings.add(new JLabel("Commission (%):"));
+        commissionRateSpinner.setEditor(new JSpinner.NumberEditor(commissionRateSpinner, "0.00"));
+        commissionRateSpinner.addChangeListener(e -> {
+            double percent = ((Number) commissionRateSpinner.getValue()).doubleValue();
+            broker.setCommissionRate(percent / 100.0);
+            refreshAccounting();
+        });
+        settings.add(commissionRateSpinner);
+
+        JPanel totals = new JPanel(new GridLayout(1, 3, 8, 0));
+        totals.add(feeTotalLabel);
+        totals.add(commissionTotalLabel);
+        totals.add(revenueTotalLabel);
+
+        JPanel top = new JPanel(new BorderLayout(8, 8));
+        top.add(settings, BorderLayout.NORTH);
+        top.add(totals, BorderLayout.SOUTH);
+        p.add(top, BorderLayout.NORTH);
+
+        accountingTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        styleTable(accountingTable);
+        p.add(new JScrollPane(accountingTable), BorderLayout.CENTER);
+
+        refreshAccounting();
+        return p;
+    }
+
     // ─────────────────────────────────────────────────────────────────────────
     // Action: Assign
     // ─────────────────────────────────────────────────────────────────────────
+
+    private void doAssignShortlist() {
+        int row = shortlistsTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Select one shortlist row before assigning.",
+                    "Nothing selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String reqId = String.valueOf(shortlistsModel.getValueAt(row, 0));
+        String listingId = String.valueOf(shortlistsModel.getValueAt(row, 2));
+        String firstOffer = String.valueOf(shortlistsModel.getValueAt(row, 5));
+        String buyerNote = String.valueOf(shortlistsModel.getValueAt(row, 6));
+
+        CarListing listing = findListingById(listingId);
+        CarRequirement req = findRequirementById(reqId);
+        if (listing == null || req == null) {
+            JOptionPane.showMessageDialog(this,
+                    "The shortlisted listing or requirement is no longer available.",
+                    "Assignment Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String note = "Buyer first offer: RM " + firstOffer;
+        if (buyerNote != null && !buyerNote.isBlank() && !"null".equalsIgnoreCase(buyerNote)) {
+            note += " | Buyer note: " + buyerNote;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                String.format("<html>Assign shortlisted listing:<br><b>Listing:</b> %s<br><b>Buyer:</b> %s<br><b>First offer:</b> RM %s<br><br>Continue?</html>",
+                        listing, req.getBuyerName(), firstOffer),
+                "Confirm Shortlist Assignment", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        broker.createAssignment(listing, req, note);
+    }
 
     private void doAssign() {
         int listingRow = assignListingsTable.getSelectedRow();
@@ -434,6 +565,25 @@ public class BrokerGui extends JFrame {
         }
     }
 
+    public void refreshShortlists(Collection<BuyerShortlist> shortlists) {
+        shortlistsModel.setRowCount(0);
+        for (BuyerShortlist shortlist : shortlists) {
+            if (shortlist.getEntries() == null) continue;
+            for (BuyerShortlist.Entry entry : shortlist.getEntries()) {
+                CarListing listing = findListingById(entry.getListingId());
+                shortlistsModel.addRow(new Object[]{
+                        shortlist.getRequirementId(),
+                        shortlist.getBuyerName(),
+                        entry.getListingId(),
+                        listing != null ? listing.getDealerName() : "",
+                        listing != null ? listing.getMake() + " " + listing.getModel() : "",
+                        String.format("%.0f", entry.getFirstOffer()),
+                        entry.getNote() == null ? "" : entry.getNote()
+                });
+            }
+        }
+    }
+
     public void refreshAssignments(Collection<Assignment> assignments) {
         for (Assignment a : assignments) {
             String label = a.getNegotiationId() + "  [" + a.getDealerName()
@@ -443,6 +593,32 @@ public class BrokerGui extends JFrame {
                 negListModel.addElement(label);
             }
         }
+        refreshAccounting();
+    }
+
+    public void refreshAccounting() {
+        accountingModel.setRowCount(0);
+
+        for (Assignment a : broker.getAssignments()) {
+            String negotiationId = a.getNegotiationId();
+            double fee = broker.getNegotiationFee(negotiationId);
+            double commission = broker.getDealCommission(negotiationId);
+
+            accountingModel.addRow(new Object[]{
+                    negotiationId,
+                    a.getDealerName(),
+                    a.getBuyerName(),
+                    formatMoney(fee),
+                    formatMoney(commission),
+                    formatMoney(fee + commission)
+            });
+        }
+
+        feeTotalLabel.setText(String.format("Fixed fees (%d): RM %s",
+                broker.getNegotiationFeeCount(), formatMoney(broker.getNegotiationFeeTotal())));
+        commissionTotalLabel.setText(String.format("Commissions (%d): RM %s",
+                broker.getCommissionCount(), formatMoney(broker.getCommissionTotal())));
+        revenueTotalLabel.setText("Total broker revenue: RM " + formatMoney(broker.getBrokerRevenueTotal()));
     }
 
     public void onNegotiationMessage(NegotiationMessage msg) {
@@ -472,6 +648,7 @@ public class BrokerGui extends JFrame {
                 a != null ? a.getListing().toString() : finalMsg.getListingDescription(),
                 String.format("RM %.0f", finalMsg.getPrice())
         });
+        refreshAccounting();
     }
 
     public void refreshNegotiations() {
@@ -532,6 +709,10 @@ public class BrokerGui extends JFrame {
         t.setRowHeight(22);
         t.setShowGrid(false);
         t.setIntercellSpacing(new Dimension(0, 1));
+    }
+
+    private static String formatMoney(double amount) {
+        return String.format("%.2f", amount);
     }
 
     private static String nvl(String s) {

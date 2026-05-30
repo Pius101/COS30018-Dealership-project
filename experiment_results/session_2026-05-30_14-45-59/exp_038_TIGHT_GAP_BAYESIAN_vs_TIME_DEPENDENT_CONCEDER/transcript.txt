@@ -1,0 +1,27 @@
+EXPERIMENT 38
+================
+Scenario: TIGHT_GAP
+Repeat: 1 | Scenario seed: 5217400137194736569 | Case seed: 206496026082347996 | Varied scenario: false
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72600 | Rounds: 5
+Utility: buyer=0.02 dealer=0.16 joint=0.18 | Benefit side: DEALER
+Surplus: agreement=RM 1600 buyer=RM 200 dealer=RM 1400
+Baseline: NO_DEAL at - | Negotiation gain vs baseline: -
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 75100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM75100
+Round 2 | BUYER | OFFER | RM 63400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM63400
+Round 2 | DEALER | OFFER | RM 74100 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM74100
+Round 3 | BUYER | OFFER | RM 64500 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM1000 (0.0%) | EstimatedFloor≈RM73100 | Offers seen=2 → OFFER RM64500
+Round 3 | DEALER | OFFER | RM 73500 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM73500
+Round 4 | BUYER | OFFER | RM 65500 | Round 3/10 | β=1.00 | Style=LINEAR | AvgConcession=RM800 (1.3%) | EstimatedFloor≈RM72540 | Offers seen=3 → OFFER RM65500
+Round 4 | DEALER | OFFER | RM 73000 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM73000
+Round 5 | BUYER | OFFER | RM 65900 | Round 4/10 | β=0.85 | Style=BOULWARE | AvgConcession=RM700 (2.1%) | EstimatedFloor≈RM72580 | Offers seen=4 → OFFER RM65900
+Round 5 | DEALER | OFFER | RM 72600 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM72600
+Round 5 | BUYER | ACCEPT | RM 72600 | Round 5/10 | β=0.70 | Style=BOULWARE | AvgConcession=RM625 (2.8%) | EstimatedFloor≈RM72225 | Offers seen=5 → ACCEPT RM72600
+
+Final note: Round 5/10 | β=0.70 | Style=BOULWARE | AvgConcession=RM625 (2.8%) | EstimatedFloor≈RM72225 | Offers seen=5 → ACCEPT RM72600

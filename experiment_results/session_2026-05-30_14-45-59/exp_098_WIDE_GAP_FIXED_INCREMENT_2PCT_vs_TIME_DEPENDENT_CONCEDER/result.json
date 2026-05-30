@@ -1,0 +1,146 @@
+{
+  "case": 98,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "scenarioSeed": 5217400152596663891,
+  "caseSeed": 211366746113959031,
+  "scenarioVaried": false,
+  "buyerStrategy": "FIXED_INCREMENT_2PCT",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 7,
+  "messageCount": 15,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 60800.0,
+  "buyerReservationPrice": 82400.0,
+  "dealerReservationPrice": 67200.0,
+  "finalPrice": 68500.0,
+  "savingFromAsk": 11500.0,
+  "savingPct": 14.374999999999998,
+  "baselineOutcome": "BUY_AT_ASKING",
+  "baselinePrice": 80000.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 11500.0,
+  "lastBuyerOffer": 68500.0,
+  "lastDealerOffer": 68500.0,
+  "buyerUtility": 0.6435185185185185,
+  "dealerUtility": 0.1015625,
+  "jointUtility": 0.7450810185185185,
+  "agreementSurplus": 15200.0,
+  "buyerSurplus": 13900.0,
+  "dealerProfit": 1300.0,
+  "buyerDistanceFromReservation": 13900.0,
+  "dealerDistanceFromReservation": 1300.0,
+  "buyerConcessionPct": 35.648148148148145,
+  "dealerConcessionPct": 89.84375,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 7/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d70% → Offer RM68300",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 60800.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72800.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72800"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 62000.0,
+      "reasoning": "Round 1/10 | +2.0% increment | Offer RM60800 → RM62000 | RV ceiling: RM82400"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 71400.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM71400"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 63300.0,
+      "reasoning": "Round 2/10 | +2.0% increment | Offer RM62000 → RM63300 | RV ceiling: RM82400"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 70500.0,
+      "reasoning": "Round 3/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d30% → Offer RM70500"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64500.0,
+      "reasoning": "Round 3/10 | +2.0% increment | Offer RM63300 → RM64500 | RV ceiling: RM82400"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 69800.0,
+      "reasoning": "Round 4/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d40% → Offer RM69800"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65800.0,
+      "reasoning": "Round 4/10 | +2.0% increment | Offer RM64500 → RM65800 | RV ceiling: RM82400"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 69200.0,
+      "reasoning": "Round 5/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d50% → Offer RM69200"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 67100.0,
+      "reasoning": "Round 5/10 | +2.0% increment | Offer RM65800 → RM67100 | RV ceiling: RM82400"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 68700.0,
+      "reasoning": "Round 6/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d60% → Offer RM68700"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 68500.0,
+      "reasoning": "Round 6/10 | +2.0% increment | Offer RM67100 → RM68500 | RV ceiling: RM82400"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "WOULD_ACCEPT",
+      "price": 68500.0,
+      "reasoning": "Counter would be below buyer offer; accepting buyer price."
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "ACCEPT",
+      "price": 68500.0,
+      "reasoning": "Round 7/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d70% → Offer RM68300"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "case": 74,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "scenarioSeed": 5217400152596663891,
+  "caseSeed": 211164987640769101,
+  "scenarioVaried": false,
+  "buyerStrategy": "BAYESIAN",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 2,
+  "messageCount": 5,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 60800.0,
+  "buyerReservationPrice": 82400.0,
+  "dealerReservationPrice": 67200.0,
+  "finalPrice": 71400.0,
+  "savingFromAsk": 8600.0,
+  "savingPct": 10.75,
+  "lastBuyerOffer": 71400.0,
+  "lastDealerOffer": 71400.0,
+  "buyerUtility": 0.5092592592592593,
+  "dealerUtility": 0.328125,
+  "jointUtility": 0.8373842592592593,
+  "agreementSurplus": 15200.0,
+  "buyerSurplus": 11000.0,
+  "dealerProfit": 4200.0,
+  "buyerDistanceFromReservation": 11000.0,
+  "dealerDistanceFromReservation": 4200.0,
+  "buyerConcessionPct": 49.074074074074076,
+  "dealerConcessionPct": 67.1875,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM1400 (0.0%) | EstimatedFloor≈RM70000 | Offers seen\u003d2 → ACCEPT RM71400",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 60800.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72800.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72800"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 63000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM63000"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 71400.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM71400"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 71400.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM1400 (0.0%) | EstimatedFloor≈RM70000 | Offers seen\u003d2 → ACCEPT RM71400"
+    }
+  ]
+}

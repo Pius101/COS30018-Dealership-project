@@ -1,0 +1,93 @@
+{
+  "case": 32,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203000138422647491,
+  "scenarioVaried": false,
+  "buyerStrategy": "FIXED_INCREMENT_5PCT",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 3,
+  "messageCount": 8,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 72900.0,
+  "savingFromAsk": 7100.0,
+  "savingPct": 8.875,
+  "lastBuyerOffer": 72900.0,
+  "lastDealerOffer": 72900.0,
+  "buyerUtility": 0.3819444444444444,
+  "dealerUtility": 0.2604166666666667,
+  "jointUtility": 0.6423611111111112,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 5500.0,
+  "dealerProfit": 2500.0,
+  "buyerDistanceFromReservation": 5500.0,
+  "dealerDistanceFromReservation": 2500.0,
+  "buyerConcessionPct": 61.80555555555556,
+  "dealerConcessionPct": 73.95833333333334,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 74600.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM74600"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 67200.0,
+      "reasoning": "Round 1/10 | +5.0% increment | Offer RM64000 → RM67200 | RV ceiling: RM78400"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 73600.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM73600"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 70600.0,
+      "reasoning": "Round 2/10 | +5.0% increment | Offer RM67200 → RM70600 | RV ceiling: RM78400"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72900.0,
+      "reasoning": "Round 3/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d30% → Offer RM72900"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "WOULD_ACCEPT",
+      "price": 72900.0,
+      "reasoning": "Counter would meet dealer offer; accepting dealer price."
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 72900.0,
+      "reasoning": "Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400"
+    }
+  ]
+}

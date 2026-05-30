@@ -10,16 +10,20 @@ import java.util.Queue;
 
 /**
  * AutoNegotiationBehaviour — drives automated buyer negotiation.
-  * One instance is created per assignment when the buyer's config has
+ * One instance is created per assignment when the buyer's config has
  * autoNegotiate=true. It runs alongside the existing BuyerMessageBehaviour
  * which keeps handling all JADE message receiving as normal.
  *
+ * As per the PDF requirement, the dealer initiates the negotiation.
+ * This behaviour WAITS for the dealer's first offer before responding.
+ *
  * How messages flow:
- *   BuyerMessageBehaviour receives dealer offer via JADE
- *       → calls BuyerAgent.onNegotiationMessage()
- *           → if auto mode active: adds msg to autoQueue
- *               → this behaviour wakes up, runs strategy, sends response
- *           → if manual mode: routes to GUI as before
+ *   Dealer initiates by sending an OFFER via JADE
+ *       → BuyerMessageBehaviour receives it
+ *           → calls BuyerAgent.onNegotiationMessage()
+ *               → if auto mode active: adds msg to autoQueue
+ *                   → this behaviour wakes up, runs strategy, sends response (counter)
+ *               → if manual mode: routes to GUI as before
  * The strategy decides each round:
  *   shouldAccept() → true  → call buyer.acceptOffer()  → done
  *   shouldAccept() → false → call buyer.sendOffer()     → wait for next dealer msg
@@ -35,11 +39,14 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
     private final Queue<NegotiationMessage> queue; // fed by BuyerAgent.onNegotiationMessage()
 
     private int     round        = 0;
-    private boolean active       = true;
-    private boolean waitingFirst = true; // true until dealer sends their first offer
+    private volatile boolean active = true;
 
     // How long to wait between queue polls in ms
     private static final long POLL_INTERVAL_MS = 300;
+
+    public void stop() {
+        this.active = false;
+    }
 
     // ─────────────────────────────────────────────────────────────────────────
 
@@ -123,12 +130,7 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         NegotiationMessage incoming = queue.poll();
 
         if (incoming == null) {
-            // Nothing yet — if it's the very first round, send our opening offer
-            if (waitingFirst && round == 0) {
-                sendOpeningOffer();
-                waitingFirst = false;
-            }
-            // Sleep briefly then check again
+            // Nothing yet — wait for dealer's opening offer
             block(POLL_INTERVAL_MS);
             return;
         }
@@ -140,26 +142,6 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
     // ─────────────────────────────────────────────────────────────────────────
     // Handlers
     // ─────────────────────────────────────────────────────────────────────────
-
-    /** Send our opening offer to the dealer as soon as the negotiation starts. */
-    private void sendOpeningOffer() {
-        round = 1;
-        ctx.currentRound = round;
-
-        double offer = ctx.firstOffer;
-        ctx.recordMyOffer(offer);
-
-        buyer.sendOffer(negotiationId, offer,
-                "Auto-negotiation started. My opening offer: RM "
-                        + String.format("%.0f", offer));
-
-        String reasoning = "Round 1 — Opening offer: RM " + String.format("%.0f", offer)
-                + " | Strategy: " + strategy.getDisplayName()
-                + " | Budget ceiling: RM " + String.format("%.0f", ctx.reservationPrice);
-
-        buyer.log.info("[AUTO] " + reasoning);
-        appendReasoning(reasoning);
-    }
 
     /** Process an incoming dealer message and decide what to do. */
     private void handleIncoming(NegotiationMessage incoming) {
@@ -176,6 +158,29 @@ public class AutoNegotiationBehaviour extends CyclicBehaviour {
         round++;
         ctx.currentRound = round;
         ctx.recordOpponentOffer(incoming.getPrice());
+
+        // Extension 1: Update BATNA (Best Alternative To a Negotiated Agreement)
+        // Check if there are other better offers for the same requirement
+        Assignment a = buyer.getAssignments().get(negotiationId);
+        if (a != null && a.getRequirement() != null) {
+            double bestOther = buyer.getBestOfferForRequirement(
+                    a.getRequirement().getRequirementId(), negotiationId);
+            if (bestOther < Double.MAX_VALUE) {
+                ctx.batna = bestOther;
+
+                // Extension 1: Use BATNA to tighten our reservation price.
+                // A rational buyer will not pay more than the best offer they already have elsewhere.
+                if (ctx.batna < ctx.reservationPrice) {
+                    double oldRV = ctx.reservationPrice;
+                    ctx.reservationPrice = ctx.batna;
+                    buyer.log.info("[EXTENSION 1] BATNA improved: RM " + String.format("%.0f", ctx.batna)
+                            + ". Tightening reservation price for [" + negotiationId + "] from RM "
+                            + String.format("%.0f", oldRV));
+                    appendReasoning("Improved BATNA: RM " + String.format("%.0f", ctx.batna)
+                            + ". Adjusting strategy to beat this price.");
+                }
+            }
+        }
 
         // Tell the strategy what the dealer just offered
         strategy.onOpponentOffer(incoming.getPrice(), round);

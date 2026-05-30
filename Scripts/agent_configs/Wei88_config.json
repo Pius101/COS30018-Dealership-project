@@ -1,0 +1,23 @@
+{
+  "name": "Wei88",
+  "make": "Toyota",
+  "model": "",
+  "yearMin": 2021,
+  "yearMax": 0,
+  "maxPrice": 50000.0,
+  "maxMileage": 50000,
+  "condition": "Used",
+  "notes": "First car purchase, budget is strict at RM 50,000.",
+  "firstOffer": 38000.0,
+  "reservationPrice": 50000.0,
+  "autoNegotiate": true,
+  "autoShortlist": true,
+  "shortlistLimit": 3,
+  "shortlistDifferentDealers": true,
+  "shortlistDelayMs": 1000,
+  "strategy": "TIME_DEPENDENT_CONCEDER",
+  "maxRounds": 15,
+  "personality": "aggressive",
+  "_marketPrice": 55000.0,
+  "_flexibleModel": true
+}

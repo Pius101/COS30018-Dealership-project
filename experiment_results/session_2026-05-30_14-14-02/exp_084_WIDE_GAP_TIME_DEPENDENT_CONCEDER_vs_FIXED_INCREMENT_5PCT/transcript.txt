@@ -1,0 +1,19 @@
+EXPERIMENT 84
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211165719621968181 | Varied scenario: false
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 67200 | Rounds: 1
+Utility: buyer=0.70 dealer=0.00 joint=0.70 | Benefit side: BUYER
+Surplus: agreement=RM 15200 buyer=RM 15200 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 67200 | Round 1/10 | +5.0% increment | Offer RM80000 → RM67200 | RV ceiling: RM67200
+Round 1 | BUYER | WOULD_ACCEPT | RM 67200 | Counter would meet dealer offer; accepting dealer price.
+Round 1 | BUYER | ACCEPT | RM 67200 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+
+Final note: Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900

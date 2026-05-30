@@ -1,0 +1,39 @@
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 192.168.43.136:1099...
+[Launcher] Binding to local IP: 192.168.43.136
+Apr 30, 2026 10:50:31 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+Apr 30, 2026 10:50:31 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://192.168.43.136:58615
+
+Apr 30, 2026 10:50:32 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+Apr 30, 2026 10:50:32 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+Apr 30, 2026 10:50:32 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+Apr 30, 2026 10:50:32 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+Apr 30, 2026 10:50:32 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+Apr 30, 2026 10:50:32 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-3@192.168.43.136 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 192.168.43.136
+[Launcher] Buyer agent 'Ahmad86' joined buyers container at 192.168.43.136
+[Launcher] BUYER 'Ahmad86' running. Press Ctrl+C to stop.
+[Buyer]  [10:50:32]     Broker found in DF: broker@192.168.43.136:1099/JADE
+[Buyer]  [10:50:32]     Loading config from agent_configs\Ahmad86_config.json
+[Buyer]  [10:50:32]     Buyer Agent 'Ahmad86' started. AID: Ahmad86@192.168.43.136:1099/JADE
+[Buyer]  [10:50:32]     Connected to Broker: broker@192.168.43.136:1099/JADE
+[Buyer]  [10:50:34]  ?  to Broker        [BUYER_REQUIREMENTS          ]  Perodua Bezza (2021–any) Used ? RM 27000  [0A81A5F2]
+[Buyer]  [10:50:34]     Requirements submitted from config: Perodua Bezza (2021–any) Used ? RM 27000
+[Buyer]  [10:50:34]     [AUTO] Auto-negotiate armed: strategy=FIXED_INCREMENT_5PCT firstOffer=RM19000 budget=RM27000 maxRounds=15
+[Buyer]  [10:50:34]  ?  from Broker      [REQUIREMENTS_ACK            ]  Requirement 0A81A5F2 confirmed stored — waiting for assignment

@@ -1,0 +1,35 @@
+EXPERIMENT 1
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 202993611575309320 | Varied scenario: false
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 77000 | Rounds: 10
+Utility: buyer=0.10 dealer=0.69 joint=0.78 | Benefit side: DEALER
+Surplus: agreement=RM 8000 buyer=RM 1400 dealer=RM 6600
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM80000
+Round 2 | BUYER | OFFER | RM 65400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM65400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1400 (0.0%) | EstimatedFloor≈RM66800 | Offers seen=2 → OFFER RM80000
+Round 3 | BUYER | OFFER | RM 66900 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=2 → OFFER RM66900
+Round 3 | DEALER | OFFER | RM 80000 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1450 (0.0%) | EstimatedFloor≈RM68350 | Offers seen=3 → OFFER RM80000
+Round 4 | BUYER | OFFER | RM 68300 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=3 → OFFER RM68300
+Round 4 | DEALER | OFFER | RM 80000 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1433 (0.0%) | EstimatedFloor≈RM69733 | Offers seen=4 → OFFER RM80000
+Round 5 | BUYER | OFFER | RM 69800 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=4 → OFFER RM69800
+Round 5 | DEALER | OFFER | RM 80000 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1450 (0.0%) | EstimatedFloor≈RM71250 | Offers seen=5 → OFFER RM80000
+Round 6 | BUYER | OFFER | RM 71200 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=5 → OFFER RM71200
+Round 6 | DEALER | OFFER | RM 80000 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1440 (0.0%) | EstimatedFloor≈RM72640 | Offers seen=6 → OFFER RM80000
+Round 7 | BUYER | OFFER | RM 72600 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=6 → OFFER RM72600
+Round 7 | DEALER | OFFER | RM 80000 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1433 (0.0%) | EstimatedFloor≈RM74033 | Offers seen=7 → OFFER RM80000
+Round 8 | BUYER | OFFER | RM 74100 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=7 → OFFER RM74100
+Round 8 | DEALER | OFFER | RM 80000 | Round 8/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1443 (0.0%) | EstimatedFloor≈RM75543 | Offers seen=8 → OFFER RM80000
+Round 9 | BUYER | OFFER | RM 75500 | Round 8/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=8 → OFFER RM75500
+Round 9 | DEALER | OFFER | RM 80000 | Round 9/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1438 (0.0%) | EstimatedFloor≈RM76938 | Offers seen=9 → OFFER RM80000
+Round 10 | BUYER | OFFER | RM 77000 | Round 9/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM80000 | Offers seen=9 → OFFER RM77000
+Round 10 | DEALER | ACCEPT | RM 77000 | REJECT: Offer RM 77000 exceeds reservation price RM 70400
+
+Final note: REJECT: Offer RM 77000 exceeds reservation price RM 70400

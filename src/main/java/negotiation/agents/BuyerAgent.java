@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.WakerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -13,7 +14,10 @@ import negotiation.behaviours.BuyerMessageBehaviour;
 import negotiation.gui.BuyerGui;
 import negotiation.messages.Ontology;
 import negotiation.models.Assignment;
+import negotiation.models.BuyerShortlist;
+import negotiation.models.CarListing;
 import negotiation.models.CarRequirement;
+import negotiation.models.MatchedListings;
 import negotiation.models.NegotiationMessage;
 import negotiation.util.AppLogger;
 
@@ -42,6 +46,7 @@ public class BuyerAgent extends Agent {
     public final AppLogger log  = new AppLogger("Buyer");
 
     private final Map<String, CarRequirement>          myRequirements = new ConcurrentHashMap<>();
+    private final Map<String, MatchedListings>         matchedListings = new ConcurrentHashMap<>();
     private final Map<String, Assignment>              assignments    = new ConcurrentHashMap<>();
     private final Map<String, List<NegotiationMessage>> history       = new ConcurrentHashMap<>();
 
@@ -50,8 +55,16 @@ public class BuyerAgent extends Agent {
     // AutoNegotiationBehaviour reads them out.
     private final Map<String, ConcurrentLinkedQueue<NegotiationMessage>> autoQueues
             = new ConcurrentHashMap<>();
+    private final Map<String, AutoNegotiationBehaviour> activeAutoBehaviours
+            = new ConcurrentHashMap<>();
     // Auto params stored from config until an assignment arrives
     private AutoNegotiationParams pendingAutoParams = null;
+    private boolean autoShortlistEnabled = false;
+    private int     autoShortlistLimit   = 1;
+    private long    autoShortlistDelayMs = 1000L;
+    private boolean autoShortlistDifferentDealers = false;
+    private final Set<String> autoShortlistScheduled = ConcurrentHashMap.newKeySet();
+    private final Set<String> autoShortlistedRequirements = ConcurrentHashMap.newKeySet();
 
     private AID      brokerAID;
     private BuyerGui gui;
@@ -150,11 +163,6 @@ public class BuyerAgent extends Agent {
             req.setCondition(config.condition != null ? config.condition : "Any");
             req.setNotes(config.notes != null ? config.notes : "");
 
-            submitRequirement(req);
-            log.info("Requirements submitted from config: " + req.summary());
-
-            // Store auto-negotiation params so onAssignment() can use them
-            // when the broker eventually assigns a dealer to us.
             if (config.autoNegotiate) {
                 pendingAutoParams = AutoNegotiationParams.fromConfig(
                         config.strategy,
@@ -166,6 +174,20 @@ public class BuyerAgent extends Agent {
                         + " budget=RM" + String.format("%.0f", config.reservationPrice)
                         + " maxRounds=" + config.maxRounds);
             }
+            autoShortlistEnabled = config.autoShortlist != null
+                    ? config.autoShortlist
+                    : config.autoNegotiate;
+            autoShortlistLimit = config.shortlistLimit > 0 ? config.shortlistLimit : 1;
+            autoShortlistDelayMs = config.shortlistDelayMs > 0 ? config.shortlistDelayMs : 1000L;
+            autoShortlistDifferentDealers = Boolean.TRUE.equals(config.shortlistDifferentDealers);
+            if (autoShortlistEnabled) {
+                log.info("[AUTO] Auto-shortlist armed: top " + autoShortlistLimit
+                        + " matched listing(s), delay=" + autoShortlistDelayMs + "ms"
+                        + (autoShortlistDifferentDealers ? ", one listing per dealer" : ""));
+            }
+
+            submitRequirement(req);
+            log.info("Requirements submitted from config: " + req.summary());
 
         } catch (java.io.IOException e) {
             log.error("Cannot read config file: " + configPath + " — " + e.getMessage());
@@ -178,8 +200,12 @@ public class BuyerAgent extends Agent {
     private static class BuyerConfig {
         String name, make, model, condition, notes, strategy;
         int yearMin, yearMax, maxMileage, maxRounds;
+        int shortlistLimit;
+        long shortlistDelayMs;
         double maxPrice, firstOffer, reservationPrice;
         boolean autoNegotiate;
+        Boolean autoShortlist;
+        Boolean shortlistDifferentDealers;
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -225,6 +251,25 @@ public class BuyerAgent extends Agent {
         SwingUtilities.invokeLater(() -> gui.onRequirementSubmitted(req));
     }
 
+    /** Called by BuyerGui when buyer sends selected matched listings back to the broker. */
+    public void sendShortlist(BuyerShortlist shortlist) {
+        if (!ensureBroker()) return;
+
+        shortlist.setBuyerAID(getAID().getName());
+        shortlist.setBuyerName(getLocalName());
+
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(brokerAID);
+        msg.setOntology(Ontology.TYPE_BUYER_SHORTLIST);
+        msg.setConversationId(Ontology.CONV_REGISTRATION);
+        msg.setContent(gson.toJson(shortlist));
+        send(msg);
+
+        int count = shortlist.getEntries() == null ? 0 : shortlist.getEntries().size();
+        log.send("Broker", Ontology.TYPE_BUYER_SHORTLIST,
+                count + " selected listing(s) for requirement " + shortlist.getRequirementId());
+    }
+
     /** Called by the negotiation chat panel when buyer sends a counter-offer. */
     public void sendOffer(String negotiationId, double price, String messageText) {
         if (!ensureBroker()) return;
@@ -250,6 +295,7 @@ public class BuyerAgent extends Agent {
         nm.setToAID(a.getDealerAID());
         nm.setToName(a.getDealerName());
         recordLocal(nm);
+        if (gui != null) SwingUtilities.invokeLater(() -> gui.appendNegotiationMessage(nm));
 
         ACLMessage msg = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
         msg.addReceiver(brokerAID);
@@ -295,7 +341,19 @@ public class BuyerAgent extends Agent {
             // Store maxRounds in Assignment for report generation
             assignment.setMaxRounds(pendingAutoParams.maxRounds);
             startAutoNegotiation(assignment, pendingAutoParams);
-            pendingAutoParams = null; // consumed — don't reuse for another assignment
+        }
+    }
+
+    public void onMatchedListings(MatchedListings matches) {
+        matchedListings.put(matches.getRequirementId(), matches);
+
+        int count = matches.getListings() == null ? 0 : matches.getListings().size();
+        log.recv("Broker", Ontology.TYPE_MATCHED_LISTINGS,
+                count + " relevant listing(s) for requirement " + matches.getRequirementId());
+
+        if (gui != null) SwingUtilities.invokeLater(() -> gui.onMatchedListings(matches));
+        if (autoShortlistEnabled && count > 0) {
+            scheduleAutoShortlist(matches.getRequirementId());
         }
     }
 
@@ -324,6 +382,72 @@ public class BuyerAgent extends Agent {
         log.event("DEAL COMPLETE  [" + finalMsg.getNegotiationId() + "]"
                 + "  Final price: RM " + String.format("%.0f", finalMsg.getPrice()));
         if (gui != null) SwingUtilities.invokeLater(() -> gui.onDealComplete(finalMsg));
+
+        // Extension 1: Multiple concurrent negotiations
+        // If we just completed a deal, keep other active negotiations for the same requirement
+        // to see if we can find an even better price elsewhere.
+        // terminateOtherNegotiationsForSameRequirement(finalMsg.getNegotiationId());
+    }
+
+    private void terminateOtherNegotiationsForSameRequirement(String completedNegId) {
+        Assignment completedAssignment = assignments.get(completedNegId);
+        if (completedAssignment == null || completedAssignment.getRequirement() == null) return;
+
+        String reqId = completedAssignment.getRequirement().getRequirementId();
+        log.info("[EXTENSION 1] Deal reached for requirement " + reqId + ". Terminating other concurrent negotiations...");
+
+        for (Assignment a : assignments.values()) {
+            String otherId = a.getNegotiationId();
+            if (!otherId.equals(completedNegId)
+                    && a.getRequirement() != null
+                    && reqId.equals(a.getRequirement().getRequirementId())) {
+
+                // If it's still active (has a queue or is in Assignments tab as Active)
+                // We'll just try to reject it.
+                if (autoQueues.containsKey(otherId) || (gui != null && isGuiNegotiationActive(otherId))) {
+                    log.info("[EXTENSION 1] Auto-terminating concurrent negotiation [" + otherId + "]");
+                    rejectOffer(otherId, "Terminated: already bought a car for this requirement.");
+
+                    // Also stop the auto-behaviour if running
+                    AutoNegotiationBehaviour behaviour = activeAutoBehaviours.remove(otherId);
+                    if (behaviour != null) behaviour.stop();
+                    autoQueues.remove(otherId);
+                }
+            }
+        }
+    }
+
+    private boolean isGuiNegotiationActive(String negotiationId) {
+        // Simple check if the GUI still shows it as Active
+        // (In a real system we'd have a proper state machine)
+        return true; // Assume active if we have an assignment for it
+    }
+
+    /**
+     * Extension 1: Finds the best (lowest) price offered by ANY dealer so far
+     * for a specific requirement, excluding the current negotiation.
+     */
+    public double getBestOfferForRequirement(String requirementId, String excludingNegId) {
+        double best = Double.MAX_VALUE;
+        for (Map.Entry<String, List<NegotiationMessage>> entry : history.entrySet()) {
+            String negId = entry.getKey();
+            if (negId.equals(excludingNegId)) continue;
+
+            Assignment a = assignments.get(negId);
+            if (a == null || a.getRequirement() == null || !requirementId.equals(a.getRequirement().getRequirementId())) {
+                continue;
+            }
+
+            // Look through history of this negotiation for the lowest dealer offer or a completed deal price
+            for (NegotiationMessage m : entry.getValue()) {
+                if (m.getFromRole().equals("DEALER") && (m.getType() == NegotiationMessage.Type.OFFER || m.getType() == NegotiationMessage.Type.ACCEPT)) {
+                    if (m.getPrice() < best) {
+                        best = m.getPrice();
+                    }
+                }
+            }
+        }
+        return best;
     }
 
     public void onRequirementAck(String requirementId) {
@@ -352,6 +476,7 @@ public class BuyerAgent extends Agent {
 
     private void recordAndSend(NegotiationMessage nm, int performative, String ontology) {
         recordLocal(nm);
+        if (gui != null) SwingUtilities.invokeLater(() -> gui.appendNegotiationMessage(nm));
         ACLMessage msg = new ACLMessage(performative);
         msg.addReceiver(brokerAID);
         msg.setOntology(ontology);
@@ -380,27 +505,114 @@ public class BuyerAgent extends Agent {
 
     // ── Auto-negotiation ──────────────────────────────────────────────────────
 
+    private void scheduleAutoShortlist(String requirementId) {
+        if (requirementId == null || requirementId.isBlank()) return;
+        if (autoShortlistedRequirements.contains(requirementId)) return;
+        if (!autoShortlistScheduled.add(requirementId)) return;
+
+        addBehaviour(new WakerBehaviour(this, autoShortlistDelayMs) {
+            @Override
+            protected void onWake() {
+                autoShortlistScheduled.remove(requirementId);
+                sendAutoShortlist(requirementId);
+            }
+        });
+    }
+
+    private void sendAutoShortlist(String requirementId) {
+        if (!autoShortlistedRequirements.add(requirementId)) return;
+
+        MatchedListings matches = matchedListings.get(requirementId);
+        List<CarListing> listings = matches != null ? matches.getListings() : Collections.emptyList();
+        if (listings == null || listings.isEmpty()) {
+            autoShortlistedRequirements.remove(requirementId);
+            log.info("[AUTO] No matched listings available to shortlist for requirement " + requirementId);
+            return;
+        }
+
+        BuyerShortlist shortlist = new BuyerShortlist();
+        shortlist.setRequirementId(requirementId);
+
+        int limit = Math.min(Math.max(autoShortlistLimit, 1), listings.size());
+        List<CarListing> selectedListings = selectAutoShortlistListings(listings, limit);
+        for (int i = 0; i < selectedListings.size(); i++) {
+            CarListing listing = selectedListings.get(i);
+            shortlist.getEntries().add(new BuyerShortlist.Entry(
+                    listing.getListingId(),
+                    openingOfferFor(listing),
+                    "Auto-shortlisted matched listing " + (i + 1)
+                            + " of " + selectedListings.size()));
+        }
+
+        log.info("[AUTO] Sending shortlist for requirement " + requirementId
+                + " with " + selectedListings.size() + " listing(s)"
+                + (autoShortlistDifferentDealers ? " from different dealers" : ""));
+        sendShortlist(shortlist);
+    }
+
+    private List<CarListing> selectAutoShortlistListings(List<CarListing> listings, int limit) {
+        if (!autoShortlistDifferentDealers) {
+            return new ArrayList<>(listings.subList(0, limit));
+        }
+
+        List<CarListing> selected = new ArrayList<>();
+        Set<String> usedDealers = new HashSet<>();
+        for (CarListing listing : listings) {
+            String dealerKey = listing.getDealerAID();
+            if (dealerKey == null || dealerKey.isBlank()) {
+                dealerKey = listing.getDealerName();
+            }
+            if (dealerKey == null || dealerKey.isBlank()) {
+                dealerKey = listing.getListingId();
+            }
+            if (!usedDealers.add(dealerKey)) {
+                continue;
+            }
+
+            selected.add(listing);
+            if (selected.size() >= limit) {
+                break;
+            }
+        }
+
+        if (selected.size() < limit) {
+            log.info("[AUTO] Only " + selected.size()
+                    + " distinct dealer listing(s) available for auto-shortlist limit " + limit);
+        }
+        return selected;
+    }
+
+    private double openingOfferFor(CarListing listing) {
+        double offer = pendingAutoParams != null && pendingAutoParams.firstOffer > 0
+                ? pendingAutoParams.firstOffer
+                : listing.getRetailPrice() * 0.80;
+        return Math.round(offer / 100.0) * 100.0;
+    }
+
     /**
      * Starts an AutoNegotiationBehaviour for the given assignment.
      * Creates a message queue for that negotiation and adds the behaviour to JADE.
-     *
-     * Called automatically from onAssignment() when pendingAutoParams is set.
-     * Can also be called manually from the GUI auto panel (future V2 GUI feature).
      */
     public void startAutoNegotiation(Assignment assignment, AutoNegotiationParams params) {
         String negId = assignment.getNegotiationId();
+        if (autoQueues.containsKey(negId)) {
+            log.info("[AUTO] AutoNegotiationBehaviour already running for negotiation [" + negId + "]");
+            return;
+        }
         // Create the queue this behaviour will read from
         ConcurrentLinkedQueue<NegotiationMessage> queue = new ConcurrentLinkedQueue<>();
         autoQueues.put(negId, queue);
         // Create and register the behaviour with JADE
         AutoNegotiationBehaviour behaviour = new AutoNegotiationBehaviour(
                 this, assignment, params, queue);
+        activeAutoBehaviours.put(negId, behaviour);
         addBehaviour(behaviour);
         log.info("[AUTO] AutoNegotiationBehaviour started for negotiation [" + negId + "]");
     }
 
     // ── Accessors ────────────────────────────────────────────────────────────
     public List<CarRequirement>     getMyRequirements()          { return new ArrayList<>(myRequirements.values()); }
+    public Map<String, MatchedListings> getMatchedListings()      { return Collections.unmodifiableMap(matchedListings); }
     public Map<String, Assignment>  getAssignments()             { return Collections.unmodifiableMap(assignments); }
     public List<NegotiationMessage> getHistory(String id)        { return history.getOrDefault(id, Collections.emptyList()); }
     public BuyerGui                 getGui()                     { return gui; }

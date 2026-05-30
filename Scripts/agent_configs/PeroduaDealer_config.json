@@ -1,0 +1,221 @@
+{
+  "dealerName": "PeroduaDealer",
+  "brand": "Perodua",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "autoSelectBuyers": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 20,
+  "listings": [
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2018,
+      "mileage": 51500,
+      "color": "Graphite Grey",
+      "retailPrice": 26000.0,
+      "marketPrice": 22000.0,
+      "condition": "Used",
+      "description": "2018 Perodua Axia, 51,500 km. Market ref: RM 22,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2019,
+      "mileage": 54500,
+      "color": "Metallic Silver",
+      "retailPrice": 29000.0,
+      "marketPrice": 25000.0,
+      "condition": "Used",
+      "description": "2019 Perodua Axia, 54,500 km. Market ref: RM 25,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2020,
+      "mileage": 65500,
+      "color": "Pearl White",
+      "retailPrice": 33000.0,
+      "marketPrice": 28000.0,
+      "condition": "Used",
+      "description": "2020 Perodua Axia, 65,500 km. Market ref: RM 28,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2021,
+      "mileage": 22000,
+      "color": "Pearl White",
+      "retailPrice": 33000.0,
+      "marketPrice": 28000.0,
+      "condition": "Used",
+      "description": "2021 Perodua Axia, 22,000 km. Market ref: RM 28,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2022,
+      "mileage": 17500,
+      "color": "Navy Blue",
+      "retailPrice": 36000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2022 Perodua Axia, 17,500 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Axia",
+      "year": 2023,
+      "mileage": 18500,
+      "color": "Metallic Silver",
+      "retailPrice": 41000.0,
+      "marketPrice": 35000.0,
+      "condition": "New",
+      "description": "2023 Perodua Axia, 18,500 km. Market ref: RM 35,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2018,
+      "mileage": 96000,
+      "color": "Navy Blue",
+      "retailPrice": 33000.0,
+      "marketPrice": 28000.0,
+      "condition": "Used",
+      "description": "2018 Perodua Bezza, 96,000 km. Market ref: RM 28,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2019,
+      "mileage": 69500,
+      "color": "Navy Blue",
+      "retailPrice": 37000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2019 Perodua Bezza, 69,500 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2020,
+      "mileage": 30500,
+      "color": "Metallic Silver",
+      "retailPrice": 37000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2020 Perodua Bezza, 30,500 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2021,
+      "mileage": 42500,
+      "color": "Midnight Black",
+      "retailPrice": 43000.0,
+      "marketPrice": 36000.0,
+      "condition": "Used",
+      "description": "2021 Perodua Bezza, 42,500 km. Market ref: RM 36,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2022,
+      "mileage": 35000,
+      "color": "Midnight Black",
+      "retailPrice": 45000.0,
+      "marketPrice": 40000.0,
+      "condition": "Used",
+      "description": "2022 Perodua Bezza, 35,000 km. Market ref: RM 40,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Bezza",
+      "year": 2023,
+      "mileage": 12500,
+      "color": "Pearl White",
+      "retailPrice": 51000.0,
+      "marketPrice": 45000.0,
+      "condition": "New",
+      "description": "2023 Perodua Bezza, 12,500 km. Market ref: RM 45,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2017,
+      "mileage": 82500,
+      "color": "Navy Blue",
+      "retailPrice": 35000.0,
+      "marketPrice": 30000.0,
+      "condition": "Used",
+      "description": "2017 Perodua Myvi, 82,500 km. Market ref: RM 30,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2018,
+      "mileage": 53000,
+      "color": "Graphite Grey",
+      "retailPrice": 37000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2018 Perodua Myvi, 53,000 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2019,
+      "mileage": 48000,
+      "color": "Ruby Red",
+      "retailPrice": 44000.0,
+      "marketPrice": 38000.0,
+      "condition": "Used",
+      "description": "2019 Perodua Myvi, 48,000 km. Market ref: RM 38,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2020,
+      "mileage": 49000,
+      "color": "Graphite Grey",
+      "retailPrice": 45000.0,
+      "marketPrice": 40000.0,
+      "condition": "Used",
+      "description": "2020 Perodua Myvi, 49,000 km. Market ref: RM 40,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2021,
+      "mileage": 43500,
+      "color": "Navy Blue",
+      "retailPrice": 50000.0,
+      "marketPrice": 42000.0,
+      "condition": "Used",
+      "description": "2021 Perodua Myvi, 43,500 km. Market ref: RM 42,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2022,
+      "mileage": 12500,
+      "color": "Pearl White",
+      "retailPrice": 51000.0,
+      "marketPrice": 45000.0,
+      "condition": "Used",
+      "description": "2022 Perodua Myvi, 12,500 km. Market ref: RM 45,000."
+    },
+    {
+      "make": "Perodua",
+      "model": "Myvi",
+      "year": 2023,
+      "mileage": 9500,
+      "color": "Pearl White",
+      "retailPrice": 57000.0,
+      "marketPrice": 48000.0,
+      "condition": "New",
+      "description": "2023 Perodua Myvi, 9,500 km. Market ref: RM 48,000."
+    }
+  ]
+}

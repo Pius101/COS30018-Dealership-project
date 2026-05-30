@@ -19,6 +19,7 @@ public class CarListing {
     private double retailPrice;   // asking price in MYR
     private String condition;     // "New" or "Used"
     private String description;   // optional free-text notes
+    private double matchScore;    // transient score for closest-match ranking
 
     /** No-arg constructor required by Gson for deserialization. */
     public CarListing() {
@@ -74,6 +75,9 @@ public class CarListing {
 
     public String getDescription()                   { return description; }
     public void   setDescription(String v)           { this.description = v; }
+
+    public double getMatchScore()                    { return matchScore; }
+    public void   setMatchScore(double v)            { this.matchScore = v; }
 
     @Override
     public String toString() {

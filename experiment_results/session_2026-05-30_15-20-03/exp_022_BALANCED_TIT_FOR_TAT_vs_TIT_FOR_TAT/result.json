@@ -1,0 +1,90 @@
+{
+  "case": 22,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203013720619485886,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "TIT_FOR_TAT",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 3,
+  "messageCount": 7,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 70400.0,
+  "savingFromAsk": 9600.0,
+  "savingPct": 12.0,
+  "baselineOutcome": "NO_DEAL",
+  "baselinePrice": 0.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 70400.0,
+  "lastDealerOffer": 70400.0,
+  "buyerUtility": 0.5555555555555556,
+  "dealerUtility": 0.0,
+  "jointUtility": 0.5555555555555556,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 8000.0,
+  "dealerProfit": 0.0,
+  "buyerDistanceFromReservation": 8000.0,
+  "dealerDistanceFromReservation": 0.0,
+  "buyerConcessionPct": 44.44444444444444,
+  "dealerConcessionPct": 100.0,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 3/10 | OpponentConcession\u003d0.0% | opponentStuck\u003dtrue | lastRound\u003dfalse → ACCEPT",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 70400.0,
+      "reasoning": "Round 1/10 | Opponent last conceded 20.0% (RM12800) | Mirroring at 2.0% → Offer RM70400"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64300.0,
+      "reasoning": "Round 1/10 | Opponent last conceded 12.0% (RM8448) | Mirroring at 2.0% → Offer RM64300"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 70400.0,
+      "reasoning": "Round 2/10 | Opponent last conceded -0.5% (RM-301) | Mirroring at 0.5% → Offer RM70400"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64600.0,
+      "reasoning": "Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64600"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 70400.0,
+      "reasoning": "Round 3/10 | Opponent last conceded -0.5% (RM-301) | Mirroring at 0.5% → Offer RM70400"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 70400.0,
+      "reasoning": "Round 3/10 | OpponentConcession\u003d0.0% | opponentStuck\u003dtrue | lastRound\u003dfalse → ACCEPT"
+    }
+  ]
+}

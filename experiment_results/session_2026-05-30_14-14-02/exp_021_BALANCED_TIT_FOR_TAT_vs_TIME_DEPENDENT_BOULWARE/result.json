@@ -1,0 +1,184 @@
+{
+  "case": 21,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203015114713064240,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "TIME_DEPENDENT_BOULWARE",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 10,
+  "messageCount": 21,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 70400.0,
+  "savingFromAsk": 9600.0,
+  "savingPct": 12.0,
+  "lastBuyerOffer": 70400.0,
+  "lastDealerOffer": 70400.0,
+  "buyerUtility": 0.5555555555555556,
+  "dealerUtility": 0.0,
+  "jointUtility": 0.5555555555555556,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 8000.0,
+  "dealerProfit": 0.0,
+  "buyerDistanceFromReservation": 8000.0,
+  "dealerDistanceFromReservation": 0.0,
+  "buyerConcessionPct": 44.44444444444444,
+  "dealerConcessionPct": 100.0,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 10/10 | OpponentConcession\u003d4.5% | opponentStuck\u003dfalse | lastRound\u003dtrue → ACCEPT",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d10% → Offer RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64300.0,
+      "reasoning": "Round 1/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64300"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d20% → Offer RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64600.0,
+      "reasoning": "Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64600"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79900.0,
+      "reasoning": "Round 3/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d30% → Offer RM79900"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64700.0,
+      "reasoning": "Round 3/10 | Opponent last conceded 0.1% (RM100) | Mirroring at 0.5% → Offer RM64700"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79800.0,
+      "reasoning": "Round 4/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d40% → Offer RM79800"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64800.0,
+      "reasoning": "Round 4/10 | Opponent last conceded 0.1% (RM100) | Mirroring at 0.5% → Offer RM64800"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79400.0,
+      "reasoning": "Round 5/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d50% → Offer RM79400"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64900.0,
+      "reasoning": "Round 5/10 | Opponent last conceded 0.5% (RM398) | Mirroring at 0.5% → Offer RM64900"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 78800.0,
+      "reasoning": "Round 6/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d60% → Offer RM78800"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65000.0,
+      "reasoning": "Round 6/10 | Opponent last conceded 0.8% (RM595) | Mirroring at 0.8% → Offer RM65000"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 77700.0,
+      "reasoning": "Round 7/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d70% → Offer RM77700"
+    },
+    {
+      "round": 8,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65200.0,
+      "reasoning": "Round 7/10 | Opponent last conceded 1.4% (RM1085) | Mirroring at 1.4% → Offer RM65200"
+    },
+    {
+      "round": 8,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 76100.0,
+      "reasoning": "Round 8/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d80% → Offer RM76100"
+    },
+    {
+      "round": 9,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65500.0,
+      "reasoning": "Round 8/10 | Opponent last conceded 2.1% (RM1567) | Mirroring at 2.1% → Offer RM65500"
+    },
+    {
+      "round": 9,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 73700.0,
+      "reasoning": "Round 9/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d90% → Offer RM73700"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65900.0,
+      "reasoning": "Round 9/10 | Opponent last conceded 3.2% (RM2324) | Mirroring at 3.2% → Offer RM65900"
+    },
+    {
+      "round": 10,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 70400.0,
+      "reasoning": "Round 10/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d100% → Offer RM70400"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 70400.0,
+      "reasoning": "Round 10/10 | OpponentConcession\u003d4.5% | opponentStuck\u003dfalse | lastRound\u003dtrue → ACCEPT"
+    }
+  ]
+}

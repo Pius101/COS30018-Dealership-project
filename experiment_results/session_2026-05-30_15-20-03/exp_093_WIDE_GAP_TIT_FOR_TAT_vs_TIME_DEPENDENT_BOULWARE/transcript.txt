@@ -1,0 +1,23 @@
+EXPERIMENT 93
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211166382581768916 | Varied scenario: false
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 79900 | Rounds: 3
+Utility: buyer=0.12 dealer=0.99 joint=1.11 | Benefit side: DEALER
+Surplus: agreement=RM 15200 buyer=RM 2500 dealer=RM 12700
+Baseline: BUY_AT_ASKING at RM 80000 | Negotiation gain vs baseline: RM 100
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 61200 | Round 1/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61200
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 61600 | Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61600
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 3 | BUYER | ACCEPT | RM 79900 | Round 3/10 | OpponentConcession=0.1% | opponentStuck=true | lastRound=false → ACCEPT
+
+Final note: Round 3/10 | OpponentConcession=0.1% | opponentStuck=true | lastRound=false → ACCEPT

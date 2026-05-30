@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-05-30T14:14:02.4621071",
+  "commandArgs": [],
+  "gitCommit": "d5fc50b",
+  "javaVersion": "25.0.2",
+  "threads": 16,
+  "rounds": 10,
+  "roundsOverridden": false,
+  "repeats": 1,
+  "seed": 42,
+  "repeatVariation": false,
+  "variationPct": 0.03,
+  "outputRoot": "experiment_results",
+  "scenarioFile": "built-in",
+  "registeredStrategies": [
+    "BAYESIAN",
+    "TIME_DEPENDENT_CONCEDER",
+    "TIME_DEPENDENT_BOULWARE",
+    "TIT_FOR_TAT",
+    "FIXED_INCREMENT_2PCT",
+    "FIXED_INCREMENT_5PCT"
+  ],
+  "buyerStrategies": [
+    "all"
+  ],
+  "dealerStrategies": [
+    "all"
+  ],
+  "experimentCaseCount": 108,
+  "scenarioDefinitions": [
+    {
+      "name": "BALANCED",
+      "askingPrice": 80000.0,
+      "buyerFirstPct": 0.8,
+      "buyerReservationPct": 0.98,
+      "dealerFloorPct": 0.88,
+      "maxRounds": 10,
+      "source": "built-in"
+    },
+    {
+      "name": "TIGHT_GAP",
+      "askingPrice": 80000.0,
+      "buyerFirstPct": 0.78,
+      "buyerReservationPct": 0.91,
+      "dealerFloorPct": 0.89,
+      "maxRounds": 10,
+      "source": "built-in"
+    },
+    {
+      "name": "WIDE_GAP",
+      "askingPrice": 80000.0,
+      "buyerFirstPct": 0.76,
+      "buyerReservationPct": 1.03,
+      "dealerFloorPct": 0.84,
+      "maxRounds": 10,
+      "source": "built-in"
+    }
+  ]
+}

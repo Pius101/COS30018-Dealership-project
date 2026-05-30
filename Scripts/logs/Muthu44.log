@@ -1,0 +1,39 @@
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 192.168.43.136:1099...
+[Launcher] Binding to local IP: 192.168.43.136
+Apr 30, 2026 11:44:23 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+Apr 30, 2026 11:44:23 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://192.168.43.136:49985
+
+Apr 30, 2026 11:44:23 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+Apr 30, 2026 11:44:23 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+Apr 30, 2026 11:44:23 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+Apr 30, 2026 11:44:23 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+Apr 30, 2026 11:44:23 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+Apr 30, 2026 11:44:23 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market-4@192.168.43.136 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 192.168.43.136
+[Launcher] Buyer agent 'Muthu44' joined buyers container at 192.168.43.136
+[Launcher] BUYER 'Muthu44' running. Press Ctrl+C to stop.
+[Buyer]  [11:44:23]     Broker found in DF: broker@192.168.43.136:1099/JADE
+[Buyer]  [11:44:23]     Loading config from agent_configs\Muthu44_config.json
+[Buyer]  [11:44:24]     Buyer Agent 'Muthu44' started. AID: Muthu44@192.168.43.136:1099/JADE
+[Buyer]  [11:44:24]     Connected to Broker: broker@192.168.43.136:1099/JADE
+[Buyer]  [11:44:25]  ?  to Broker        [BUYER_REQUIREMENTS          ]  Perodua Myvi (2019–any) ? RM 41000  [16D021C4]
+[Buyer]  [11:44:25]     Requirements submitted from config: Perodua Myvi (2019–any) ? RM 41000
+[Buyer]  [11:44:25]     [AUTO] Auto-negotiate armed: strategy=FIXED_INCREMENT_2PCT firstOffer=RM33000 budget=RM41000 maxRounds=12
+[Buyer]  [11:44:25]  ?  from Broker      [REQUIREMENTS_ACK            ]  Requirement 16D021C4 confirmed stored — waiting for assignment

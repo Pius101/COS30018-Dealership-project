@@ -1,0 +1,21 @@
+EXPERIMENT 6
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 202993466781021803 | Varied scenario: false
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 70400 | Rounds: 2
+Utility: buyer=0.56 dealer=0.00 joint=0.56 | Benefit side: BUYER
+Surplus: agreement=RM 8000 buyer=RM 8000 dealer=-
+Baseline: NO_DEAL at - | Negotiation gain vs baseline: -
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 70400 | Round 1/10 | +5.0% increment | Offer RM80000 → RM70400 | RV ceiling: RM70400
+Round 2 | BUYER | OFFER | RM 65400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM65400
+Round 2 | DEALER | OFFER | RM 70400 | Round 2/10 | +5.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 2 | BUYER | ACCEPT | RM 70400 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM70400 | Offers seen=2 → ACCEPT RM70400
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM70400 | Offers seen=2 → ACCEPT RM70400

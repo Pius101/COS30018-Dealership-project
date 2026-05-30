@@ -27,6 +27,10 @@ public class DealerGui extends JFrame {
     // My Listings tab
     private final DefaultTableModel listingsModel;
 
+    // Buyer offers from broker matching
+    private final DefaultTableModel buyerOffersModel;
+    private final JTable            buyerOffersTable;
+
     // Activity log
     private final JTextArea logArea = new JTextArea();
     public JTextArea getLogArea() { return logArea; }
@@ -38,17 +42,21 @@ public class DealerGui extends JFrame {
     private final Map<String, NegotiationPanel> negPanels = new LinkedHashMap<>();
 
     private static final String[] LISTING_COLS    = {"ID", "Make", "Model", "Year", "Mileage (km)", "Price (RM)", "Condition"};
+    private static final String[] BUYER_OFFER_COLS = {"Select", "Req ID", "Buyer", "Listing ID", "Car", "First Offer (RM)", "Buyer Max (RM)", "Buyer Note", "Dealer Note"};
     private static final String[] ASSIGNMENT_COLS = {"Negotiation ID", "Buyer", "Listing", "Buyer's Max Price (RM)", "Status"};
 
     public DealerGui(DealerAgent dealer) {
         super("Dealer  -  " + dealer.getLocalName());
         this.dealer = dealer;
 
-        listingsModel    = makeReadOnlyModel(LISTING_COLS);
-        assignmentsModel = makeReadOnlyModel(ASSIGNMENT_COLS);
-        tabs             = new JTabbedPane();
+        listingsModel     = makeReadOnlyModel(LISTING_COLS);
+        buyerOffersModel  = makeBuyerOffersModel();
+        buyerOffersTable  = new JTable(buyerOffersModel);
+        assignmentsModel  = makeReadOnlyModel(ASSIGNMENT_COLS);
+        tabs              = new JTabbedPane();
 
         tabs.addTab("  My Listings",  buildListingsTab());
+        tabs.addTab("Buyer Offers",   buildBuyerOffersTab());
         tabs.addTab("  Assignments",  buildAssignmentsTab());
 
         logArea.setEditable(false);
@@ -179,6 +187,30 @@ public class DealerGui extends JFrame {
         return p;
     }
 
+    private JPanel buildBuyerOffersTab() {
+        JPanel p = new JPanel(new BorderLayout(8, 8));
+        p.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JLabel info = new JLabel("Buyers who shortlisted your listings. Select buyers you want to negotiate with and return the list to broker.");
+        p.add(info, BorderLayout.NORTH);
+
+        styleTable(buyerOffersTable);
+        buyerOffersTable.setRowHeight(24);
+        buyerOffersTable.getColumnModel().getColumn(0).setMaxWidth(60);
+        buyerOffersTable.getColumnModel().getColumn(8).setPreferredWidth(180);
+        p.add(new JScrollPane(buyerOffersTable), BorderLayout.CENTER);
+
+        JButton sendSelectionBtn = new JButton("Return Selected Buyers to Broker");
+        sendSelectionBtn.setFont(sendSelectionBtn.getFont().deriveFont(Font.BOLD));
+        sendSelectionBtn.addActionListener(e -> sendSelectedBuyers());
+
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttons.add(sendSelectionBtn);
+        p.add(buttons, BorderLayout.SOUTH);
+
+        return p;
+    }
+
     // Tab: Assignments
     private JPanel buildAssignmentsTab() {
         JPanel p = new JPanel(new BorderLayout(8, 8));
@@ -229,6 +261,31 @@ public class DealerGui extends JFrame {
     }
 
     // Dynamic Negotiation Tab (one per assignment)
+    public void onBuyerOffers(DealerBuyerOffers offers) {
+        if (offers.getEntries() == null || offers.getEntries().isEmpty()) return;
+
+        for (DealerBuyerOffers.Entry entry : offers.getEntries()) {
+            removeBuyerOfferRow(entry.getRequirementId(), entry.getListingId());
+
+            CarListing listing = entry.getListing();
+            CarRequirement req = entry.getRequirement();
+            buyerOffersModel.addRow(new Object[]{
+                    Boolean.FALSE,
+                    entry.getRequirementId(),
+                    entry.getBuyerName(),
+                    entry.getListingId(),
+                    listing != null ? listing.getMake() + " " + listing.getModel() : "",
+                    String.format("%.0f", entry.getFirstOffer()),
+                    req != null && req.getMaxPrice() > 0 ? String.format("%.0f", req.getMaxPrice()) : "",
+                    entry.getBuyerNote() == null ? "" : entry.getBuyerNote(),
+                    ""
+            });
+        }
+
+        int idx = indexOfTab("Buyer Offers");
+        if (idx >= 0) tabs.setSelectedIndex(idx);
+    }
+
     /**
      * Called on the EDT by DealerAgent.onAssignment().
      * Opens a new negotiation tab for the given assignment.
@@ -312,6 +369,50 @@ public class DealerGui extends JFrame {
     }
 
     // Helpers
+    private void sendSelectedBuyers() {
+        DealerSelection selection = new DealerSelection();
+        List<DealerSelection.Entry> entries = new ArrayList<>();
+
+        for (int row = 0; row < buyerOffersModel.getRowCount(); row++) {
+            Object selected = buyerOffersModel.getValueAt(row, 0);
+            if (!(selected instanceof Boolean) || !((Boolean) selected)) continue;
+
+            String requirementId = String.valueOf(buyerOffersModel.getValueAt(row, 1));
+            String listingId = String.valueOf(buyerOffersModel.getValueAt(row, 3));
+            String dealerNote = String.valueOf(buyerOffersModel.getValueAt(row, 8)).trim();
+            entries.add(new DealerSelection.Entry(requirementId, listingId, dealerNote));
+        }
+
+        if (entries.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Select at least one buyer offer.",
+                    "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        selection.setEntries(entries);
+        dealer.sendDealerSelection(selection);
+
+        for (int row = 0; row < buyerOffersModel.getRowCount(); row++) {
+            if (Boolean.TRUE.equals(buyerOffersModel.getValueAt(row, 0))) {
+                buyerOffersModel.setValueAt(Boolean.FALSE, row, 0);
+            }
+        }
+
+        JOptionPane.showMessageDialog(this,
+                "Selected buyers returned to broker.",
+                "Selection Sent", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void removeBuyerOfferRow(String requirementId, String listingId) {
+        for (int row = buyerOffersModel.getRowCount() - 1; row >= 0; row--) {
+            if (requirementId.equals(buyerOffersModel.getValueAt(row, 1))
+                    && listingId.equals(buyerOffersModel.getValueAt(row, 3))) {
+                buyerOffersModel.removeRow(row);
+            }
+        }
+    }
+
     private void updateAssignmentStatus(String negotiationId, String status) {
         for (int i = 0; i < assignmentsModel.getRowCount(); i++) {
             if (negotiationId.equals(assignmentsModel.getValueAt(i, 0))) {
@@ -335,6 +436,18 @@ public class DealerGui extends JFrame {
     private static DefaultTableModel makeReadOnlyModel(String[] cols) {
         return new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
+        };
+    }
+
+    private static DefaultTableModel makeBuyerOffersModel() {
+        return new DefaultTableModel(BUYER_OFFER_COLS, 0) {
+            @Override public boolean isCellEditable(int r, int c) {
+                return c == 0 || c == 8;
+            }
+
+            @Override public Class<?> getColumnClass(int c) {
+                return c == 0 ? Boolean.class : Object.class;
+            }
         };
     }
 

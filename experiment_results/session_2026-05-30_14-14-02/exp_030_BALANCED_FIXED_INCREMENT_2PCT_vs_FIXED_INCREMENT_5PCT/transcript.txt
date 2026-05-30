@@ -1,0 +1,27 @@
+EXPERIMENT 30
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 203001953379204525 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 70400 | Rounds: 5
+Utility: buyer=0.56 dealer=0.00 joint=0.56 | Benefit side: BUYER
+Surplus: agreement=RM 8000 buyer=RM 8000 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 70400 | Round 1/10 | +5.0% increment | Offer RM80000 → RM70400 | RV ceiling: RM70400
+Round 2 | BUYER | OFFER | RM 65300 | Round 1/10 | +2.0% increment | Offer RM64000 → RM65300 | RV ceiling: RM78400
+Round 2 | DEALER | OFFER | RM 70400 | Round 2/10 | +5.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 3 | BUYER | OFFER | RM 66600 | Round 2/10 | +2.0% increment | Offer RM65300 → RM66600 | RV ceiling: RM78400
+Round 3 | DEALER | OFFER | RM 70400 | Round 3/10 | +5.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 4 | BUYER | OFFER | RM 67900 | Round 3/10 | +2.0% increment | Offer RM66600 → RM67900 | RV ceiling: RM78400
+Round 4 | DEALER | OFFER | RM 70400 | Round 4/10 | +5.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 5 | BUYER | OFFER | RM 69300 | Round 4/10 | +2.0% increment | Offer RM67900 → RM69300 | RV ceiling: RM78400
+Round 5 | DEALER | OFFER | RM 70400 | Round 5/10 | +5.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 5 | BUYER | WOULD_ACCEPT | RM 70400 | Counter would meet dealer offer; accepting dealer price.
+Round 5 | BUYER | ACCEPT | RM 70400 | Round 5/10 | +2.0% increment | Offer RM69300 → RM70700 | RV ceiling: RM78400
+
+Final note: Round 5/10 | +2.0% increment | Offer RM69300 → RM70700 | RV ceiling: RM78400

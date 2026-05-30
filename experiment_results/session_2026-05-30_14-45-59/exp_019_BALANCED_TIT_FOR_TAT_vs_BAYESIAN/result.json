@@ -1,0 +1,181 @@
+{
+  "case": 19,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203013712550398047,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "BAYESIAN",
+  "outcome": "NO_DEAL",
+  "acceptedBy": "NONE",
+  "roundsTaken": 10,
+  "messageCount": 20,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 0.0,
+  "savingFromAsk": 0.0,
+  "savingPct": 0.0,
+  "baselineOutcome": "NO_DEAL",
+  "baselinePrice": 0.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 66500.0,
+  "lastDealerOffer": 80000.0,
+  "buyerUtility": 0.0,
+  "dealerUtility": 0.0,
+  "jointUtility": 0.0,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 0.0,
+  "dealerProfit": 0.0,
+  "buyerDistanceFromReservation": 0.0,
+  "dealerDistanceFromReservation": 0.0,
+  "buyerConcessionPct": 17.36111111111111,
+  "dealerConcessionPct": 0.0,
+  "benefitSide": "NO_DEAL",
+  "finalReason": "Deadline reached without either side accepting.",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64300.0,
+      "reasoning": "Round 1/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64300"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM64600 | Offers seen\u003d2 → OFFER RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64600.0,
+      "reasoning": "Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64600"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 3/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM64900 | Offers seen\u003d3 → OFFER RM80000"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64900.0,
+      "reasoning": "Round 3/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM64900"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 4/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM65200 | Offers seen\u003d4 → OFFER RM80000"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65200.0,
+      "reasoning": "Round 4/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM65200"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 5/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM65500 | Offers seen\u003d5 → OFFER RM80000"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65500.0,
+      "reasoning": "Round 5/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM65500"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 6/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM65800 | Offers seen\u003d6 → OFFER RM80000"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65800.0,
+      "reasoning": "Round 6/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM65800"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 7/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM66100 | Offers seen\u003d7 → OFFER RM80000"
+    },
+    {
+      "round": 8,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 66100.0,
+      "reasoning": "Round 7/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM66100"
+    },
+    {
+      "round": 8,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 8/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-300 (0.0%) | EstimatedFloor≈RM66400 | Offers seen\u003d8 → OFFER RM80000"
+    },
+    {
+      "round": 9,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 66300.0,
+      "reasoning": "Round 8/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM66300"
+    },
+    {
+      "round": 9,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 9/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-288 (0.0%) | EstimatedFloor≈RM66588 | Offers seen\u003d9 → OFFER RM80000"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 66500.0,
+      "reasoning": "Round 9/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM66500"
+    },
+    {
+      "round": 10,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 10/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-278 (0.0%) | EstimatedFloor≈RM66778 | Offers seen\u003d10 → OFFER RM80000"
+    }
+  ]
+}

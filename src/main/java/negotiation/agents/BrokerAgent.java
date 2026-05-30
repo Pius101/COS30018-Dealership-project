@@ -34,6 +34,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BrokerAgent extends Agent {
 
+    private static final double DEFAULT_FIXED_NEGOTIATION_FEE = 250.0;
+    private static final double DEFAULT_COMMISSION_RATE = 0.02;
+
     // ── Shared utilities ──────────────────────────────────────────────────────
     public  final Gson      gson = new GsonBuilder().create();
     public  final AppLogger log  = new AppLogger("Broker");
@@ -41,9 +44,18 @@ public class BrokerAgent extends Agent {
     // ── Platform state (thread-safe maps) ─────────────────────────────────────
     private final Map<String, CarListing>     listings    = new ConcurrentHashMap<>();
     private final Map<String, CarRequirement> requirements = new ConcurrentHashMap<>();
+    private final Map<String, BuyerShortlist> shortlists   = new ConcurrentHashMap<>();
+    private final Map<String, DealerBuyerOffers.Entry> pendingBuyerOffers = new ConcurrentHashMap<>();
     private final Map<String, Assignment>     assignments = new ConcurrentHashMap<>();
     private final Map<String, List<NegotiationMessage>> history = new ConcurrentHashMap<>();
     private final Map<String, NegotiationMessage> completedDeals = new ConcurrentHashMap<>();
+    private final Set<String> feeChargedNegotiations = ConcurrentHashMap.newKeySet();
+    private final Set<String> commissionChargedDeals = ConcurrentHashMap.newKeySet();
+    private final Map<String, Double> negotiationFees = new ConcurrentHashMap<>();
+    private final Map<String, Double> dealCommissions = new ConcurrentHashMap<>();
+
+    private volatile double fixedNegotiationFee = DEFAULT_FIXED_NEGOTIATION_FEE;
+    private volatile double commissionRate = DEFAULT_COMMISSION_RATE;
 
     private BrokerGui gui;
 
@@ -101,6 +113,7 @@ public class BrokerAgent extends Agent {
                         + "  RM " + String.format("%.0f", listing.getRetailPrice())
                         + "  [ID: " + listing.getListingId() + "]");
         if (gui != null) SwingUtilities.invokeLater(() -> gui.refreshListings(getListings()));
+        notifyMatchingBuyersForListing(listing);
     }
 
     public void onRequirementReceived(CarRequirement req) {
@@ -108,6 +121,250 @@ public class BrokerAgent extends Agent {
         log.recv(req.getBuyerName(), Ontology.TYPE_BUYER_REQUIREMENTS,
                 req.summary() + "  [ID: " + req.getRequirementId() + "]");
         if (gui != null) SwingUtilities.invokeLater(() -> gui.refreshRequirements(getRequirements()));
+        sendMatchesToBuyer(req);
+    }
+
+    public void onShortlistReceived(BuyerShortlist shortlist) {
+        String key = shortlist.getBuyerAID() + "::" + shortlist.getRequirementId();
+        shortlists.put(key, shortlist);
+
+        int count = shortlist.getEntries() == null ? 0 : shortlist.getEntries().size();
+        log.recv(shortlist.getBuyerName(), Ontology.TYPE_BUYER_SHORTLIST,
+                count + " selected listing(s) for requirement " + shortlist.getRequirementId());
+
+        if (gui != null) SwingUtilities.invokeLater(() -> gui.refreshShortlists(getShortlists()));
+        sendBuyerOffersToDealers(shortlist);
+    }
+
+    public void onDealerSelection(DealerSelection selection) {
+        int count = selection.getEntries() == null ? 0 : selection.getEntries().size();
+        log.recv(selection.getDealerName(), Ontology.TYPE_DEALER_SELECTION,
+                count + " selected buyer(s) for negotiation");
+
+        if (selection.getEntries() == null) return;
+        for (DealerSelection.Entry entry : selection.getEntries()) {
+            DealerBuyerOffers.Entry pending = pendingBuyerOffers.get(
+                    offerKey(selection.getDealerAID(), entry.getRequirementId(), entry.getListingId()));
+
+            CarListing listing = pending != null && pending.getListing() != null
+                    ? pending.getListing()
+                    : listings.get(entry.getListingId());
+            CarRequirement req = pending != null && pending.getRequirement() != null
+                    ? pending.getRequirement()
+                    : requirements.get(entry.getRequirementId());
+
+            if (listing == null || req == null) {
+                log.error("Dealer selection ignored: missing listing or requirement for listing "
+                        + entry.getListingId() + ", requirement " + entry.getRequirementId());
+                continue;
+            }
+
+            if (assignmentExists(listing.getListingId(), req.getRequirementId())) {
+                log.info("Dealer selection ignored: assignment already exists for listing "
+                        + listing.getListingId() + " and requirement " + req.getRequirementId());
+                continue;
+            }
+
+            String note = buildDealerSelectionNote(pending, entry);
+            createAssignment(listing, req, note);
+        }
+    }
+
+    private void sendBuyerOffersToDealers(BuyerShortlist shortlist) {
+        CarRequirement req = requirements.get(shortlist.getRequirementId());
+        if (req == null || shortlist.getEntries() == null || shortlist.getEntries().isEmpty()) return;
+
+        Map<String, DealerBuyerOffers> byDealer = new LinkedHashMap<>();
+        for (BuyerShortlist.Entry item : shortlist.getEntries()) {
+            CarListing listing = listings.get(item.getListingId());
+            if (listing == null || listing.getDealerAID() == null) {
+                log.error("Shortlist item ignored: listing not found " + item.getListingId());
+                continue;
+            }
+
+            DealerBuyerOffers.Entry offer = new DealerBuyerOffers.Entry();
+            offer.setRequirementId(req.getRequirementId());
+            offer.setBuyerAID(req.getBuyerAID());
+            offer.setBuyerName(req.getBuyerName());
+            offer.setRequirement(req);
+            offer.setListingId(listing.getListingId());
+            offer.setListing(listing);
+            offer.setFirstOffer(item.getFirstOffer());
+            offer.setBuyerNote(item.getNote());
+
+            pendingBuyerOffers.put(offerKey(listing.getDealerAID(), req.getRequirementId(), listing.getListingId()), offer);
+
+            DealerBuyerOffers payload = byDealer.computeIfAbsent(listing.getDealerAID(), dealerAID -> {
+                DealerBuyerOffers created = new DealerBuyerOffers();
+                created.setDealerAID(dealerAID);
+                created.setDealerName(listing.getDealerName());
+                return created;
+            });
+            payload.getEntries().add(offer);
+        }
+
+        for (DealerBuyerOffers payload : byDealer.values()) {
+            ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+            msg.addReceiver(new AID(payload.getDealerAID(), true));
+            msg.setOntology(Ontology.TYPE_BUYER_OFFERS);
+            msg.setConversationId(Ontology.CONV_ASSIGNMENT);
+            msg.setContent(gson.toJson(payload));
+            send(msg);
+
+            log.send(payload.getDealerName(), Ontology.TYPE_BUYER_OFFERS,
+                    payload.getEntries().size() + " buyer offer(s) awaiting dealer selection");
+        }
+    }
+
+    private String offerKey(String dealerAID, String requirementId, String listingId) {
+        return dealerAID + "::" + requirementId + "::" + listingId;
+    }
+
+    private boolean assignmentExists(String listingId, String requirementId) {
+        return assignments.values().stream()
+                .anyMatch(a -> a.getListing() != null
+                        && a.getRequirement() != null
+                        && listingId.equals(a.getListing().getListingId())
+                        && requirementId.equals(a.getRequirement().getRequirementId()));
+    }
+
+    private String buildDealerSelectionNote(DealerBuyerOffers.Entry pending, DealerSelection.Entry selected) {
+        List<String> parts = new ArrayList<>();
+        if (pending != null && pending.getFirstOffer() > 0) {
+            parts.add("Buyer first offer: RM " + String.format("%.0f", pending.getFirstOffer()));
+        }
+        if (pending != null && pending.getBuyerNote() != null && !pending.getBuyerNote().isBlank()) {
+            parts.add("Buyer note: " + pending.getBuyerNote());
+        }
+        if (selected.getDealerNote() != null && !selected.getDealerNote().isBlank()) {
+            parts.add("Dealer note: " + selected.getDealerNote());
+        }
+        return String.join(" | ", parts);
+    }
+
+    private void notifyMatchingBuyersForListing(CarListing listing) {
+        for (CarRequirement req : requirements.values()) {
+            if (matches(listing, req)) {
+                sendMatchesToBuyer(req);
+            }
+        }
+    }
+
+    private void sendMatchesToBuyer(CarRequirement req) {
+        if (req.getBuyerAID() == null || req.getBuyerAID().isBlank()) return;
+
+        List<CarListing> matched = listings.values().stream()
+                .map(listing -> {
+                    listing.setMatchScore(calculateMatchScore(listing, req));
+                    return listing;
+                })
+                .filter(listing -> listing.getMatchScore() > 0)
+                .sorted((l1, l2) -> {
+                    int cmp = Double.compare(l2.getMatchScore(), l1.getMatchScore());
+                    if (cmp == 0) {
+                        return Double.compare(l1.getRetailPrice(), l2.getRetailPrice());
+                    }
+                    return cmp;
+                })
+                .limit(10) // Only send top 10 matches
+                .toList();
+
+        MatchedListings payload = new MatchedListings(req, matched);
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(new AID(req.getBuyerAID(), true));
+        msg.setOntology(Ontology.TYPE_MATCHED_LISTINGS);
+        msg.setConversationId(Ontology.CONV_REGISTRATION);
+        msg.setContent(gson.toJson(payload));
+        send(msg);
+
+        log.send(req.getBuyerName(), Ontology.TYPE_MATCHED_LISTINGS,
+                matched.size() + " relevant listing(s) for requirement " + req.getRequirementId());
+    }
+
+    private boolean matches(CarListing listing, CarRequirement req) {
+        return calculateMatchScore(listing, req) >= 100.0;
+    }
+
+    private double calculateMatchScore(CarListing listing, CarRequirement req) {
+        double score = 0;
+
+        // 1. Mandatory Text Matches (Make and Model) - if specified, they MUST match or we return 0
+        if (req.getMake() != null && !req.getMake().isBlank()) {
+            if (!textMatches(req.getMake(), listing.getMake())) return 0;
+            score += 40; // High weight for correct make
+        } else {
+            score += 40; // If any make is okay, we give full make points
+        }
+
+        if (req.getModel() != null && !req.getModel().isBlank()) {
+            if (!textMatches(req.getModel(), listing.getModel())) return 0;
+            score += 30; // High weight for correct model
+        } else {
+            score += 30; // If any model is okay, we give full model points
+        }
+
+        // 2. Price Scoring (20 points)
+        if (req.getMaxPrice() > 0) {
+            if (listing.getRetailPrice() <= req.getMaxPrice()) {
+                score += 20;
+            } else {
+                // Partial credit for slightly over budget (up to 20% over)
+                double overflow = listing.getRetailPrice() / req.getMaxPrice();
+                if (overflow <= 1.2) {
+                    score += 20 * (1.0 - (overflow - 1.0) / 0.2);
+                }
+            }
+        } else {
+            score += 20;
+        }
+
+        // 3. Year Scoring (10 points)
+        if (req.getYearMin() > 0 || req.getYearMax() > 0) {
+            boolean inRange = true;
+            if (req.getYearMin() > 0 && listing.getYear() < req.getYearMin()) inRange = false;
+            if (req.getYearMax() > 0 && listing.getYear() > req.getYearMax()) inRange = false;
+
+            if (inRange) {
+                score += 10;
+            } else {
+                // Partial credit for near years (off by 1 or 2 years)
+                int diff = 0;
+                if (req.getYearMin() > 0 && listing.getYear() < req.getYearMin()) diff = req.getYearMin() - listing.getYear();
+                if (req.getYearMax() > 0 && listing.getYear() > req.getYearMax()) diff = listing.getYear() - req.getYearMax();
+                
+                if (diff <= 2) {
+                    score += 10 * (1.0 - (diff / 3.0));
+                }
+            }
+        } else {
+            score += 10;
+        }
+
+        // 4. Mileage and Condition (Bonus/Penalty)
+        if (req.getMaxMileage() > 0 && listing.getMileage() > req.getMaxMileage()) {
+            double overflow = (double) listing.getMileage() / req.getMaxMileage();
+            if (overflow > 1.5) score -= 10; // Significant penalty
+            else score -= 5;
+        }
+
+        String wantedCondition = req.getCondition();
+        if (wantedCondition != null && !wantedCondition.isBlank() && !"Any".equalsIgnoreCase(wantedCondition)) {
+            if (!wantedCondition.equalsIgnoreCase(nullToBlank(listing.getCondition()))) {
+                score -= 10; // Condition mismatch penalty
+            }
+        }
+
+        return Math.max(0, score);
+    }
+
+    private boolean textMatches(String wanted, String actual) {
+        if (wanted == null || wanted.isBlank()) return true;
+        return actual != null && actual.toLowerCase(Locale.ROOT)
+                .contains(wanted.toLowerCase(Locale.ROOT));
+    }
+
+    private String nullToBlank(String value) {
+        return value == null ? "" : value;
     }
 
     public void onNegotiationMessage(NegotiationMessage msg) {
@@ -146,6 +403,7 @@ public class BrokerAgent extends Agent {
 
         log.event("DEAL COMPLETE  [" + finalMsg.getNegotiationId() + "]"
                 + "  Final price: RM " + String.format("%.0f", finalMsg.getPrice()));
+        chargeDealCommission(finalMsg);
         if (gui != null) SwingUtilities.invokeLater(() -> gui.onDealComplete(finalMsg));
 
         // Generate HTML report
@@ -180,7 +438,7 @@ public class BrokerAgent extends Agent {
             double currentBuyerOffer = 0;
             String currentReasoning = "";
             
-            for (NegiationMessage msg : msgs) {
+            for (NegotiationMessage msg : msgs) {
                 if (msg.getType() == NegotiationMessage.Type.OFFER) {
                     // Update current round with the new offer
                     if (msg.getFromName().equals(assignment.getDealerName())) {
@@ -243,6 +501,7 @@ public class BrokerAgent extends Agent {
 
         assignments.put(a.getNegotiationId(), a);
         history.put(a.getNegotiationId(), new ArrayList<>());
+        chargeNegotiationFee(a);
 
         log.event("Assignment created  [" + a.getNegotiationId() + "]"
                 + "  Dealer: " + a.getDealerName()
@@ -270,6 +529,35 @@ public class BrokerAgent extends Agent {
                 "Dealer: " + a.getDealerName() + "  Listing: " + listing.getListingId());
 
         if (gui != null) SwingUtilities.invokeLater(() -> gui.refreshAssignments(getAssignments()));
+    }
+
+    private void chargeNegotiationFee(Assignment assignment) {
+        if (assignment == null || assignment.getNegotiationId() == null) return;
+
+        String negotiationId = assignment.getNegotiationId();
+        if (!feeChargedNegotiations.add(negotiationId)) return;
+
+        double fee = fixedNegotiationFee;
+        negotiationFees.put(negotiationId, fee);
+        log.event("BROKER FEE  [" + negotiationId + "]"
+                + "  Fixed negotiation fee: RM " + String.format("%.2f", fee));
+
+        if (gui != null) SwingUtilities.invokeLater(gui::refreshAccounting);
+    }
+
+    private void chargeDealCommission(NegotiationMessage finalMsg) {
+        if (finalMsg == null || finalMsg.getNegotiationId() == null) return;
+
+        String negotiationId = finalMsg.getNegotiationId();
+        if (!commissionChargedDeals.add(negotiationId)) return;
+
+        double commission = Math.max(0, finalMsg.getPrice()) * commissionRate;
+        dealCommissions.put(negotiationId, commission);
+        log.event("BROKER COMMISSION  [" + negotiationId + "]"
+                + "  Commission: RM " + String.format("%.2f", commission)
+                + " (" + String.format("%.2f", commissionRate * 100) + "%)");
+
+        if (gui != null) SwingUtilities.invokeLater(gui::refreshAccounting);
     }
 
     public void routeNegotiationMessage(NegotiationMessage msg, String recipientAID) {
@@ -335,7 +623,7 @@ public class BrokerAgent extends Agent {
      * ACL message flowing between agents.  Drag agents into the sniff area.
      */
     public void launchSniffer() {
-        launchTool("sniffer-" + System.currentTimeMillis(), "jade.tools.Sniffer.Sniffer");
+        launchTool("sniffer-" + System.currentTimeMillis(), "jade.tools.sniffer.Sniffer");
     }
 
     /**
@@ -365,6 +653,7 @@ public class BrokerAgent extends Agent {
 
     public Collection<CarListing>      getListings()      { return Collections.unmodifiableCollection(listings.values()); }
     public Collection<CarRequirement>  getRequirements()  { return Collections.unmodifiableCollection(requirements.values()); }
+    public Collection<BuyerShortlist>  getShortlists()    { return Collections.unmodifiableCollection(shortlists.values()); }
     public Collection<Assignment>      getAssignments()   { return Collections.unmodifiableCollection(assignments.values()); }
     public Map<String, Assignment>     getAssignmentsMap() { return assignments; }
     public List<NegotiationMessage>    getHistory(String id) {
@@ -374,4 +663,54 @@ public class BrokerAgent extends Agent {
         return Collections.unmodifiableCollection(completedDeals.values());
     }
     public CarListing getListing(String id) { return listings.get(id); }
+
+    public double getFixedNegotiationFee() {
+        return fixedNegotiationFee;
+    }
+
+    public void setFixedNegotiationFee(double fixedNegotiationFee) {
+        if (Double.isNaN(fixedNegotiationFee) || fixedNegotiationFee < 0) {
+            throw new IllegalArgumentException("Fixed negotiation fee must be zero or greater.");
+        }
+        this.fixedNegotiationFee = fixedNegotiationFee;
+    }
+
+    public double getCommissionRate() {
+        return commissionRate;
+    }
+
+    public void setCommissionRate(double commissionRate) {
+        if (Double.isNaN(commissionRate) || commissionRate < 0) {
+            throw new IllegalArgumentException("Commission rate must be zero or greater.");
+        }
+        this.commissionRate = commissionRate;
+    }
+
+    public double getNegotiationFee(String negotiationId) {
+        return negotiationFees.getOrDefault(negotiationId, 0.0);
+    }
+
+    public double getDealCommission(String negotiationId) {
+        return dealCommissions.getOrDefault(negotiationId, 0.0);
+    }
+
+    public double getNegotiationFeeTotal() {
+        return negotiationFees.values().stream().mapToDouble(Double::doubleValue).sum();
+    }
+
+    public double getCommissionTotal() {
+        return dealCommissions.values().stream().mapToDouble(Double::doubleValue).sum();
+    }
+
+    public double getBrokerRevenueTotal() {
+        return getNegotiationFeeTotal() + getCommissionTotal();
+    }
+
+    public int getNegotiationFeeCount() {
+        return negotiationFees.size();
+    }
+
+    public int getCommissionCount() {
+        return dealCommissions.size();
+    }
 }

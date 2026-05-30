@@ -1,0 +1,80 @@
+[Dealer:NissanDealer] [2026-05-11 16:17:26] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:17:26] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\NissanDealer_config.json — 6 listings
+[Dealer:NissanDealer] [2026-05-11 16:17:26] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:NissanDealer] [2026-05-11 16:17:26] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:NissanDealer] [2026-05-11 16:17:27] [INFO] Dealer Agent 'NissanDealer' started. AID: NissanDealer@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:17:27] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [F1EF21FB]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [48589142]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [E805E1D4]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [FD921513]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [3034E104]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [416CA084]
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [INFO] All listings submitted from config.
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F1EF21FB confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 48589142 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing E805E1D4 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing FD921513 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 3034E104 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:17:28] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 416CA084 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:19:30] [INFO] Dealer 'NissanDealer' shutting down.
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] Dealer Agent 'NissanDealer' started. AID: NissanDealer@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\NissanDealer_config.json — 6 listings
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:NissanDealer] [2026-05-11 16:33:41] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [785B180D]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [A7386B87]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [F0AA2A2A]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [FD3A31EB]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [DEC7277B]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [9CF330A9]
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [INFO] All listings submitted from config.
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 785B180D confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing A7386B87 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F0AA2A2A confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing FD3A31EB confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DEC7277B confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:42] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 9CF330A9 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:33:48] [INFO] Dealer 'NissanDealer' shutting down.
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] Broker found in DF: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] Dealer Agent 'NissanDealer' started. AID: NissanDealer@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] Connected to Broker: broker@172.17.75.103:1099/JADE
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\NissanDealer_config.json — 6 listings
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:NissanDealer] [2026-05-11 16:41:56] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [1B5E8F57]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [D0F5DAE2]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [35370CBE]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [3F379445]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [1363B50E]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [B8B4E8EB]
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [INFO] All listings submitted from config.
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1B5E8F57 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing D0F5DAE2 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 35370CBE confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 3F379445 confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 1363B50E confirmed stored
+[Dealer:NissanDealer] [2026-05-11 16:41:57] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing B8B4E8EB confirmed stored
+[Dealer:NissanDealer] [2026-05-11 17:01:39] [INFO] Dealer 'NissanDealer' shutting down.
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] Dealer Agent 'NissanDealer' started. AID: NissanDealer@172.16.0.119:1099/JADE
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\NissanDealer_config.json — 6 listings
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:NissanDealer] [2026-05-22 02:23:06] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:NissanDealer] [2026-05-22 02:23:07] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [0578DE25]
+[Dealer:NissanDealer] [2026-05-22 02:23:07] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [D208B35C]
+[Dealer:NissanDealer] [2026-05-22 02:23:07] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [3BFA45B5]
+[Dealer:NissanDealer] [2026-05-22 02:23:07] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [40D589BD]
+[Dealer:NissanDealer] [2026-05-22 02:23:07] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [CA082216]
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [15A41786]
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [INFO] All listings submitted from config.
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 0578DE25 confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing D208B35C confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 3BFA45B5 confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 40D589BD confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing CA082216 confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:23:08] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 15A41786 confirmed stored
+[Dealer:NissanDealer] [2026-05-22 02:40:53] [INFO] Dealer 'NissanDealer' shutting down.

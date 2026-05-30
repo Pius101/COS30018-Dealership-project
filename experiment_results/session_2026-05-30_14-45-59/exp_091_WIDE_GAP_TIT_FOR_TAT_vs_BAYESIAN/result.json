@@ -1,0 +1,90 @@
+{
+  "case": 91,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "scenarioSeed": 5217400152596663891,
+  "caseSeed": 211162831606865611,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIT_FOR_TAT",
+  "dealerStrategy": "BAYESIAN",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 3,
+  "messageCount": 7,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 60800.0,
+  "buyerReservationPrice": 82400.0,
+  "dealerReservationPrice": 67200.0,
+  "finalPrice": 80000.0,
+  "savingFromAsk": 0.0,
+  "savingPct": 0.0,
+  "baselineOutcome": "BUY_AT_ASKING",
+  "baselinePrice": 80000.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 80000.0,
+  "lastDealerOffer": 80000.0,
+  "buyerUtility": 0.1111111111111111,
+  "dealerUtility": 1.0,
+  "jointUtility": 1.1111111111111112,
+  "agreementSurplus": 15200.0,
+  "buyerSurplus": 2400.0,
+  "dealerProfit": 12800.0,
+  "buyerDistanceFromReservation": 2400.0,
+  "dealerDistanceFromReservation": 12800.0,
+  "buyerConcessionPct": 88.88888888888889,
+  "dealerConcessionPct": 0.0,
+  "benefitSide": "DEALER",
+  "finalReason": "Round 3/10 | OpponentConcession\u003d0.0% | opponentStuck\u003dtrue | lastRound\u003dfalse → ACCEPT",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 60800.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 61200.0,
+      "reasoning": "Round 1/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61200"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-400 (0.0%) | EstimatedFloor≈RM61600 | Offers seen\u003d2 → OFFER RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 61600.0,
+      "reasoning": "Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61600"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 3/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-400 (0.0%) | EstimatedFloor≈RM62000 | Offers seen\u003d3 → OFFER RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 80000.0,
+      "reasoning": "Round 3/10 | OpponentConcession\u003d0.0% | opponentStuck\u003dtrue | lastRound\u003dfalse → ACCEPT"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\HondaDealer.log
+[Launcher] Creating sellers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:23:00 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:23:00 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51778
+
+May 22, 2026 2:23:00 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:23:00 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:23:00 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:23:00 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:23:00 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:23:00 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container sellers-market-2@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Sellers container 'sellers-market' created at 172.16.0.119
+[Launcher] Dealer agent 'HondaDealer' joined sellers container at 172.16.0.119
+[Launcher] DEALER 'HondaDealer' running. Press Ctrl+C to stop.
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] Dealer Agent 'HondaDealer' started. AID: HondaDealer@172.16.0.119:1099/JADE
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\HondaDealer_config.json — 19 listings
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] [AUTO-DEALER] Auto mode ENABLED | Strategy: TIME_DEPENDENT_BOULWARE | Margin: 10%
+[Dealer:HondaDealer] [2026-05-22 02:23:00] [INFO] [AUTO-DEALER] Auto mode armed: strategy=TIME_DEPENDENT_BOULWARE margin=10%
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Honda City  RM 59000  [F97D6E7B]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Honda City  RM 68000  [254DC56A]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Honda City  RM 80000  [F0F154D6]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Honda City  RM 86000  [21F75AC9]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Honda City  RM 95000  [38AD43FA]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Honda City  RM 98000  [55595260]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2017 Honda Civic  RM 71000  [7556E0E2]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Honda Civic  RM 84000  [457B6FDD]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Honda Civic  RM 97000  [C55AA012]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Honda Civic  RM 115000  [325911A2]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Honda Civic  RM 121000  [805E7781]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Honda Civic  RM 131000  [192AE4FF]
+[Dealer:HondaDealer] [2026-05-22 02:23:01] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Honda Civic  RM 147000  [EB5CC2A9]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2018 Honda HR-V  RM 88000  [DBA94ECD]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2019 Honda HR-V  RM 96000  [DE34B142]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2020 Honda HR-V  RM 109000  [41632614]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2021 Honda HR-V  RM 128000  [F5CEF85A]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2022 Honda HR-V  RM 131000  [FA7D7D05]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] to Broker       [LISTING_REGISTER            ] 2023 Honda HR-V  RM 144000  [32C09FB4]
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [INFO] All listings submitted from config.
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F97D6E7B confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 254DC56A confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F0F154D6 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 21F75AC9 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 38AD43FA confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 55595260 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 7556E0E2 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 457B6FDD confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing C55AA012 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 325911A2 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 805E7781 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 192AE4FF confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing EB5CC2A9 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DBA94ECD confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing DE34B142 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 41632614 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing F5CEF85A confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing FA7D7D05 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:23:02] [MESSAGE] from Broker     [LISTING_ACK                 ] Listing 32C09FB4 confirmed stored
+[Dealer:HondaDealer] [2026-05-22 02:40:53] [INFO] Dealer 'HondaDealer' shutting down.

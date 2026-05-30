@@ -1,0 +1,36 @@
+EXPERIMENT 61
+================
+Scenario: TIGHT_GAP
+Repeat: 1 | Scenario seed: 5217400137194736569 | Case seed: 206104237330274686 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: BAYESIAN (Bayesian Learner)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 72800 | Rounds: 10
+Utility: buyer=0.00 dealer=0.18 joint=0.18 | Benefit side: DEALER
+Surplus: agreement=RM 1600 buyer=- dealer=RM 1600
+Baseline: NO_DEAL at - | Negotiation gain vs baseline: -
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM80000
+Round 2 | BUYER | OFFER | RM 63600 | Round 1/10 | +2.0% increment | Offer RM62400 → RM63600 | RV ceiling: RM72800
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1200 (0.0%) | EstimatedFloor≈RM64800 | Offers seen=2 → OFFER RM80000
+Round 3 | BUYER | OFFER | RM 64900 | Round 2/10 | +2.0% increment | Offer RM63600 → RM64900 | RV ceiling: RM72800
+Round 3 | DEALER | OFFER | RM 80000 | Round 3/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1250 (0.0%) | EstimatedFloor≈RM66150 | Offers seen=3 → OFFER RM80000
+Round 4 | BUYER | OFFER | RM 66200 | Round 3/10 | +2.0% increment | Offer RM64900 → RM66200 | RV ceiling: RM72800
+Round 4 | DEALER | OFFER | RM 80000 | Round 4/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1267 (0.0%) | EstimatedFloor≈RM67467 | Offers seen=4 → OFFER RM80000
+Round 5 | BUYER | OFFER | RM 67500 | Round 4/10 | +2.0% increment | Offer RM66200 → RM67500 | RV ceiling: RM72800
+Round 5 | DEALER | OFFER | RM 80000 | Round 5/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1275 (0.0%) | EstimatedFloor≈RM68775 | Offers seen=5 → OFFER RM80000
+Round 6 | BUYER | OFFER | RM 68900 | Round 5/10 | +2.0% increment | Offer RM67500 → RM68900 | RV ceiling: RM72800
+Round 6 | DEALER | OFFER | RM 80000 | Round 6/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1300 (0.0%) | EstimatedFloor≈RM70200 | Offers seen=6 → OFFER RM80000
+Round 7 | BUYER | OFFER | RM 70300 | Round 6/10 | +2.0% increment | Offer RM68900 → RM70300 | RV ceiling: RM72800
+Round 7 | DEALER | OFFER | RM 80000 | Round 7/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1317 (0.0%) | EstimatedFloor≈RM71617 | Offers seen=7 → OFFER RM80000
+Round 8 | BUYER | OFFER | RM 71700 | Round 7/10 | +2.0% increment | Offer RM70300 → RM71700 | RV ceiling: RM72800
+Round 8 | DEALER | OFFER | RM 80000 | Round 8/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1329 (0.0%) | EstimatedFloor≈RM73029 | Offers seen=8 → OFFER RM80000
+Round 9 | BUYER | OFFER | RM 72800 | Round 8/10 | +2.0% increment | Offer RM71700 → RM72800 | RV ceiling: RM72800
+Round 9 | DEALER | OFFER | RM 80000 | Round 9/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM-1300 (0.0%) | EstimatedFloor≈RM74100 | Offers seen=9 → OFFER RM80000
+Round 10 | BUYER | OFFER | RM 72800 | Round 9/10 | +2.0% increment | Offer RM72800 → RM72800 | RV ceiling: RM72800
+Round 10 | DEALER | ACCEPT | RM 72800 | REJECT: Offer RM 72800 exceeds reservation price RM 71200
+
+Final note: REJECT: Offer RM 72800 exceeds reservation price RM 71200

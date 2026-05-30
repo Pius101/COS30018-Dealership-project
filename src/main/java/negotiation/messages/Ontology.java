@@ -49,6 +49,18 @@ public final class Ontology {
         
         /** Broker → Buyer: "Got your requirements, stored them" */
         public static final String REQUIREMENTS_ACK   = "REQUIREMENTS_ACK";
+
+        /** Broker -> Buyer: "These listings match your requirements" */
+        public static final String MATCHED_LISTINGS   = "MATCHED_LISTINGS";
+
+        /** Buyer -> Broker: "I want to negotiate for these matched listings" */
+        public static final String BUYER_SHORTLIST    = "BUYER_SHORTLIST";
+
+        /** Broker -> Dealer: "These buyers shortlisted your listings" */
+        public static final String BUYER_OFFERS       = "BUYER_OFFERS";
+
+        /** Dealer -> Broker: "I choose these buyers to negotiate with" */
+        public static final String DEALER_SELECTION   = "DEALER_SELECTION";
         
         /**
          * ASSIGNMENT MESSAGES
@@ -83,6 +95,10 @@ public final class Ontology {
     public static final String TYPE_LISTING_ACK        = MESSAGE_TYPE.LISTING_ACK;
     public static final String TYPE_BUYER_REQUIREMENTS = MESSAGE_TYPE.BUYER_REQUIREMENTS;
     public static final String TYPE_REQUIREMENTS_ACK   = MESSAGE_TYPE.REQUIREMENTS_ACK;
+    public static final String TYPE_MATCHED_LISTINGS   = MESSAGE_TYPE.MATCHED_LISTINGS;
+    public static final String TYPE_BUYER_SHORTLIST    = MESSAGE_TYPE.BUYER_SHORTLIST;
+    public static final String TYPE_BUYER_OFFERS       = MESSAGE_TYPE.BUYER_OFFERS;
+    public static final String TYPE_DEALER_SELECTION   = MESSAGE_TYPE.DEALER_SELECTION;
     public static final String TYPE_ASSIGNMENT_NOTIFY  = MESSAGE_TYPE.ASSIGNMENT_NOTIFY;
     public static final String TYPE_NEG_OFFER          = MESSAGE_TYPE.NEG_OFFER;
     public static final String TYPE_NEG_ACCEPT         = MESSAGE_TYPE.NEG_ACCEPT;

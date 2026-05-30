@@ -38,9 +38,7 @@ build/
 ### Mac OS ###
 .DS_Store
 
-# All bat file
 
-*.bat
 
 # everything in target
 target/*

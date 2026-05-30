@@ -1,0 +1,1125 @@
+[Broker] [2026-05-11 16:17:10] [INFO] Broker Agent starting as broker@172.17.75.103:1099/JADE
+[Broker] [2026-05-11 16:17:10] [INFO] Registered in JADE DF as service type: car-negotiation-broker
+[Broker] [2026-05-11 16:17:11] [INFO] Platform ready — waiting for dealers and buyers.
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Axia  RM 26000  [ID: 7500930B]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 7500930B
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Axia  RM 29000  [ID: 0E456555]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 0E456555
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Axia  RM 33000  [ID: 04B546AF]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 04B546AF
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Axia  RM 33000  [ID: 59A104C5]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 59A104C5
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Axia  RM 36000  [ID: 4CEE2A44]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 4CEE2A44
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Axia  RM 41000  [ID: DA682964]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for DA682964
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Bezza  RM 33000  [ID: 7ABA5699]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 7ABA5699
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Bezza  RM 37000  [ID: 3ED2A96B]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 3ED2A96B
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Bezza  RM 37000  [ID: BF2840E7]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for BF2840E7
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Bezza  RM 43000  [ID: 2A4532F8]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 2A4532F8
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Bezza  RM 45000  [ID: F37A464E]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for F37A464E
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Bezza  RM 51000  [ID: B3CE3484]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for B3CE3484
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2017 Perodua Myvi  RM 35000  [ID: 5F9EBDBC]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 5F9EBDBC
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Myvi  RM 37000  [ID: 01344B5F]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 01344B5F
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Myvi  RM 44000  [ID: A8ED200D]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for A8ED200D
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Myvi  RM 45000  [ID: 3ABA9844]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 3ABA9844
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Myvi  RM 50000  [ID: 7F704234]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 7F704234
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Myvi  RM 51000  [ID: FC8A8EF4]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for FC8A8EF4
+[Broker] [2026-05-11 16:17:18] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Myvi  RM 57000  [ID: 13694612]
+[Broker] [2026-05-11 16:17:18] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 13694612
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Hilux  RM 106000  [ID: 5C278775]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 5C278775
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Hilux  RM 109000  [ID: 5170F7D1]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 5170F7D1
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Hilux  RM 119000  [ID: C59D5015]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for C59D5015
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Hilux  RM 137000  [ID: 0C90B315]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 0C90B315
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Hilux  RM 148000  [ID: E0524700]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for E0524700
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Hilux  RM 155000  [ID: CF854FA8]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for CF854FA8
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Vios  RM 52000  [ID: EFA38FB5]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for EFA38FB5
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Vios  RM 61000  [ID: F786E7BE]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for F786E7BE
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Vios  RM 70000  [ID: D6946BAB]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for D6946BAB
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Vios  RM 82000  [ID: A1A72686]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A1A72686
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Vios  RM 83000  [ID: BC59CAAC]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for BC59CAAC
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Vios  RM 94000  [ID: 7041BCD0]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 7041BCD0
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Vios  RM 97000  [ID: E4C0FB5E]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for E4C0FB5E
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Yaris  RM 56000  [ID: 10D03292]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 10D03292
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Yaris  RM 63000  [ID: BCB301E0]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for BCB301E0
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Yaris  RM 69000  [ID: 176F7B1B]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 176F7B1B
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Yaris  RM 79000  [ID: DC91D22A]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for DC91D22A
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Yaris  RM 82000  [ID: 05EA7C68]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 05EA7C68
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Yaris  RM 91000  [ID: 1065E179]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 1065E179
+[Broker] [2026-05-11 16:17:19] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Yaris  RM 99000  [ID: 8218B9E4]
+[Broker] [2026-05-11 16:17:19] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 8218B9E4
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda City  RM 59000  [ID: FC25AEB4]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for FC25AEB4
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda City  RM 68000  [ID: E980A2E6]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for E980A2E6
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda City  RM 80000  [ID: 8F3517EB]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 8F3517EB
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda City  RM 86000  [ID: 641E3073]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 641E3073
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda City  RM 95000  [ID: 6C82E63C]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 6C82E63C
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda City  RM 98000  [ID: 55F30439]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 55F30439
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2017 Honda Civic  RM 71000  [ID: C2361AF1]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for C2361AF1
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda Civic  RM 84000  [ID: 2685BB7C]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 2685BB7C
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda Civic  RM 97000  [ID: 7BFF66BE]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 7BFF66BE
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda Civic  RM 115000  [ID: AC4E668E]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for AC4E668E
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda Civic  RM 121000  [ID: 5A31AC2E]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 5A31AC2E
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda Civic  RM 131000  [ID: C1721115]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for C1721115
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda Civic  RM 147000  [ID: 2F1BE489]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 2F1BE489
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda HR-V  RM 88000  [ID: 3A845E47]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 3A845E47
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda HR-V  RM 96000  [ID: F38E3C97]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for F38E3C97
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda HR-V  RM 109000  [ID: 315FBCF2]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 315FBCF2
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda HR-V  RM 128000  [ID: E4882E23]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for E4882E23
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda HR-V  RM 131000  [ID: 51FD429D]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 51FD429D
+[Broker] [2026-05-11 16:17:21] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda HR-V  RM 144000  [ID: 789CE0F9]
+[Broker] [2026-05-11 16:17:21] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 789CE0F9
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Persona  RM 37000  [ID: 0FA6A3F1]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 0FA6A3F1
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Persona  RM 40000  [ID: F37D30AA]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for F37D30AA
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Persona  RM 51000  [ID: 754AE5CF]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 754AE5CF
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Persona  RM 50000  [ID: 08673939]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 08673939
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Persona  RM 59000  [ID: C86D7DCF]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for C86D7DCF
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Persona  RM 61000  [ID: 52FE618C]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 52FE618C
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2017 Proton Saga  RM 20000  [ID: C7193999]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for C7193999
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Saga  RM 25000  [ID: 55C4240D]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 55C4240D
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Saga  RM 32000  [ID: DDE9A651]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for DDE9A651
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Saga  RM 36000  [ID: E336129B]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for E336129B
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Saga  RM 36000  [ID: ED5D7EA5]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for ED5D7EA5
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Saga  RM 39000  [ID: 5455BDC5]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 5455BDC5
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Saga  RM 45000  [ID: 6C6BC058]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 6C6BC058
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton X50  RM 74000  [ID: B5392F42]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for B5392F42
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton X50  RM 88000  [ID: 2C2C98A0]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2C2C98A0
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton X50  RM 93000  [ID: D3E60E55]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for D3E60E55
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton X50  RM 99000  [ID: 53B6AD0E]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 53B6AD0E
+[Broker] [2026-05-11 16:17:23] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton X50  RM 105000  [ID: 43DDB08E]
+[Broker] [2026-05-11 16:17:23] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 43DDB08E
+[Broker] [2026-05-11 16:17:25] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [ID: B7D14D3F]
+[Broker] [2026-05-11 16:17:25] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B7D14D3F
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [ID: A0C2F3F4]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for A0C2F3F4
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [ID: 2A8FFE29]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 2A8FFE29
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [ID: B8A4B163]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B8A4B163
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [ID: 0A2DE81C]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 0A2DE81C
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [ID: C8781FED]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for C8781FED
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [ID: 880ECDC3]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 880ECDC3
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [ID: EAE9D3E6]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for EAE9D3E6
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [ID: DB3D2688]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for DB3D2688
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [ID: 762A572B]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 762A572B
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [ID: 010E3EC0]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 010E3EC0
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [ID: 2721E6BE]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 2721E6BE
+[Broker] [2026-05-11 16:17:26] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [ID: 36A5719E]
+[Broker] [2026-05-11 16:17:26] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 36A5719E
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [ID: F1EF21FB]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for F1EF21FB
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [ID: 48589142]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 48589142
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [ID: E805E1D4]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for E805E1D4
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [ID: FD921513]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for FD921513
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [ID: 3034E104]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 3034E104
+[Broker] [2026-05-11 16:17:28] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [ID: 416CA084]
+[Broker] [2026-05-11 16:17:28] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 416CA084
+[Broker] [2026-05-11 16:17:30] [MESSAGE] from Tan06      [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [ID: 21C747D7]
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing E4C0FB5E
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: E4C0FB5E
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: E4C0FB5E
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: E4C0FB5E
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing 7041BCD0
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7041BCD0-450533]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 7041BCD0
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 7041BCD0
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 7041BCD0
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing BC59CAAC
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-BC59CAAC-450551]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: BC59CAAC
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: BC59CAAC
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: BC59CAAC
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing 8218B9E4
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-8218B9E4-450563]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 8218B9E4
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 8218B9E4
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 8218B9E4
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing 05EA7C68
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-05EA7C68-450573]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 05EA7C68
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 05EA7C68
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 05EA7C68
+[Broker] [2026-05-11 16:17:30] [EVENT] AUTO MATCH  Buyer Tan06 [21C747D7] -> Listing 1065E179
+[Broker] [2026-05-11 16:17:30] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-1065E179-450582]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 1065E179
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 1065E179
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 1065E179
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to Tan06        [REQUIREMENTS_ACK            ] ACK for 21C747D7
+[Broker] [2026-05-11 16:17:30] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Broker] [2026-05-11 16:17:30] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from Tan06  RM 82000
+[Broker] [2026-05-11 16:17:31] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 97000
+[Broker] [2026-05-11 16:17:31] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from ToyotaDealer  RM 97000
+[Broker] [2026-05-11 16:17:31] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 96900
+[Broker] [2026-05-11 16:17:31] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from Tan06  RM 96900
+[Broker] [2026-05-11 16:17:32] [MESSAGE] from Raju86     [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [ID: 1343488D]
+[Broker] [2026-05-11 16:17:32] [MESSAGE] to Raju86       [REQUIREMENTS_ACK            ] ACK for 1343488D
+[Broker] [2026-05-11 16:17:32] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 97000
+[Broker] [2026-05-11 16:17:32] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from ToyotaDealer  RM 97000
+[Broker] [2026-05-11 16:17:32] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 96900
+[Broker] [2026-05-11 16:17:32] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from Tan06  RM 96900
+[Broker] [2026-05-11 16:17:34] [MESSAGE] from Priya17    [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [ID: 35995196]
+[Broker] [2026-05-11 16:17:34] [MESSAGE] to Priya17      [REQUIREMENTS_ACK            ] ACK for 35995196
+[Broker] [2026-05-11 16:17:34] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 96900
+[Broker] [2026-05-11 16:17:34] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from ToyotaDealer  RM 96900
+[Broker] [2026-05-11 16:17:34] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 96800
+[Broker] [2026-05-11 16:17:34] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.PROPOSE from Tan06  RM 96800
+[Broker] [2026-05-11 16:17:36] [MESSAGE] from Priya85    [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [ID: FAD5F980]
+[Broker] [2026-05-11 16:17:36] [MESSAGE] to Priya85      [REQUIREMENTS_ACK            ] ACK for FAD5F980
+[Broker] [2026-05-11 16:17:36] [EVENT] LISTING REMOVED  [E4C0FB5E]  Car: Toyota Vios  Sold to: Tan06  Price: RM 96800
+[Broker] [2026-05-11 16:17:36] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517]  Final price: RM 96800
+[Broker] [2026-05-11 16:17:36] [INFO] Conversation saved: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517
+[Broker] [2026-05-11 16:17:36] [MESSAGE] to ToyotaDealer [DEAL_COMPLETE               ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.INFORM Final price: RM 96800
+[Broker] [2026-05-11 16:17:36] [MESSAGE] to Tan06        [DEAL_COMPLETE               ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517] ACL.INFORM Final price: RM 96800
+[Broker] [2026-05-11 16:17:38] [MESSAGE] from Wei88      [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [ID: D5E65629]
+[Broker] [2026-05-11 16:17:38] [MESSAGE] to Wei88        [REQUIREMENTS_ACK            ] ACK for D5E65629
+[Broker] [2026-05-11 16:18:22] [INFO] Launched JADE tool: jade.tools.rma.rma
+[Broker] [2026-05-11 16:18:56] [ERROR] Failed to launch jade.tools.Sniffer.Sniffer
+jade.wrapper.StaleProxyException: Class jade.tools.Sniffer.Sniffer for agent ( agent-identifier :name sniffer-1778487536053@172.17.75.103:1099/JADE ) not found - Caused by:  jade.tools.Sniffer.Sniffer
+	at jade.wrapper.ContainerController.createNewAgent(ContainerController.java:140)
+	at negotiation.agents.BrokerAgent.launchTool(BrokerAgent.java:522)
+	at negotiation.agents.BrokerAgent.launchSniffer(BrokerAgent.java:506)
+	at negotiation.gui.BrokerGui.lambda$buildUI$1(BrokerGui.java:168)
+	at negotiation.gui.BrokerGui.lambda$makeToolBtn$0(BrokerGui.java:218)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:299)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6576)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3404)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6341)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2260)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4958)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2318)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4917)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4560)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4501)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2304)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2671)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:725)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:702)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[Broker] [2026-05-11 16:19:03] [INFO] Launched JADE tool: jade.tools.DummyAgent.DummyAgent
+[Broker] [2026-05-11 16:19:06] [ERROR] Failed to launch jade.tools.Sniffer.Sniffer
+jade.wrapper.StaleProxyException: Class jade.tools.Sniffer.Sniffer for agent ( agent-identifier :name sniffer-1778487546491@172.17.75.103:1099/JADE ) not found - Caused by:  jade.tools.Sniffer.Sniffer
+	at jade.wrapper.ContainerController.createNewAgent(ContainerController.java:140)
+	at negotiation.agents.BrokerAgent.launchTool(BrokerAgent.java:522)
+	at negotiation.agents.BrokerAgent.launchSniffer(BrokerAgent.java:506)
+	at negotiation.gui.BrokerGui.lambda$buildUI$1(BrokerGui.java:168)
+	at negotiation.gui.BrokerGui.lambda$makeToolBtn$0(BrokerGui.java:218)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:299)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6576)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3404)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6341)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2260)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4958)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2318)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4917)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4560)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4501)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2304)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2671)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:725)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:702)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[Broker] [2026-05-11 16:19:07] [ERROR] Failed to launch jade.tools.Sniffer.Sniffer
+jade.wrapper.StaleProxyException: Class jade.tools.Sniffer.Sniffer for agent ( agent-identifier :name sniffer-1778487547135@172.17.75.103:1099/JADE ) not found - Caused by:  jade.tools.Sniffer.Sniffer
+	at jade.wrapper.ContainerController.createNewAgent(ContainerController.java:140)
+	at negotiation.agents.BrokerAgent.launchTool(BrokerAgent.java:522)
+	at negotiation.agents.BrokerAgent.launchSniffer(BrokerAgent.java:506)
+	at negotiation.gui.BrokerGui.lambda$buildUI$1(BrokerGui.java:168)
+	at negotiation.gui.BrokerGui.lambda$makeToolBtn$0(BrokerGui.java:218)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:299)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6576)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3404)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6341)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2260)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4958)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2318)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4917)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4560)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4501)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2304)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2671)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4790)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:725)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:702)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency save request from ToyotaDealer
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7041BCD0-450533
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-1065E179-450582
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-8218B9E4-450563
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-05EA7C68-450573
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-BC59CAAC-450551
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency save request from Tan06
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7041BCD0-450533
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E4C0FB5E-450517
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-1065E179-450582
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-8218B9E4-450563
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-05EA7C68-450573
+[Broker] [2026-05-11 16:19:30] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-BC59CAAC-450551
+[Broker] [2026-05-11 16:19:30] [INFO] Broker shut down.
+[Broker] [2026-05-11 16:33:25] [INFO] Broker Agent starting as broker@172.17.75.103:1099/JADE
+[Broker] [2026-05-11 16:33:25] [INFO] Registered in JADE DF as service type: car-negotiation-broker
+[Broker] [2026-05-11 16:33:25] [INFO] Platform ready in headless mode - waiting for dealers and buyers.
+[Broker] [2026-05-11 16:33:32] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Axia  RM 26000  [ID: B50F3EE0]
+[Broker] [2026-05-11 16:33:32] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for B50F3EE0
+[Broker] [2026-05-11 16:33:32] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Axia  RM 29000  [ID: 91575DED]
+[Broker] [2026-05-11 16:33:32] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 91575DED
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Axia  RM 33000  [ID: 660E3DEE]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 660E3DEE
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Axia  RM 33000  [ID: 477AC2EC]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 477AC2EC
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Axia  RM 36000  [ID: 0FB42A61]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 0FB42A61
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Axia  RM 41000  [ID: C677CC0E]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for C677CC0E
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Bezza  RM 33000  [ID: C1DAF258]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for C1DAF258
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Bezza  RM 37000  [ID: 19F09925]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 19F09925
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Bezza  RM 37000  [ID: 231207F4]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 231207F4
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Bezza  RM 43000  [ID: 62E09670]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 62E09670
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Bezza  RM 45000  [ID: 94D38F1F]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 94D38F1F
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Bezza  RM 51000  [ID: 71E7338C]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 71E7338C
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2017 Perodua Myvi  RM 35000  [ID: 72754D86]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 72754D86
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Myvi  RM 37000  [ID: 72B4D758]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 72B4D758
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Myvi  RM 44000  [ID: 04B9B88F]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 04B9B88F
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Myvi  RM 45000  [ID: 79A4A96F]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 79A4A96F
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Myvi  RM 50000  [ID: FFA86997]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for FFA86997
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Myvi  RM 51000  [ID: B8814DE4]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for B8814DE4
+[Broker] [2026-05-11 16:33:33] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Myvi  RM 57000  [ID: EC6C7328]
+[Broker] [2026-05-11 16:33:33] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for EC6C7328
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Hilux  RM 106000  [ID: 2FC53894]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 2FC53894
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Hilux  RM 109000  [ID: 6DBA8C98]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 6DBA8C98
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Hilux  RM 119000  [ID: 9E0F3438]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 9E0F3438
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Hilux  RM 137000  [ID: 71521EAE]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 71521EAE
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Hilux  RM 148000  [ID: 364DF6EF]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 364DF6EF
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Hilux  RM 155000  [ID: 23B4A002]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 23B4A002
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Vios  RM 52000  [ID: 0AA62ECD]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 0AA62ECD
+[Broker] [2026-05-11 16:33:34] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Vios  RM 61000  [ID: 84303E0E]
+[Broker] [2026-05-11 16:33:34] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 84303E0E
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Vios  RM 70000  [ID: 59004EBD]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 59004EBD
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Vios  RM 82000  [ID: 9ABEE447]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 9ABEE447
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Vios  RM 83000  [ID: 2D219447]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 2D219447
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Vios  RM 94000  [ID: B5903AE6]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for B5903AE6
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Vios  RM 97000  [ID: B0283DD1]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for B0283DD1
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Yaris  RM 56000  [ID: 56D4E7CB]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 56D4E7CB
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Yaris  RM 63000  [ID: A7B5157F]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A7B5157F
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Yaris  RM 69000  [ID: 7404863B]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 7404863B
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Yaris  RM 79000  [ID: D140F79E]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for D140F79E
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Yaris  RM 82000  [ID: 9683B0E1]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 9683B0E1
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Yaris  RM 91000  [ID: 3E95CC0D]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 3E95CC0D
+[Broker] [2026-05-11 16:33:35] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Yaris  RM 99000  [ID: 72FA63E6]
+[Broker] [2026-05-11 16:33:35] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 72FA63E6
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda City  RM 59000  [ID: F4757D00]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for F4757D00
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda City  RM 68000  [ID: 4D3749FF]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 4D3749FF
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda City  RM 80000  [ID: D956D3D2]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for D956D3D2
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda City  RM 86000  [ID: 22C8B802]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 22C8B802
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda City  RM 95000  [ID: 87804FA4]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 87804FA4
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda City  RM 98000  [ID: 27DA954C]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 27DA954C
+[Broker] [2026-05-11 16:33:36] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2017 Honda Civic  RM 71000  [ID: 127F1363]
+[Broker] [2026-05-11 16:33:36] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 127F1363
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda Civic  RM 84000  [ID: 3F819AA6]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 3F819AA6
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda Civic  RM 97000  [ID: 7237F8DD]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 7237F8DD
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda Civic  RM 115000  [ID: 158C31CC]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 158C31CC
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda Civic  RM 121000  [ID: 3A0940E0]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 3A0940E0
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda Civic  RM 131000  [ID: 8BCD372B]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 8BCD372B
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda Civic  RM 147000  [ID: DB5A4C5C]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for DB5A4C5C
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda HR-V  RM 88000  [ID: 715F13A2]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 715F13A2
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda HR-V  RM 96000  [ID: 00E568D5]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 00E568D5
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda HR-V  RM 109000  [ID: 87013F2B]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 87013F2B
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda HR-V  RM 128000  [ID: 28E84BC6]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 28E84BC6
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda HR-V  RM 131000  [ID: FD6E613A]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for FD6E613A
+[Broker] [2026-05-11 16:33:37] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda HR-V  RM 144000  [ID: 4DEEE9BC]
+[Broker] [2026-05-11 16:33:37] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 4DEEE9BC
+[Broker] [2026-05-11 16:33:38] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Persona  RM 37000  [ID: EE03C454]
+[Broker] [2026-05-11 16:33:38] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for EE03C454
+[Broker] [2026-05-11 16:33:38] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Persona  RM 40000  [ID: 45A4987D]
+[Broker] [2026-05-11 16:33:38] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 45A4987D
+[Broker] [2026-05-11 16:33:38] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Persona  RM 51000  [ID: EE4D8624]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for EE4D8624
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Persona  RM 50000  [ID: 552A6323]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 552A6323
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Persona  RM 59000  [ID: AE802D03]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for AE802D03
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Persona  RM 61000  [ID: F4DC20CA]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for F4DC20CA
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2017 Proton Saga  RM 20000  [ID: A6BD50D9]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for A6BD50D9
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Saga  RM 25000  [ID: E0AFC1A8]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for E0AFC1A8
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Saga  RM 32000  [ID: 03714254]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 03714254
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Saga  RM 36000  [ID: 180A462F]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 180A462F
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Saga  RM 36000  [ID: A6FFF8F8]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for A6FFF8F8
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Saga  RM 39000  [ID: 59B0B6A5]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 59B0B6A5
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Saga  RM 45000  [ID: 38914B54]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 38914B54
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton X50  RM 74000  [ID: 8F765E1D]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 8F765E1D
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton X50  RM 88000  [ID: F376BFC0]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for F376BFC0
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton X50  RM 93000  [ID: 189ACFEC]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 189ACFEC
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton X50  RM 99000  [ID: C92ACEF2]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for C92ACEF2
+[Broker] [2026-05-11 16:33:39] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton X50  RM 105000  [ID: B7EEC6C9]
+[Broker] [2026-05-11 16:33:39] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for B7EEC6C9
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [ID: 1AAD2387]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 1AAD2387
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [ID: B1DFB7AB]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B1DFB7AB
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [ID: 957A71EF]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 957A71EF
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [ID: 39721222]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 39721222
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [ID: 52A65D13]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 52A65D13
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [ID: 98294653]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 98294653
+[Broker] [2026-05-11 16:33:40] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [ID: 086235C4]
+[Broker] [2026-05-11 16:33:40] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 086235C4
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [ID: 45FCE7F9]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 45FCE7F9
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [ID: 3AC354AE]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 3AC354AE
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [ID: 0AE1B3D4]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 0AE1B3D4
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [ID: 8D5DB78D]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 8D5DB78D
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [ID: 24DE1F82]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 24DE1F82
+[Broker] [2026-05-11 16:33:41] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [ID: 8BC70B1D]
+[Broker] [2026-05-11 16:33:41] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 8BC70B1D
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [ID: 785B180D]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 785B180D
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [ID: A7386B87]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for A7386B87
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [ID: F0AA2A2A]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for F0AA2A2A
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [ID: FD3A31EB]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for FD3A31EB
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [ID: DEC7277B]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for DEC7277B
+[Broker] [2026-05-11 16:33:42] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [ID: 9CF330A9]
+[Broker] [2026-05-11 16:33:42] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 9CF330A9
+[Broker] [2026-05-11 16:33:45] [MESSAGE] from Tan06      [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [ID: 1F228FDD]
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing 72FA63E6
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 72FA63E6
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 72FA63E6
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 72FA63E6
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing 9683B0E1
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-9683B0E1-425494]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 9683B0E1
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 9683B0E1
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 9683B0E1
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing B0283DD1
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B0283DD1-425498]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: B0283DD1
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: B0283DD1
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: B0283DD1
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing 2D219447
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-2D219447-425503]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 2D219447
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 2D219447
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 2D219447
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing B5903AE6
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B5903AE6-425508]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: B5903AE6
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: B5903AE6
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: B5903AE6
+[Broker] [2026-05-11 16:33:45] [EVENT] AUTO MATCH  Buyer Tan06 [1F228FDD] -> Listing 3E95CC0D
+[Broker] [2026-05-11 16:33:45] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-3E95CC0D-425511]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 3E95CC0D
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 3E95CC0D
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 3E95CC0D
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [REQUIREMENTS_ACK            ] ACK for 1F228FDD
+[Broker] [2026-05-11 16:33:45] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE from Tan06  RM 82000
+[Broker] [2026-05-11 16:33:45] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 99000
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE from ToyotaDealer  RM 99000
+[Broker] [2026-05-11 16:33:45] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 97200
+[Broker] [2026-05-11 16:33:45] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE from Tan06  RM 97200
+[Broker] [2026-05-11 16:33:47] [MESSAGE] from Raju86     [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [ID: E1E66707]
+[Broker] [2026-05-11 16:33:47] [MESSAGE] to Raju86       [REQUIREMENTS_ACK            ] ACK for E1E66707
+[Broker] [2026-05-11 16:33:47] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 99000
+[Broker] [2026-05-11 16:33:47] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE from ToyotaDealer  RM 99000
+[Broker] [2026-05-11 16:33:47] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 98800
+[Broker] [2026-05-11 16:33:47] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485] ACL.PROPOSE from Tan06  RM 98800
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency save request from ToyotaDealer
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-9683B0E1-425494
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B5903AE6-425508
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-3E95CC0D-425511
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B0283DD1-425498
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-2D219447-425503
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency save request from Tan06
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-9683B0E1-425494
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B5903AE6-425508
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-3E95CC0D-425511
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-B0283DD1-425498
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-72FA63E6-425485
+[Broker] [2026-05-11 16:33:48] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-2D219447-425503
+[Broker] [2026-05-11 16:33:48] [INFO] Broker shut down.
+[Broker] [2026-05-11 16:41:40] [INFO] Broker Agent starting as broker@172.17.75.103:1099/JADE
+[Broker] [2026-05-11 16:41:40] [INFO] Registered in JADE DF as service type: car-negotiation-broker
+[Broker] [2026-05-11 16:41:40] [INFO] Platform ready in headless mode - waiting for dealers and buyers.
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Axia  RM 26000  [ID: 729A4345]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 729A4345
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Axia  RM 29000  [ID: 89044EF7]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 89044EF7
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Axia  RM 33000  [ID: 8F869A17]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 8F869A17
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Axia  RM 33000  [ID: 75422F0E]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 75422F0E
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Axia  RM 36000  [ID: CF80E604]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for CF80E604
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Axia  RM 41000  [ID: B9C7D13D]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for B9C7D13D
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Bezza  RM 33000  [ID: 9836DF49]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 9836DF49
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Bezza  RM 37000  [ID: 84D31FB8]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 84D31FB8
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Bezza  RM 37000  [ID: BC1D2419]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for BC1D2419
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Bezza  RM 43000  [ID: 265B8D04]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 265B8D04
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Bezza  RM 45000  [ID: 6BC88A02]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 6BC88A02
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Bezza  RM 51000  [ID: F03985B2]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for F03985B2
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2017 Perodua Myvi  RM 35000  [ID: 706B173D]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 706B173D
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Myvi  RM 37000  [ID: CC3BE25B]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for CC3BE25B
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Myvi  RM 44000  [ID: 3B81CB2E]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 3B81CB2E
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Myvi  RM 45000  [ID: 85170D1B]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 85170D1B
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Myvi  RM 50000  [ID: 4E8754B6]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 4E8754B6
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Myvi  RM 51000  [ID: 45CD26FF]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 45CD26FF
+[Broker] [2026-05-11 16:41:47] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Myvi  RM 57000  [ID: 1665AE89]
+[Broker] [2026-05-11 16:41:47] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 1665AE89
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Hilux  RM 106000  [ID: F2A5AE90]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for F2A5AE90
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Hilux  RM 109000  [ID: 9FC6DB3C]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 9FC6DB3C
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Hilux  RM 119000  [ID: C763395E]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for C763395E
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Hilux  RM 137000  [ID: 6E08C749]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 6E08C749
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Hilux  RM 148000  [ID: E323B4E8]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for E323B4E8
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Hilux  RM 155000  [ID: 79E9AA2D]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 79E9AA2D
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Vios  RM 52000  [ID: 1727D5E9]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 1727D5E9
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Vios  RM 61000  [ID: 355180D3]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 355180D3
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Vios  RM 70000  [ID: B5F4AA59]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for B5F4AA59
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Vios  RM 82000  [ID: 26D02076]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 26D02076
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Vios  RM 83000  [ID: 50D61A8F]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 50D61A8F
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Vios  RM 94000  [ID: 570B48AD]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 570B48AD
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Vios  RM 97000  [ID: E853059E]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for E853059E
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Yaris  RM 56000  [ID: A154D0FE]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A154D0FE
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Yaris  RM 63000  [ID: CA1EA6D4]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for CA1EA6D4
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Yaris  RM 69000  [ID: A09EFEE5]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A09EFEE5
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Yaris  RM 79000  [ID: 57D5D1FB]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 57D5D1FB
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Yaris  RM 82000  [ID: 375529E1]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 375529E1
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Yaris  RM 91000  [ID: F8911047]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for F8911047
+[Broker] [2026-05-11 16:41:49] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Yaris  RM 99000  [ID: 7DAD6863]
+[Broker] [2026-05-11 16:41:49] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 7DAD6863
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda City  RM 59000  [ID: 6C4BA0B2]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 6C4BA0B2
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda City  RM 68000  [ID: 854C8295]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 854C8295
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda City  RM 80000  [ID: ACAA23A7]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for ACAA23A7
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda City  RM 86000  [ID: 1E04EA8E]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 1E04EA8E
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda City  RM 95000  [ID: 7306E22C]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 7306E22C
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda City  RM 98000  [ID: C5C11B03]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for C5C11B03
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2017 Honda Civic  RM 71000  [ID: 9E1A6A82]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 9E1A6A82
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda Civic  RM 84000  [ID: FA3BB653]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for FA3BB653
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda Civic  RM 97000  [ID: 2D3C0A41]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 2D3C0A41
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda Civic  RM 115000  [ID: 75DC968C]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 75DC968C
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda Civic  RM 121000  [ID: EB030F17]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for EB030F17
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda Civic  RM 131000  [ID: 64172D78]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 64172D78
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda Civic  RM 147000  [ID: 496A0D64]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 496A0D64
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda HR-V  RM 88000  [ID: 0C4505D1]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 0C4505D1
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda HR-V  RM 96000  [ID: 632E6A37]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 632E6A37
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda HR-V  RM 109000  [ID: 0D2B9607]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 0D2B9607
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda HR-V  RM 128000  [ID: C96FEA1F]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for C96FEA1F
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda HR-V  RM 131000  [ID: D97C6A22]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for D97C6A22
+[Broker] [2026-05-11 16:41:52] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda HR-V  RM 144000  [ID: 3F709430]
+[Broker] [2026-05-11 16:41:52] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 3F709430
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Persona  RM 37000  [ID: 2B469A4C]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2B469A4C
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Persona  RM 40000  [ID: 2CB210C9]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2CB210C9
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Persona  RM 51000  [ID: 3D644DE2]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 3D644DE2
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Persona  RM 50000  [ID: DEDF1D0F]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for DEDF1D0F
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Persona  RM 59000  [ID: F09F10E5]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for F09F10E5
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Persona  RM 61000  [ID: 5B13F300]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 5B13F300
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2017 Proton Saga  RM 20000  [ID: C4552375]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for C4552375
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Saga  RM 25000  [ID: 932FB44C]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 932FB44C
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Saga  RM 32000  [ID: DDDE6B3B]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for DDDE6B3B
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Saga  RM 36000  [ID: 1BF9B2EB]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 1BF9B2EB
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Saga  RM 36000  [ID: B92D44DD]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for B92D44DD
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Saga  RM 39000  [ID: 59A7D1D3]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 59A7D1D3
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Saga  RM 45000  [ID: 14770782]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 14770782
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton X50  RM 74000  [ID: 1A0B4E16]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 1A0B4E16
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton X50  RM 88000  [ID: 2EF249C8]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2EF249C8
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton X50  RM 93000  [ID: ADBBE1DA]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for ADBBE1DA
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton X50  RM 99000  [ID: 3953D7A0]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 3953D7A0
+[Broker] [2026-05-11 16:41:53] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton X50  RM 105000  [ID: 34DDE382]
+[Broker] [2026-05-11 16:41:53] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 34DDE382
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [ID: 15A42ADD]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 15A42ADD
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [ID: B24C4883]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B24C4883
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [ID: 7D12F928]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 7D12F928
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [ID: DCF2B0EC]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for DCF2B0EC
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [ID: 0823C2CE]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 0823C2CE
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [ID: 70AADDED]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 70AADDED
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [ID: 1B111ADE]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 1B111ADE
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [ID: 13A4C16D]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 13A4C16D
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [ID: C1D77349]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for C1D77349
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [ID: A78C8A11]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for A78C8A11
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [ID: 5960DF61]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 5960DF61
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [ID: 799ADF98]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 799ADF98
+[Broker] [2026-05-11 16:41:55] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [ID: AECC7D3B]
+[Broker] [2026-05-11 16:41:55] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for AECC7D3B
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [ID: 1B5E8F57]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 1B5E8F57
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [ID: D0F5DAE2]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for D0F5DAE2
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [ID: 35370CBE]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 35370CBE
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [ID: 3F379445]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 3F379445
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [ID: 1363B50E]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 1363B50E
+[Broker] [2026-05-11 16:41:57] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [ID: B8B4E8EB]
+[Broker] [2026-05-11 16:41:57] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for B8B4E8EB
+[Broker] [2026-05-11 16:42:00] [MESSAGE] from Tan06      [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [ID: BD429D26]
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing 7DAD6863
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 7DAD6863
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 7DAD6863
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 7DAD6863
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing E853059E
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: E853059E
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: E853059E
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: E853059E
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing F8911047
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: F8911047
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: F8911047
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: F8911047
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing 375529E1
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 375529E1
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 375529E1
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 375529E1
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing 570B48AD
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 570B48AD
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 570B48AD
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 570B48AD
+[Broker] [2026-05-11 16:42:00] [EVENT] AUTO MATCH  Buyer Tan06 [BD429D26] -> Listing 50D61A8F
+[Broker] [2026-05-11 16:42:00] [EVENT] Assignment created  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 50D61A8F
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 50D61A8F
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 50D61A8F
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to Tan06        [REQUIREMENTS_ACK            ] ACK for BD429D26
+[Broker] [2026-05-11 16:42:00] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Broker] [2026-05-11 16:42:00] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from Tan06  RM 82000
+[Broker] [2026-05-11 16:42:01] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 99000
+[Broker] [2026-05-11 16:42:01] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from ToyotaDealer  RM 99000
+[Broker] [2026-05-11 16:42:01] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 97200
+[Broker] [2026-05-11 16:42:01] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from Tan06  RM 97200
+[Broker] [2026-05-11 16:42:02] [MESSAGE] from Raju86     [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [ID: CEDD996A]
+[Broker] [2026-05-11 16:42:02] [MESSAGE] to Raju86       [REQUIREMENTS_ACK            ] ACK for CEDD996A
+[Broker] [2026-05-11 16:42:02] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 99000
+[Broker] [2026-05-11 16:42:02] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from ToyotaDealer  RM 99000
+[Broker] [2026-05-11 16:42:02] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 98800
+[Broker] [2026-05-11 16:42:02] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from Tan06  RM 98800
+[Broker] [2026-05-11 16:42:04] [MESSAGE] from Priya17    [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [ID: 7F0A025E]
+[Broker] [2026-05-11 16:42:04] [MESSAGE] to Priya17      [REQUIREMENTS_ACK            ] ACK for 7F0A025E
+[Broker] [2026-05-11 16:42:04] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 98900
+[Broker] [2026-05-11 16:42:04] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from ToyotaDealer  RM 98900
+[Broker] [2026-05-11 16:42:04] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 98800
+[Broker] [2026-05-11 16:42:04] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from Tan06  RM 98800
+[Broker] [2026-05-11 16:42:06] [MESSAGE] from Priya85    [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [ID: C31B2590]
+[Broker] [2026-05-11 16:42:06] [MESSAGE] to Priya85      [REQUIREMENTS_ACK            ] ACK for C31B2590
+[Broker] [2026-05-11 16:42:06] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  ToyotaDealer → Tan06  ACL.PROPOSE  OFFER  RM 98700
+[Broker] [2026-05-11 16:42:06] [MESSAGE] to Tan06        [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from ToyotaDealer  RM 98700
+[Broker] [2026-05-11 16:42:06] [NEGOTIATION] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 98600
+[Broker] [2026-05-11 16:42:06] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.PROPOSE from Tan06  RM 98600
+[Broker] [2026-05-11 16:42:08] [MESSAGE] from Wei88      [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [ID: A856E62B]
+[Broker] [2026-05-11 16:42:08] [MESSAGE] to Wei88        [REQUIREMENTS_ACK            ] ACK for A856E62B
+[Broker] [2026-05-11 16:42:08] [EVENT] LISTING REMOVED  [7DAD6863]  Car: Toyota Yaris  Sold to: Tan06  Price: RM 98600
+[Broker] [2026-05-11 16:42:08] [EVENT] DEAL COMPLETE  [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455]  Final price: RM 98600
+[Broker] [2026-05-11 16:42:08] [INFO] Conversation saved: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455
+[Broker] [2026-05-11 16:42:08] [MESSAGE] to ToyotaDealer [DEAL_COMPLETE               ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.INFORM Final price: RM 98600
+[Broker] [2026-05-11 16:42:08] [MESSAGE] to Tan06        [DEAL_COMPLETE               ] [neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455] ACL.INFORM Final price: RM 98600
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency save request from ToyotaDealer
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency save request from Tan06
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-7DAD6863-920455
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-375529E1-920489
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-F8911047-920481
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-50D61A8F-920505
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-570B48AD-920498
+[Broker] [2026-05-11 17:01:39] [INFO] Emergency saved conversation: neg-Tan06_172_17_75_103_1099_JADE-ToyotaDealer_172_17_75_103_1099_JADE-E853059E-920473
+[Broker] [2026-05-11 17:01:39] [INFO] Broker shut down.
+[Broker] [2026-05-22 02:22:50] [INFO] Broker Agent starting as broker@172.16.0.119:1099/JADE
+[Broker] [2026-05-22 02:22:50] [INFO] Registered in JADE DF as service type: car-negotiation-broker
+[Broker] [2026-05-22 02:22:50] [INFO] Platform ready in headless mode - waiting for dealers and buyers.
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Axia  RM 26000  [ID: C69C9F9F]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for C69C9F9F
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Axia  RM 29000  [ID: F5D6B2DF]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for F5D6B2DF
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Axia  RM 33000  [ID: 888BB8E6]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 888BB8E6
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Axia  RM 33000  [ID: 246B20A6]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 246B20A6
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Axia  RM 36000  [ID: 1B21B243]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 1B21B243
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Axia  RM 41000  [ID: 54BBDD84]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 54BBDD84
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Bezza  RM 33000  [ID: 59133FCC]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 59133FCC
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Bezza  RM 37000  [ID: 26A5BB31]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 26A5BB31
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Bezza  RM 37000  [ID: CA773542]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for CA773542
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Bezza  RM 43000  [ID: 664E6C70]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 664E6C70
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Bezza  RM 45000  [ID: DE3A9716]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for DE3A9716
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Bezza  RM 51000  [ID: CE51A8F4]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for CE51A8F4
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2017 Perodua Myvi  RM 35000  [ID: A41E2B8E]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for A41E2B8E
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2018 Perodua Myvi  RM 37000  [ID: 88CDA335]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 88CDA335
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2019 Perodua Myvi  RM 44000  [ID: C99295E9]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for C99295E9
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2020 Perodua Myvi  RM 45000  [ID: F0D70A4B]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for F0D70A4B
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2021 Perodua Myvi  RM 50000  [ID: 7CFEBDA2]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 7CFEBDA2
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2022 Perodua Myvi  RM 51000  [ID: DC9C3A7B]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for DC9C3A7B
+[Broker] [2026-05-22 02:22:57] [MESSAGE] from PeroduaDealer [LISTING_REGISTER            ] 2023 Perodua Myvi  RM 57000  [ID: 7846538F]
+[Broker] [2026-05-22 02:22:57] [MESSAGE] to PeroduaDealer [LISTING_ACK                 ] ACK for 7846538F
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Hilux  RM 106000  [ID: CD2D6394]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for CD2D6394
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Hilux  RM 109000  [ID: 8997148E]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 8997148E
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Hilux  RM 119000  [ID: BC853861]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for BC853861
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Hilux  RM 137000  [ID: A9E0297F]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A9E0297F
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Hilux  RM 148000  [ID: FF923703]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for FF923703
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Hilux  RM 155000  [ID: 1B35B4BF]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 1B35B4BF
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Vios  RM 52000  [ID: F9DAA2BF]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for F9DAA2BF
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Vios  RM 61000  [ID: 26E7DCC9]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 26E7DCC9
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Vios  RM 70000  [ID: AE2304D7]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for AE2304D7
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Vios  RM 82000  [ID: F756099B]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for F756099B
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Vios  RM 83000  [ID: A577954E]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A577954E
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Vios  RM 94000  [ID: 930BCC2F]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 930BCC2F
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Vios  RM 97000  [ID: B0EA461F]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for B0EA461F
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2017 Toyota Yaris  RM 56000  [ID: 1B176586]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 1B176586
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2018 Toyota Yaris  RM 63000  [ID: A94A9839]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for A94A9839
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2019 Toyota Yaris  RM 69000  [ID: 030B7698]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 030B7698
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2020 Toyota Yaris  RM 79000  [ID: 0817413D]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 0817413D
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2021 Toyota Yaris  RM 82000  [ID: 62041B7B]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 62041B7B
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2022 Toyota Yaris  RM 91000  [ID: 940B9FF5]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 940B9FF5
+[Broker] [2026-05-22 02:22:59] [MESSAGE] from ToyotaDealer [LISTING_REGISTER            ] 2023 Toyota Yaris  RM 99000  [ID: 741B0EED]
+[Broker] [2026-05-22 02:22:59] [MESSAGE] to ToyotaDealer [LISTING_ACK                 ] ACK for 741B0EED
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda City  RM 59000  [ID: F97D6E7B]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for F97D6E7B
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda City  RM 68000  [ID: 254DC56A]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 254DC56A
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda City  RM 80000  [ID: F0F154D6]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for F0F154D6
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda City  RM 86000  [ID: 21F75AC9]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 21F75AC9
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda City  RM 95000  [ID: 38AD43FA]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 38AD43FA
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda City  RM 98000  [ID: 55595260]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 55595260
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2017 Honda Civic  RM 71000  [ID: 7556E0E2]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 7556E0E2
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda Civic  RM 84000  [ID: 457B6FDD]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 457B6FDD
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda Civic  RM 97000  [ID: C55AA012]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for C55AA012
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda Civic  RM 115000  [ID: 325911A2]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 325911A2
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda Civic  RM 121000  [ID: 805E7781]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 805E7781
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda Civic  RM 131000  [ID: 192AE4FF]
+[Broker] [2026-05-22 02:23:01] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 192AE4FF
+[Broker] [2026-05-22 02:23:01] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda Civic  RM 147000  [ID: EB5CC2A9]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for EB5CC2A9
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2018 Honda HR-V  RM 88000  [ID: DBA94ECD]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for DBA94ECD
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2019 Honda HR-V  RM 96000  [ID: DE34B142]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for DE34B142
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2020 Honda HR-V  RM 109000  [ID: 41632614]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 41632614
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2021 Honda HR-V  RM 128000  [ID: F5CEF85A]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for F5CEF85A
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2022 Honda HR-V  RM 131000  [ID: FA7D7D05]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for FA7D7D05
+[Broker] [2026-05-22 02:23:02] [MESSAGE] from HondaDealer [LISTING_REGISTER            ] 2023 Honda HR-V  RM 144000  [ID: 32C09FB4]
+[Broker] [2026-05-22 02:23:02] [MESSAGE] to HondaDealer  [LISTING_ACK                 ] ACK for 32C09FB4
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Persona  RM 37000  [ID: AB7BF3F1]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for AB7BF3F1
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Persona  RM 40000  [ID: E53090E8]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for E53090E8
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Persona  RM 51000  [ID: 882AA150]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 882AA150
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Persona  RM 50000  [ID: 196F1552]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 196F1552
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Persona  RM 59000  [ID: 4ACE1DFF]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 4ACE1DFF
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Persona  RM 61000  [ID: 2B567837]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2B567837
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2017 Proton Saga  RM 20000  [ID: 2590DC08]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 2590DC08
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2018 Proton Saga  RM 25000  [ID: 987240FF]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 987240FF
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton Saga  RM 32000  [ID: F975E408]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for F975E408
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton Saga  RM 36000  [ID: EADBB357]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for EADBB357
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton Saga  RM 36000  [ID: BE164E61]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for BE164E61
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton Saga  RM 39000  [ID: 73399F69]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 73399F69
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton Saga  RM 45000  [ID: A731EBEE]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for A731EBEE
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2019 Proton X50  RM 74000  [ID: C8C0E775]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for C8C0E775
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2020 Proton X50  RM 88000  [ID: 15A745F5]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 15A745F5
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2021 Proton X50  RM 93000  [ID: 249F6D66]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 249F6D66
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2022 Proton X50  RM 99000  [ID: 36618F06]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for 36618F06
+[Broker] [2026-05-22 02:23:03] [MESSAGE] from ProtonDealer [LISTING_REGISTER            ] 2023 Proton X50  RM 105000  [ID: BC3885AE]
+[Broker] [2026-05-22 02:23:03] [MESSAGE] to ProtonDealer [LISTING_ACK                 ] ACK for BC3885AE
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda 3  RM 92000  [ID: 2CD0D999]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 2CD0D999
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda 3  RM 99000  [ID: B7C57D1E]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B7C57D1E
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda 3  RM 109000  [ID: 647659CF]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 647659CF
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda 3  RM 122000  [ID: CF9C85A5]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for CF9C85A5
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda 3  RM 135000  [ID: 7E20E06F]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 7E20E06F
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda 3  RM 146000  [ID: 867ABF8A]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 867ABF8A
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2017 Mazda CX-5  RM 84000  [ID: 5A3645D0]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 5A3645D0
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2018 Mazda CX-5  RM 103000  [ID: 9D1CC3DA]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 9D1CC3DA
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2019 Mazda CX-5  RM 108000  [ID: B2E6F746]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for B2E6F746
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2020 Mazda CX-5  RM 126000  [ID: 4EE21570]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 4EE21570
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2021 Mazda CX-5  RM 142000  [ID: A72B00C2]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for A72B00C2
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2022 Mazda CX-5  RM 147000  [ID: 2B2026B8]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 2B2026B8
+[Broker] [2026-05-22 02:23:05] [MESSAGE] from MazdaDealer [LISTING_REGISTER            ] 2023 Mazda CX-5  RM 155000  [ID: 6233567A]
+[Broker] [2026-05-22 02:23:05] [MESSAGE] to MazdaDealer  [LISTING_ACK                 ] ACK for 6233567A
+[Broker] [2026-05-22 02:23:07] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2018 Nissan Almera  RM 48000  [ID: 0578DE25]
+[Broker] [2026-05-22 02:23:07] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 0578DE25
+[Broker] [2026-05-22 02:23:07] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2019 Nissan Almera  RM 48000  [ID: D208B35C]
+[Broker] [2026-05-22 02:23:07] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for D208B35C
+[Broker] [2026-05-22 02:23:07] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2020 Nissan Almera  RM 60000  [ID: 3BFA45B5]
+[Broker] [2026-05-22 02:23:07] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 3BFA45B5
+[Broker] [2026-05-22 02:23:07] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2021 Nissan Almera  RM 63000  [ID: 40D589BD]
+[Broker] [2026-05-22 02:23:07] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 40D589BD
+[Broker] [2026-05-22 02:23:07] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2022 Nissan Almera  RM 70000  [ID: CA082216]
+[Broker] [2026-05-22 02:23:07] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for CA082216
+[Broker] [2026-05-22 02:23:08] [MESSAGE] from NissanDealer [LISTING_REGISTER            ] 2023 Nissan Almera  RM 77000  [ID: 15A41786]
+[Broker] [2026-05-22 02:23:08] [MESSAGE] to NissanDealer [LISTING_ACK                 ] ACK for 15A41786
+[Broker] [2026-05-22 02:23:10] [MESSAGE] from Tan06      [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [ID: 0150B08F]
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing 940B9FF5
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 940B9FF5
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 940B9FF5
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 940B9FF5
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing B0EA461F
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-B0EA461F-790470]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: B0EA461F
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: B0EA461F
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: B0EA461F
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing 741B0EED
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-741B0EED-790474]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 741B0EED
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 741B0EED
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 741B0EED
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing 930BCC2F
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-930BCC2F-790478]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 930BCC2F
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 930BCC2F
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 930BCC2F
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing 62041B7B
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-62041B7B-790481]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: 62041B7B
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: 62041B7B
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: 62041B7B
+[Broker] [2026-05-22 02:23:10] [EVENT] AUTO MATCH  Buyer Tan06 [0150B08F] -> Listing A577954E
+[Broker] [2026-05-22 02:23:10] [EVENT] Assignment created  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-A577954E-790484]  Dealer: ToyotaDealer  ↔  Buyer: Tan06  Listing: A577954E
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [ASSIGNMENT_NOTIFY           ] Buyer: Tan06  Listing: A577954E
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [ASSIGNMENT_NOTIFY           ] Dealer: ToyotaDealer  Listing: A577954E
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [REQUIREMENTS_ACK            ] ACK for 0150B08F
+[Broker] [2026-05-22 02:23:10] [NEGOTIATION] [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]  Tan06 → ToyotaDealer  ACL.PROPOSE  OFFER  RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463] ACL.PROPOSE from Tan06  RM 82000
+[Broker] [2026-05-22 02:23:10] [EVENT] LISTING REMOVED  [940B9FF5]  Car: Toyota Yaris  Sold to: Tan06  Price: RM 82000
+[Broker] [2026-05-22 02:23:10] [EVENT] DEAL COMPLETE  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]  Final price: RM 82000
+[Broker] [2026-05-22 02:23:10] [INFO] Conversation saved: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to ToyotaDealer [DEAL_COMPLETE               ] [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463] ACL.INFORM Final price: RM 82000
+[Broker] [2026-05-22 02:23:10] [MESSAGE] to Tan06        [DEAL_COMPLETE               ] [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463] ACL.INFORM Final price: RM 82000
+[Broker] [2026-05-22 02:23:12] [MESSAGE] from Raju86     [BUYER_REQUIREMENTS          ] Mazda (2018–any) Used ≤ RM 97000  [ID: 34FB3671]
+[Broker] [2026-05-22 02:23:12] [MESSAGE] to Raju86       [REQUIREMENTS_ACK            ] ACK for 34FB3671
+[Broker] [2026-05-22 02:23:14] [MESSAGE] from Priya17    [BUYER_REQUIREMENTS          ] Honda City Used ≤ RM 46500  [ID: 8783D175]
+[Broker] [2026-05-22 02:23:14] [MESSAGE] to Priya17      [REQUIREMENTS_ACK            ] ACK for 8783D175
+[Broker] [2026-05-22 02:23:16] [MESSAGE] from Priya85    [BUYER_REQUIREMENTS          ] Toyota Vios (2021–any) ≤ RM 76000  [ID: 9140667D]
+[Broker] [2026-05-22 02:23:16] [MESSAGE] to Priya85      [REQUIREMENTS_ACK            ] ACK for 9140667D
+[Broker] [2026-05-22 02:23:18] [MESSAGE] from Wei88      [BUYER_REQUIREMENTS          ] Toyota (2021–any) Used ≤ RM 50000  [ID: 1D8E7E1A]
+[Broker] [2026-05-22 02:23:18] [MESSAGE] to Wei88        [REQUIREMENTS_ACK            ] ACK for 1D8E7E1A
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency save request from ToyotaDealer
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-B0EA461F-790470
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-62041B7B-790481
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-A577954E-790484
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-741B0EED-790474
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-930BCC2F-790478
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency save request from Tan06
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-B0EA461F-790470
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-62041B7B-790481
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-A577954E-790484
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-741B0EED-790474
+[Broker] [2026-05-22 02:40:53] [INFO] Emergency saved conversation: neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-930BCC2F-790478
+[Broker] [2026-05-22 02:40:53] [INFO] Broker shut down.

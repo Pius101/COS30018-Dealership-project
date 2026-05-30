@@ -1,0 +1,23 @@
+{
+  "name": "Priya85",
+  "make": "Toyota",
+  "model": "Vios",
+  "yearMin": 2021,
+  "yearMax": 0,
+  "maxPrice": 76000.0,
+  "maxMileage": 50000,
+  "condition": "Any",
+  "notes": "Interested in a Toyota Vios, flexible on year.",
+  "firstOffer": 63500.0,
+  "reservationPrice": 76000.0,
+  "autoNegotiate": true,
+  "autoShortlist": true,
+  "shortlistLimit": 3,
+  "shortlistDifferentDealers": true,
+  "shortlistDelayMs": 1000,
+  "strategy": "BAYESIAN",
+  "maxRounds": 20,
+  "personality": "moderate",
+  "_marketPrice": 82000.0,
+  "_flexibleModel": false
+}

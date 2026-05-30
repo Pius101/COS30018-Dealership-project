@@ -1,0 +1,210 @@
+{
+  "dealerName": "ProtonDealer",
+  "brand": "Proton",
+  "autoSubmit": true,
+  "autoNegotiate": true,
+  "autoSelectBuyers": true,
+  "strategy": "TIME_DEPENDENT_BOULWARE",
+  "marginPct": 0.1,
+  "maxRounds": 20,
+  "listings": [
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2018,
+      "mileage": 86000,
+      "color": "Metallic Silver",
+      "retailPrice": 37000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2018 Proton Persona, 86,000 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2019,
+      "mileage": 80000,
+      "color": "Ruby Red",
+      "retailPrice": 40000.0,
+      "marketPrice": 35000.0,
+      "condition": "Used",
+      "description": "2019 Proton Persona, 80,000 km. Market ref: RM 35,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2020,
+      "mileage": 65500,
+      "color": "Graphite Grey",
+      "retailPrice": 51000.0,
+      "marketPrice": 42000.0,
+      "condition": "Used",
+      "description": "2020 Proton Persona, 65,500 km. Market ref: RM 42,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2021,
+      "mileage": 40500,
+      "color": "Ruby Red",
+      "retailPrice": 50000.0,
+      "marketPrice": 42000.0,
+      "condition": "Used",
+      "description": "2021 Proton Persona, 40,500 km. Market ref: RM 42,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2022,
+      "mileage": 31500,
+      "color": "Midnight Black",
+      "retailPrice": 59000.0,
+      "marketPrice": 48000.0,
+      "condition": "Used",
+      "description": "2022 Proton Persona, 31,500 km. Market ref: RM 48,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Persona",
+      "year": 2023,
+      "mileage": 17000,
+      "color": "Ruby Red",
+      "retailPrice": 61000.0,
+      "marketPrice": 52000.0,
+      "condition": "New",
+      "description": "2023 Proton Persona, 17,000 km. Market ref: RM 52,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2017,
+      "mileage": 74500,
+      "color": "Pearl White",
+      "retailPrice": 20000.0,
+      "marketPrice": 18000.0,
+      "condition": "Used",
+      "description": "2017 Proton Saga, 74,500 km. Market ref: RM 18,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2018,
+      "mileage": 88500,
+      "color": "Navy Blue",
+      "retailPrice": 25000.0,
+      "marketPrice": 22000.0,
+      "condition": "Used",
+      "description": "2018 Proton Saga, 88,500 km. Market ref: RM 22,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2019,
+      "mileage": 54500,
+      "color": "Pearl White",
+      "retailPrice": 32000.0,
+      "marketPrice": 28000.0,
+      "condition": "Used",
+      "description": "2019 Proton Saga, 54,500 km. Market ref: RM 28,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2020,
+      "mileage": 34000,
+      "color": "Metallic Silver",
+      "retailPrice": 36000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2020 Proton Saga, 34,000 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2021,
+      "mileage": 22000,
+      "color": "Midnight Black",
+      "retailPrice": 36000.0,
+      "marketPrice": 32000.0,
+      "condition": "Used",
+      "description": "2021 Proton Saga, 22,000 km. Market ref: RM 32,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2022,
+      "mileage": 18000,
+      "color": "Midnight Black",
+      "retailPrice": 39000.0,
+      "marketPrice": 35000.0,
+      "condition": "Used",
+      "description": "2022 Proton Saga, 18,000 km. Market ref: RM 35,000."
+    },
+    {
+      "make": "Proton",
+      "model": "Saga",
+      "year": 2023,
+      "mileage": 7000,
+      "color": "Navy Blue",
+      "retailPrice": 45000.0,
+      "marketPrice": 38000.0,
+      "condition": "New",
+      "description": "2023 Proton Saga, 7,000 km. Market ref: RM 38,000."
+    },
+    {
+      "make": "Proton",
+      "model": "X50",
+      "year": 2019,
+      "mileage": 77500,
+      "color": "Navy Blue",
+      "retailPrice": 74000.0,
+      "marketPrice": 65000.0,
+      "condition": "Used",
+      "description": "2019 Proton X50, 77,500 km. Market ref: RM 65,000."
+    },
+    {
+      "make": "Proton",
+      "model": "X50",
+      "year": 2020,
+      "mileage": 61000,
+      "color": "Ruby Red",
+      "retailPrice": 88000.0,
+      "marketPrice": 75000.0,
+      "condition": "Used",
+      "description": "2020 Proton X50, 61,000 km. Market ref: RM 75,000."
+    },
+    {
+      "make": "Proton",
+      "model": "X50",
+      "year": 2021,
+      "mileage": 26500,
+      "color": "Graphite Grey",
+      "retailPrice": 93000.0,
+      "marketPrice": 82000.0,
+      "condition": "Used",
+      "description": "2021 Proton X50, 26,500 km. Market ref: RM 82,000."
+    },
+    {
+      "make": "Proton",
+      "model": "X50",
+      "year": 2022,
+      "mileage": 24000,
+      "color": "Ruby Red",
+      "retailPrice": 99000.0,
+      "marketPrice": 85000.0,
+      "condition": "Used",
+      "description": "2022 Proton X50, 24,000 km. Market ref: RM 85,000."
+    },
+    {
+      "make": "Proton",
+      "model": "X50",
+      "year": 2023,
+      "mileage": 2000,
+      "color": "Graphite Grey",
+      "retailPrice": 105000.0,
+      "marketPrice": 90000.0,
+      "condition": "New",
+      "description": "2023 Proton X50, 2,000 km. Market ref: RM 90,000."
+    }
+  ]
+}

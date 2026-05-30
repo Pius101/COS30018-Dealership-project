@@ -1,0 +1,53 @@
+[Launcher] Logging to E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\logs\Tan06.log
+[Launcher] Creating buyers container...
+[Launcher] Connecting to JADE platform at 172.16.0.119:1099...
+[Launcher] Binding to local IP: 172.16.0.119
+May 22, 2026 2:23:08 AM jade.core.Runtime beginContainer
+INFO: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+May 22, 2026 2:23:08 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFO: Listening for intra-platform commands on address:
+- jicp://172.16.0.119:51805
+
+May 22, 2026 2:23:08 AM jade.core.BaseService init
+INFO: Service jade.core.management.AgentManagement initialized
+May 22, 2026 2:23:08 AM jade.core.BaseService init
+INFO: Service jade.core.messaging.Messaging initialized
+May 22, 2026 2:23:08 AM jade.core.BaseService init
+INFO: Service jade.core.resource.ResourceManagement initialized
+May 22, 2026 2:23:08 AM jade.core.BaseService init
+INFO: Service jade.core.mobility.AgentMobility initialized
+May 22, 2026 2:23:08 AM jade.core.BaseService init
+INFO: Service jade.core.event.Notification initialized
+May 22, 2026 2:23:08 AM jade.core.AgentContainerImpl joinPlatform
+INFO: --------------------------------------
+Agent container buyers-market@172.16.0.119 is ready.
+--------------------------------------------
+[Launcher] Successfully connected to JADE platform
+[Launcher] Buyers container 'buyers-market' created at 172.16.0.119
+[Launcher] Buyer agent 'Tan06' joined buyers container at 172.16.0.119
+[Launcher] BUYER 'Tan06' running. Press Ctrl+C to stop.
+[Buyer] [2026-05-22 02:23:08] [INFO] Broker found in DF: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:08] [INFO] Buyer Agent 'Tan06' started. AID: Tan06@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:08] [INFO] Connected to Broker: broker@172.16.0.119:1099/JADE
+[Buyer] [2026-05-22 02:23:08] [INFO] Loading config from E:\javaIDE\javacode\COS30018-Dealership-project\Scripts\agent_configs\Tan06_config.json
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] to Broker       [BUYER_REQUIREMENTS          ] Toyota (2021–any) ≤ RM 109000  [0150B08F]
+[Buyer] [2026-05-22 02:23:10] [INFO] Requirements submitted from config: Toyota (2021–any) ≤ RM 109000
+[Buyer] [2026-05-22 02:23:10] [INFO] [AUTO] Auto-negotiate armed: strategy=TIME_DEPENDENT_CONCEDER firstOffer=RM82000 budget=RM109000 maxRounds=20
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]  Dealer: ToyotaDealer  Listing: 940B9FF5  Asking: RM 91000
+[Buyer] [2026-05-22 02:23:10] [INFO] [AUTO] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463] started | Strategy: Time-Dependent (CONCEDER) | First offer: RM 82000 | Budget: RM 109000 | Max rounds: 20
+[Buyer] [2026-05-22 02:23:10] [INFO] [AUTO] AutoNegotiationBehaviour started for negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-B0EA461F-790470]  Dealer: ToyotaDealer  Listing: B0EA461F  Asking: RM 97000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] to Broker→ToyotaDealer [NEG_OFFER                   ] [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463] ACL.PROPOSE RM 82000  "Auto-negotiation started. My opening offer: RM 82000"
+[Buyer] [2026-05-22 02:23:10] [INFO] [AUTO] Round 1 — Opening offer: RM 82000 | Strategy: Time-Dependent (CONCEDER) | Budget ceiling: RM 109000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-741B0EED-790474]  Dealer: ToyotaDealer  Listing: 741B0EED  Asking: RM 99000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-930BCC2F-790478]  Dealer: ToyotaDealer  Listing: 930BCC2F  Asking: RM 94000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-62041B7B-790481]  Dealer: ToyotaDealer  Listing: 62041B7B  Asking: RM 82000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [ASSIGNMENT_NOTIFY           ] Negotiation [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-A577954E-790484]  Dealer: ToyotaDealer  Listing: A577954E  Asking: RM 83000
+[Buyer] [2026-05-22 02:23:10] [MESSAGE] from Broker     [REQUIREMENTS_ACK            ] Requirement 0150B08F confirmed stored — waiting for assignment
+[Buyer] [2026-05-22 02:23:10] [EVENT] DEAL COMPLETE  [neg-Tan06_172_16_0_119_1099_JADE-ToyotaDealer_172_16_0_119_1099_JADE-940B9FF5-790463]  Final price: RM 82000
+[Buyer] [2026-05-22 02:40:53] [INFO] Buyer 'Tan06' shutting down.
+[Buyer] [2026-05-22 02:40:53] [INFO] Emergency save sent — 6 ongoing negotiations

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiment 94 Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117;
+  --panel: #1a1d26;
+  --panel-2: #252830;
+  --border: #2a2d3a;
+  --border-soft: #1e2130;
+  --text: #e0e0e0;
+  --muted: #888;
+  --blue: #60a5fa;
+  --green: #4ade80;
+  --orange: #fb923c;
+  --red: #f87171;
+  --cyan: #67e8f9;
+  --violet: #a78bfa;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 24px 32px;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: #93c5fd; text-decoration: underline; }
+h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+h2 {
+  color: #93c5fd;
+  font-size: 15px;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.topbar {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.subtitle { color: var(--muted); }
+.mono { font-family: Consolas, "Courier New", monospace; font-size: 12px; }
+.banner {
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.banner.deal { background: #052e16; border: 1px solid #16a34a; }
+.banner.no-deal { background: #2a0f0f; border: 1px solid #dc2626; }
+.banner strong { color: #86efac; font-size: 16px; }
+.banner span { color: #bbf7d0; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.label {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .45px;
+}
+.value {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+.hint { color: #94a3b8; font-size: 12px; margin-top: 4px; }
+.chart-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, .8fr);
+  gap: 16px;
+}
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr);
+  gap: 16px;
+}
+.summary-list { display: grid; gap: 10px; }
+.summary-row {
+  background: #101114;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 10px;
+  padding: 10px 14px;
+}
+.summary-row .k { color: var(--muted); font-size: 12px; }
+.summary-row .v { color: #fff; font-weight: 600; }
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+  background: var(--panel);
+}
+table { width: 100%; min-width: 920px; border-collapse: collapse; }
+th {
+  background: var(--panel-2);
+  color: #93c5fd;
+  font-size: 12px;
+  padding: 10px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #171b24; }
+.price { color: var(--green); font-weight: 700; white-space: nowrap; }
+.dealer { color: var(--orange); white-space: nowrap; }
+.buyer { color: var(--blue); white-space: nowrap; }
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.done { background: #052e16; border-color: #16a34a; color: #86efac; }
+.warn { background: #3b2a14; border-color: #d97706; color: #fcd34d; }
+.neutral { background: #1f2937; border-color: #64748b; color: #cbd5e1; }
+.log {
+  background: #0a0c10;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  color: #94a3b8;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 14px;
+  white-space: pre-wrap;
+}
+.footer { color: #64748b; font-size: 11px; margin-top: 24px; }
+@media (max-width: 760px) {
+  body { padding: 18px; }
+  .topbar { display: block; }
+  .chart-grid { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div>
+    <h1>Experiment 94 Report</h1>
+    <p class="subtitle"><span class="mono">WIDE_GAP</span> | <span class="mono">TIT_FOR_TAT</span> vs <span class="mono">TIT_FOR_TAT</span></p>
+    <p class="subtitle">Generated at 2026-05-30 14:14:02</p>
+  </div>
+  <div><a href="../../negotiation-test-report.html">Back to summary</a></div>
+</div>
+
+<div class="banner deal">
+  <strong><span class="pill done">DEAL</span> Final price: RM 67200</strong>
+  <span>Accepted by: BUYER | Rounds: 3 | Benefit side: BUYER</span>
+</div>
+
+<div class="grid">
+    <div class="card"><div class="label">Asking Price</div><div class="value" style="color: var(--green)">RM 80000</div><div class="hint">Dealer opening price</div></div>
+  <div class="card"><div class="label">Buyer Max</div><div class="value" style="color: var(--blue)">RM 82400</div><div class="hint">Buyer reservation price</div></div>
+  <div class="card"><div class="label">Dealer Floor</div><div class="value" style="color: var(--orange)">RM 67200</div><div class="hint">Dealer reservation price</div></div>
+  <div class="card"><div class="label">Buyer Saving</div><div class="value" style="color: var(--cyan)">RM 12800</div><div class="hint">16.00% from asking</div></div>
+  <div class="card"><div class="label">Buyer Utility</div><div class="value" style="color: var(--blue)">0.70</div><div class="hint">0.00 to 1.00</div></div>
+  <div class="card"><div class="label">Dealer Utility</div><div class="value" style="color: var(--orange)">0.00</div><div class="hint">0.00 to 1.00</div></div>
+  <div class="card"><div class="label">Joint Utility</div><div class="value" style="color: var(--violet)">0.70</div><div class="hint">Buyer + dealer utility</div></div>
+  <div class="card"><div class="label">Dealer Profit</div><div class="value" style="color: var(--green)">-</div><div class="hint">Above dealer floor</div></div>
+
+</div>
+
+<h2>Price Negotiation Chart</h2>
+<div class="chart-grid">
+  <div class="card"><canvas id="priceChart"></canvas></div>
+  <div class="card"><canvas id="utilityChart"></canvas></div>
+</div>
+
+<h2>Surplus And Concession View</h2>
+<div class="chart-grid">
+  <div class="card"><canvas id="surplusChart"></canvas></div>
+  <div class="card"><canvas id="concessionChart"></canvas></div>
+</div>
+
+<div class="split">
+  <div class="card">
+    <h2 style="margin-top:0">Experiment Details</h2>
+    <div class="summary-list">
+      <div class="summary-row"><div class="k">Repeat</div><div class="v">1</div></div>
+      <div class="summary-row"><div class="k">Scenario seed</div><div class="v">5217400152596663891</div></div>
+      <div class="summary-row"><div class="k">Case seed</div><div class="v">211162750389287186</div></div>
+      <div class="summary-row"><div class="k">Final reason</div><div class="v">Round 3/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">Source Files</h2>
+    <div class="summary-list">
+      <div class="summary-row"><div class="k">Transcript</div><div class="v"><a href="transcript.txt">transcript.txt</a></div></div>
+      <div class="summary-row"><div class="k">CSV</div><div class="v"><a href="result.csv">result.csv</a></div></div>
+      <div class="summary-row"><div class="k">JSON</div><div class="v"><a href="result.json">result.json</a></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Transcript</h2>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Round</th>
+        <th>Party</th>
+        <th>Action</th>
+        <th>Price</th>
+        <th>Gap To Previous Offer</th>
+        <th>Reasoning</th>
+      </tr>
+    </thead>
+    <tbody>
+<tr><td>1</td><td><span class="buyer">Buyer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 60800</td><td>-</td><td>Opening offer</td></tr>
+<tr><td>1</td><td><span class="dealer">Dealer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 67200</td><td>RM 6400</td><td>Round 1/10 | Opponent last conceded 24.0% (RM14592) | Mirroring at 2.0% → Offer RM67200</td></tr>
+<tr><td>2</td><td><span class="buyer">Buyer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 61200</td><td>RM 6000</td><td>Round 1/10 | Opponent last conceded 16.0% (RM10752) | Mirroring at 2.0% → Offer RM61200</td></tr>
+<tr><td>2</td><td><span class="dealer">Dealer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 67200</td><td>RM 6000</td><td>Round 2/10 | Opponent last conceded -0.7% (RM-403) | Mirroring at 0.5% → Offer RM67200</td></tr>
+<tr><td>3</td><td><span class="buyer">Buyer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 61600</td><td>RM 5600</td><td>Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61600</td></tr>
+<tr><td>3</td><td><span class="dealer">Dealer (Tit-for-Tat)</span></td><td><span class="pill neutral">OFFER</span></td><td class="price">RM 67200</td><td>RM 5600</td><td>Round 3/10 | Opponent last conceded -0.7% (RM-403) | Mirroring at 0.5% → Offer RM67200</td></tr>
+<tr><td>3</td><td><span class="buyer">Buyer (Tit-for-Tat)</span></td><td><span class="pill neutral">ACCEPT</span></td><td class="price">RM 67200</td><td>Matched</td><td>Round 3/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT</td></tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h2>Full Thinking Log</h2>
+<div class="log">[Round 1] BUYER OFFER RM 60800 - Opening offer
+[Round 1] DEALER OFFER RM 67200 - Round 1/10 | Opponent last conceded 24.0% (RM14592) | Mirroring at 2.0% → Offer RM67200
+[Round 2] BUYER OFFER RM 61200 - Round 1/10 | Opponent last conceded 16.0% (RM10752) | Mirroring at 2.0% → Offer RM61200
+[Round 2] DEALER OFFER RM 67200 - Round 2/10 | Opponent last conceded -0.7% (RM-403) | Mirroring at 0.5% → Offer RM67200
+[Round 3] BUYER OFFER RM 61600 - Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61600
+[Round 3] DEALER OFFER RM 67200 - Round 3/10 | Opponent last conceded -0.7% (RM-403) | Mirroring at 0.5% → Offer RM67200
+[Round 3] BUYER ACCEPT RM 67200 - Round 3/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT
+[DEAL] Final price: RM 67200
+</div>
+
+<p class="footer">Generated from the offline strategy experiment runner.</p>
+<script>
+const moneyTicks = value => 'RM ' + Number(value).toLocaleString();
+new Chart(document.getElementById('priceChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: ["Start", "R1 Buyer", "R1 Dealer", "R2 Buyer", "R2 Dealer", "R3 Buyer", "R3 Dealer", "Deal"],
+    datasets: [
+      { label: 'Dealer Offer (RM)', data: [80000, null, 67200, null, 67200, null, 67200, 67200], borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true },
+      { label: 'Buyer Offer (RM)', data: [60800, 60800, null, 61200, null, 61600, null, 67200], borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.08)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, spanGaps: true, fill: true },
+      { label: 'Dealer Floor', data: [67200, 67200, 67200, 67200, 67200, 67200, 67200, 67200], borderColor: '#fbbf24', borderDash: [6, 6], borderWidth: 1.5, pointRadius: 0 },
+      { label: 'Buyer Max', data: [82400, 82400, 82400, 82400, 82400, 82400, 82400, 82400], borderColor: '#a5b4fc', borderDash: [4, 5], borderWidth: 1.5, pointRadius: 0 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { color: '#e0e0e0' } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + moneyTicks(c.parsed.y) } }
+    },
+    scales: {
+      x: { ticks: { color: '#888' }, grid: { color: '#1e2130' } },
+      y: { ticks: { color: '#888', callback: moneyTicks }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+new Chart(document.getElementById('utilityChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Buyer Utility', 'Dealer Utility', 'Joint Utility'],
+    datasets: [{ label: 'Utility', data: [0.70, 0.00, 0.70], backgroundColor: ['#60a5fa', '#fb923c', '#a78bfa'], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: '#888' }, grid: { color: '#1e2130' } },
+      y: { min: 0, max: 2, ticks: { color: '#888' }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+new Chart(document.getElementById('surplusChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Agreement Surplus', 'Buyer Surplus', 'Dealer Profit', 'Saving From Ask'],
+    datasets: [{ label: 'RM', data: [15200.00, 15200.00, 0.00, 12800.00], backgroundColor: ['#a78bfa', '#60a5fa', '#fb923c', '#67e8f9'], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => moneyTicks(c.parsed.y) } }
+    },
+    scales: {
+      x: { ticks: { color: '#888' }, grid: { color: '#1e2130' } },
+      y: { ticks: { color: '#888', callback: moneyTicks }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+new Chart(document.getElementById('concessionChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Buyer Concession %', 'Dealer Concession %'],
+    datasets: [{ label: 'Concession %', data: [29.63, 100.00], backgroundColor: ['#60a5fa', '#fb923c'], borderWidth: 0 }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { min: 0, max: 100, ticks: { color: '#888', callback: v => v + '%' }, grid: { color: '#1e2130' } },
+      y: { ticks: { color: '#888' }, grid: { color: '#1e2130' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
