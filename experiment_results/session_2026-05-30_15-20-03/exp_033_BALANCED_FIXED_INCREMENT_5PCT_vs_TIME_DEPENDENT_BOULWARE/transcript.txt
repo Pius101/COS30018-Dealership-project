@@ -1,0 +1,31 @@
+EXPERIMENT 33
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 203001933566673889 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 78400 | Rounds: 7
+Utility: buyer=0.00 dealer=0.83 joint=0.83 | Benefit side: DEALER
+Surplus: agreement=RM 8000 buyer=- dealer=RM 8000
+Baseline: NO_DEAL at - | Negotiation gain vs baseline: -
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 67200 | Round 1/10 | +5.0% increment | Offer RM64000 → RM67200 | RV ceiling: RM78400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 70600 | Round 2/10 | +5.0% increment | Offer RM67200 → RM70600 | RV ceiling: RM78400
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 4 | BUYER | OFFER | RM 74100 | Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400
+Round 4 | DEALER | OFFER | RM 79800 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM79800
+Round 5 | BUYER | OFFER | RM 77800 | Round 4/10 | +5.0% increment | Offer RM74100 → RM77800 | RV ceiling: RM78400
+Round 5 | DEALER | OFFER | RM 79400 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM79400
+Round 6 | BUYER | OFFER | RM 78400 | Round 5/10 | +5.0% increment | Offer RM77800 → RM78400 | RV ceiling: RM78400
+Round 6 | DEALER | OFFER | RM 78800 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM78800
+Round 7 | BUYER | OFFER | RM 78400 | Round 6/10 | +5.0% increment | Offer RM78400 → RM78400 | RV ceiling: RM78400
+Round 7 | DEALER | WOULD_ACCEPT | RM 78400 | Counter would be below buyer offer; accepting buyer price.
+Round 7 | DEALER | ACCEPT | RM 78400 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM77700
+
+Final note: Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM77700

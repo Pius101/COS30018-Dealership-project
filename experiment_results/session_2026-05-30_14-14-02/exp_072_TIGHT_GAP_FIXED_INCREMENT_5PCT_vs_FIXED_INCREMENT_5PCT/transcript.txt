@@ -1,0 +1,23 @@
+EXPERIMENT 72
+================
+Scenario: TIGHT_GAP
+Repeat: 1 | Scenario seed: 5217400137194736569 | Case seed: 206097365885115039 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 3
+Utility: buyer=0.15 dealer=0.00 joint=0.15 | Benefit side: BUYER
+Surplus: agreement=RM 1600 buyer=RM 1600 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 71200 | Round 1/10 | +5.0% increment | Offer RM80000 → RM71200 | RV ceiling: RM71200
+Round 2 | BUYER | OFFER | RM 65500 | Round 1/10 | +5.0% increment | Offer RM62400 → RM65500 | RV ceiling: RM72800
+Round 2 | DEALER | OFFER | RM 71200 | Round 2/10 | +5.0% increment | Offer RM71200 → RM71200 | RV ceiling: RM71200
+Round 3 | BUYER | OFFER | RM 68800 | Round 2/10 | +5.0% increment | Offer RM65500 → RM68800 | RV ceiling: RM72800
+Round 3 | DEALER | OFFER | RM 71200 | Round 3/10 | +5.0% increment | Offer RM71200 → RM71200 | RV ceiling: RM71200
+Round 3 | BUYER | WOULD_ACCEPT | RM 71200 | Counter would meet dealer offer; accepting dealer price.
+Round 3 | BUYER | ACCEPT | RM 71200 | Round 3/10 | +5.0% increment | Offer RM68800 → RM72200 | RV ceiling: RM72800
+
+Final note: Round 3/10 | +5.0% increment | Offer RM68800 → RM72200 | RV ceiling: RM72800

@@ -1,0 +1,30 @@
+EXPERIMENT 102
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211367079405825457 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 67200 | Rounds: 6
+Utility: buyer=0.70 dealer=0.00 joint=0.70 | Benefit side: BUYER
+Surplus: agreement=RM 15200 buyer=RM 15200 dealer=-
+Baseline: BUY_AT_ASKING at RM 80000 | Negotiation gain vs baseline: RM 12800
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 67200 | Round 1/10 | +5.0% increment | Offer RM80000 → RM67200 | RV ceiling: RM67200
+Round 2 | BUYER | OFFER | RM 62000 | Round 1/10 | +2.0% increment | Offer RM60800 → RM62000 | RV ceiling: RM82400
+Round 2 | DEALER | OFFER | RM 67200 | Round 2/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 3 | BUYER | OFFER | RM 63300 | Round 2/10 | +2.0% increment | Offer RM62000 → RM63300 | RV ceiling: RM82400
+Round 3 | DEALER | OFFER | RM 67200 | Round 3/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 4 | BUYER | OFFER | RM 64500 | Round 3/10 | +2.0% increment | Offer RM63300 → RM64500 | RV ceiling: RM82400
+Round 4 | DEALER | OFFER | RM 67200 | Round 4/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 5 | BUYER | OFFER | RM 65800 | Round 4/10 | +2.0% increment | Offer RM64500 → RM65800 | RV ceiling: RM82400
+Round 5 | DEALER | OFFER | RM 67200 | Round 5/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 6 | BUYER | OFFER | RM 67100 | Round 5/10 | +2.0% increment | Offer RM65800 → RM67100 | RV ceiling: RM82400
+Round 6 | DEALER | OFFER | RM 67200 | Round 6/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 6 | BUYER | WOULD_ACCEPT | RM 67200 | Counter would meet dealer offer; accepting dealer price.
+Round 6 | BUYER | ACCEPT | RM 67200 | Round 6/10 | +2.0% increment | Offer RM67100 → RM68500 | RV ceiling: RM82400
+
+Final note: Round 6/10 | +2.0% increment | Offer RM67100 → RM68500 | RV ceiling: RM82400

@@ -623,7 +623,7 @@ public class BrokerAgent extends Agent {
      * ACL message flowing between agents.  Drag agents into the sniff area.
      */
     public void launchSniffer() {
-        launchTool("sniffer-" + System.currentTimeMillis(), "jade.tools.Sniffer.Sniffer");
+        launchTool("sniffer-" + System.currentTimeMillis(), "jade.tools.sniffer.Sniffer");
     }
 
     /**

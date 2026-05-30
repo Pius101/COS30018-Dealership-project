@@ -1,0 +1,35 @@
+EXPERIMENT 17
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 202994816177851909 | Varied scenario: false
+Buyer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 70400 | Rounds: 9
+Utility: buyer=0.56 dealer=0.00 joint=0.56 | Benefit side: BUYER
+Surplus: agreement=RM 8000 buyer=RM 8000 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 70400 | Round 1/10 | +2.0% increment | Offer RM80000 → RM70400 | RV ceiling: RM70400
+Round 2 | BUYER | OFFER | RM 64000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM64000
+Round 2 | DEALER | OFFER | RM 70400 | Round 2/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 3 | BUYER | OFFER | RM 64000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM64000
+Round 3 | DEALER | OFFER | RM 70400 | Round 3/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 4 | BUYER | OFFER | RM 64100 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM64100
+Round 4 | DEALER | OFFER | RM 70400 | Round 4/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 5 | BUYER | OFFER | RM 64400 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM64400
+Round 5 | DEALER | OFFER | RM 70400 | Round 5/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 6 | BUYER | OFFER | RM 64900 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM64900
+Round 6 | DEALER | OFFER | RM 70400 | Round 6/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 7 | BUYER | OFFER | RM 65900 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM65900
+Round 7 | DEALER | OFFER | RM 70400 | Round 7/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 8 | BUYER | OFFER | RM 67500 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM67500
+Round 8 | DEALER | OFFER | RM 70400 | Round 8/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 9 | BUYER | OFFER | RM 69900 | Round 8/10 | Curve=BOULWARE β=0.25 | Progress=80% → Offer RM69900
+Round 9 | DEALER | OFFER | RM 70400 | Round 9/10 | +2.0% increment | Offer RM70400 → RM70400 | RV ceiling: RM70400
+Round 9 | BUYER | WOULD_ACCEPT | RM 70400 | Counter would meet dealer offer; accepting dealer price.
+Round 9 | BUYER | ACCEPT | RM 70400 | Round 9/10 | Curve=BOULWARE β=0.25 | Progress=90% → Offer RM73400
+
+Final note: Round 9/10 | Curve=BOULWARE β=0.25 | Progress=90% → Offer RM73400

@@ -1,0 +1,30 @@
+EXPERIMENT 9
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 203013697096063887 | Varied scenario: false
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 77700 | Rounds: 7
+Utility: buyer=0.05 dealer=0.76 joint=0.81 | Benefit side: DEALER
+Surplus: agreement=RM 8000 buyer=RM 700 dealer=RM 7300
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 72100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72100
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 73600 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM73600
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 4 | BUYER | OFFER | RM 74700 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM74700
+Round 4 | DEALER | OFFER | RM 79800 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM79800
+Round 5 | BUYER | OFFER | RM 75500 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM75500
+Round 5 | DEALER | OFFER | RM 79400 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM79400
+Round 6 | BUYER | OFFER | RM 76100 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM76100
+Round 6 | DEALER | OFFER | RM 78800 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM78800
+Round 7 | BUYER | OFFER | RM 76700 | Round 6/10 | Curve=CONCEDER β=4.00 | Progress=60% → Offer RM76700
+Round 7 | DEALER | OFFER | RM 77700 | Round 7/10 | Curve=BOULWARE β=0.25 | Progress=70% → Offer RM77700
+Round 7 | BUYER | ACCEPT | RM 77700 | Round 7/10 | CONCEDER | Offer RM77700 vs RV RM78400 | lastRound=false → ACCEPT
+
+Final note: Round 7/10 | CONCEDER | Offer RM77700 vs RV RM78400 | lastRound=false → ACCEPT

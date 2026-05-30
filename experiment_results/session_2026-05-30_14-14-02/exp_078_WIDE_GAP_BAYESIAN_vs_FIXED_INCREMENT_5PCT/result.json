@@ -1,0 +1,72 @@
+{
+  "case": 78,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "scenarioSeed": 5217400152596663891,
+  "caseSeed": 211165052954933527,
+  "scenarioVaried": false,
+  "buyerStrategy": "BAYESIAN",
+  "dealerStrategy": "FIXED_INCREMENT_5PCT",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 2,
+  "messageCount": 5,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 60800.0,
+  "buyerReservationPrice": 82400.0,
+  "dealerReservationPrice": 67200.0,
+  "finalPrice": 67200.0,
+  "savingFromAsk": 12800.0,
+  "savingPct": 16.0,
+  "lastBuyerOffer": 67200.0,
+  "lastDealerOffer": 67200.0,
+  "buyerUtility": 0.7037037037037037,
+  "dealerUtility": 0.0,
+  "jointUtility": 0.7037037037037037,
+  "agreementSurplus": 15200.0,
+  "buyerSurplus": 15200.0,
+  "dealerProfit": 0.0,
+  "buyerDistanceFromReservation": 15200.0,
+  "dealerDistanceFromReservation": 0.0,
+  "buyerConcessionPct": 29.629629629629626,
+  "dealerConcessionPct": 100.0,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM67200 | Offers seen\u003d2 → ACCEPT RM67200",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 60800.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 67200.0,
+      "reasoning": "Round 1/10 | +5.0% increment | Offer RM80000 → RM67200 | RV ceiling: RM67200"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 63000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM63000"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 67200.0,
+      "reasoning": "Round 2/10 | +5.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 67200.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM67200 | Offers seen\u003d2 → ACCEPT RM67200"
+    }
+  ]
+}

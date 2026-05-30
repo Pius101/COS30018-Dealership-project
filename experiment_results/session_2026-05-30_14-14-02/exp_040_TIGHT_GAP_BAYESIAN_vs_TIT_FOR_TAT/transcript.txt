@@ -1,0 +1,20 @@
+EXPERIMENT 40
+================
+Scenario: TIGHT_GAP
+Repeat: 1 | Scenario seed: 5217400137194736569 | Case seed: 206496018316696716 | Varied scenario: false
+Buyer strategy: BAYESIAN (Bayesian Learner)
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 71200 | Rounds: 2
+Utility: buyer=0.15 dealer=0.00 joint=0.15 | Benefit side: BUYER
+Surplus: agreement=RM 1600 buyer=RM 1600 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 71200 | Round 1/10 | Opponent last conceded 22.0% (RM13728) | Mirroring at 2.0% → Offer RM71200
+Round 2 | BUYER | OFFER | RM 63400 | Round 1/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen=1 → OFFER RM63400
+Round 2 | DEALER | OFFER | RM 71200 | Round 2/10 | Opponent last conceded -1.6% (RM-1016) | Mirroring at 0.5% → Offer RM71200
+Round 2 | BUYER | ACCEPT | RM 71200 | Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM71200 | Offers seen=2 → ACCEPT RM71200
+
+Final note: Round 2/10 | β=1.00 | Style=UNKNOWN | AvgConcession=RM0 (0.0%) | EstimatedFloor≈RM71200 | Offers seen=2 → ACCEPT RM71200

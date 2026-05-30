@@ -1,0 +1,23 @@
+EXPERIMENT 32
+================
+Scenario: BALANCED
+Repeat: 1 | Scenario seed: 5217400151006772112 | Case seed: 203000138422647491 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 64000 | Buyer max: RM 78400 | Dealer floor: RM 70400
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72900 | Rounds: 3
+Utility: buyer=0.38 dealer=0.26 joint=0.64 | Benefit side: BUYER
+Surplus: agreement=RM 8000 buyer=RM 5500 dealer=RM 2500
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 64000 | Opening offer
+Round 1 | DEALER | OFFER | RM 74600 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM74600
+Round 2 | BUYER | OFFER | RM 67200 | Round 1/10 | +5.0% increment | Offer RM64000 → RM67200 | RV ceiling: RM78400
+Round 2 | DEALER | OFFER | RM 73600 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM73600
+Round 3 | BUYER | OFFER | RM 70600 | Round 2/10 | +5.0% increment | Offer RM67200 → RM70600 | RV ceiling: RM78400
+Round 3 | DEALER | OFFER | RM 72900 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM72900
+Round 3 | BUYER | WOULD_ACCEPT | RM 72900 | Counter would meet dealer offer; accepting dealer price.
+Round 3 | BUYER | ACCEPT | RM 72900 | Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400
+
+Final note: Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400

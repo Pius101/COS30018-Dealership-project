@@ -1,0 +1,26 @@
+EXPERIMENT 50
+================
+Scenario: TIGHT_GAP
+Repeat: 1 | Scenario seed: 5217400137194736569 | Case seed: 206083311852792756 | Varied scenario: false
+Buyer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 62400 | Buyer max: RM 72800 | Dealer floor: RM 71200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 72600 | Rounds: 5
+Utility: buyer=0.02 dealer=0.16 joint=0.18 | Benefit side: DEALER
+Surplus: agreement=RM 1600 buyer=RM 200 dealer=RM 1400
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 62400 | Opening offer
+Round 1 | DEALER | OFFER | RM 75100 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM75100
+Round 2 | BUYER | OFFER | RM 62400 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM62400
+Round 2 | DEALER | OFFER | RM 74100 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM74100
+Round 3 | BUYER | OFFER | RM 62400 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM62400
+Round 3 | DEALER | OFFER | RM 73500 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM73500
+Round 4 | BUYER | OFFER | RM 62500 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM62500
+Round 4 | DEALER | OFFER | RM 73000 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM73000
+Round 5 | BUYER | OFFER | RM 62700 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM62700
+Round 5 | DEALER | OFFER | RM 72600 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM72600
+Round 5 | BUYER | ACCEPT | RM 72600 | Round 5/10 | BOULWARE | Offer RM72600 vs RV RM72800 | lastRound=false → ACCEPT
+
+Final note: Round 5/10 | BOULWARE | Offer RM72600 vs RV RM72800 | lastRound=false → ACCEPT

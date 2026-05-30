@@ -1,0 +1,20 @@
+EXPERIMENT 82
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211165654216994271 | Varied scenario: false
+Buyer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Dealer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 67200 | Rounds: 1
+Utility: buyer=0.70 dealer=0.00 joint=0.70 | Benefit side: BUYER
+Surplus: agreement=RM 15200 buyer=RM 15200 dealer=-
+Baseline: BUY_AT_ASKING at RM 80000 | Negotiation gain vs baseline: RM 12800
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 67200 | Round 1/10 | Opponent last conceded 24.0% (RM14592) | Mirroring at 2.0% → Offer RM67200
+Round 1 | BUYER | WOULD_ACCEPT | RM 67200 | Counter would meet dealer offer; accepting dealer price.
+Round 1 | BUYER | ACCEPT | RM 67200 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900
+
+Final note: Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72900

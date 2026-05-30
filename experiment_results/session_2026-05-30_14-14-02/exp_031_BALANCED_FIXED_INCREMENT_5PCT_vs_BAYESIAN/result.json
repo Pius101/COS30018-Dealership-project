@@ -1,0 +1,177 @@
+{
+  "case": 31,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203000086531930845,
+  "scenarioVaried": false,
+  "buyerStrategy": "FIXED_INCREMENT_5PCT",
+  "dealerStrategy": "BAYESIAN",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 10,
+  "messageCount": 20,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 78400.0,
+  "savingFromAsk": 1600.0,
+  "savingPct": 2.0,
+  "lastBuyerOffer": 78400.0,
+  "lastDealerOffer": 78400.0,
+  "buyerUtility": 0.0,
+  "dealerUtility": 0.8333333333333334,
+  "jointUtility": 0.8333333333333334,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 0.0,
+  "dealerProfit": 8000.0,
+  "buyerDistanceFromReservation": 0.0,
+  "dealerDistanceFromReservation": 8000.0,
+  "buyerConcessionPct": 100.0,
+  "dealerConcessionPct": 16.666666666666664,
+  "benefitSide": "DEALER",
+  "finalReason": "REJECT: Offer RM 78400 exceeds reservation price RM 70400",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 67200.0,
+      "reasoning": "Round 1/10 | +5.0% increment | Offer RM64000 → RM67200 | RV ceiling: RM78400"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-3200 (0.0%) | EstimatedFloor≈RM70400 | Offers seen\u003d2 → OFFER RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 70600.0,
+      "reasoning": "Round 2/10 | +5.0% increment | Offer RM67200 → RM70600 | RV ceiling: RM78400"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 3/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-3300 (0.0%) | EstimatedFloor≈RM73900 | Offers seen\u003d3 → OFFER RM80000"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 74100.0,
+      "reasoning": "Round 3/10 | +5.0% increment | Offer RM70600 → RM74100 | RV ceiling: RM78400"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 4/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-3367 (0.0%) | EstimatedFloor≈RM77467 | Offers seen\u003d4 → OFFER RM80000"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 77800.0,
+      "reasoning": "Round 4/10 | +5.0% increment | Offer RM74100 → RM77800 | RV ceiling: RM78400"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 5/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-3450 (0.0%) | EstimatedFloor≈RM81250 | Offers seen\u003d5 → OFFER RM80000"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 78400.0,
+      "reasoning": "Round 5/10 | +5.0% increment | Offer RM77800 → RM78400 | RV ceiling: RM78400"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 6/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-2880 (0.0%) | EstimatedFloor≈RM81280 | Offers seen\u003d6 → OFFER RM80000"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 78400.0,
+      "reasoning": "Round 6/10 | +5.0% increment | Offer RM78400 → RM78400 | RV ceiling: RM78400"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 7/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-2400 (0.0%) | EstimatedFloor≈RM80800 | Offers seen\u003d7 → OFFER RM80000"
+    },
+    {
+      "round": 8,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 78400.0,
+      "reasoning": "Round 7/10 | +5.0% increment | Offer RM78400 → RM78400 | RV ceiling: RM78400"
+    },
+    {
+      "round": 8,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 8/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-2057 (0.0%) | EstimatedFloor≈RM80457 | Offers seen\u003d8 → OFFER RM80000"
+    },
+    {
+      "round": 9,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 78400.0,
+      "reasoning": "Round 8/10 | +5.0% increment | Offer RM78400 → RM78400 | RV ceiling: RM78400"
+    },
+    {
+      "round": 9,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 9/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-1800 (0.0%) | EstimatedFloor≈RM80200 | Offers seen\u003d9 → OFFER RM80000"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 78400.0,
+      "reasoning": "Round 9/10 | +5.0% increment | Offer RM78400 → RM78400 | RV ceiling: RM78400"
+    },
+    {
+      "round": 10,
+      "actor": "DEALER",
+      "action": "ACCEPT",
+      "price": 78400.0,
+      "reasoning": "REJECT: Offer RM 78400 exceeds reservation price RM 70400"
+    }
+  ]
+}

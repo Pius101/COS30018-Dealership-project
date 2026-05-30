@@ -62,6 +62,7 @@ public class BuyerAgent extends Agent {
     private boolean autoShortlistEnabled = false;
     private int     autoShortlistLimit   = 1;
     private long    autoShortlistDelayMs = 1000L;
+    private boolean autoShortlistDifferentDealers = false;
     private final Set<String> autoShortlistScheduled = ConcurrentHashMap.newKeySet();
     private final Set<String> autoShortlistedRequirements = ConcurrentHashMap.newKeySet();
 
@@ -178,9 +179,11 @@ public class BuyerAgent extends Agent {
                     : config.autoNegotiate;
             autoShortlistLimit = config.shortlistLimit > 0 ? config.shortlistLimit : 1;
             autoShortlistDelayMs = config.shortlistDelayMs > 0 ? config.shortlistDelayMs : 1000L;
+            autoShortlistDifferentDealers = Boolean.TRUE.equals(config.shortlistDifferentDealers);
             if (autoShortlistEnabled) {
                 log.info("[AUTO] Auto-shortlist armed: top " + autoShortlistLimit
-                        + " matched listing(s), delay=" + autoShortlistDelayMs + "ms");
+                        + " matched listing(s), delay=" + autoShortlistDelayMs + "ms"
+                        + (autoShortlistDifferentDealers ? ", one listing per dealer" : ""));
             }
 
             submitRequirement(req);
@@ -202,6 +205,7 @@ public class BuyerAgent extends Agent {
         double maxPrice, firstOffer, reservationPrice;
         boolean autoNegotiate;
         Boolean autoShortlist;
+        Boolean shortlistDifferentDealers;
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -530,17 +534,52 @@ public class BuyerAgent extends Agent {
         shortlist.setRequirementId(requirementId);
 
         int limit = Math.min(Math.max(autoShortlistLimit, 1), listings.size());
-        for (int i = 0; i < limit; i++) {
-            CarListing listing = listings.get(i);
+        List<CarListing> selectedListings = selectAutoShortlistListings(listings, limit);
+        for (int i = 0; i < selectedListings.size(); i++) {
+            CarListing listing = selectedListings.get(i);
             shortlist.getEntries().add(new BuyerShortlist.Entry(
                     listing.getListingId(),
                     openingOfferFor(listing),
-                    "Auto-shortlisted matched listing " + (i + 1) + " of " + limit));
+                    "Auto-shortlisted matched listing " + (i + 1)
+                            + " of " + selectedListings.size()));
         }
 
         log.info("[AUTO] Sending shortlist for requirement " + requirementId
-                + " with " + limit + " listing(s)");
+                + " with " + selectedListings.size() + " listing(s)"
+                + (autoShortlistDifferentDealers ? " from different dealers" : ""));
         sendShortlist(shortlist);
+    }
+
+    private List<CarListing> selectAutoShortlistListings(List<CarListing> listings, int limit) {
+        if (!autoShortlistDifferentDealers) {
+            return new ArrayList<>(listings.subList(0, limit));
+        }
+
+        List<CarListing> selected = new ArrayList<>();
+        Set<String> usedDealers = new HashSet<>();
+        for (CarListing listing : listings) {
+            String dealerKey = listing.getDealerAID();
+            if (dealerKey == null || dealerKey.isBlank()) {
+                dealerKey = listing.getDealerName();
+            }
+            if (dealerKey == null || dealerKey.isBlank()) {
+                dealerKey = listing.getListingId();
+            }
+            if (!usedDealers.add(dealerKey)) {
+                continue;
+            }
+
+            selected.add(listing);
+            if (selected.size() >= limit) {
+                break;
+            }
+        }
+
+        if (selected.size() < limit) {
+            log.info("[AUTO] Only " + selected.size()
+                    + " distinct dealer listing(s) available for auto-shortlist limit " + limit);
+        }
+        return selected;
     }
 
     private double openingOfferFor(CarListing listing) {

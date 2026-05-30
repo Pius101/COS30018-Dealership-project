@@ -1,0 +1,31 @@
+EXPERIMENT 98
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211366746113959031 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Dealer strategy: TIME_DEPENDENT_CONCEDER (Time-Dependent (CONCEDER))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: DEALER | Final price: RM 68500 | Rounds: 7
+Utility: buyer=0.64 dealer=0.10 joint=0.75 | Benefit side: BUYER
+Surplus: agreement=RM 15200 buyer=RM 13900 dealer=RM 1300
+Baseline: BUY_AT_ASKING at RM 80000 | Negotiation gain vs baseline: RM 11500
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 72800 | Round 1/10 | Curve=CONCEDER β=4.00 | Progress=10% → Offer RM72800
+Round 2 | BUYER | OFFER | RM 62000 | Round 1/10 | +2.0% increment | Offer RM60800 → RM62000 | RV ceiling: RM82400
+Round 2 | DEALER | OFFER | RM 71400 | Round 2/10 | Curve=CONCEDER β=4.00 | Progress=20% → Offer RM71400
+Round 3 | BUYER | OFFER | RM 63300 | Round 2/10 | +2.0% increment | Offer RM62000 → RM63300 | RV ceiling: RM82400
+Round 3 | DEALER | OFFER | RM 70500 | Round 3/10 | Curve=CONCEDER β=4.00 | Progress=30% → Offer RM70500
+Round 4 | BUYER | OFFER | RM 64500 | Round 3/10 | +2.0% increment | Offer RM63300 → RM64500 | RV ceiling: RM82400
+Round 4 | DEALER | OFFER | RM 69800 | Round 4/10 | Curve=CONCEDER β=4.00 | Progress=40% → Offer RM69800
+Round 5 | BUYER | OFFER | RM 65800 | Round 4/10 | +2.0% increment | Offer RM64500 → RM65800 | RV ceiling: RM82400
+Round 5 | DEALER | OFFER | RM 69200 | Round 5/10 | Curve=CONCEDER β=4.00 | Progress=50% → Offer RM69200
+Round 6 | BUYER | OFFER | RM 67100 | Round 5/10 | +2.0% increment | Offer RM65800 → RM67100 | RV ceiling: RM82400
+Round 6 | DEALER | OFFER | RM 68700 | Round 6/10 | Curve=CONCEDER β=4.00 | Progress=60% → Offer RM68700
+Round 7 | BUYER | OFFER | RM 68500 | Round 6/10 | +2.0% increment | Offer RM67100 → RM68500 | RV ceiling: RM82400
+Round 7 | DEALER | WOULD_ACCEPT | RM 68500 | Counter would be below buyer offer; accepting buyer price.
+Round 7 | DEALER | ACCEPT | RM 68500 | Round 7/10 | Curve=CONCEDER β=4.00 | Progress=70% → Offer RM68300
+
+Final note: Round 7/10 | Curve=CONCEDER β=4.00 | Progress=70% → Offer RM68300

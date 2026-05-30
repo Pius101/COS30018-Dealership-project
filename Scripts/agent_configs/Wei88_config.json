@@ -13,6 +13,7 @@
   "autoNegotiate": true,
   "autoShortlist": true,
   "shortlistLimit": 3,
+  "shortlistDifferentDealers": true,
   "shortlistDelayMs": 1000,
   "strategy": "TIME_DEPENDENT_CONCEDER",
   "maxRounds": 15,

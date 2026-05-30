@@ -1,0 +1,181 @@
+{
+  "case": 13,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 202994785395781948,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIME_DEPENDENT_BOULWARE",
+  "dealerStrategy": "BAYESIAN",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 10,
+  "messageCount": 20,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 73400.0,
+  "savingFromAsk": 6600.0,
+  "savingPct": 8.25,
+  "baselineOutcome": "NO_DEAL",
+  "baselinePrice": 0.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 73400.0,
+  "lastDealerOffer": 73400.0,
+  "buyerUtility": 0.3472222222222222,
+  "dealerUtility": 0.3125,
+  "jointUtility": 0.6597222222222222,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 5000.0,
+  "dealerProfit": 3000.0,
+  "buyerDistanceFromReservation": 5000.0,
+  "dealerDistanceFromReservation": 3000.0,
+  "buyerConcessionPct": 65.27777777777779,
+  "dealerConcessionPct": 68.75,
+  "benefitSide": "BALANCED",
+  "finalReason": "REJECT: Offer RM 73400 exceeds reservation price RM 70400",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM0 | Offers seen\u003d1 → OFFER RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Round 1/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d10% → Offer RM64000"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM64000 | Offers seen\u003d2 → OFFER RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Round 2/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d20% → Offer RM64000"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 3/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM0 (0.0%) | EstimatedFloor≈RM64000 | Offers seen\u003d3 → OFFER RM80000"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64100.0,
+      "reasoning": "Round 3/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d30% → Offer RM64100"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 4/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-33 (0.0%) | EstimatedFloor≈RM64133 | Offers seen\u003d4 → OFFER RM80000"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64400.0,
+      "reasoning": "Round 4/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d40% → Offer RM64400"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 5/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-100 (0.0%) | EstimatedFloor≈RM64500 | Offers seen\u003d5 → OFFER RM80000"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64900.0,
+      "reasoning": "Round 5/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d50% → Offer RM64900"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 6/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-180 (0.0%) | EstimatedFloor≈RM65080 | Offers seen\u003d6 → OFFER RM80000"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65900.0,
+      "reasoning": "Round 6/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d60% → Offer RM65900"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 7/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-317 (0.0%) | EstimatedFloor≈RM66217 | Offers seen\u003d7 → OFFER RM80000"
+    },
+    {
+      "round": 8,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 67500.0,
+      "reasoning": "Round 7/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d70% → Offer RM67500"
+    },
+    {
+      "round": 8,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 8/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-500 (0.0%) | EstimatedFloor≈RM68000 | Offers seen\u003d8 → OFFER RM80000"
+    },
+    {
+      "round": 9,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 69900.0,
+      "reasoning": "Round 8/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d80% → Offer RM69900"
+    },
+    {
+      "round": 9,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 9/10 | β\u003d1.00 | Style\u003dUNKNOWN | AvgConcession\u003dRM-738 (0.0%) | EstimatedFloor≈RM70638 | Offers seen\u003d9 → OFFER RM80000"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 73400.0,
+      "reasoning": "Round 9/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d90% → Offer RM73400"
+    },
+    {
+      "round": 10,
+      "actor": "DEALER",
+      "action": "ACCEPT",
+      "price": 73400.0,
+      "reasoning": "REJECT: Offer RM 73400 exceeds reservation price RM 70400"
+    }
+  ]
+}

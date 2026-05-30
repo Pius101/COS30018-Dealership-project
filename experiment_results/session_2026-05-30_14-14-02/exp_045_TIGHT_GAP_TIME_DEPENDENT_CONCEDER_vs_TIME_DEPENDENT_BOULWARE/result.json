@@ -1,0 +1,177 @@
+{
+  "case": 45,
+  "repeat": 1,
+  "scenario": "TIGHT_GAP",
+  "scenarioSeed": 5217400137194736569,
+  "caseSeed": 206496355945260846,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "dealerStrategy": "TIME_DEPENDENT_BOULWARE",
+  "outcome": "DEAL",
+  "acceptedBy": "DEALER",
+  "roundsTaken": 10,
+  "messageCount": 20,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 62400.0,
+  "buyerReservationPrice": 72800.0,
+  "dealerReservationPrice": 71200.0,
+  "finalPrice": 72500.0,
+  "savingFromAsk": 7500.0,
+  "savingPct": 9.375,
+  "lastBuyerOffer": 72500.0,
+  "lastDealerOffer": 72500.0,
+  "buyerUtility": 0.028846153846153848,
+  "dealerUtility": 0.14772727272727273,
+  "jointUtility": 0.1765734265734266,
+  "agreementSurplus": 1600.0,
+  "buyerSurplus": 300.0,
+  "dealerProfit": 1300.0,
+  "buyerDistanceFromReservation": 300.0,
+  "dealerDistanceFromReservation": 1300.0,
+  "buyerConcessionPct": 97.11538461538461,
+  "dealerConcessionPct": 85.22727272727273,
+  "benefitSide": "DEALER",
+  "finalReason": "Round 10/10 | BOULWARE | Offer RM72500 vs RV RM71200 | lastRound\u003dtrue → COUNTER",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 62400.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 1/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d10% → Offer RM80000"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 68200.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM68200"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 80000.0,
+      "reasoning": "Round 2/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d20% → Offer RM80000"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 69400.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM69400"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79900.0,
+      "reasoning": "Round 3/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d30% → Offer RM79900"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 70100.0,
+      "reasoning": "Round 3/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d30% → Offer RM70100"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79800.0,
+      "reasoning": "Round 4/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d40% → Offer RM79800"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 70700.0,
+      "reasoning": "Round 4/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d40% → Offer RM70700"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 79500.0,
+      "reasoning": "Round 5/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d50% → Offer RM79500"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 71100.0,
+      "reasoning": "Round 5/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d50% → Offer RM71100"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 78900.0,
+      "reasoning": "Round 6/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d60% → Offer RM78900"
+    },
+    {
+      "round": 7,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 71600.0,
+      "reasoning": "Round 6/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d60% → Offer RM71600"
+    },
+    {
+      "round": 7,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 77900.0,
+      "reasoning": "Round 7/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d70% → Offer RM77900"
+    },
+    {
+      "round": 8,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 71900.0,
+      "reasoning": "Round 7/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d70% → Offer RM71900"
+    },
+    {
+      "round": 8,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 76400.0,
+      "reasoning": "Round 8/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d80% → Offer RM76400"
+    },
+    {
+      "round": 9,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 72200.0,
+      "reasoning": "Round 8/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d80% → Offer RM72200"
+    },
+    {
+      "round": 9,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 74200.0,
+      "reasoning": "Round 9/10 | Curve\u003dBOULWARE β\u003d0.25 | Progress\u003d90% → Offer RM74200"
+    },
+    {
+      "round": 10,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 72500.0,
+      "reasoning": "Round 9/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d90% → Offer RM72500"
+    },
+    {
+      "round": 10,
+      "actor": "DEALER",
+      "action": "ACCEPT",
+      "price": 72500.0,
+      "reasoning": "Round 10/10 | BOULWARE | Offer RM72500 vs RV RM71200 | lastRound\u003dtrue → COUNTER"
+    }
+  ]
+}

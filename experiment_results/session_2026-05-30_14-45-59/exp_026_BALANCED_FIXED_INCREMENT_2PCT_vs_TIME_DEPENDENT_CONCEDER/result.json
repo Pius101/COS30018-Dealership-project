@@ -1,0 +1,139 @@
+{
+  "case": 26,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203000147837293031,
+  "scenarioVaried": false,
+  "buyerStrategy": "FIXED_INCREMENT_2PCT",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 6,
+  "messageCount": 14,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 71600.0,
+  "savingFromAsk": 8400.0,
+  "savingPct": 10.5,
+  "baselineOutcome": "NO_DEAL",
+  "baselinePrice": 0.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 71600.0,
+  "lastDealerOffer": 71600.0,
+  "buyerUtility": 0.4722222222222222,
+  "dealerUtility": 0.125,
+  "jointUtility": 0.5972222222222222,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 6800.0,
+  "dealerProfit": 1200.0,
+  "buyerDistanceFromReservation": 6800.0,
+  "dealerDistanceFromReservation": 1200.0,
+  "buyerConcessionPct": 52.77777777777778,
+  "dealerConcessionPct": 87.5,
+  "benefitSide": "BUYER",
+  "finalReason": "Round 6/10 | +2.0% increment | Offer RM70700 → RM72100 | RV ceiling: RM78400",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 74600.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM74600"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 65300.0,
+      "reasoning": "Round 1/10 | +2.0% increment | Offer RM64000 → RM65300 | RV ceiling: RM78400"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 73600.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM73600"
+    },
+    {
+      "round": 3,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 66600.0,
+      "reasoning": "Round 2/10 | +2.0% increment | Offer RM65300 → RM66600 | RV ceiling: RM78400"
+    },
+    {
+      "round": 3,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72900.0,
+      "reasoning": "Round 3/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d30% → Offer RM72900"
+    },
+    {
+      "round": 4,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 67900.0,
+      "reasoning": "Round 3/10 | +2.0% increment | Offer RM66600 → RM67900 | RV ceiling: RM78400"
+    },
+    {
+      "round": 4,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72400.0,
+      "reasoning": "Round 4/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d40% → Offer RM72400"
+    },
+    {
+      "round": 5,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 69300.0,
+      "reasoning": "Round 4/10 | +2.0% increment | Offer RM67900 → RM69300 | RV ceiling: RM78400"
+    },
+    {
+      "round": 5,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 71900.0,
+      "reasoning": "Round 5/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d50% → Offer RM71900"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 70700.0,
+      "reasoning": "Round 5/10 | +2.0% increment | Offer RM69300 → RM70700 | RV ceiling: RM78400"
+    },
+    {
+      "round": 6,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 71600.0,
+      "reasoning": "Round 6/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d60% → Offer RM71600"
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "WOULD_ACCEPT",
+      "price": 71600.0,
+      "reasoning": "Counter would meet dealer offer; accepting dealer price."
+    },
+    {
+      "round": 6,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 71600.0,
+      "reasoning": "Round 6/10 | +2.0% increment | Offer RM70700 → RM72100 | RV ceiling: RM78400"
+    }
+  ]
+}

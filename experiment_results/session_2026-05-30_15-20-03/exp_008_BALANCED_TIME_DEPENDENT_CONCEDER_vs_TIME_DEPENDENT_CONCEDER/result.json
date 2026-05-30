@@ -1,0 +1,83 @@
+{
+  "case": 8,
+  "repeat": 1,
+  "scenario": "BALANCED",
+  "scenarioSeed": 5217400151006772112,
+  "caseSeed": 203013515349465749,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 2,
+  "messageCount": 6,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 64000.0,
+  "buyerReservationPrice": 78400.0,
+  "dealerReservationPrice": 70400.0,
+  "finalPrice": 73600.0,
+  "savingFromAsk": 6400.0,
+  "savingPct": 8.0,
+  "baselineOutcome": "NO_DEAL",
+  "baselinePrice": 0.0,
+  "baselineSavingFromAsk": 0.0,
+  "negotiationGainVsBaseline": 0.0,
+  "lastBuyerOffer": 73600.0,
+  "lastDealerOffer": 73600.0,
+  "buyerUtility": 0.3333333333333333,
+  "dealerUtility": 0.3333333333333333,
+  "jointUtility": 0.6666666666666666,
+  "agreementSurplus": 8000.0,
+  "buyerSurplus": 4800.0,
+  "dealerProfit": 3200.0,
+  "buyerDistanceFromReservation": 4800.0,
+  "dealerDistanceFromReservation": 3200.0,
+  "buyerConcessionPct": 66.66666666666666,
+  "dealerConcessionPct": 66.66666666666666,
+  "benefitSide": "BALANCED",
+  "finalReason": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM73600",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 64000.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 74600.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM74600"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 72100.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72100"
+    },
+    {
+      "round": 2,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 73600.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM73600"
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "WOULD_ACCEPT",
+      "price": 73600.0,
+      "reasoning": "Counter would meet dealer offer; accepting dealer price."
+    },
+    {
+      "round": 2,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 73600.0,
+      "reasoning": "Round 2/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d20% → Offer RM73600"
+    }
+  ]
+}

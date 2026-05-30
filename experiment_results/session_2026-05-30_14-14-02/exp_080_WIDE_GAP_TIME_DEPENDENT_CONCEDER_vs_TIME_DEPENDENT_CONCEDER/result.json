@@ -1,0 +1,65 @@
+{
+  "case": 80,
+  "repeat": 1,
+  "scenario": "WIDE_GAP",
+  "scenarioSeed": 5217400152596663891,
+  "caseSeed": 211165658896792971,
+  "scenarioVaried": false,
+  "buyerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "dealerStrategy": "TIME_DEPENDENT_CONCEDER",
+  "outcome": "DEAL",
+  "acceptedBy": "BUYER",
+  "roundsTaken": 1,
+  "messageCount": 4,
+  "askingPrice": 80000.0,
+  "buyerFirstOffer": 60800.0,
+  "buyerReservationPrice": 82400.0,
+  "dealerReservationPrice": 67200.0,
+  "finalPrice": 72800.0,
+  "savingFromAsk": 7200.0,
+  "savingPct": 9.0,
+  "lastBuyerOffer": 72800.0,
+  "lastDealerOffer": 72800.0,
+  "buyerUtility": 0.4444444444444444,
+  "dealerUtility": 0.4375,
+  "jointUtility": 0.8819444444444444,
+  "agreementSurplus": 15200.0,
+  "buyerSurplus": 9600.0,
+  "dealerProfit": 5600.0,
+  "buyerDistanceFromReservation": 9600.0,
+  "dealerDistanceFromReservation": 5600.0,
+  "buyerConcessionPct": 55.55555555555556,
+  "dealerConcessionPct": 56.25,
+  "benefitSide": "BALANCED",
+  "finalReason": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72900",
+  "transcript": [
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "OFFER",
+      "price": 60800.0,
+      "reasoning": "Opening offer"
+    },
+    {
+      "round": 1,
+      "actor": "DEALER",
+      "action": "OFFER",
+      "price": 72800.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72800"
+    },
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "WOULD_ACCEPT",
+      "price": 72800.0,
+      "reasoning": "Counter would meet dealer offer; accepting dealer price."
+    },
+    {
+      "round": 1,
+      "actor": "BUYER",
+      "action": "ACCEPT",
+      "price": 72800.0,
+      "reasoning": "Round 1/10 | Curve\u003dCONCEDER β\u003d4.00 | Progress\u003d10% → Offer RM72900"
+    }
+  ]
+}

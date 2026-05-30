@@ -1,0 +1,29 @@
+EXPERIMENT 105
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211367056674976055 | Varied scenario: false
+Buyer strategy: FIXED_INCREMENT_5PCT (Fixed Increment (5% per round))
+Dealer strategy: TIME_DEPENDENT_BOULWARE (Time-Dependent (BOULWARE))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 78300 | Rounds: 6
+Utility: buyer=0.19 dealer=0.87 joint=1.06 | Benefit side: DEALER
+Surplus: agreement=RM 15200 buyer=RM 4100 dealer=RM 11100
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 80000 | Round 1/10 | Curve=BOULWARE β=0.25 | Progress=10% → Offer RM80000
+Round 2 | BUYER | OFFER | RM 63800 | Round 1/10 | +5.0% increment | Offer RM60800 → RM63800 | RV ceiling: RM82400
+Round 2 | DEALER | OFFER | RM 80000 | Round 2/10 | Curve=BOULWARE β=0.25 | Progress=20% → Offer RM80000
+Round 3 | BUYER | OFFER | RM 67000 | Round 2/10 | +5.0% increment | Offer RM63800 → RM67000 | RV ceiling: RM82400
+Round 3 | DEALER | OFFER | RM 79900 | Round 3/10 | Curve=BOULWARE β=0.25 | Progress=30% → Offer RM79900
+Round 4 | BUYER | OFFER | RM 70400 | Round 3/10 | +5.0% increment | Offer RM67000 → RM70400 | RV ceiling: RM82400
+Round 4 | DEALER | OFFER | RM 79700 | Round 4/10 | Curve=BOULWARE β=0.25 | Progress=40% → Offer RM79700
+Round 5 | BUYER | OFFER | RM 73900 | Round 4/10 | +5.0% increment | Offer RM70400 → RM73900 | RV ceiling: RM82400
+Round 5 | DEALER | OFFER | RM 79200 | Round 5/10 | Curve=BOULWARE β=0.25 | Progress=50% → Offer RM79200
+Round 6 | BUYER | OFFER | RM 77600 | Round 5/10 | +5.0% increment | Offer RM73900 → RM77600 | RV ceiling: RM82400
+Round 6 | DEALER | OFFER | RM 78300 | Round 6/10 | Curve=BOULWARE β=0.25 | Progress=60% → Offer RM78300
+Round 6 | BUYER | WOULD_ACCEPT | RM 78300 | Counter would meet dealer offer; accepting dealer price.
+Round 6 | BUYER | ACCEPT | RM 78300 | Round 6/10 | +5.0% increment | Offer RM77600 → RM81500 | RV ceiling: RM82400
+
+Final note: Round 6/10 | +5.0% increment | Offer RM77600 → RM81500 | RV ceiling: RM82400

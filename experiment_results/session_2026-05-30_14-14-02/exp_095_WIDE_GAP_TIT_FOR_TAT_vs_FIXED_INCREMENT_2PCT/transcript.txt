@@ -1,0 +1,22 @@
+EXPERIMENT 95
+================
+Scenario: WIDE_GAP
+Repeat: 1 | Scenario seed: 5217400152596663891 | Case seed: 211166626015029970 | Varied scenario: false
+Buyer strategy: TIT_FOR_TAT (Tit-for-Tat)
+Dealer strategy: FIXED_INCREMENT_2PCT (Fixed Increment (2% per round))
+Asking: RM 80000 | Buyer first: RM 60800 | Buyer max: RM 82400 | Dealer floor: RM 67200
+Outcome: DEAL | Accepted by: BUYER | Final price: RM 67200 | Rounds: 3
+Utility: buyer=0.70 dealer=0.00 joint=0.70 | Benefit side: BUYER
+Surplus: agreement=RM 15200 buyer=RM 15200 dealer=-
+
+TRANSCRIPT
+----------
+Round 1 | BUYER | OFFER | RM 60800 | Opening offer
+Round 1 | DEALER | OFFER | RM 67200 | Round 1/10 | +2.0% increment | Offer RM80000 → RM67200 | RV ceiling: RM67200
+Round 2 | BUYER | OFFER | RM 61200 | Round 1/10 | Opponent last conceded 16.0% (RM10752) | Mirroring at 2.0% → Offer RM61200
+Round 2 | DEALER | OFFER | RM 67200 | Round 2/10 | +2.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 3 | BUYER | OFFER | RM 61600 | Round 2/10 | Opponent last conceded 0.0% (RM0) | Mirroring at 2.0% → Offer RM61600
+Round 3 | DEALER | OFFER | RM 67200 | Round 3/10 | +2.0% increment | Offer RM67200 → RM67200 | RV ceiling: RM67200
+Round 3 | BUYER | ACCEPT | RM 67200 | Round 3/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT
+
+Final note: Round 3/10 | OpponentConcession=0.0% | opponentStuck=true | lastRound=false → ACCEPT

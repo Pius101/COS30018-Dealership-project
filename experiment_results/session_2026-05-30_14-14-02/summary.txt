@@ -1,0 +1,54 @@
+STRATEGY EXPERIMENT SESSION
+===========================
+Experiments: 108
+Deals: 105 (97.22%)
+Average rounds: 5.83
+Average final price: RM 71750
+Average buyer utility: 0.35
+Average dealer utility: 0.20
+
+BEST BUYER OUTCOMES BY FINAL PRICE
+#076 WIDE_GAP   buyer=BAYESIAN                 dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 2 final=RM 67200 utility=0.70/0.00
+#077 WIDE_GAP   buyer=BAYESIAN                 dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 2 final=RM 67200 utility=0.70/0.00
+#078 WIDE_GAP   buyer=BAYESIAN                 dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 2 final=RM 67200 utility=0.70/0.00
+#082 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#083 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#084 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#088 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 8 final=RM 67200 utility=0.70/0.00
+#089 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 8 final=RM 67200 utility=0.70/0.00
+#090 WIDE_GAP   buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 8 final=RM 67200 utility=0.70/0.00
+#092 WIDE_GAP   buyer=TIT_FOR_TAT              dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds=10 final=RM 67200 utility=0.70/0.00
+
+FASTEST DEALS
+#010 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 1 final=RM 70400 utility=0.56/0.00
+#011 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 1 final=RM 70400 utility=0.56/0.00
+#012 BALANCED   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 1 final=RM 70400 utility=0.56/0.00
+#080 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 1 final=RM 72800 utility=0.44/0.44
+#082 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#083 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#084 WIDE_GAP   buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_5PCT     outcome=DEAL    rounds= 1 final=RM 67200 utility=0.70/0.00
+#002 BALANCED   buyer=BAYESIAN                 dealer=TIME_DEPENDENT_CONCEDER  outcome=DEAL    rounds= 2 final=RM 73600 utility=0.33/0.33
+#004 BALANCED   buyer=BAYESIAN                 dealer=TIT_FOR_TAT              outcome=DEAL    rounds= 2 final=RM 70400 utility=0.56/0.00
+#005 BALANCED   buyer=BAYESIAN                 dealer=FIXED_INCREMENT_2PCT     outcome=DEAL    rounds= 2 final=RM 70400 utility=0.56/0.00
+
+STRATEGY PAIR SUMMARY
+buyer=BAYESIAN                 dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.00 utility=0.47/0.00
+buyer=BAYESIAN                 dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.00 utility=0.47/0.00
+buyer=BAYESIAN                 dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.00 utility=0.47/0.00
+buyer=FIXED_INCREMENT_2PCT     dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 6.00 utility=0.47/0.00
+buyer=FIXED_INCREMENT_2PCT     dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 6.00 utility=0.47/0.00
+buyer=FIXED_INCREMENT_2PCT     dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 6.00 utility=0.47/0.00
+buyer=FIXED_INCREMENT_5PCT     dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=FIXED_INCREMENT_5PCT     dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=FIXED_INCREMENT_5PCT     dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=TIME_DEPENDENT_BOULWARE  dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 9.00 utility=0.47/0.00
+buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 9.00 utility=0.47/0.00
+buyer=TIME_DEPENDENT_BOULWARE  dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 9.00 utility=0.47/0.00
+buyer=TIME_DEPENDENT_CONCEDER  dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=TIME_DEPENDENT_CONCEDER  dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 2.67 utility=0.47/0.00
+buyer=TIT_FOR_TAT              dealer=TIME_DEPENDENT_CONCEDER  cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds=10.00 utility=0.47/0.00
+buyer=TIT_FOR_TAT              dealer=TIT_FOR_TAT              cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 3.00 utility=0.47/0.00
+buyer=TIT_FOR_TAT              dealer=FIXED_INCREMENT_2PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 3.00 utility=0.47/0.00
+buyer=TIT_FOR_TAT              dealer=FIXED_INCREMENT_5PCT     cases= 3 deals= 3 rate=100.00% avg_final=RM 69600 avg_rounds= 3.00 utility=0.47/0.00
+buyer=TIME_DEPENDENT_BOULWARE  dealer=TIME_DEPENDENT_CONCEDER  cases= 3 deals= 3 rate=100.00% avg_final=RM 70367 avg_rounds= 7.33 utility=0.41/0.08
